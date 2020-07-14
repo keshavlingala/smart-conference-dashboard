@@ -1,0 +1,40 @@
+<div class="side-nav-container d-flex flex-md-row flex-column">
+
+    <mat-list class="side-nav">
+
+        <div *ngIf="showHeading; else donotshowheading">
+            <h2 class="side-nav-heading">{{heading | uppercase}}</h2>
+        </div>
+    
+        <ng-template #donotshowheading>
+            <h2 class="side-nav-heading"></h2>
+        </ng-template>
+
+        <div class="d-flex flex-md-column flex-row flex-wrap">
+            <div *ngFor="let navItem of navItems">
+                <div *ngIf="navItem.isVisible">
+                    <mat-list-item style="height: 40px !important">
+                        <p class="side-nav-item" [routerLink]=navItem.routerLink routerLinkActive="active" #rla="routerLinkActive">
+                            <mat-icon class="nav-item-icon">{{navItem.icon}}</mat-icon>&nbsp;&nbsp;
+                            <span>{{navItem.name}}</span>
+                            <span [class.nav-active-pointer]="rla.isActive"></span>
+                        </p>
+                    </mat-list-item>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="showLogoutBtn">
+            <p class="side-nav-logout-btn"><mat-icon class="logout_icon">power_settings_new</mat-icon>&nbsp;&nbsp;Logout</p>
+        </div>
+
+        
+        
+    </mat-list>
+
+    <div class="side-nav-content">
+        <router-outlet></router-outlet>
+    </div>
+</div>
+   
+   
