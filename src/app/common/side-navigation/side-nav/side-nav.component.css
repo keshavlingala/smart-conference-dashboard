@@ -57,6 +57,7 @@
     border-radius: 10px;
     padding: 10px;
     height: 99%;
+    overflow: scroll;
 }
 
 .side-nav-logout-btn {
@@ -116,4 +117,14 @@ color: red;
         bottom: 50px;
     }
 
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+
+::-webkit-scrollbar-thumb{
+    background: #3F51B5;
+    border-radius: 3px;
 }

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {SideNavigationService} from './services/side-navigation.service';
+import {SideNavigationService} from './core/services/side-navigation.service';
 
 interface NavItem {
   icon:string;

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {SideNavigationGuard} from './side-navigation/side-navigation.guard';
+import {DevicesComponent} from './components/devices/devices.component';
+import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 
 const routes: Routes = [
   {path: "", redirectTo: "devices", pathMatch: "full"},
-  {path: "devices", component: PageNotFoundComponent, canActivate: [SideNavigationGuard] },
+  {path: "devices", component: DevicesComponent, canActivate: [SideNavigationGuard] },
   {path: "devices-type", component: PageNotFoundComponent, canActivate: [SideNavigationGuard] },
-  {path: "devices-type", component: PageNotFoundComponent, canActivate: [SideNavigationGuard]},
   {path: "devices-group", component: PageNotFoundComponent, canActivate: [SideNavigationGuard]},
   {path: "rules", component: PageNotFoundComponent, canActivate: [SideNavigationGuard]},
   {path: "ota-updates", component: PageNotFoundComponent, canActivate: [SideNavigationGuard]},
