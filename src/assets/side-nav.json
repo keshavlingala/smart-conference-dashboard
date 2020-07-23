@@ -1,0 +1,58 @@
+[
+    {
+        "icon": "account_circle",
+        "name":"Devices",
+        "routerLink":"/devices",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "add_shopping_cart",
+        "name":"Devices Type",
+        "routerLink":"/devices-type",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "addchart",
+        "name":"Devices-group",
+        "routerLink":"/devices-group",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "assignment_return",
+        "name":"Rules",
+        "routerLink":"/rules",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "analytics",
+        "name":"OTA Updates",
+        "routerLink":"/ota-updates",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "api",
+        "name":"Generate Keys",
+        "routerLink":"/generate-keys",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "app_blocking",
+        "name":"Dashboard",
+        "routerLink":"/dashboard",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
+        "icon": "accessible_forward",
+        "name":"Members",
+        "routerLink":"/members",
+        "isDisabled":false,
+        "isVisible": true
+    }
+]
