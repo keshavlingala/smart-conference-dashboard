@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./devices-type.component.css']
 })
 export class DevicesTypeComponent implements OnInit {
-
+  title = "Devices Type";
   constructor() { }
 
   ngOnInit(): void {

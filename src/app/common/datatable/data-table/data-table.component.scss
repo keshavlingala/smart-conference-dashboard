@@ -12,11 +12,9 @@ mat-icon {
   width: 100%;
 }
 
-.container {
-  // margin: 1vh 1vw;
-  max-width: 100%;
+.table-container {
+  margin: 1vh 1vw;
   overflow: auto;
-  background-color: white;
 
   > * {
     min-width: 813px;
@@ -49,3 +47,41 @@ button {
 .pointer {
   cursor: pointer;
 }
+
+
+/*Background and text color when a tab is active*/
+
+i {
+  border-radius: 100%;
+  padding: 15px;
+  justify-content: center;
+}
+
+.card {
+  h6 {
+    color: #65366f
+  }
+
+  .value {
+    color: #979098
+  }
+
+  .date {
+    color: #cfc9d2
+  }
+
+  border-left: 5px solid #dfd6b3;
+  margin-left: 5px;
+  margin: 8px;
+  margin-top: 15px;
+  height: 100px;
+  width: 185px;
+  padding: 8px;
+  background-color: #f1ecf3;
+}
+
+table td {
+  vertical-align: inherit;
+  border-top: inherit;
+}
+

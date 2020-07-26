@@ -17,6 +17,7 @@ interface NavItem {
 })
 export class SideNavigationService {
   private __url:string = 'http://localhost:4200/assets/side-nav.json';
+  //api url http://localhost:4201/
 
 
   constructor(private http: HttpClient) { }

@@ -9,31 +9,19 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   templateUrl: './devices.component.html',
   styleUrls : ['./devices.component.css']
 }) 
-export class DevicesComponent implements OnInit, OnDestroy {
-  title:string = "Devices"
-  subs: Subscription[] = [];
+export class DevicesComponent implements OnInit {
+  title= "Devices";
   data: Device[];
   dataTableConfig: DataTableConfig;
   dataTableActions: DataTableActions;
 
   constructor(
-    public http: DataService,
+    public deviceService: DataService,
     public snack: MatSnackBar
   ) {
   }
 
-  ngOnDestroy(): void {
-    // Unsubscribe Subscriptions
-    this.subs.forEach(sub => sub.unsubscribe());
-  }
-
-  ngOnInit(): void {
-    // Get Data from JSON
-    this.subs.push(this.http.getDevices().subscribe(d => {
-      console.log(this.data);
-      this.data = d;
-    }));
-    // Data table Configuration
+  async ngOnInit(): Promise<any> {
     this.dataTableConfig = {
       checkbox: true,
       pageSize: 5,
@@ -47,17 +35,38 @@ export class DevicesComponent implements OnInit, OnDestroy {
         {name: 'delete', icon: 'delete', color: 'warn'}
       ],
       bulkActions: [
-        {icon: 'delete', name: 'Delete', color: 'warn'},
-        {icon: 'visibility', name: 'Disable'}
+        {icon: 'delete', name: 'delete', color: 'warn'},
+        {icon: 'visibility', name: 'disable'}
       ],
-    };
+    }; 
+    this.data = await this.deviceService.getJson().toPromise();
+    console.log(this.data);
   }
 
-  actionChange($event: ActionChange): void {
+  async actionChange($event: ActionChange): Promise<any> {
     console.log($event);
-    this.snack.open('Action Type ' + $event.type, '', {
-      duration: 1000
-    });
+    let selected = $event.selected;
+    switch ($event.type) {
+      case 'action':
+        selected = $event.selected as Device;
+        if ($event.name === 'delete') {
+          await this.deviceService.deleteDevice(selected.id).toPromise();
+        } else if ($event.name === 'disable') {
+          await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
+        }
+        break;
+      case 'bulk-action':
+        selected = $event.selected as Device[];
+        if ($event.name === 'delete') {
+          await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise();
+        } else if ($event.name === 'disable') {
+          await this.deviceService
+            .disableDevices(selected, selected.length / 2 > selected
+              .filter(i => i.disable).length).toPromise();
+        }
+        break;
+    }
+    this.data = await this.deviceService.getDevices().toPromise();
   }
 
   filterChange($event: Device[]): void {

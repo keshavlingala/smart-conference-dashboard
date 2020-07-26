@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ota-updates.component.css']
 })
 export class OtaUpdatesComponent implements OnInit {
-
+  title = "OTA Updates";
   constructor() { }
 
   ngOnInit(): void {

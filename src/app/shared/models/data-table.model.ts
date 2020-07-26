@@ -4,16 +4,18 @@ export interface Device {
   name: string;
   createdDate: Date;
   deviceData: any;
+  disable: boolean;
 }
 
 
 export interface Res {
-  'id': string;
+  '_id': string;
   'type': string;
   'name': string;
-  'createdDate': number;
-  'deviceDate': any;
+  'createdAt': string;
+  'updatedAt': string;
   '__v': number;
+  disable: boolean;
 }
 
 export interface DataTableConfig {

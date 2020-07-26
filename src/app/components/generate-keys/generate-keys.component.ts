@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./generate-keys.component.css']
 })
 export class GenerateKeysComponent implements OnInit {
-
+  title = "Generate Keys";
   constructor() { }
 
   ngOnInit(): void {
