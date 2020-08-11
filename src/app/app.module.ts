@@ -26,7 +26,7 @@ import { OtaUpdatesComponent } from './components/ota-updates/ota-updates.compon
 import { GenerateKeysComponent } from './components/generate-keys/generate-keys.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { MembersComponent } from './components/members/members.component';
-
+import {Dummy1Component} from './components/dummy1/dummy1.component';
 //Guards
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 
@@ -43,7 +43,8 @@ import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
     OtaUpdatesComponent,
     GenerateKeysComponent,
     DashboardComponent,
-    MembersComponent
+    MembersComponent,
+    Dummy1Component
   ],
   imports: [
     CommonModule,

@@ -9,6 +9,8 @@ interface NavItem {
   routerLink:string;
   isDisabled:boolean;
   isVisible:boolean;
+  isGrouped?:boolean;
+  children?:any[];
 }
 
 
