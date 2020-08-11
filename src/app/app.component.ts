@@ -1,11 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {SideNavigationService} from './core/services/side-navigation.service';
+import {NavItem, GroupedNavItem} from './common/side-navigation/models/side-nav-models';
 
-interface NavItem {
-  icon:string;
-  name:string;
-  routerLink:string;
-  }
 
 @Component({
   selector: 'app-root',
@@ -13,9 +9,9 @@ interface NavItem {
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit  {
-  public showHeading:boolean = true;
+  public heading:string = "Cognisense";
   public showLogoutBtn:boolean = true;
-  public navItems:NavItem[] = [];
+  public navItems:(NavItem|GroupedNavItem)[] = [];
   constructor(private __sideNavService: SideNavigationService){
 
   }

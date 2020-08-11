@@ -1,17 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-
-
-interface NavItem {
-	icon:string;
-	name:string;
-  routerLink:string;
-  isDisabled:boolean;
-  isVisible:boolean;
-  isGrouped?:boolean;
-  children?:any[];
-}
+import {NavItem, GroupedNavItem} from '../../common/side-navigation/models/side-nav-models';
 
 
 @Injectable({
@@ -24,8 +14,7 @@ export class SideNavigationService {
 
   constructor(private http: HttpClient) { }
 
-  getNavItems():Observable<NavItem[]>{
-    return this.http.get<NavItem[]>(this.__url);
+  getNavItems():Observable<(NavItem|GroupedNavItem)[]>{
+    return this.http.get<(NavItem|GroupedNavItem)[]>(this.__url);
   }
-
 }

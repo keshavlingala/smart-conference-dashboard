@@ -1,5 +1,6 @@
 import { Component, OnInit, Input,ViewChildren,ViewChild,ElementRef, QueryList, AfterViewInit, OnChanges, SimpleChanges,Renderer2 } from '@angular/core';
 import {Router} from '@angular/router';
+import {NavItem, GroupedNavItem} from '../models/side-nav-models';
 @Component({
   selector: 'side-navigation-side-nav',
   templateUrl: './side-nav.component.html',
@@ -7,26 +8,30 @@ import {Router} from '@angular/router';
 })
 export class SideNavComponent implements OnInit, AfterViewInit, OnChanges {
 
-  @Input('heading') public heading:string;
-  @Input('showHeading') public showHeading:boolean;
-  @Input('showLogoutBtn') public showLogoutBtn:boolean;
-  @Input('navItems') public navItems =  [];
-  public groupedNavItems = [];
+  @Input('heading') public heading:string = null;
+  public showHeading:boolean;
+  @Input('showLogoutBtn') public showLogoutBtn:boolean = true;
+  @Input('navItems') public navItems:(NavItem|GroupedNavItem)[] =  [];
+  public groupedNavItems:number[] = [];
   @ViewChildren('expansionPanel') expansionPanels:QueryList<any>;
   @ViewChild('side_nav') sideNav: ElementRef;
   constructor(private route: Router, private renderer: Renderer2) { }
 
   ngOnInit(): void {
+    if(this.heading!=null){
+      this.showHeading = true;
+    }
   }
 
-  ngOnChanges(change: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges){
     if(this.navItems!=undefined){
       this.navItems.forEach((item,index)=>{
-        if(item.isGrouped){
+        if(item['isGrouped']){
           this.groupedNavItems.push(index);
         }
         });
     }
+
   }
 
   ngAfterViewInit(){
@@ -41,7 +46,7 @@ export class SideNavComponent implements OnInit, AfterViewInit, OnChanges {
     });
 
     //make the router link of first child which is not disabled to active
-    let childrenInGroup = this.navItems[i].children;
+    let childrenInGroup = this.navItems[i]['children'];
     for(let j=0; j<childrenInGroup.length; j++){
       if(!childrenInGroup[j].isDisabled && childrenInGroup[j].isVisible){
         this.route.navigate([childrenInGroup[j].routerLink]);

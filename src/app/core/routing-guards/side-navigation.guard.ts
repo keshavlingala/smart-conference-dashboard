@@ -15,10 +15,10 @@ constructor(private __sideNavService: SideNavigationService, private __router: R
 canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>{
     return this.__sideNavService.getNavItems().pipe(map(data=>{
       var isDisabled = data.filter(ele => {
-        if(ele.isGrouped){
+        if(ele['isGrouped']){
           var isAnyChildDisabled = 0;
-          ele.children.forEach(item=>{
-            if(item.routerLink === state.url && item.isDisabled){
+          ele['children'].forEach(item=>{
+            if(item['routerLink'] === state.url && item['isDisabled']){
               isAnyChildDisabled++;
             }
           });
@@ -27,7 +27,7 @@ canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observabl
           }
         }
         else {
-          return ele.routerLink === state.url && ele.isDisabled
+          return ele['routerLink'] === state.url && ele['isDisabled']
         }
       });
 
