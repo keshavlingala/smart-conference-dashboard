@@ -1,0 +1,25 @@
+@import '../../../../../node_modules/include-media/dist/include-media';
+
+#cards-container{
+    margin-top: 10px;
+}
+.card {
+    width: 28%;
+    margin-bottom: 10px;
+    @include media('<=tablet'){
+        width: 70%;
+    }
+
+    @include media(">tablet", "<=1100px"){
+        width: 48%;
+    }
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.page-active {
+    background-color: #79A831 !important;
+    color: white !important;
+}

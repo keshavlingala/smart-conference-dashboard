@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {DevicesComponent} from './components/devices/devices.component';
-import { DevicesTypeComponent } from './components/devices-type/devices-type.component';
+// import { DevicesTypeComponent } from './components/devices-type/devices-type.component';
 import { DevicesGroupComponent } from './components/devices-group/devices-group.component';
 import { RulesComponent } from './components/rules/rules.component';
 import { OtaUpdatesComponent } from './components/ota-updates/ota-updates.component';
@@ -15,7 +15,7 @@ import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 const routes: Routes = [
   {path: "", redirectTo: "devices", pathMatch: "full"},
   {path: "devices", component: DevicesComponent, canActivate: [SideNavigationGuard] },
-  {path: "devices-type", component: DevicesTypeComponent, canActivate: [SideNavigationGuard] },
+  {path: "devices-type", canActivate: [SideNavigationGuard], loadChildren: ()=> import('./featured-modules/devices-type/devices-type.module').then(m=>m.DevicesTypeModule)},
   {path: "devices-group", component: DevicesGroupComponent, canActivate: [SideNavigationGuard]},
   {path: "rules", component: RulesComponent, canActivate: [SideNavigationGuard]},
   {path: "ota-updates", component: OtaUpdatesComponent, canActivate: [SideNavigationGuard]},

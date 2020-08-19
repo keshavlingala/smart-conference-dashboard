@@ -20,11 +20,12 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 const MaterialComponents = [MatDialogModule, MatNativeDateModule, MatTabsModule, MatExpansionModule, 
   MatFormFieldModule, MatDatepickerModule, MatCardModule, MatDividerModule,MatSlideToggleModule, MatSidenavModule, MatIconModule, 
   MatListModule, MatButtonModule, MatToolbarModule,MatTableModule, MatSortModule,MatPaginatorModule,MatCheckboxModule, 
-  MatSnackBarModule, MatInputModule];
+  MatSnackBarModule, MatInputModule, MatButtonToggleModule];
 
 @NgModule({
   imports: [
