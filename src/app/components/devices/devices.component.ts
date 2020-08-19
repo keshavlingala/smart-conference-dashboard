@@ -9,10 +9,10 @@ import {DialogFactoryService} from '../../core/services/dialog-factory.service';
 @Component({
   selector: 'app-parent',
   templateUrl: './devices.component.html',
-  styleUrls : ['./devices.component.scss']
-}) 
+  styleUrls: ['./devices.component.scss']
+})
 export class DevicesComponent implements OnInit {
-  title= "Devices";
+  title = "Devices";
   @ViewChild(TemplateRef) tpl: TemplateRef<any>;
   @ViewChild('userDialogTemplate')
   userDialogTemplate: TemplateRef<any>;
@@ -153,7 +153,7 @@ export class DevicesComponent implements OnInit {
         {icon: 'delete', name: 'delete', color: 'warn'},
         {icon: 'visibility', name: 'disable'}
       ],
-    }; 
+    };
     this.data = await this.deviceService.getJson().toPromise();
     // console.log(this.data);
   }
@@ -168,14 +168,14 @@ export class DevicesComponent implements OnInit {
           await this.deviceService.deleteDevice(selected.id).toPromise();
         } else if ($event.name === 'disable') {
           await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
-        }else if ($event.name === 'analytics') {
+        } else if ($event.name === 'analytics') {
           this.dialogService.open(
             {
               template: this.userDialogTemplate,
             },
             {width: 500, height: 605, disableClose: true}
           );
-          }
+        }
         break;
       case 'bulk-action':
         selected = $event.selected as Device[];

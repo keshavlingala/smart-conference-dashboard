@@ -20,11 +20,13 @@ export class DataTableComponent implements OnChanges, OnInit {
   @Output() bulkActionClick = new EventEmitter<ActionChange>();
   @Output() filterChange = new EventEmitter<Device[]>();
   displayedColumns: string[] = ['checkbox', 'id', 'type', 'name', 'createdDate', 'options'];
+  @Input() columnNames = ['ID', 'Type', 'Name(User Defined)', ' Created Date', ' View Device Data'];
   dataSource: MatTableDataSource<Device>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
   selection = new SelectionModel<Device>(true, []);
-  
+  @Input() addButtonName = 'Add Devices';
+
   constructor(
     private snack: MatSnackBar,
     private dialogFactoryService: DialogFactoryService

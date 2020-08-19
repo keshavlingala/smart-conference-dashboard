@@ -1,71 +1,71 @@
 <mat-toolbar>{{title}}</mat-toolbar>
 <app-data-table [config]="dataTableConfig"
-                    [actions]="dataTableActions"
-                    [data]="data"
-                    (actionClick)="actionChange($event)"
-                    (filterChange)="filterChange($event)"
-                    (bulkActionClick)="actionChange($event)"
-    >
-    </app-data-table>
+                [actions]="dataTableActions"
+                [data]="data"
+                (actionClick)="actionChange($event)"
+                (filterChange)="filterChange($event)"
+                (bulkActionClick)="actionChange($event)"
+>
+</app-data-table>
 
-    <!--Pop up Model-->
-    <ng-template #userDialogTemplate>
-        <div class="container-fluid">
-          <mat-toolbar style="justify-content: space-between;background: #fff;height: 40px;">
-            <i class="fa {{popUpData.title.icon}} fa-lg float-left" aria-hidden="true"></i>
-            &nbsp;
-            {{ popUpData.title.name }}
-            <span class="flex-spacer"></span>
-            <button mat-button *ngIf="popUpData.config.dismissbtn" mat-dialog-close class="fa fa-times pointer"></button>
-          </mat-toolbar>
-          <mat-tab-group>
-            <mat-tab label="ATTRIBUTES">
-              <div class="attributeBody">
-                <div class="container">
-                  <div class="row justify-content-center">
-                    <div class="d-flex flex-row flex-wrap" style=" width: 100%; margin:0 auto ;">
-                      <app-my-card [showDefaultContent]="true" [cardData]="cardData" (MoveForward)="moveForward()"
-                                   (MoveBackward)="moveBackward()" [setting]="setting" class="main w-100">
-                        <div class="Custom_Data">
-                          <h1 style="color: darkmagenta; font-weight: 500;"> Custom data 1</h1>
-                          <p>this para</p>
-                        </div>
-                      </app-my-card>
-  
-                    </div>
+<!--Pop up Model-->
+<ng-template #userDialogTemplate>
+  <div class="container-fluid">
+    <mat-toolbar style="justify-content: space-between;background: #fff;height: 40px;">
+      <i class="fa {{popUpData.title.icon}} fa-lg float-left" aria-hidden="true"></i>
+      &nbsp;
+      {{ popUpData.title.name }}
+      <span class="flex-spacer"></span>
+      <button mat-button *ngIf="popUpData.config.dismissbtn" mat-dialog-close class="fa fa-times pointer"></button>
+    </mat-toolbar>
+    <mat-tab-group>
+      <mat-tab label="ATTRIBUTES">
+        <div class="attributeBody">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="d-flex flex-row flex-wrap" style=" width: 100%; margin:0 auto ;">
+                <app-my-card [showDefaultContent]="true" [cardData]="cardData" (MoveForward)="moveForward()"
+                             (MoveBackward)="moveBackward()" [setting]="setting" class="main w-100">
+                  <div class="Custom_Data">
+                    <h1 style="color: darkmagenta; font-weight: 500;"> Custom data 1</h1>
+                    <p>this para</p>
                   </div>
-  
-                </div>
+                </app-my-card>
+
               </div>
-              <div class="attributeFooter">
-                <mat-form-field>
-                  <mat-label>Access Key</mat-label>
-                  <input matInput [type]="show ? 'text' : 'password'" #input/>
-                </mat-form-field>
-                &nbsp;
-                <button mat-raised-button color="warn" class="float-none" (click)="accessKeyShow()"
-                        [disabled]="input.value.length==0">
-                  {{ show == false ? "SHOW" : "HIDE" }}
-                </button>
-              </div>
-            </mat-tab>
-            <mat-tab label="ACTIONS">
-              <mat-list>
-                <div *ngFor="let item of popUpData.tabs.actions; index as i"
-                     [ngStyle]="{ backgroundColor: item.toggle ? '#effff4' : 'white' }">
-                  <mat-slide-toggle color="green" class="float-right mt-2" (click)="slideToggleFunction(i)"></mat-slide-toggle>
-                  <i class="fa {{ item.icon }} fa-lg float-left" aria-hidden="true" [ngStyle]="{
+            </div>
+
+          </div>
+        </div>
+        <div class="attributeFooter">
+          <mat-form-field>
+            <mat-label>Access Key</mat-label>
+            <input matInput [type]="show ? 'text' : 'password'" #input/>
+          </mat-form-field>
+          &nbsp;
+          <button mat-raised-button color="warn" class="float-none" (click)="accessKeyShow()"
+                  [disabled]="input.value.length==0">
+            {{ show == false ? "SHOW" : "HIDE" }}
+          </button>
+        </div>
+      </mat-tab>
+      <mat-tab label="ACTIONS">
+        <mat-list>
+          <div *ngFor="let item of popUpData.tabs.actions; index as i"
+               [ngStyle]="{ backgroundColor: item.toggle ? '#effff4' : 'white' }">
+            <mat-slide-toggle color="green" class="float-right mt-2"
+                              (click)="slideToggleFunction(i)"></mat-slide-toggle>
+            <i class="fa {{ item.icon }} fa-lg float-left" aria-hidden="true" [ngStyle]="{
                   backgroundColor: item.toggle ? '#c8fee1' : 'white'
                 }"></i>
-                  <mat-list-item class="float-none">{{ item.value }}</mat-list-item>
-                  <span class="flex-spacer"></span>
-  
-                  <mat-divider></mat-divider>
-                </div>
-              </mat-list>
-            </mat-tab>
-          </mat-tab-group>
-        </div>
-  
-      </ng-template>
-  
+            <mat-list-item class="float-none">{{ item.value }}</mat-list-item>
+            <span class="flex-spacer"></span>
+
+            <mat-divider></mat-divider>
+          </div>
+        </mat-list>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+
+</ng-template>
