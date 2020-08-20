@@ -2,9 +2,9 @@
 
 <button mat-raised-button style="background-color: #79A831; color: white;" [routerLink]="['add-device-type']">Add Device Type</button>
 
-<device-type-card-list 
+<device-type-card-list (paginationEvent)="getDevicesTypeData($event)"
 [devicesTypeData]="devicesTypeData"
-[config] = "config"
+[devicesTypeCount] = "devicesTypeCount"
+[perPageData] = "config.perPageData"
 >
-
 </device-type-card-list>  

@@ -1,5 +1,5 @@
 <div class="d-flex flex-wrap justify-content-between" id="cards-container">
-    <div *ngFor="let card of currentlyShowingCards" class="card">
+    <div *ngFor="let card of cards" class="card">
         <device-type-card [cardData]="card"></device-type-card>
     </div>
 </div>
@@ -7,7 +7,7 @@
 <!-- Pagination -->
 <nav aria-label="..." class="d-flex justify-content-center">
     <ul class="pagination">
-      <li class="page-item cursor m-1" *ngFor="let page of paginatedCardsMatrix; let i = index" (click)="showCards(i)">
+      <li class="page-item cursor m-1" *ngFor="let page of paginationArray; let i = index" (click)="getCardsOfPageNumber(i)">
           <a class="page-link" #paginationlink>{{i+1}}</a>
       </li>
     </ul>

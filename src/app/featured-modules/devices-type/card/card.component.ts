@@ -46,9 +46,12 @@ export class CardComponent implements OnInit {
         }
       }
     }
+
+    this.cardData.chart = this.chart;
   }
 
   openDialog(){
+    console.log("opened")
     this.dialog.open(PopupComponent,{
       data: this.cardData
   });
