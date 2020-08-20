@@ -20,7 +20,7 @@
                 <div *ngFor="let navItem of navItems; let i = index">
     
                     <div *ngIf="navItem.isGrouped; else notGrouped ">
-                        <mat-expansion-panel #expansionPanel (opened)="closeAllExpansionPanelsExcept(i);">
+                        <mat-expansion-panel #expansionPanel (opened)="closeAllExpansionPanelsExcept(i)" (click)="toggleSideNav()">
                             <mat-expansion-panel-header class="side-nav-item">
                                 <mat-icon class="nav-item-icon">{{navItem.icon}}</mat-icon>&nbsp;&nbsp;
                                 <span>{{navItem.name}}</span>

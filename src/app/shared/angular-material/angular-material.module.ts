@@ -20,6 +20,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
+<<<<<<< HEAD
 import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
@@ -52,6 +53,14 @@ const MaterialComponents = [MatDialogModule,
   MatChipsModule,
   MatButtonToggleModule
 ];
+=======
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+
+const MaterialComponents = [MatDialogModule, MatNativeDateModule, MatTabsModule, MatExpansionModule, 
+  MatFormFieldModule, MatDatepickerModule, MatCardModule, MatDividerModule,MatSlideToggleModule, MatSidenavModule, MatIconModule, 
+  MatListModule, MatButtonModule, MatToolbarModule,MatTableModule, MatSortModule,MatPaginatorModule,MatCheckboxModule, 
+  MatSnackBarModule, MatInputModule, MatButtonToggleModule];
+>>>>>>> d51dbe25d193aa22d40ca1ac871625cc74df3f4e
 
 @NgModule({
   imports: [
