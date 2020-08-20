@@ -1,0 +1,51 @@
+<mat-toolbar>
+  RULES
+</mat-toolbar>
+<div class="bar">
+  <button routerLink="add" class="btn btn-success" mat-flat-button>Create Rule</button>
+  <span class="flex-fill"></span>
+  <mat-form-field appearance="outline">
+    <mat-icon matSuffix>search</mat-icon>
+    <mat-label>Search</mat-label>
+    <input matInput type="text">
+  </mat-form-field>
+</div>
+<div class="rule-list">
+  <div class="rule-card" *ngFor="let c of (shownData | async)">
+    <mat-card>
+      <div class="d-flex align-items-center">
+        <h2 style="margin: 0;color: #f39c33">Ambient Sensing</h2>
+        <span class="flex-fill"></span>
+        <mat-chip-list>
+          <mat-chip selected style="background-color: rgba(234,82,222,0.68);/*color:black*/">10 rules</mat-chip>
+        </mat-chip-list>
+      </div>
+      <mat-card-content>
+        <div class="d-flex flex-column" *ngFor="let rule of [0,0]">
+          <span>Occupancy Check</span>
+          <span>Turn On AC</span>
+          <span style="font-size: 0.7rem;color: gray;">{{ date| date}}</span>
+          <hr>
+        </div>
+      </mat-card-content>
+      <mat-card-actions style="padding-top: 0;padding-bottom: 0;margin-top: -15px;margin-bottom: -11px;" class="d-flex">
+        <button color="primary" class="ml-auto" mat-button>View More Rules</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center position-relative align-items-center">
+  <span class="position-absolute p-1" style="left: 0">
+    Viewing {{
+    ((selectedIndex + 1) * pageSize - pageSize || 1) + ' - ' + min((selectedIndex + 1) * pageSize, rule_lists.length) + ' of ' + rule_lists.length
+    }}
+  </span>
+  <div *ngIf="selectedIndex>0" (click)="onPageChange(selectedIndex-1)" class="page-button">{{"<"}}</div>
+  <div (click)="onPageChange(i)" [ngClass]="{'active-page':selectedIndex===i}" class="page-button"
+       *ngFor="let page of pages;let i = index">
+    {{i + 1}}
+  </div>
+  <div *ngIf="selectedIndex<pages.length-1" (click)="onPageChange(selectedIndex+1)" class="page-button">{{">"}}</div>
+</div>
+

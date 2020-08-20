@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
@@ -20,17 +20,44 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatSelectModule} from "@angular/material/select";
+import {MatStepperModule} from "@angular/material/stepper";
+import {ReactiveFormsModule} from "@angular/forms";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatButtonToggleModule} from "@angular/material/button-toggle";
 
-const MaterialComponents = [MatDialogModule, MatNativeDateModule, MatTabsModule, MatExpansionModule, 
-  MatFormFieldModule, MatDatepickerModule, MatCardModule, MatDividerModule,MatSlideToggleModule, MatSidenavModule, MatIconModule, 
-  MatListModule, MatButtonModule, MatToolbarModule,MatTableModule, MatSortModule,MatPaginatorModule,MatCheckboxModule, 
-  MatSnackBarModule, MatInputModule, MatButtonToggleModule];
+const MaterialComponents = [MatDialogModule,
+  MatNativeDateModule,
+  MatTabsModule,
+  MatExpansionModule,
+  MatFormFieldModule,
+  MatDatepickerModule,
+  MatCardModule,
+  MatDividerModule,
+  MatSlideToggleModule,
+  MatSidenavModule,
+  MatIconModule,
+  MatListModule,
+  MatButtonModule,
+  MatToolbarModule,
+  MatTableModule,
+  MatSortModule,
+  MatPaginatorModule,
+  MatCheckboxModule,
+  MatSnackBarModule,
+  MatInputModule,
+  MatSelectModule,
+  MatStepperModule,
+  ReactiveFormsModule,
+  MatChipsModule,
+  MatButtonToggleModule
+];
 
 @NgModule({
   imports: [
     MaterialComponents
-  ], 
+  ],
   exports: [MaterialComponents]
 })
-export class AngularMaterialModule { }
+export class AngularMaterialModule {
+}

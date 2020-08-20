@@ -1,0 +1,38 @@
+<div class="row justify-content-center mt-4 mr-0 w-100">
+  <mat-form-field appearance="fill">
+    <mat-label>Select OTA type</mat-label>
+    <mat-select [(ngModel)]="selectedUpdate" [value]="selectedUpdate">
+      <mat-option [value]="update" *ngFor="let update of dataViewConfig.all_updates">{{update.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<app-timeline>
+  <app-timeline-item *ngFor="let item of selectedUpdate.items">
+    <mat-card>
+      <div class="row">
+        <div class="col-9 ">
+          <h1 class="mb-1">
+            {{item.heading}}
+          </h1>
+          <h3>
+            {{item.subheading}}
+          </h3>
+          <p class="overflow-hidden">
+            {{item.description | slice:0:100}}...
+          </p>
+        </div>
+        <div class="col-3  d-flex flex-column align-items-center justify-content-center border-left">
+          <h3 style="font-size: 1.3rem">
+            {{item.date | date:'MMM'}}
+          </h3>
+          <h1 style="font-size: 2rem;font-weight: 500">
+            {{item.date | date:'dd'}}
+          </h1>
+          <h3 style="font-size: 1.1rem">
+            {{item.date | date:'yyyy'}}
+          </h3>
+        </div>
+      </div>
+    </mat-card>
+  </app-timeline-item>
+</app-timeline>
