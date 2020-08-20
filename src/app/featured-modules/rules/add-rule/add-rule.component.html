@@ -1,0 +1,86 @@
+<div class="row">
+  <div class="col ">
+    <mat-vertical-stepper (selectionChange)="selectionChange($event)" #stepper>
+      <mat-step #ruleName [stepControl]="firstFormGroup">
+        <ng-template matStepLabel> Define the rule Name</ng-template>
+        <form [formGroup]="firstFormGroup">
+          <div class="row">
+            <mat-form-field class="col-4">
+              <mat-label>Rule Name</mat-label>
+              <input matInput placeholder="Ex:Occupancy" formControlName="name">
+            </mat-form-field>
+            <mat-form-field class=" col-4">
+              <mat-select formControlName="type" placeholder="Device Type">
+                <mat-option value="Ambient Sensing">Ambient Sensing</mat-option>
+                <mat-option value="Other Sensing">Other Sensing</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div *ngIf="selectedIndex===0">
+            <button [disabled]="!firstFormGroup.valid" color="primary" mat-raised-button matStepperNext>Next</button>
+            <button mat-button> Cancel</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="secondFormGroup">
+        <ng-template matStepLabel>Create Rule</ng-template>
+        <div *ngIf="selectedIndex===1">
+          <h4>Parameters</h4>
+          <ul class="parameters">
+            <li *ngFor="let param of parameters">{{param}}</li>
+          </ul>
+          <form class="mt-4" [formGroup]="secondFormGroup">
+            <div>
+              <h4>Actions</h4>
+              <mat-button-toggle-group appearance="legacy">
+                <mat-button-toggle [value]="action" *ngFor="let action of actions">{{action}}</mat-button-toggle>
+              </mat-button-toggle-group>
+            </div>
+
+            <h4 class="mt-4">Condition</h4>
+            <mat-form-field class="w-100" appearance="outline">
+              <mat-label>Condition</mat-label>
+              <label>
+                <textarea style="resize: none" matInput></textarea>
+              </label>
+            </mat-form-field>
+            <div class="d-flex justify-content-center position-relative align-items-center">
+              <button style="left: 0" mat-button class="position-absolute">Cancel</button>
+              <button mat-button class="btn submit-btn">Create Rule</button>
+            </div>
+          </form>
+        </div>
+      </mat-step>
+    </mat-vertical-stepper>
+  </div>
+  <div class="col-3 con-wrapper d-md-block d-none">
+    <div class="con-box">
+      <h4>Condition Notes</h4>
+      <dl>
+        <dt>Simple Operators</dt>
+        <div class="dd-box">
+          <dd> + Addition</dd>
+          <dd> - Subtraction</dd>
+          <dd> - Subtraction</dd>
+          <dd> - Subtraction</dd>
+          <dd> - Subtraction</dd>
+          <dd> - Subtraction</dd>
+          <dd> - Subtraction</dd>
+        </div>
+        <dt>Binary Relational Operators</dt>
+        <div class="dd-box">
+          <dd>Equals to</dd>
+          <dd>Equals to</dd>
+          <dd>Equals to</dd>
+        </div>
+        <dt>Boolean Operators</dt>
+        <div class="dd-box">
+          <dd> && And</dd>
+          <dd> && And</dd>
+          <dd> && And</dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+<!--<button mat-button (click)="log()">Log</button>-->

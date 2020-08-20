@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {AngularMaterialModule} from './angular-material/angular-material.module';
 import {AppRoutingModule} from '../app-routing.module';
 import {CardModule} from '../common/card-module/card.module';

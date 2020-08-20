@@ -165,9 +165,18 @@ export class DevicesComponent implements OnInit {
       case 'action':
         selected = $event.selected as Device;
         if ($event.name === 'delete') {
-          await this.deviceService.deleteDevice(selected.id).toPromise();
+
+          try {
+            await this.deviceService.deleteDevice(selected.id).toPromise()
+          } catch (e) {
+            console.log('Cannot Do Data manipulation ', e)
+          }
         } else if ($event.name === 'disable') {
-          await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
+          try {
+            await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
+          } catch (e) {
+            console.log('Cannot Do Data manipulation ', e)
+          }
         } else if ($event.name === 'analytics') {
           this.dialogService.open(
             {
@@ -180,15 +189,27 @@ export class DevicesComponent implements OnInit {
       case 'bulk-action':
         selected = $event.selected as Device[];
         if ($event.name === 'delete') {
-          await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise();
+          try {
+            await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise()
+          } catch (e) {
+            console.log('Cannot Do Data manipulation ', e)
+          }
         } else if ($event.name === 'disable') {
-          await this.deviceService
-            .disableDevices(selected, selected.length / 2 > selected
-              .filter(i => i.disable).length).toPromise();
+          try {
+            await this.deviceService
+              .disableDevices(selected, selected.length / 2 > selected
+                .filter(i => i.disable).length).toPromise()
+          } catch (e) {
+            console.log('Cannot Do Data manipulation ', e)
+          }
         }
         break;
     }
-    this.data = await this.deviceService.getDevices().toPromise();
+    try {
+      this.data = await this.deviceService.getDevices().toPromise()
+    } catch (e) {
+      this.data = await this.deviceService.getJson().toPromise();
+    }
   }
 
   filterChange($event: Device[]): void {

@@ -1,0 +1,50 @@
+::ng-deep .mat-vertical-stepper-content {
+  visibility: visible !important;
+  height: 100% !important;
+}
+
+.parameters {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+
+  li {
+    font-size: 0.8rem;
+    list-style-image: none;
+  }
+}
+
+.submit-btn {
+  color: white;
+  background-color: green;
+  padding: 5px 40px;
+  text-align: center;
+  box-shadow: none;
+}
+
+.con-wrapper {
+  padding-top: 24px;
+  padding-right: 24px;
+}
+
+.con-box {
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+
+  dl {
+    > dt {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: #673ab7;
+    }
+  }
+}
+
+.dd-box {
+  display: grid;
+  grid-template-columns: auto auto;
+}
+
