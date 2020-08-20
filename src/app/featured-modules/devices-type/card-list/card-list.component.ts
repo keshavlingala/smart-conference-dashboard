@@ -1,4 +1,4 @@
-import { Component, OnInit ,ViewChildren, QueryList,AfterViewInit,Renderer2,Input} from '@angular/core';
+import { Component, OnInit ,ViewChildren, QueryList,AfterViewInit,Renderer2,Input,Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'device-type-card-list',
@@ -8,30 +8,31 @@ import { Component, OnInit ,ViewChildren, QueryList,AfterViewInit,Renderer2,Inpu
 export class CardListComponent implements OnInit, AfterViewInit {
 
   @ViewChildren('paginationlink') paginationLinks: QueryList<any>;
-  @Input('devicesTypeData') public allCards = [];
-  @Input('config') config;
-  public currentlyShowingCards = [];
-  public paginatedCardsMatrix = [];
-  public perPageCards:number;
+  @Input('devicesTypeData') public cards = [];
+  @Input('devicesTypeCount') public cardsCount:number;
+  @Input('perPageData') public perPageCards;
+  @Output() paginationEvent = new EventEmitter();
+
+  public paginationArray = [];
+
   constructor(private renderer: Renderer2) { 
 
   }
 
+  getCardsOfPageNumber(pageNumber){
+    this.paginationEvent.emit(pageNumber);
+    this.addActiveClassToPaginationLink(pageNumber);
+  }
+
   ngOnInit(): void {
-    this.perPageCards = this.config.perPageCards;
-    this.paginatedCardsMatrix = this.generatePaginationMatrixFromArray(this.allCards, this.perPageCards);
-    this.currentlyShowingCards = this.paginatedCardsMatrix[0];
+    this.paginationArray = new Array(Math.ceil(this.cardsCount/this.perPageCards)).fill(0);
   }
 
   ngAfterViewInit(){
     this.renderer.addClass(this.paginationLinks.toArray()[0].nativeElement, 'page-active')
   }
 
-  showCards(index){
-    this.currentlyShowingCards = this.paginatedCardsMatrix[index];
-    this.addActiveClassToPaginationLink(index);
-  }
-
+  
   addActiveClassToPaginationLink(index){
     this.paginationLinks.forEach((link,i)=>{
       if(i!=index){
@@ -41,17 +42,5 @@ export class CardListComponent implements OnInit, AfterViewInit {
         this.renderer.addClass(link.nativeElement, 'page-active');
       }
     });
-  }
-
-  generatePaginationMatrixFromArray(arr,cols){
-    var matrix = [];
-    var cIndex = 0;
-    var nIndex = cols;
-    while(cIndex<arr.length){
-      matrix.push(arr.slice(cIndex,nIndex));
-      cIndex = nIndex;
-      nIndex = cIndex + cols;
-    }
-    return matrix;
   }
 }
