@@ -9,9 +9,9 @@
 }
 
 .rule-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 
 .rule-card {
