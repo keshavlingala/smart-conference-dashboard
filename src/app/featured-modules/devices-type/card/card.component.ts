@@ -1,8 +1,7 @@
 import { Component, OnInit, Input} from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
-// import { ChartType } from 'chart.js';
-// import { MultiDataSet, Label } from 'ng2-charts';
+
 
 @Component({
   selector: 'device-type-card',
@@ -27,7 +26,6 @@ export class CardComponent implements OnInit {
           }
         }
       }
-  public doughnutChartLegend =true;
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -51,7 +49,6 @@ export class CardComponent implements OnInit {
   }
 
   openDialog(){
-    console.log("opened")
     this.dialog.open(PopupComponent,{
       data: this.cardData
   });
