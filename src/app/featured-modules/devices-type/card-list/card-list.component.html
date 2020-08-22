@@ -5,10 +5,16 @@
 </div>
 
 <!-- Pagination -->
-<nav aria-label="..." class="d-flex justify-content-center">
+<nav class="d-flex justify-content-center p-0 position-relative">
     <ul class="pagination">
-      <li class="page-item cursor m-1" *ngFor="let page of paginationArray; let i = index" (click)="getCardsOfPageNumber(i)">
-          <a class="page-link" #paginationlink>{{i+1}}</a>
+      <li class="page-item cursor mr-1" *ngFor="let page of paginationArray; let i = index" (click)="getCardsOfPageNumber(i)">
+          <a class="page-link" [ngClass]="{'page-active':currentPage===i}">{{i+1}}</a>
       </li>
     </ul>
+
+    <small class="d-inline-flex justify-content-center position-absolute text-secondary" style="top: 50%; left: 0; transform: translateY(-50%);">
+        Viewing {{currentPage*perPageCards+1}} - {{math.min((currentPage*perPageCards)+perPageCards, cardsCount)}} of {{cardsCount}}
+    </small>
   </nav>
+
+  

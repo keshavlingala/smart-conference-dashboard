@@ -10,7 +10,7 @@ export class DevicesTypeListingComponent implements OnInit {
   public devicesTypeData = [];
   public devicesTypeCount = 0;
   public config  = {
-    perPageData: 6
+    perPageData: 8
   }
 
   getDevicesTypeCount(){
