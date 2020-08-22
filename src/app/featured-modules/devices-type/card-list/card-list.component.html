@@ -7,9 +7,15 @@
 <!-- Pagination -->
 <nav class="d-flex justify-content-center p-0 position-relative">
     <ul class="pagination">
+     <div class="page-item mr-1 cursor" *ngIf="currentPage>0" (click)="getCardsOfPageNumber(currentPage-1)">
+         <a class="page-link"><</a>
+     </div>
       <li class="page-item cursor mr-1" *ngFor="let page of paginationArray; let i = index" (click)="getCardsOfPageNumber(i)">
           <a class="page-link" [ngClass]="{'page-active':currentPage===i}">{{i+1}}</a>
       </li>
+      <div class="page-item mr-1 cursor" *ngIf="currentPage<paginationArray.length-1" (click)="getCardsOfPageNumber(currentPage+1)">
+          <a class="page-link">></a>
+      </div>
     </ul>
 
     <small class="d-inline-flex justify-content-center position-absolute text-secondary" style="top: 50%; left: 0; transform: translateY(-50%);">
