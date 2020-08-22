@@ -19,8 +19,11 @@ export class DataTableComponent implements OnChanges, OnInit {
   @Output() actionClick = new EventEmitter<ActionChange>();
   @Output() bulkActionClick = new EventEmitter<ActionChange>();
   @Output() filterChange = new EventEmitter<Device[]>();
-  displayedColumns: string[] = ['checkbox', 'id', 'type', 'name', 'createdDate', 'options'];
-  @Input() columnNames = ['ID', 'Type', 'Name(User Defined)', ' Created Date', ' View Device Data'];
+  checkBox = ['checkbox']
+  actionKey = ['options']
+  @Input() actionsHeaderName = ' View Device Data'
+  @Input() keys: string[] = ['id', 'type', 'name', 'createdDate',];
+  @Input() columnNames = ['ID', 'Type', 'Name(User Defined)', ' Created Date',];
   dataSource: MatTableDataSource<Device>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
@@ -35,13 +38,17 @@ export class DataTableComponent implements OnChanges, OnInit {
 
   ngOnInit(): void {
     if (!this.config.checkbox) {
-      this.displayedColumns.shift();
+      this.checkBox = [];
     }
+    if (!this.actions) {
+      this.actionKey = []
+    }
+    console.log(this.columnNames, this.checkBox.concat(this.keys))
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('On Changes Called');
-    // console.log('Changes', changes);
+    console.log('On Changes Called');
+    console.log('Data', this.data);
     if (this.data) {
       this.dataSource = new MatTableDataSource<Device>(this.data);
       this.dataSource.paginator = this.paginator;
