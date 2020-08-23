@@ -1,0 +1,14 @@
+@import '../../../../../node_modules/include-media/dist/include-media';
+
+#cards-container{
+    margin-top: 10px;
+}
+
+.cursor{
+    cursor: pointer;
+}
+
+.page-active {
+    background-color: #79A831 !important;
+    color: white !important;
+}

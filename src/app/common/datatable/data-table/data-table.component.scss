@@ -1,0 +1,70 @@
+.row {
+  display: flex;
+  justify-content: space-around;
+  //padding: 15px;
+}
+
+mat-icon {
+  cursor: pointer;
+}
+
+.table {
+  width: 100%;
+}
+
+.table-container {
+  margin: 1vh 1vw;
+  overflow: auto;
+  background-color: white;
+
+  > * {
+    min-width: 813px;
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  margin-right: 10px;
+}
+
+.search {
+  margin: 0;
+
+}
+
+.bar {
+  display: flex;
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: row;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+table td {
+  vertical-align: inherit;
+  border-top: inherit;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar {
+  width: 7px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: #591fc1;
+}
+

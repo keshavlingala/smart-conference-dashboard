@@ -1,0 +1,61 @@
+<div class="d-flex row" style=" width: 100%; margin:0 auto; ">
+  <div *ngIf="showDefaultContent; else: custom_data" class="d-flex flex-row flex-wrap w-100">
+    <div *ngFor="let card of cardData; let i=index;" class=" main" [ngSwitch]=setting[0].design>
+        <div class="col">
+          <mat-card class="example-card main1" *ngSwitchCase="'design1'" [ngStyle]="{backgroundColor: setting[0].color}">
+            <mat-card-title class='title'>
+              {{card.Title}}
+            </mat-card-title>
+            <mat-card-content class="content">{{card.Content}}</mat-card-content>
+            <mat-card-footer class="footer">{{card.Footer}}</mat-card-footer>
+          </mat-card>
+
+          <!-- Design 2 -->
+
+          <mat-card class="design1 main1" *ngSwitchCase="'design2'">
+            <div class="row">
+              <div class="col-sm-12 col-md-2"
+                style="display: flex; justify-content: center; align-items: center; text-align: center;  color: darkgoldenrod;">
+                <div>
+                  <mat-icon>{{setting[0].icon}}</mat-icon>
+                </div>
+              </div>
+              <div class="col-sm-12 col-md-10" style="padding-left: 10px;">
+                <mat-card-title class='design1title'>
+                  {{card.Title}}
+                </mat-card-title>
+                <mat-card-content class="design1content">{{card.Content}}</mat-card-content>
+                <mat-card-footer class="design1footer">{{card.Footer}}</mat-card-footer>
+              </div>
+            </div>
+          </mat-card>
+
+          <!-- Design 3 -->
+
+          <mat-card class="main1 design2 " *ngSwitchCase="'design3'">
+            <mat-card-title class='title'>
+              {{card.Title}}
+            </mat-card-title>
+            <mat-card-content class="content">{{card.Content}}</mat-card-content>
+            <mat-card-footer class="footer">{{card.Footer}}</mat-card-footer>
+          </mat-card>
+        </div>
+    </div>
+
+    <div class="w-100 mt-1">
+      <mat-icon (click)="moveBackward()" class="icon">keyboard_arrow_left</mat-icon>
+      <mat-icon (click)="moveForward()" class="icon">keyboard_arrow_right</mat-icon>
+    </div>
+
+  </div>
+
+  <!-- Show Custom Data -->
+  <div>
+    <ng-template #custom_data>
+      <mat-card>
+        <ng-content select=".Custom_Data"> </ng-content>
+      </mat-card>
+    </ng-template>
+  </div>
+
+</div>
