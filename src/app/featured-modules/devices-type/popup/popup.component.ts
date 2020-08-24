@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
 import {PageEvent} from '@angular/material/paginator';
 @Component({
   selector: 'app-popup',
@@ -10,7 +10,7 @@ export class PopupComponent implements OnInit {
 
   public allWarningDevices = this.data.warningState.devicesID;
   public currentlyShowingWarningDevices = [];
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<PopupComponent>) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
   
   ngOnInit(): void {
     this.currentlyShowingWarningDevices = this.allWarningDevices.slice(0,6);
@@ -20,9 +20,5 @@ export class PopupComponent implements OnInit {
     let startIndex = e.pageIndex*e.pageSize;
     let endIndex = startIndex + e.pageSize;
     this.currentlyShowingWarningDevices = this.allWarningDevices.slice(startIndex,endIndex);
-  }
-  closeDialog(){
-    console.log('called');
-    this.dialogRef.close();
   }
 }

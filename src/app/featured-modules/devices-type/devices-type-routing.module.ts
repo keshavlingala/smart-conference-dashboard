@@ -6,7 +6,7 @@ import {AddDeviceTypeFormComponent} from './add-device-type-form/add-device-type
 
 const routes: Routes = [
   {path: '', component: DevicesTypeListingComponent },
-  {path: 'add-device-type', component: AddDeviceTypeFormComponent}
+  {path: 'add', component: AddDeviceTypeFormComponent}
 ];
 
 @NgModule({

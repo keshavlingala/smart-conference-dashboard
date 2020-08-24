@@ -1,0 +1,74 @@
+<h1 class="title ml-3">DEVICES GROUP</h1>
+
+<div class="row ml-3"><a  [routerLink]="['/devices-group']" routerLinkActive="router-link-active" >Devices Group</a>
+  <mat-icon class="mt-1 ml-1"style="font-size: small; color:darkgrey">arrow_forward_ios</mat-icon >
+    <a class="disabled">Add Group</a>
+   </div> <br>
+
+   <!-- Form -->
+   
+<form #form="ngForm"  >
+  <!-- {{form.valid | json}} -->
+    <div class="row">
+    <div class="col ml-3 form-group col-md-4">
+      <label >Group Name</label>
+      <input type="text" #groupName="ngModel" [class.is-invalid]="groupName.invalid && groupName.touched" class="form-control is-invalid" required [(ngModel)]="groupname" name="group-name">
+      <small class="text-danger" [class.d-none]="groupName.valid || groupName.untouched">Name is required</small>
+    </div>
+    <div class="col ml-md-5 col-md-4" >
+        <label >Group Type</label><br>
+        <mat-button-toggle-group #groupType="ngModel" value="homogeneous" style="border : none;" [(ngModel)]="grouptype" name="grouptype" required>
+          <mat-button-toggle value="homogeneous">Homogeneous</mat-button-toggle>
+          <mat-button-toggle class="ml-5" value="hetrogeneous">Herogeneous</mat-button-toggle>
+        </mat-button-toggle-group>
+        <br>
+        <!-- <small class="text-danger" *ngIf="deviceType.touched && groupType.invalid  ">Select Group Type</small> -->
+        </div>
+    </div>
+
+    <!-- Single Select Dropdown -->
+    <div class="form-group col-md-4" *ngIf="grouptype=='homogeneous'">
+        <label >Device Type</label>
+        <select #deviceType="ngModel" [class.invalid]="deviceType.invalid && deviceType.touched" id="inputState" class="form-control" required [(ngModel)]="devicetype" name="device-type"   >
+          <option selected></option>
+          <option *ngFor="let item of DeviceType">{{item}}</option>
+        </select>
+        <small class="text-danger" [class.d-none]="deviceType.valid || deviceType.untouched">Select Device Type</small>
+      </div>
+
+
+ <!-- Multiselect Dropdown -->
+  <div class="form-group  ml-3" *ngIf="grouptype=='hetrogeneous'" >
+    <label >Device Type</label>
+      <ng-multiselect-dropdown 
+      [placeholder]="''"
+      [settings]="dropdownSettings"
+      [data]="dropdownList"
+      (onSelect)="onItemSelect($event)"
+      (onSelectAll)="onSelectAll($event)"
+      [(ngModel)]="selectedItems"
+      name="selectedItems"
+      #deviceType="ngModel"
+      [class.invalid]="deviceType.invalid && deviceType.touched"
+      required
+    >
+  
+    </ng-multiselect-dropdown>
+    <small class="text-danger" [class.d-none]="deviceType.valid || deviceType.untouched">Select Device Type</small>
+  </div>
+
+      
+      
+    </form>
+   
+
+    <div class="ml-3" *ngIf="form.valid" >
+      <div style="position: relative;" >
+      <h1 style="color: darkgray; float: left; ">Existing Devices</h1>
+
+    </div>
+
+      <app-card  [tempData]="tempData"></app-card>
+
+    </div>
+  
