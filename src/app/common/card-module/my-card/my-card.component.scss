@@ -1,7 +1,7 @@
 .example-card {
   max-width: 400px;
   background-color: rgb(245, 243, 243);
-  height: 120px;
+  height: 105px;
 
   width: 250px;
 }
@@ -64,10 +64,11 @@ div.int-box {
 }
 
 .icon {
-  margin-left: 30%;
+  
   cursor: pointer;
   height: 50px;
-  font-size: 40px;
+  font-size: 30px;
+  color:white;
 }
 
 .CustomData {
@@ -77,8 +78,6 @@ div.int-box {
   display: inline-block;
 }
 
-.CardStyle1 {
-}
 
 .main {
   width: 50%;
@@ -93,4 +92,10 @@ div.int-box {
 }
 .col {
   justify-content: space-between;
+}
+.buttonDiv{
+  background-color:coral; 
+   width: 30px; 
+   height:30px;
+   border-radius: 50%;
 }

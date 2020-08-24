@@ -1,0 +1,75 @@
+$mainColor : #522D5B;
+.title{
+    color: $mainColor;
+    font-weight: 500;
+}
+.active,button:hover{
+    background-color: rgba(243, 225, 126, 0.849);
+    font-weight: 600;
+}
+.dropdown-toggle::after {
+    display: none;
+}
+
+a.disabled {
+    pointer-events: none;
+    cursor: default;
+    color: darkgrey;
+  }
+  .cardhover{
+    background-color: aqua;
+  }
+  mat-button-toggle.selected, mat-button-toggle:hover{
+    background-color: rgba(243, 225, 126, 0.849);
+    font-weight: 600;
+    
+  }
+  mat-button-toggle{
+    size: 40px;
+    text-align: center;
+    padding: 1px;
+  }
+
+  ::ng-deep .mat-button-toggle-checked{
+  background-color: rgba(243, 225, 126, 0.849) !important;
+  font-weight: 600 !important;
+  }
+  ::ng-deep .mat-button-toggle-appearance-standard .mat-button-toggle-label-content {
+      padding: 15px !important;
+      line-height: 0px !important;
+  }
+
+  icondiv:hover{
+      background-color: black;
+  }
+
+  .checked{
+      background-color: pink;
+  }
+  .invalid{
+    border-color: red;
+  }
+  ::ng-deep .multiselect-dropdown .dropdown-btn {
+      background-color: white !important;
+      width: 32% !important;
+  }
+  ::ng-deep .dropdown-list {
+    width: 32% !important;
+  }
+
+  ::ng-deep .multiselect-dropdown .dropdown-btn .dropdown-down{
+border-top: 6px solid #999 !important;
+border-left: 6px solid transparent !important;
+border-right: 6px solid transparent !important;
+}
+
+::ng-deep .multiselect-dropdown .dropdown-btn .dropdown-up{
+border-bottom: 6px solid #999 !important;
+border-left: 6px solid transparent !important;
+border-right: 6px solid transparent !important;
+}
+
+::ng-deep .multiselect-dropdown .dropdown-btn {
+border: 1px solid #cccccc!important;
+border-radius: 0px !important;
+}

@@ -10,5 +10,6 @@ export interface Setting {
   icon: string;
   design: string;
   apipaginator: boolean;
+  column?:number;
 }
 

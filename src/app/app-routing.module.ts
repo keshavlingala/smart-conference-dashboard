@@ -2,7 +2,6 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {DevicesComponent} from './components/devices/devices.component';
-import {DevicesGroupComponent} from './components/devices-group/devices-group.component';
 import {GenerateKeysComponent} from './components/generate-keys/generate-keys.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {MembersComponent} from './components/members/members.component';
@@ -18,7 +17,11 @@ const routes: Routes = [
     canActivate: [SideNavigationGuard],
     loadChildren: () => import('./featured-modules/devices-type/devices-type.module').then(m => m.DevicesTypeModule)
   },
-  {path: "devices-group", component: DevicesGroupComponent, canActivate: [SideNavigationGuard]},
+  {
+    path: "devices-group", 
+     canActivate: [SideNavigationGuard], 
+     loadChildren: () => import('./featured-modules/devices-group/devices-group.module').then(m => m.DevicesGroupModule)
+  },
   {
     path: "rules",
     canActivate: [SideNavigationGuard],
