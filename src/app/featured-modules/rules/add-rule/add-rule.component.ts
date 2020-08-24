@@ -2,6 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StepperSelectionEvent} from "@angular/cdk/stepper";
 import {MatStep, MatStepper} from "@angular/material/stepper";
+import {RulesService} from "../rule-service.service";
 
 @Component({
   selector: 'app-add-rule',
@@ -18,7 +19,10 @@ export class AddRuleComponent implements OnInit {
   parameters = ['Humidity', 'Lights On', 'Luminosity', 'Occupancy', 'Projector On', 'Temperature']
   actions = ['Start Meeting', 'End Meeting', 'Focus On', 'Turn on AC']
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    public rulesService: RulesService
+  ) {
   }
 
   ngOnInit() {
@@ -27,7 +31,8 @@ export class AddRuleComponent implements OnInit {
       type: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      action: ['', Validators.required],
+      condition: ['', Validators.required]
     });
   }
 
@@ -45,5 +50,12 @@ export class AddRuleComponent implements OnInit {
     } else {
       this.firstFormGroup.disable()
     }
+  }
+
+  submit() {
+    console.log(this.firstFormGroup.value, this.secondFormGroup.value);
+    // this.firstFormGroup.reset();
+    // this.secondFormGroup.reset();
+
   }
 }

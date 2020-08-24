@@ -5,6 +5,7 @@ import {RuleHomeComponent} from './rule-home/rule-home.component';
 import {RuleListComponent} from "./rule-list/rule-list.component";
 import {AddRuleComponent} from "./add-rule/add-rule.component";
 import {AngularMaterialModule} from "../../shared/angular-material/angular-material.module";
+import {RulesService} from "./rule-service.service";
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {AngularMaterialModule} from "../../shared/angular-material/angular-mater
     RulesRoutingModule,
     AngularMaterialModule
   ],
+  providers: [RulesService]
 })
 export class RulesModule {
 }
