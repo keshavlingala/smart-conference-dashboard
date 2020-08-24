@@ -9,6 +9,10 @@ export class DevicesTypeListingComponent implements OnInit {
 
   public devicesTypeData = [];
   public devicesTypeCount = 0;
+  public searchedDevicesTypeData = [];
+
+  public currentlyShowingDevicesType;
+  
   public config  = {
     perPageData: 8
   }
@@ -21,6 +25,7 @@ export class DevicesTypeListingComponent implements OnInit {
     let start = pageNumber*this.config.perPageData;
     let end = start + this.config.perPageData;
     this.devicesTypeData = this.__devicesTypeService.getDevicesTypeData(start,end);
+    this.currentlyShowingDevicesType = this.devicesTypeData;
   }
   constructor(private __devicesTypeService: DevicesTypeService){
 
@@ -29,6 +34,16 @@ export class DevicesTypeListingComponent implements OnInit {
   ngOnInit(){
     this.getDevicesTypeCount(); 
     this.getDevicesTypeData(0);   
+  }
+
+  search(e){
+    var str = e.target.value.toLowerCase();
+    this.searchedDevicesTypeData=this.devicesTypeData.filter((device)=>{
+      if(device.title.toLowerCase().includes(str)){
+        return true;
+      }
+    });
+    this.currentlyShowingDevicesType = this.searchedDevicesTypeData;
   }
 
 }
