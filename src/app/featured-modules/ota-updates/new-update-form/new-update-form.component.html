@@ -146,7 +146,7 @@
               {{ file?.name }}
             </h4>
             <p class="size">
-              <!-- {{ formatBytes(file?.size) }} -->
+              {{ formatBytes(file?.size,0) }}
             </p>
             <app-progress [progress]="file?.progress"></app-progress>
           </div>

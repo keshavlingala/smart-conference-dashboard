@@ -1,3 +1,4 @@
+import { DevicesModule } from './components/devices/devices.module';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
@@ -19,7 +20,6 @@ import {SideNavigationService} from './core/services/side-navigation.service';
 //Components
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {AppComponent} from './app.component';
-import {DevicesComponent} from './components/devices/devices.component';
 import {DevicesTypeComponent} from './components/devices-type/devices-type.component';
 import {DevicesGroupComponent} from './components/devices-group/devices-group.component';
 import {RulesComponent} from './components/rules/rules.component';
@@ -38,7 +38,6 @@ import { OtaUpdatesModule } from './featured-modules/ota-updates/ota-updates.mod
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    DevicesComponent,
     DevicesTypeComponent,
     DevicesGroupComponent,
     RulesComponent,
@@ -46,7 +45,7 @@ import { OtaUpdatesModule } from './featured-modules/ota-updates/ota-updates.mod
     GenerateKeysComponent,
     DashboardComponent,
     MembersComponent,
-    Dummy1Component
+    Dummy1Component,
   ],
   imports: [
     CommonModule,
@@ -58,7 +57,8 @@ import { OtaUpdatesModule } from './featured-modules/ota-updates/ota-updates.mod
     SideNavigationModule,
     DatatableModule,
     DataViewModule,
-    OtaUpdatesModule
+    OtaUpdatesModule,
+    DevicesModule
   ],
   providers: [SideNavigationService, SideNavigationGuard],
   bootstrap: [AppComponent],

@@ -6,7 +6,7 @@
    </div> <br>
 
    <!-- Form -->
-   
+
 <form #form="ngForm"  >
   <!-- {{form.valid | json}} -->
     <div class="row">
@@ -40,7 +40,7 @@
  <!-- Multiselect Dropdown -->
   <div class="form-group  ml-3" *ngIf="grouptype=='hetrogeneous'" >
     <label >Device Type</label>
-      <ng-multiselect-dropdown 
+      <ng-multiselect-dropdown
       [placeholder]="''"
       [settings]="dropdownSettings"
       [data]="dropdownList"
@@ -52,15 +52,15 @@
       [class.invalid]="deviceType.invalid && deviceType.touched"
       required
     >
-  
+
     </ng-multiselect-dropdown>
     <small class="text-danger" [class.d-none]="deviceType.valid || deviceType.untouched">Select Device Type</small>
   </div>
 
-      
-      
+
+
     </form>
-   
+
 
     <div class="ml-3" *ngIf="form.valid" >
       <div style="position: relative;" >
@@ -71,4 +71,4 @@
       <app-card  [tempData]="tempData"></app-card>
 
     </div>
-  
+

@@ -71,6 +71,7 @@ export class NewUpdateFormComponent implements OnInit {
           if (this.files[index].progress === 100) {
             clearInterval(progressInterval);
             this.uploadFilesSimulator(index + 1);
+            this.fileFetchError= false;
           } else {
             this.files[index].progress += 5;
           }
