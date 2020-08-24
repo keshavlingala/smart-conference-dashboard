@@ -67,7 +67,9 @@ export class OtaBasePageComponent implements OnInit {
       color: 'pink',
       icon: 'build',
       design: 'design2',
-      apipaginator: true,}]
+      apipaginator: true,
+      column: 4,
+    }]
   }
 
   ngOnInit() {

@@ -22,7 +22,7 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     RouterModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot()
-    
+
   ]
 })
 export class DevicesGroupModule { }
