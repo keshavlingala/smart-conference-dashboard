@@ -1,6 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator} from "@angular/material/paginator";
 import {BehaviorSubject} from "rxjs";
+import {RuleDevice} from "../rules.models";
+import {ruleDeviceGenerator} from "../../../shared/datagenerator/datagenerator.dev";
 
 @Component({
   selector: 'app-rule-list',
@@ -9,13 +11,14 @@ import {BehaviorSubject} from "rxjs";
 })
 export class RuleListComponent implements OnInit {
   date = new Date();
-  rule_lists = Array.from({length: 20,}, () => 0);
-  shownData = new BehaviorSubject<any>([]);
+  rule_lists: RuleDevice[] = ruleDeviceGenerator(52);
+  shownData = new BehaviorSubject<RuleDevice[]>([]);
   @ViewChild(MatPaginator, {static: true}) paginator
   currPage = []
   pages = []
   pageSize = 6;
   selectedIndex = 0;
+  totalSize = this.rule_lists.length;
 
   constructor(private changeDetector: ChangeDetectorRef) {
 
@@ -48,5 +51,24 @@ export class RuleListComponent implements OnInit {
 
   min(a, b) {
     return Math.min(a, b);
+  }
+
+  filterSearch(searchInput: string) {
+    const key = searchInput.toLowerCase();
+    const filteredData = this.rule_lists.slice(0).filter((d) => {
+      return d.name.toLowerCase().includes(key) ||
+        d.id.toLowerCase().includes(key) ||
+        d.rules.filter((r) => {
+          return r.createdDate.toLowerCase().includes(key) ||
+            r.action.name.toLowerCase().includes(key) ||
+            r.name.toLowerCase().includes(key) ||
+            r.condition.toLowerCase().includes(key);
+        }).length
+    })
+    this.totalSize = filteredData.length
+    this.pages = this.reshape(filteredData, this.pageSize)
+    this.selectedIndex = 0;
+    this.shownData.next(this.pages[this.selectedIndex])
+    console.log(this.pages)
   }
 }

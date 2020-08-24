@@ -8,7 +8,6 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {MembersComponent} from './components/members/members.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
-import {OtaUpdatesComponent} from "./components/ota-updates/ota-updates.component";
 
 const routes: Routes = [
   {path: "", redirectTo: "devices", pathMatch: "full"},
@@ -24,7 +23,9 @@ const routes: Routes = [
     canActivate: [SideNavigationGuard],
     loadChildren: () => import('./featured-modules/rules/rules.module').then(m => m.RulesModule),
   },
-  {path: "ota-updates", component: OtaUpdatesComponent, canActivate: [SideNavigationGuard]},
+  {path: "ota-updates", canActivate: [SideNavigationGuard],
+  loadChildren: () => import('./featured-modules/ota-updates/ota-updates.module').then(m => m.OtaUpdatesModule)
+},
   {path: "generate-keys", component: GenerateKeysComponent, canActivate: [SideNavigationGuard]},
   {path: "dashboard", component: DashboardComponent, canActivate: [SideNavigationGuard]},
   {path: "members", component: MembersComponent, canActivate: [SideNavigationGuard]},

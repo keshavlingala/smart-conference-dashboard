@@ -90,7 +90,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/chance/dist/chance.min.js"
             ],
             "scripts": []
           }
@@ -130,6 +131,6 @@
     }
   },
   "cli": {
-    "analytics": false
+    "analytics": "9cc76b89-f374-4e2a-a78a-b1aa344d882d"
   }
 }

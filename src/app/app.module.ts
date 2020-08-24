@@ -1,3 +1,4 @@
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
@@ -29,7 +30,8 @@ import {MembersComponent} from './components/members/members.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 //Guards
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
-import {DataViewModule} from "./common/data-view/data-view.module";
+import {DataViewModule} from './common/data-view/data-view.module';
+import { OtaUpdatesModule } from './featured-modules/ota-updates/ota-updates.module';
 
 
 @NgModule({
@@ -56,9 +58,11 @@ import {DataViewModule} from "./common/data-view/data-view.module";
     SideNavigationModule,
     DatatableModule,
     DataViewModule,
+    OtaUpdatesModule
   ],
   providers: [SideNavigationService, SideNavigationGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {
 }
