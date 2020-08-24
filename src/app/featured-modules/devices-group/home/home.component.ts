@@ -1,18 +1,20 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../shared/models/data-table.model';
-import {DataService} from '../../core/services/data.service';
-import {ViewDetailsPopup} from '../../common/dialog/models/data.model';
-import {Card, Setting} from '../../common/card-module/models/card.model';
-import {DialogFactoryService} from '../../core/services/dialog-factory.service';
-
+import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
+import {DataService} from '../../../core/services/data.service';
+import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
+import {Card, Setting} from '../../../common/card-module/models/card.model';
+import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
 
 @Component({
-  selector: 'app-parent',
-  templateUrl: './devices.component.html',
-  styleUrls: ['./devices.component.scss']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss']
 })
-export class DevicesComponent implements OnInit {
-  title = "Devices";
+export class HomeComponent implements OnInit {
+
+
+  columnNames=['Group Name', ' Group Type', 'Name(User Defined)', ' Created Date', ' Actions'];
+  title  =  "Devices Group"
   @ViewChild(TemplateRef) tpl: TemplateRef<any>;
   @ViewChild('userDialogTemplate')
   userDialogTemplate: TemplateRef<any>;
@@ -115,7 +117,7 @@ export class DevicesComponent implements OnInit {
       color: 'yellow',
       icon: 'build',
       design: 'design3',
-      apipaginator: false
+      apipaginator: false,
     },
   ];
   index: number;
@@ -145,15 +147,14 @@ export class DevicesComponent implements OnInit {
     };
     this.dataTableActions = {
       actions: [
-        {name: 'analytics', icon: 'analytics', color: 'primary'},
-        {name: 'disable', icon: 'visibility', iconOpp: 'visibility_off', color: 'accent'},
+        {name: 'edit', icon: 'edit', color: 'primary'},
         {name: 'delete', icon: 'delete', color: 'warn'}
       ],
       bulkActions: [
         {icon: 'delete', name: 'delete', color: 'warn'},
         {icon: 'visibility', name: 'disable'}
       ],
-    };
+    }; 
     this.data = await this.deviceService.getJson().toPromise();
     // console.log(this.data);
   }
@@ -165,51 +166,30 @@ export class DevicesComponent implements OnInit {
       case 'action':
         selected = $event.selected as Device;
         if ($event.name === 'delete') {
-
-          try {
-            await this.deviceService.deleteDevice(selected.id).toPromise()
-          } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
-          }
+          await this.deviceService.deleteDevice(selected.id).toPromise();
         } else if ($event.name === 'disable') {
-          try {
-            await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
-          } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
-          }
-        } else if ($event.name === 'analytics') {
+          await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
+        }else if ($event.name === 'analytics') {
           this.dialogService.open(
             {
               template: this.userDialogTemplate,
             },
             {width: 500, height: 605, disableClose: true}
           );
-        }
+          }
         break;
       case 'bulk-action':
         selected = $event.selected as Device[];
         if ($event.name === 'delete') {
-          try {
-            await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise()
-          } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
-          }
+          await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise();
         } else if ($event.name === 'disable') {
-          try {
-            await this.deviceService
-              .disableDevices(selected, selected.length / 2 > selected
-                .filter(i => i.disable).length).toPromise()
-          } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
-          }
+          await this.deviceService
+            .disableDevices(selected, selected.length / 2 > selected
+              .filter(i => i.disable).length).toPromise();
         }
         break;
     }
-    try {
-      this.data = await this.deviceService.getDevices().toPromise()
-    } catch (e) {
-      this.data = await this.deviceService.getJson().toPromise();
-    }
+    this.data = await this.deviceService.getDevices().toPromise();
   }
 
   filterChange($event: Device[]): void {
@@ -242,4 +222,6 @@ export class DevicesComponent implements OnInit {
       this.tempData = this.popUpData.tabs.attributes;
     }
   }
+
+
 }

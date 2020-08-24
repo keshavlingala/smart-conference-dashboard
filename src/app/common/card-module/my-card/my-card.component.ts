@@ -23,12 +23,13 @@ export class MyCardComponent implements OnInit, OnChanges {
 
   // Boolean value to show Default data or else it will show Custom data
   @Input() showDefaultContent: boolean;
-
+  percentage =0;
   constructor() {
   }
 
   ngOnInit(): void {
     this.endIndex = this.setting[0].Elements_Number;
+    this.percentage = 100/this.setting[0].column;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
