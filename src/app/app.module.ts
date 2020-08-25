@@ -31,7 +31,6 @@ import {Dummy1Component} from './components/dummy1/dummy1.component';
 //Guards
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 import {DataViewModule} from './common/data-view/data-view.module';
-import { OtaUpdatesModule } from './featured-modules/ota-updates/ota-updates.module';
 
 
 @NgModule({
@@ -57,7 +56,6 @@ import { OtaUpdatesModule } from './featured-modules/ota-updates/ota-updates.mod
     SideNavigationModule,
     DatatableModule,
     DataViewModule,
-    OtaUpdatesModule,
     DevicesModule
   ],
   providers: [SideNavigationService, SideNavigationGuard],
