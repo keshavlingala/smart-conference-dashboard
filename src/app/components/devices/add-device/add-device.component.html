@@ -11,8 +11,7 @@
     <div class="form-group col-md-6">
       <label for="deviceType">Device Type</label>
       <select id="inputState" class="form-control" formControlName="deviceType">
-        <option selected>1</option>
-        <option>2</option>
+        <option *ngFor="let item of deviceTypes">{{item}}</option>
       </select>
     </div>
     <div class="form-group col-md-6">
@@ -79,5 +78,5 @@
     </div>
   </div>
 </form>
-
+<div class="spinner" *ngIf="loader"></div>
 </div>

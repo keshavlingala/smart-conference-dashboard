@@ -12,43 +12,50 @@ import { Form } from '../otaform';
 
 export class NewUpdateFormComponent implements OnInit {
   files: any[] = [];
-  fileFetchError:boolean;
+  fileFetchError: boolean;
   updatesForm: FormGroup;
   form: Form;
+  deviceTypes:string[];
+  loader:boolean=false;
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
 
   ngOnInit() {
-    this.fileFetchError= false;
+    this.fileFetchError = false;
+    this.deviceTypes=['Device Type A','Device Type B','Device Type C']
   }
   createForm() {
     this.updatesForm = this.fb.group({
-    otaName:  ['', Validators.required ],
-    deviceType:  '1',
-    otaVersion: ['', Validators.required ],
-    description: ['', Validators.required ],
-    files: [],
+      otaName: ['', Validators.required],
+      deviceType: '1',
+      otaVersion: ['', Validators.required],
+      description: ['', Validators.required],
+      files: [],
     });
   }
 
   onSubmit() {
-    if(this.files.length==0){
-      this.fileFetchError=true;
-    }else{
-      this.fileFetchError=false;
-    this.updatesForm.patchValue({
-      files: this.files,
-    })
-    this.form = this.updatesForm.value;
-    console.log(this.form);
-    this.files=[];
-    this.updatesForm.reset({
-      otaName:  '',
-      deviceType:  '1',
-      otaVersion: '',
-      description: '',
-      });
+    if (this.files.length == 0) {
+      this.fileFetchError = true;
+    } else {
+      this.loader=true;
+      setTimeout(()=>{
+        this.loader= false;
+        this.updatesForm.patchValue({
+          files: this.files,
+        })
+        this.form = this.updatesForm.value;
+        console.log(this.form);
+        this.files = [];
+        this.updatesForm.reset({
+          otaName: '',
+          deviceType: '1',
+          otaVersion: '',
+          description: '',
+        });
+      },2000)
+
     }
   }
   onFileDropped($event) {
@@ -71,7 +78,7 @@ export class NewUpdateFormComponent implements OnInit {
           if (this.files[index].progress === 100) {
             clearInterval(progressInterval);
             this.uploadFilesSimulator(index + 1);
-            this.fileFetchError= false;
+            this.fileFetchError = false;
           } else {
             this.files[index].progress += 5;
           }

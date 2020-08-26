@@ -19,6 +19,22 @@ select{
 .buttonColor{
   background-color: #fb7b6b;
 }
+.spinner {
+  border: 16px solid silver;
+  border-top: 16px solid grey;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  animation: spin 700ms linear infinite;
+  top:40%;
+  left:50%;
+  position: absolute;
+}
+@keyframes spin {
+  0% { transform: rotate(0deg) }
+  100% { transform: rotate(360deg) }
+}
+
 .container {
   width: 300px;
   height: 180px;

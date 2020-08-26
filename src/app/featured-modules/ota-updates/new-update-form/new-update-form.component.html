@@ -20,9 +20,7 @@
       <div class="form-group col-md-6">
         <label for="deviceType">Device Type</label>
         <select id="inputState" class="form-control" formControlName="deviceType">
-          <option selected>1</option>
-          <option>2</option>
-          <option>3</option>
+          <option *ngFor="let item of deviceTypes">{{item}}</option>
         </select>
       </div>
     </div>
@@ -54,8 +52,8 @@
 
           <input type="file" #fileDropRef id="fileDropRef" multiple (change)="fileBrowseHandler($event.target.files)" />
 
-          <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 84.000000 51.000000"
-            preserveAspectRatio="xMidYMid meet">
+          <svg version="1.0" xmlns="http://www.w3.org/2000/svg" width="100" height="100"
+            viewBox="0 0 84.000000 51.000000" preserveAspectRatio="xMidYMid meet">
             <metadata>
               Created by potrace 1.10, written by Peter Selinger 2001-2011
             </metadata>
@@ -115,7 +113,7 @@
           </svg>
           <h3>Drop files here, or <label for="fileDropRef">Browse</label></h3>
         </div>
-        <div *ngIf="fileFetchError"  id="file-fetch-error">
+        <div *ngIf="fileFetchError" id="file-fetch-error">
           <mat-error>Please upload a file</mat-error>
         </div>
       </div>
@@ -174,5 +172,20 @@
       </div>
     </div>
   </form>
+  <div class="spinner" *ngIf="loader"></div>
+  <!-- <div class="lds-default" >
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div> -->
 
 </div>
