@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StepperSelectionEvent} from "@angular/cdk/stepper";
 import {MatStep, MatStepper} from "@angular/material/stepper";
 import {RulesService} from "../rule-service.service";
+import {Rule} from "../rules.models";
 
 @Component({
   selector: 'app-add-rule',
@@ -54,6 +55,16 @@ export class AddRuleComponent implements OnInit {
 
   submit() {
     console.log(this.firstFormGroup.value, this.secondFormGroup.value);
+    const {name, type} = this.firstFormGroup.value;
+    const {action, condition} = this.secondFormGroup.value;
+    const rule: Rule = {
+      name,
+      action: {name: action, icon: 'ac_unit'},
+      condition,
+      createdDate: new Date().toDateString()
+    }
+    console.log(rule, type);
+    this.rulesService.addRule(rule, type);
     // this.firstFormGroup.reset();
     // this.secondFormGroup.reset();
 

@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {RuleDevice} from "./rules.models";
+import {Rule, RuleDevice} from "./rules.models";
 import {ruleDeviceGenerator} from "../../shared/datagenerator/datagenerator.dev";
 
 @Injectable({
@@ -19,5 +19,9 @@ export class RulesService {
   getDevices(): any[] {
     console.log(this.rules);
     return this.rules.slice(0);
+  }
+
+  addRule(rule: Rule,id:string) {
+    this.rules.find((d)=>d.id===id).rules.push(rule);
   }
 }
