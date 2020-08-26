@@ -2,12 +2,12 @@
 
 <div class="d-flex align-items-start justify-content-between flex-wrap">
     <button mat-raised-button style="background-color: #79A831; color: white;" routerLink="add">Add Device Type</button>
-    
+
     <div class="position-relative">
         <input (keyup)="search($event)" type="text" #searchStr placeholder="Search by any parameter" class="p-1 pr-4 rounded" style="border: none; outline: none;">
         <mat-icon class="position-absolute text-secondary" style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search</mat-icon>
     </div>
-    
+
 </div>
 
 <device-type-card-list (paginationEvent)="getDevicesTypeData($event)"
@@ -15,4 +15,4 @@
 [devicesTypeCount] = "devicesTypeCount"
 [perPageData] = "config.perPageData"
 >
-</device-type-card-list>  
+</device-type-card-list>
