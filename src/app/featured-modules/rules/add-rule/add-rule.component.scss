@@ -22,6 +22,10 @@
   padding: 5px 40px;
   text-align: center;
   box-shadow: none;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 
 .con-wrapper {

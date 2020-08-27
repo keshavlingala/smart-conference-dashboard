@@ -7,7 +7,7 @@
 </nav>
 <div class="row overflow-hidden">
   <div class="col ">
-    <mat-vertical-stepper style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper>
+    <mat-vertical-stepper linear style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper>
       <mat-step #ruleName [stepControl]="firstFormGroup">
         <ng-template matStepLabel> Define the rule Name</ng-template>
         <form [formGroup]="firstFormGroup">
@@ -45,7 +45,7 @@
           <form class="mt-4" [formGroup]="secondFormGroup">
             <div>
               <h4>Actions</h4>
-              <mat-button-toggle-group formControlName="action" style="border: none;">
+              <mat-button-toggle-group required formControlName="action" style="border: none;">
                 <mat-button-toggle [value]="action" class="m-2"
                                    *ngFor="let action of actions">{{action}}</mat-button-toggle>
               </mat-button-toggle-group>
@@ -60,7 +60,7 @@
             </mat-form-field>
             <div class="d-flex justify-content-center position-relative align-items-center mt-2">
               <button style="left: 0" mat-button class="position-absolute">Cancel</button>
-              <button (click)="submit()" mat-button class="btn submit-btn">Create Rule</button>
+              <button [disabled]="!secondFormGroup.valid" (click)="submit()" mat-button class="btn submit-btn">Create Rule</button>
             </div>
           </form>
         </div>
