@@ -66,3 +66,7 @@ hr {
 .pointer {
   cursor: pointer;
 }
+
+.row {
+  width: calc(100% - 10px);
+}

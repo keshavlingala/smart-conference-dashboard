@@ -3,6 +3,8 @@ import {MatPaginator} from "@angular/material/paginator";
 import {BehaviorSubject} from "rxjs";
 import {RuleDevice} from "../rules.models";
 import {RulesService} from "../rule-service.service";
+import {MatDialog} from "@angular/material/dialog";
+import {RulePopupComponent} from "../rule-popup.component";
 
 @Component({
   selector: 'app-rule-list',
@@ -20,9 +22,12 @@ export class RuleListComponent implements OnInit {
   selectedIndex = 0;
   totalSize = 0;
 
-  constructor(private rulesService: RulesService) {
+  constructor(
+    private rulesService: RulesService,
+    private dialog: MatDialog
+  ) {
     this.rule_lists = rulesService.getRuleDevices();
-    this.totalSize=this.rule_lists.length;
+    this.totalSize = this.rule_lists.length;
   }
 
   onPageChange(index) {
@@ -55,6 +60,7 @@ export class RuleListComponent implements OnInit {
   }
 
   filterSearch(searchInput: string) {
+    // console.log('search String', searchInput);
     const key = searchInput.toLowerCase();
     const filteredData = this.rule_lists.slice(0).filter((d) => {
       return d.name.toLowerCase().includes(key) ||
@@ -70,6 +76,14 @@ export class RuleListComponent implements OnInit {
     this.pages = this.reshape(filteredData, this.pageSize)
     this.selectedIndex = 0;
     this.shownData.next(this.pages[this.selectedIndex])
-    console.log(this.pages)
+    // console.log(this.pages)
+  }
+
+  popRules(device: RuleDevice) {
+    this.dialog.open(RulePopupComponent, {
+      data: device,
+      width: '70vw',
+      height: '70vh'
+    })
   }
 }

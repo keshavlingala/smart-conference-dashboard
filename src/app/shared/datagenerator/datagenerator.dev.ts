@@ -25,7 +25,7 @@ export const ruleDeviceGenerator = (size = 20): RuleDevice[] => {
           },
           condition: 'Occupancy>4',
           createdDate: chance.date().toDateString(),
-          name: chance.first() + ' Check'
+          name: chance.last() + ' Check'
         }
       })
     }

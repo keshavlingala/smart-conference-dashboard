@@ -1,5 +1,8 @@
+import { Validators } from '@angular/forms';
+import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl } from '@angular/forms';
 import { Card, Setting } from './../../../common/card-module/models/card.model';
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
 
 @Component({
@@ -9,14 +12,22 @@ import { IDropdownSettings } from 'ng-multiselect-dropdown';
 })
 export class AddDeviceGroupComponent implements OnInit {
 
+ DeviceGroupForm : FormGroup;
   dropdownList = [];
   selectedItems = [];
+  selectedCard =[];
   dropdownSettings:IDropdownSettings ;
-  constructor() { }
+  hetroFlag : boolean= false;
+  constructor( private fb :FormBuilder) { }
   ngOnInit(): void {
     
+    this.DeviceGroupForm = this.fb.group({
+      GroupName : ['', Validators.required],
+      GroupType : [''],
+      DeviceType : [[],[Validators.required , Validators.minLength(2)]]
+    });
     
-
+  
     this.dropdownSettings = {
       singleSelection: false,
       idField: 'id',
@@ -34,7 +45,13 @@ export class AddDeviceGroupComponent implements OnInit {
       { id: 5, item_text: 'New Delhi' }
     ];
   }
-    DeviceType=['Device Type A','Device Type B','Device Type C']
+    DeviceType=[
+      { id: 1, item_text: 'Mumbai' },
+      { id: 2, item_text: 'Bangaluru' },
+      { id: 3, item_text: 'Pune' },
+      { id: 4, item_text: 'Navsari' },
+      { id: 5, item_text: 'New Delhi' }
+    ];
     groupname:string="" ;
     devicetype:string="";
     grouptype:string="";
@@ -145,9 +162,39 @@ export class AddDeviceGroupComponent implements OnInit {
       this.existingGroup=true;
     }
     onItemSelect(item: any) {
-      console.log(item);
+      // if(this.selectedItems.indexOf(item)===-1)
+      // {this.selectedItems.push(item);}
+      // else{
+      //   this.selectedItems.splice(this.selectedItems.indexOf(item),1)
+      // }
+      
+     
+      if(this.selectedItems.length>1)
+      {
+        this.hetroFlag = true;
+       // this.DeviceGroupForm.controls['valid'].setValue(false);
+      //   console.log("object")
+      // this.Form.valid===false;
+      // console.log(this.Form);
+       } 
+      //  else{
+      //    this.hetroFlag=false;
+      //  }
+      // console.log(item, this.Form.valid);
+      // console.log(this.selectedItems , this.hetroFlag);
     }
     onSelectAll(items: any) {
       console.log(items);
+    }
+
+    // Catching Event from Card
+    DatafromCard(event)
+    {
+      this.selectedCard=event;
+      console.log(this.selectedCard);
+    }
+
+    toggleCalled(){
+      this.DeviceGroupForm.controls['DeviceType'].setValue('');
     }
 }

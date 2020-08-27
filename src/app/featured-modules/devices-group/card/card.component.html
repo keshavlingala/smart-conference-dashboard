@@ -2,8 +2,8 @@
 <div class="d-flex justify-content-end">
          <!-- Other Buttons -->
         <div  *ngIf="showBtn" class="mr-4 mt-2" >
-          <button mat-raised-button (click)="clearSelected()" class="mr-3" >Cancel</button>
-          <button mat-raised-button style="background-color: coral; color:white;" (click)="showSelected()">Add to Group</button>
+          <button mat-raised-button [routerLink]="['/devices-group']"  class="mr-3" >Cancel</button>
+          <button [disabled]="selected.length==0" class="mbutton" mat-raised-button style="background-color: coral; color:white;" (click)="showSelected()">Add to Group</button>
         </div>
 
         <!-- Search button -->
@@ -21,7 +21,6 @@
 <div class="col-3 p-2" *ngFor="let item of currentlyShowing;
   let i=index">
 <mat-card (click)="cardCheck(item);"  [ngClass]="{'Active': selected.indexOf(currentlyShowing[i].id)!=-1}"  >
-  <!-- [ngClass]="{'Active': selected.indexOf(currentlyShowing[i+btnClick*8].id)!=-1}" -->
   
   <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)!=-1" style="float:right; color:green;">library_add_check</mat-icon>
     <mat-card-title class="title">{{item.Title}}</mat-card-title>
@@ -32,24 +31,11 @@
   </div>
 </div>
 
-
-<!-- <div class="row  w-100" *ngIf="toggle">
-  <div class="col-3 p-2" *ngFor="let item of currentlyShowing;
-    let i=index">
-  <mat-card (click)="cardCheck(i); clickEvent(i)" [ngClass]="{'Active': dummy.indexOf(i)!=-1}" >
-    <mat-icon *ngIf="dummy.indexOf(i)!=-1 " style="float:right; color:green;">library_add_check</mat-icon>
-    <mat-icon *ngIf="selected.indexOf(tempData[i+btnClick*8].id)!=-1" style="float:right; color:green;">library_add_check</mat-icon> -->
-      <!-- <mat-card-title class="title">{{item.Title}}</mat-card-title> 
-      <mat-card-content class="content">{{item.Content}}</mat-card-content>
-      <mat-card-content class="content1">{{item.Footer}}</mat-card-content>
-  
-    </mat-card>
-    </div>
-  </div> -->
-
- <!-- Forward and backward pagination buttons -->
- <div>Viewing {{currentlyShowing.length*(btnClick+1)}} of {{tempData.length}}</div>
+ <!-- Forward and backward pagination buttons with Elements Shown -->
+ 
 <div class="d-flex mr-3 justify-content-center align-items-center ">
+  <div class="d-inline-flex  position-absolute text-secondary " style="margin-right: 75%;" >Viewing {{elementPagination}} of {{tempData.length}}</div>
+
     <div  class="m-4 buttonDiv"  [ngClass]="{'disableArow': disableBbttn}" >
         <mat-icon class="mt-2 ml-2" (click)="showBack()">arrow_back_ios</mat-icon>
     </div>

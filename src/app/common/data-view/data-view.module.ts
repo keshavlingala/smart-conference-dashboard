@@ -20,7 +20,9 @@ import {FormsModule} from "@angular/forms";
     FormsModule
   ],
   exports: [
-    DataviewComponent
+    DataviewComponent,
+    TimelineComponent,
+    TimelineItemComponent
   ]
 })
 export class DataViewModule {
