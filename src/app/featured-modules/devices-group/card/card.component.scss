@@ -43,6 +43,9 @@ mat-card:hover{
     background-color:  rgb(240, 228, 230)
   }
 
+  .searchbox{
+
+
   ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
 ::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
 
@@ -54,6 +57,7 @@ mat-card:hover{
 ::ng-deep .mat-form-field-flex{
   background-color: white !important;
 }
+  }
 
 ::ng-deep .mbutton:disabled{
   background-color: grey !important;
