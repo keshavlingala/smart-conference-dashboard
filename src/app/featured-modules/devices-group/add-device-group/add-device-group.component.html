@@ -24,6 +24,7 @@
           <mat-button-toggle value="homogeneous">Homogeneous</mat-button-toggle>
           <mat-button-toggle class="ml-5" value="hetrogeneous">Hetrogeneous</mat-button-toggle>
         </mat-button-toggle-group>
+        
         <br>
         </div>
     </div>
@@ -42,7 +43,7 @@
  <!-- Multiselect Dropdown -->
   <div class="form-group  ml-3" *ngIf="DeviceGroupForm.value.GroupType=='hetrogeneous'" >
     <label >Device Type</label>
-      <ng-multiselect-dropdown 
+      <ng-multiselect-dropdown
       [placeholder]="''"
       [settings]="dropdownSettings"
       [data]="dropdownList"
@@ -56,8 +57,8 @@
     <small class="text-danger" *ngIf="(DeviceGroupForm.value.DeviceType.length < 2) && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) ">Select more than 1 Device Type</small>
   </div> 
 
-      
-      
+
+
     </form>
    
   <!-- Existing Devices -->

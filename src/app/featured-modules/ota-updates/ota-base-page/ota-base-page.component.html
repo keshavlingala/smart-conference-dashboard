@@ -1,0 +1,23 @@
+<div class="body">
+  <h1>OTA Updates</h1>
+  <button type="button" class="btn btn-warning buttonColor mt-3" routerLink="/ota-updates/ota-new-update-form">Add New Update</button>
+  <button class="btn btn-warning buttonColor mt-3 float-right" routerLink="/ota-updates/ota-timeline">View Timeline Page</button>
+<div mat-line class="mt-4">Select OTA Type (To View Update History)</div>
+
+<select class="form-control mt-2">
+  <option selected>Choose...</option>
+  <option>...</option>
+</select>
+<mat-tab-group class="mt-4">
+  <mat-tab label="Recently Updated">
+    <app-my-card [cardData]= "cardData" [setting]= "otaSetting" [showDefaultContent]="true">
+
+    </app-my-card>
+  </mat-tab>
+  <mat-tab label="Most Updates">
+    <app-my-card [cardData]= "cardData" [setting]= "otaSetting" [showDefaultContent]="true">
+
+  </app-my-card></mat-tab>
+</mat-tab-group>
+
+</div>

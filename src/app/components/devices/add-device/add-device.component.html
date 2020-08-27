@@ -1,0 +1,83 @@
+<div class="body">
+  <h1>{{ title }}</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb pl-0" style="background-color: transparent;">
+    <li class="breadcrumb-item"><a routerLink="/devices">Devices</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Add Devices</li>
+  </ol>
+</nav>
+<form novalidate [formGroup]="updatesForm" (ngSubmit)="onSubmit()">
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="deviceType">Device Type</label>
+      <select id="inputState" class="form-control" formControlName="deviceType">
+        <option selected>1</option>
+        <option>2</option>
+      </select>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="name">Name</label>
+      <input type="text" class="form-control" formControlName="name" />
+      <mat-error *ngIf="
+          updatesForm.get('name').hasError('required') &&
+          updatesForm.get('name').touched
+        ">Name is required</mat-error>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label>Authentication Type</label>
+      <div class="container mt-5">
+        <div class="button-wrap" >
+          <input class="hidden radio-label" id="yes-button" type="radio" value="access-token"  formControlName="authType"/>
+          <label class="button-label" for="yes-button">
+            <h1>Access Token</h1>
+          </label>
+          <input class="hidden radio-label" id="no-button" type="radio" value="certificate" formControlName="authType"/>
+          <label class="button-label" for="no-button">
+            <h1>Certificate</h1>
+          </label>
+          <mat-error *ngIf="
+          updatesForm.get('authType').hasError('required') &&
+          updatesForm.get('authType').touched
+        ">Authentication Type is required</mat-error>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6">
+      <label for="staticMetadata">Static Metadata</label>
+      <input type="text" class="form-control" formControlName="staticMetadata" />
+      <mat-error *ngIf="
+          updatesForm.get('staticMetadata').hasError('required') &&
+          updatesForm.get('staticMetadata').touched
+        ">Static MetaData is required</mat-error>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+  <div class="form-row mt-3">
+    <div class="custom-control custom-checkbox">
+      <input type="checkbox" class="custom-control-input" id="customCheck1" #input (click)="showHide(input)">
+      <label class="custom-control-label" for="customCheck1">Dynamic Metadata</label>
+    </div>
+  </div>
+  <div style="display:none" id="textarea" class="form-row mt-3">
+    <textarea cols="30" rows="3" formControlName="dynamicMetaData"></textarea>
+  </div>
+  <div class="row mt-3">
+    <div class="col-4">
+      <button type="button" class="btn btn-lg btn-light" style="background-color: #d5d4d4;" routerLink="/devices">
+        Back
+      </button>
+    </div>
+    <div class="col-6">
+      <button type="submit" [disabled]="updatesForm.invalid" class="btn btn-primary buttonColor btn-lg pr-5 pl-5">
+        ADD devices
+      </button>
+    </div>
+  </div>
+</form>
+
+</div>

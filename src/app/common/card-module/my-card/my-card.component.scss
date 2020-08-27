@@ -19,36 +19,41 @@
   font-size: x-small;
 }
 .design1 {
-  margin-top: 10%;
+  .mat-card-actions, .mat-card-content, .mat-card-subtitle, .mat-card-title,.mat-card-footer {
+     display: inline;
+     margin: 0px;
+}
   padding-left: 20px;
+
   background-color: white;
-  height: 200px;
-  width: 280px;
-}
-.design1title {
-  color: darkmagenta;
-  font-weight: 500;
-}
-.design1content {
-  font-size: large;
-  padding-top: 10px;
-  padding-left: 2px;
-  font-weight: 10;
-}
-.design1footer {
-  font-size: large;
-  padding-left: 20px;
-  padding-bottom: 10px;
-  font-weight: 10;
+  height: 100px;
+  width: 210px;
+  border-radius: 2%;
+  .design1title {
+    color: #522d5b;
+    font-weight: 400;
+    padding-left: 41px;
+    font-size: medium;
+  }
+  .design1content {
+    font-size: small;
+    padding-left: 4px;
+    padding-top: 3px;
+    font-weight: 10;
+  }
+  .design1footer {
+    font-size: small;
+    padding-left: 16px;
+    font-weight: 10;
+  }
 }
 
 .design2 {
   max-width: 400px;
   height: 105px;
+  width: 180px;
   background-color: rgb(255, 234, 255);
   border-left: 5px solid rgba(255, 251, 0, 0.411);
-
-  width: 250px;
 }
 
 div.ext-box {
@@ -64,7 +69,7 @@ div.int-box {
 }
 
 .icon {
-  
+
   cursor: pointer;
   height: 50px;
   font-size: 30px;
@@ -86,7 +91,6 @@ div.int-box {
 }
 
 .main1 {
-  width: 90%;
   margin: 0 auto;
   padding: 10px;
 }
@@ -94,8 +98,8 @@ div.int-box {
   justify-content: space-between;
 }
 .buttonDiv{
-  background-color:coral; 
-   width: 30px; 
+  background-color:coral;
+   width: 30px;
    height:30px;
    border-radius: 50%;
 }

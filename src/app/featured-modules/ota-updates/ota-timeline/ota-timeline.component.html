@@ -1,0 +1,14 @@
+<mat-toolbar style="background-color: transparent">
+  {{dataViewConfig.title}}
+</mat-toolbar>
+<mat-toolbar style="background-color: transparent">
+  <button mat-stroked-button routerLink="/ota-updates/ota-base-page"> Back</button>
+  <span class="flex-fill"></span>
+  <button (click)="add('Add Card')" color="primary" mat-button>
+    <mat-icon>update</mat-icon>
+    Add new Update
+  </button>
+</mat-toolbar>
+<div class="ml-5 mr-5">
+  <app-dataview [dataViewConfig]="dataViewConfig"></app-dataview>
+</div>

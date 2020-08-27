@@ -2,6 +2,9 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StepperSelectionEvent} from "@angular/cdk/stepper";
 import {MatStep, MatStepper} from "@angular/material/stepper";
+import {RulesService} from "../rule-service.service";
+import {Rule} from "../rules.models";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-rule',
@@ -18,7 +21,11 @@ export class AddRuleComponent implements OnInit {
   parameters = ['Humidity', 'Lights On', 'Luminosity', 'Occupancy', 'Projector On', 'Temperature']
   actions = ['Start Meeting', 'End Meeting', 'Focus On', 'Turn on AC']
 
-  constructor(private _formBuilder: FormBuilder) {
+  constructor(
+    private _formBuilder: FormBuilder,
+    public rulesService: RulesService,
+    public router: Router
+  ) {
   }
 
   ngOnInit() {
@@ -27,7 +34,8 @@ export class AddRuleComponent implements OnInit {
       type: ['', Validators.required],
     });
     this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      action: ['', Validators.required],
+      condition: ['', Validators.required]
     });
   }
 
@@ -35,7 +43,6 @@ export class AddRuleComponent implements OnInit {
     console.log(event)
     console.log(this.selectedIndex)
     console.log(this.firstFormGroup)
-
   }
 
   selectionChange($event: StepperSelectionEvent) {
@@ -45,5 +52,23 @@ export class AddRuleComponent implements OnInit {
     } else {
       this.firstFormGroup.disable()
     }
+  }
+
+  async submit() {
+    // console.log(this.firstFormGroup.value, this.secondFormGroup.value);
+    const {name, type} = this.firstFormGroup.value;
+    const {action, condition} = this.secondFormGroup.value;
+    const rule: Rule = {
+      name,
+      action: {name: action, icon: 'ac_unit'},
+      condition,
+      createdDate: new Date().toDateString()
+    }
+    await this.router.navigate(['/rules'])
+    console.log('Rule Created', rule);
+    this.rulesService.addRule(rule, type);
+    // this.firstFormGroup.reset();
+    // this.secondFormGroup.reset();
+
   }
 }

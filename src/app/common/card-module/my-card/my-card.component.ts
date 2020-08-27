@@ -34,7 +34,7 @@ export class MyCardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.setting[0].apipaginator && this.cardData !== undefined) {
-      console.log(changes);
+
       if (this.cloneNum <= 1) {
         for (let i = 0; i < this.cardData.length; i++) {
           this.cardDataClone[i] = this.cardData[i];
@@ -42,6 +42,7 @@ export class MyCardComponent implements OnInit, OnChanges {
         this.cloneNum++;
       }
       if (this.firstRender === false) {
+        this.endIndex = this.setting[0].Elements_Number;
         this.cardData = this.cardDataClone.slice(
           this.startIndex,
           this.endIndex

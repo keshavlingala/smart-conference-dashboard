@@ -1,3 +1,5 @@
+import { DevicesModule } from './components/devices/devices.module';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
@@ -18,7 +20,6 @@ import {SideNavigationService} from './core/services/side-navigation.service';
 //Components
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {AppComponent} from './app.component';
-import {DevicesComponent} from './components/devices/devices.component';
 import {DevicesTypeComponent} from './components/devices-type/devices-type.component';
 import {DevicesGroupComponent} from './components/devices-group/devices-group.component';
 import {RulesComponent} from './components/rules/rules.component';
@@ -29,14 +30,13 @@ import {MembersComponent} from './components/members/members.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 //Guards
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
-import {DataViewModule} from "./common/data-view/data-view.module";
+import {DataViewModule} from './common/data-view/data-view.module';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     PageNotFoundComponent,
-    DevicesComponent,
     DevicesTypeComponent,
     DevicesGroupComponent,
     RulesComponent,
@@ -44,7 +44,7 @@ import {DataViewModule} from "./common/data-view/data-view.module";
     GenerateKeysComponent,
     DashboardComponent,
     MembersComponent,
-    Dummy1Component
+    Dummy1Component,
   ],
   imports: [
     CommonModule,
@@ -56,9 +56,11 @@ import {DataViewModule} from "./common/data-view/data-view.module";
     SideNavigationModule,
     DatatableModule,
     DataViewModule,
+    DevicesModule
   ],
   providers: [SideNavigationService, SideNavigationGuard],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule {
 }

@@ -8,27 +8,27 @@
 </div>
 <app-timeline>
   <app-timeline-item *ngFor="let item of selectedUpdate.items">
-    <mat-card>
-      <div class="row">
-        <div class="col-9 ">
-          <h1 class="mb-1">
+    <mat-card style="padding: 10px">
+      <div class="d-flex ">
+        <div class="w-75 pr-1">
+          <h4 class="mb-1">
             {{item.heading}}
-          </h1>
-          <h3>
+          </h4>
+          <h5 class="m-0">
             {{item.subheading}}
-          </h3>
-          <p class="overflow-hidden">
+          </h5>
+          <p class="overflow-hidden m-0">
             {{item.description | slice:0:100}}...
           </p>
         </div>
-        <div class="col-3  d-flex flex-column align-items-center justify-content-center border-left">
-          <h3 style="font-size: 1.3rem">
+        <div class="w-25  d-flex flex-column align-items-center justify-content-center border-left">
+          <h3 class="mb-2" style="font-size: 1rem">
             {{item.date | date:'MMM'}}
           </h3>
-          <h1 style="font-size: 2rem;font-weight: 500">
+          <h1 class="mb-2" style="font-size: 1.5rem;font-weight: 500">
             {{item.date | date:'dd'}}
           </h1>
-          <h3 style="font-size: 1.1rem">
+          <h3 class="m-0" style="font-size: 1rem">
             {{item.date | date:'yyyy'}}
           </h3>
         </div>

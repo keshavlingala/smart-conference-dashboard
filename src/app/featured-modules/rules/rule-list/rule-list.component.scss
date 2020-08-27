@@ -1,7 +1,7 @@
 .bar {
   display: flex;
   box-sizing: border-box;
-  padding: 0 16px;
+  //padding: 0 16px;
   width: 100%;
   flex-direction: row;
   align-items: center;
@@ -34,33 +34,39 @@ hr {
 }
 
 .page-button {
-  display: block;
   width: 30px;
   height: 30px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  border: 0.5px solid black;
   cursor: pointer;
   margin: 5px;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
   transition: all 3ms ease;
 
   &:hover {
-    background-color: #80808054;
+    background-color: #e9ecef;
+    border-color: #dee2e6;
   }
 
-  &:active {
-    box-shadow: 1px 1px grey;
-  }
 }
 
 .active-page {
-  background-color: #28a745;
+  background-color: #79A831 !important;
   color: white;
   transition: all 0.5s ease;
 
   &:hover {
     background-color: #218838;
   }
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.row {
+  width: calc(100% - 10px);
 }

@@ -1,10 +1,7 @@
 <div class="table-container mat-elevation-z8">
   <!--  Top actions bar-->
   <div class="bar">
-    <button color="primary" mat-raised-button>{{addButtonName}}</button>
-    <span class="spacer"></span>
-    <!--    Bulk Actions-->
-    <div *ngIf="config.checkbox">
+    <div class="ml-auto" *ngIf="config.checkbox">
       <button *ngFor="let bulkAction of actions.bulkActions"
               (click)="bulkActionHandler('bulk-action',bulkAction.name)"
               [color]="bulkAction.color"

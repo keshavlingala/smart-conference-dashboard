@@ -1,0 +1,16 @@
+.body{
+  padding: 30px;
+  h1{
+    color: #5a3863;
+  }
+  .buttonColor{
+    background-color: #fb7b6b;
+    &::after{
+      background-color: #fb7b6b;
+    }
+  }
+  select{
+    width: 30%;
+  }
+
+}
