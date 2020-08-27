@@ -60,7 +60,7 @@ export class RuleListComponent implements OnInit {
   }
 
   filterSearch(searchInput: string) {
-    console.log('search String', searchInput);
+    // console.log('search String', searchInput);
     const key = searchInput.toLowerCase();
     const filteredData = this.rule_lists.slice(0).filter((d) => {
       return d.name.toLowerCase().includes(key) ||
@@ -76,7 +76,7 @@ export class RuleListComponent implements OnInit {
     this.pages = this.reshape(filteredData, this.pageSize)
     this.selectedIndex = 0;
     this.shownData.next(this.pages[this.selectedIndex])
-    console.log(this.pages)
+    // console.log(this.pages)
   }
 
   popRules(device: RuleDevice) {

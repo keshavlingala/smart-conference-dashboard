@@ -43,12 +43,12 @@ export class DataTableComponent implements OnChanges, OnInit {
     if (!this.actions) {
       this.actionKey = []
     }
-    console.log(this.columnNames, this.checkBox.concat(this.keys))
+    // console.log(this.columnNames, this.checkBox.concat(this.keys))
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('On Changes Called');
-    console.log('Data', this.data);
+    // console.log('On Changes Called');
+    // console.log('Data', this.data);
     if (this.data) {
       this.dataSource = new MatTableDataSource<Device>(this.data);
       this.dataSource.paginator = this.paginator;

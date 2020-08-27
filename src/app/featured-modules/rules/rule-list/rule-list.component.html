@@ -44,7 +44,7 @@
 <div *ngIf="totalSize else noData" class="d-flex justify-content-center position-relative align-items-center">
   <span class="position-absolute p-1 mt-5 mt-md-0" style="left: 0">
     Viewing {{
-    ((selectedIndex + 1) * pageSize - pageSize) + ' - ' + min((selectedIndex + 1) * pageSize, totalSize) + ' of ' + totalSize
+    ((selectedIndex + 1) * pageSize - pageSize + 1) + ' - ' + min((selectedIndex + 1) * pageSize, totalSize) + ' of ' + totalSize
     }}
   </span>
   <div *ngIf="selectedIndex>0" (click)="onPageChange(selectedIndex-1)" class="page-button">{{"<"}}</div>

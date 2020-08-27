@@ -4,6 +4,7 @@ import {StepperSelectionEvent} from "@angular/cdk/stepper";
 import {MatStep, MatStepper} from "@angular/material/stepper";
 import {RulesService} from "../rule-service.service";
 import {Rule} from "../rules.models";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-add-rule',
@@ -22,7 +23,8 @@ export class AddRuleComponent implements OnInit {
 
   constructor(
     private _formBuilder: FormBuilder,
-    public rulesService: RulesService
+    public rulesService: RulesService,
+    public router: Router
   ) {
   }
 
@@ -41,7 +43,6 @@ export class AddRuleComponent implements OnInit {
     console.log(event)
     console.log(this.selectedIndex)
     console.log(this.firstFormGroup)
-
   }
 
   selectionChange($event: StepperSelectionEvent) {
@@ -53,8 +54,8 @@ export class AddRuleComponent implements OnInit {
     }
   }
 
-  submit() {
-    console.log(this.firstFormGroup.value, this.secondFormGroup.value);
+  async submit() {
+    // console.log(this.firstFormGroup.value, this.secondFormGroup.value);
     const {name, type} = this.firstFormGroup.value;
     const {action, condition} = this.secondFormGroup.value;
     const rule: Rule = {
@@ -63,7 +64,8 @@ export class AddRuleComponent implements OnInit {
       condition,
       createdDate: new Date().toDateString()
     }
-    console.log(rule, type);
+    await this.router.navigate(['/rules'])
+    console.log('Rule Created', rule);
     this.rulesService.addRule(rule, type);
     // this.firstFormGroup.reset();
     // this.secondFormGroup.reset();
