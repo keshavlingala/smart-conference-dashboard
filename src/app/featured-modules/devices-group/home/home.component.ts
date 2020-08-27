@@ -13,7 +13,7 @@ import {DialogFactoryService} from '../../../core/services/dialog-factory.servic
 export class HomeComponent implements OnInit {
 
 
-  columnNames=['Group Name', ' Group Type', 'Name(User Defined)', ' Created Date', ' Actions'];
+  columnNames=[ ' Group Name', 'Group Type', ' Created Date', ' Actions'];
   title  =  "Devices Group"
   @ViewChild(TemplateRef) tpl: TemplateRef<any>;
   @ViewChild('userDialogTemplate')

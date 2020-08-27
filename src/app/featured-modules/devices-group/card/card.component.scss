@@ -55,3 +55,7 @@ mat-card:hover{
   background-color: white !important;
 }
 
+::ng-deep .mbutton:disabled{
+  background-color: grey !important;
+  cursor: not-allowed !important;
+}

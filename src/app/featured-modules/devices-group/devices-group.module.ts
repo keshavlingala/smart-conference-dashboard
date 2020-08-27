@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DatatableModule } from './../../common/datatable/datatable.module';
 import { SharedModule } from './../../shared/shared.module';
@@ -21,7 +22,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     DatatableModule,
     RouterModule,
     FormsModule,
-    NgMultiSelectDropDownModule.forRoot()
+    NgMultiSelectDropDownModule.forRoot(),
+    ReactiveFormsModule
     
   ]
 })
