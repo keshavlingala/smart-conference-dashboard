@@ -8,20 +8,21 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AddDeviceComponent implements OnInit {
   title = "Devices";
   deviceTypes:string[];
+  showError:boolean=false;
   loader:boolean=false;
   constructor(private fb: FormBuilder) {
 
   }
 
-  updatesForm: FormGroup;
+  addDeviceForm: FormGroup;
   ngOnInit(): void {
     this.deviceTypes=['Device Type A','Device Type B','Device Type C']
     this.createForm();
   }
   createForm() {
-    this.updatesForm = this.fb.group({
+    this.addDeviceForm = this.fb.group({
     name:  ['', Validators.required ],
-    deviceType:  '1',
+    deviceType:   ['', Validators.required ],
     authType: ['', Validators.required ],
     staticMetadata: ['', Validators.required ],
     dynamicMetaData: '',
@@ -29,13 +30,19 @@ export class AddDeviceComponent implements OnInit {
   }
 
   onSubmit() {
+    if(this.addDeviceForm.invalid)
+    {
+      this.showError=true;
+      return;
+    }
+    this.showError=false;
     this.loader=true;
-    setInterval(()=>{
+    setTimeout(()=>{
       this.loader=false;
-      console.log(this.updatesForm.value);
-      this.updatesForm.reset({
+      console.log(this.addDeviceForm.value);
+      this.addDeviceForm.reset({
         name:  '',
-        deviceType:  '1',
+        deviceType: '',
         authType:'',
         staticMetadata: '',
         dynamicMetaData: '',

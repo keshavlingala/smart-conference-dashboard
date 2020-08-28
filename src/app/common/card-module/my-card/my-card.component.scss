@@ -24,11 +24,12 @@
      margin: 0px;
 }
   padding-left: 20px;
-
   background-color: white;
   height: 100px;
   width: 210px;
   border-radius: 2%;
+  .topPadding{
+    padding-top: 10px;
   .design1title {
     color: #522d5b;
     font-weight: 400;
@@ -46,6 +47,7 @@
     padding-left: 16px;
     font-weight: 10;
   }
+}
 }
 
 .design2 {

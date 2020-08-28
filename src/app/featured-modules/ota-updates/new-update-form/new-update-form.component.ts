@@ -11,52 +11,64 @@ import { Form } from '../otaform';
 
 
 export class NewUpdateFormComponent implements OnInit {
-  files: any[] = [];
+  files: any;
+  excessFiles:boolean;
   fileFetchError: boolean;
+  showError: boolean;
   updatesForm: FormGroup;
   form: Form;
-  deviceTypes:string[];
-  loader:boolean=false;
+  deviceTypes: string[];
+  loader: boolean = false;
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
 
   ngOnInit() {
     this.fileFetchError = false;
-    this.deviceTypes=['Device Type A','Device Type B','Device Type C']
+    this.showError = false;
+    this.excessFiles=false;
+    this.deviceTypes = ['Device Type A', 'Device Type B', 'Device Type C']
   }
   createForm() {
     this.updatesForm = this.fb.group({
       otaName: ['', Validators.required],
-      deviceType: '1',
+      deviceType: ['', Validators.required],
       otaVersion: ['', Validators.required],
       description: ['', Validators.required],
-      files: [],
+      files: null,
     });
   }
 
   onSubmit() {
-    if (this.files.length == 0) {
+    if (this.files==null) {
+      this.excessFiles=false;
       this.fileFetchError = true;
-    } else {
-      this.loader=true;
-      setTimeout(()=>{
-        this.loader= false;
+    }
+    if (this.updatesForm.invalid) {
+      this.showError = true;
+      return;
+    }
+    else if(this.files!=null){
+      this.loader = true;
+      this.showError=false;
+      setTimeout(() => {
+        this.loader = false;
         this.updatesForm.patchValue({
           files: this.files,
         })
         this.form = this.updatesForm.value;
         console.log(this.form);
-        this.files = [];
+        this.files = null;
         this.updatesForm.reset({
           otaName: '',
-          deviceType: '1',
+          deviceType: '',
           otaVersion: '',
           description: '',
         });
-      },2000)
-
+      }, 2000)
     }
+
+
   }
   onFileDropped($event) {
     this.prepareFilesList($event);
@@ -66,44 +78,40 @@ export class NewUpdateFormComponent implements OnInit {
   }
 
 
-  deleteFile(index: number) {
-    this.files.splice(index, 1);
+  deleteFile() {
+    this.files=null;
+    this.fileFetchError=true;
   }
-  uploadFilesSimulator(index: number) {
+  uploadFilesSimulator() {
     setTimeout(() => {
-      if (index === this.files.length) {
-        return;
-      } else {
+        if(this.files){
         const progressInterval = setInterval(() => {
-          if (this.files[index].progress === 100) {
+          if (this.files.progress === 100) {
             clearInterval(progressInterval);
-            this.uploadFilesSimulator(index + 1);
             this.fileFetchError = false;
           } else {
-            this.files[index].progress += 5;
+            this.files.progress += 5;
           }
         }, 200);
-      }
+        }
     }, 1000);
   }
 
-  /**
-   * Convert Files list to normal array list
-   * @param files (Files List)
-   */
-  prepareFilesList(files: Array<any>) {
-    for (const item of files) {
-      item.progress = 0;
-      this.files.push(item);
+
+
+  prepareFilesList(file: any) {
+    if(file.length>1){
+      this.excessFiles=true;
+      this.fileFetchError=false;
     }
-    this.uploadFilesSimulator(0);
+    else {
+      this.excessFiles=false;
+      file[0].progress = 0;
+      this.files=file[0];
+    }
+    this.uploadFilesSimulator();
   }
 
-  /**
-   * format bytes
-   * @param bytes (File size in bytes)
-   * @param decimals (Decimals point)
-   */
   formatBytes(bytes, decimals) {
     if (bytes === 0) {
       return '0 Bytes';
