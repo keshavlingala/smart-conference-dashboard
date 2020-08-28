@@ -14,7 +14,7 @@ export class DevicesTypeListingComponent implements OnInit {
   public currentlyShowingDevicesType;
   
   public config  = {
-    perPageData: 6
+    perPageData: 8
   }
 
   getDevicesTypeCount(){

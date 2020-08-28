@@ -1,0 +1,21 @@
+.btn-disabled {
+    cursor: not-allowed;
+}
+
+::ng-deep .mat-button-toggle-button:focus {
+  outline: none;
+}
+
+.types {
+  ::ng-deep .mat-button-toggle-checked {
+    background-color: #B77AC5;
+    color: white !important;
+  }
+}
+
+.security {
+  ::ng-deep .mat-button-toggle-checked {
+    background-color: white;
+    border: 1px solid #87D692;
+  }
+}

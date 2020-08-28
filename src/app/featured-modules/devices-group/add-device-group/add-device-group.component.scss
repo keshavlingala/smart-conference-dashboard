@@ -19,16 +19,20 @@ a.disabled {
   .cardhover{
     background-color: aqua;
   }
-  mat-button-toggle.selected, mat-button-toggle:hover{
-    background-color: rgba(243, 225, 126, 0.849);
-    font-weight: 600;
-    
-  }
-  mat-button-toggle{
-    size: 40px;
-    text-align: center;
-    padding: 1px;
-  }
+  
+  .FORM{
+
+    mat-button-toggle.selected, mat-button-toggle:hover{
+      background-color: rgba(243, 225, 126, 0.849);
+      font-weight: 600;
+      
+    }
+    mat-button-toggle{
+      size: 40px;
+      text-align: center;
+      padding: 1px;
+    }
+
 
   ::ng-deep .mat-button-toggle-checked{
   background-color: rgba(243, 225, 126, 0.849) !important;
@@ -38,6 +42,7 @@ a.disabled {
       padding: 15px !important;
       line-height: 0px !important;
   }
+}
 
   icondiv:hover{
       background-color: black;
@@ -48,6 +53,7 @@ a.disabled {
   }
   .invalid{
     border-color: red;
+
   }
   ::ng-deep .multiselect-dropdown .dropdown-btn {
       background-color: white !important;

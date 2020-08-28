@@ -1,64 +1,142 @@
 <h1>DEVICE TYPE</h1>
-<!-- <form class="m-1"> -->
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="device-name">Name</label>
-            <input type="text" class="form-control" id="device-name">
-          </div>
-      
-          <div class="form-group col">
-            <label for="actions">Actions</label>
-            <input type="text" class="form-control" id="actions">
-          </div>
-    </div>
+<form class="m-1" [formGroup]="deviceTypeForm">
+  {{deviceTypeForm.value | json}}
     
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="w-75">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="name">
+          <mat-error *ngIf="
+            deviceTypeForm.get('name').hasError('required') &&
+            deviceTypeForm.get('name').touched">Name is required</mat-error>
+        </mat-form-field>
+      </div>
 
-    <div class="form-row">
-        <div class="form-group col">
-            <label for="attribute">Attribute Name</label>
-            <input type="text" class="form-control" id="attribute">
-          </div>
-    
-          <div class="form-group col">
-            <label for="account">Account</label>
-            <select class="form-control" id="account">
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-              <option>4</option>
-              <option>5</option>
-            </select>
-          </div>
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="w-75">
+          <mat-label>Actions</mat-label>
+          <input matInput placeholder="Actions" formControlName="actions">
+          <mat-error *ngIf="
+            deviceTypeForm.get('actions').hasError('required') &&
+            deviceTypeForm.get('actions').touched">It is required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="w-75">
+          <mat-label>Attribute Name</mat-label>
+          <input matInput placeholder="Attribute Name" formControlName="attribute">
+          <mat-error *ngIf="
+            deviceTypeForm.get('attribute').hasError('required') &&
+            deviceTypeForm.get('attribute').touched">It is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="w-75">
+          <mat-select formControlName="account">
+            <mat-option value="1">1</mat-option>
+            <mat-option value="2">2</mat-option>
+            <mat-option value="3">3</mat-option>
+            <mat-option value="4">4</mat-option>
+            <mat-option value="5">5</mat-option>
+            <mat-option value="6">6</mat-option>
+          </mat-select>
+          <mat-label>Account</mat-label>
+          <mat-error *ngIf="
+            deviceTypeForm.get('account').hasError('required') &&
+            deviceTypeForm.get('account').touched">It is required</mat-error>
+        </mat-form-field>
+      </div>
     </div>
 
     <div>
         <p>Type</p>
-        <mat-button-toggle-group style="border: none;">
-            <mat-button-toggle class="m-2" value="String">String</mat-button-toggle>
-            <mat-button-toggle class="m-2" value="Number">Number</mat-button-toggle>
-            <mat-button-toggle class="m-2" value="Double">Double</mat-button-toggle>
-            <mat-button-toggle class="m-2" value="Float">Floadt</mat-button-toggle>
-            <mat-button-toggle class="m-2" value="Timestamp">Timestamp</mat-button-toggle>
+        <mat-button-toggle-group class="types" style="border: none;" formControlName="type">
+            <mat-button-toggle class="m-2 rounded" value="String">String</mat-button-toggle>
+            <mat-button-toggle class="m-2 rounded" value="Number">Number</mat-button-toggle>
+            <mat-button-toggle class="m-2 rounded" value="Double">Double</mat-button-toggle>
+            <mat-button-toggle class="m-2 rounded" value="Float">Float</mat-button-toggle>
+            <mat-button-toggle class="m-2 rounded" value="Timestamp">Timestamp</mat-button-toggle>
           </mat-button-toggle-group>
+          <mat-error *ngIf="
+            deviceTypeForm.get('type').hasError('required') &&
+            deviceTypeForm.get('type').touched">It is required</mat-error>
     </div>
 
     <div>
         <p>Security</p>
-        <mat-button-toggle-group style="border: none;">
-            <mat-button-toggle class="m-2" value="Intrinsic">Intrinsic</mat-button-toggle>
-            <mat-button-toggle class="m-2" value="Dynamic">Dynamic</mat-button-toggle>
-            <mat-button-toggle class="m-2" value="BC">BC</mat-button-toggle>
+        <mat-button-toggle-group class="security" style="border: none;" formControlName="security">
+            <mat-button-toggle class="m-2 rounded" value="Intrinsic">Intrinsic</mat-button-toggle>
+            <mat-button-toggle class="m-2 rounded" value="Dynamic">Dynamic</mat-button-toggle>
+            <mat-button-toggle class="m-2 rounded" value="BC">BC</mat-button-toggle>
           </mat-button-toggle-group>
+          <mat-error *ngIf="
+            deviceTypeForm.get('security').hasError('required') &&
+            deviceTypeForm.get('security').touched">It is required</mat-error>
     </div>
     
-    <div class="d-inline-flex justify-content-center align-items-center">
-        <mat-icon>add_circle</mat-icon>&nbsp; Add Another Attribute
+    <div class="d-inline-flex justify-content-center align-items-center m-1" style="cursor: pointer;">
+        <mat-icon style="color: #143FFC; width: auto; height: auto;">add_circle</mat-icon>
+        &nbsp; <span style="color: #4A75FA;" (click)="addAnotherAttribute()">Add Another Attribute</span>
+    </div>
+
+    <div formArrayName="anotherAttributes">
+      <div *ngFor="let phone of anotherAttributes.controls; let i=index" [formGroupName]="i">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-label>Attribute Name</mat-label>
+              <input matInput placeholder="Attribute Name" formControlName="name">
+            </mat-form-field>
+          </div>
+          
+  
+          <div class="col-6">
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select formControlName="account">
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+              </mat-select>
+              <mat-label>Account</mat-label>
+            </mat-form-field>
+          </div>
+
+          <div class="col-6">
+            <h5 class="m-0 pl-10">Type</h5>
+            <mat-button-toggle-group class="types" style="border: none;" formControlName="type">
+                <mat-button-toggle class="m-1 rounded" value="String">String</mat-button-toggle>
+                <mat-button-toggle class="m-1 rounded" value="Number">Number</mat-button-toggle>
+                <mat-button-toggle class="m-1 rounded" value="Double">Double</mat-button-toggle>
+                <mat-button-toggle class="m-1 rounded" value="Float">Float</mat-button-toggle>
+                <mat-button-toggle class="m-1 rounded" value="Timestamp">Timestamp</mat-button-toggle>
+              </mat-button-toggle-group>
+          </div>
+    
+        <div class="col-6">
+          <h5 class="m-0 pl-10">Security</h5>
+            <mat-button-toggle-group class="security" style="border: none;" formControlName="security">
+                <mat-button-toggle class="m-2 rounded" value="Intrinsic">Intrinsic</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="Dynamic">Dynamic</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="BC">BC</mat-button-toggle>
+              </mat-button-toggle-group>  
+        </div>
+          
+          <div class="col-12 mb-4 d-flex align-items-center justify-content-center">
+            <button (click)="deleteAttribute(i)" class="btn btn-danger">Delete</button> 
+          </div>
+          
+        </div>
+      </div>
     </div>
     
 
     <div class="d-flex justify-content-center align-items-center">
-        <button type="submit" class="btn btn-success">Create Device Type</button>
+        <button [class.btn-disabled]="!deviceTypeForm.valid" [disabled] = "!deviceTypeForm.valid" type="submit" class="btn btn-success">Create Device Type</button>
     </div>
     
-  <!-- </form> -->
+  </form>
   

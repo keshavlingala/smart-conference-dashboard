@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-card',
@@ -6,7 +6,8 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit {
-  @Input() tempData=[]
+  @Input() tempData=[];
+  @Output() sendData = new EventEmitter();
   public paginationMatrix = [];
   public currentlyShowing = [];
   public currentMatrixIndex = 0;
@@ -18,6 +19,7 @@ export class CardComponent implements OnInit {
   public disableBbttn : boolean=true;
   Searchindex : number=0;
   toggle:boolean=false;
+  elementPagination = 8;
   searchIndex=[]
   // public dummy=[];
   constructor() { }
@@ -29,24 +31,13 @@ export class CardComponent implements OnInit {
 
   showSelected(){
     console.log(this.selected);
+    this.sendData.emit(this.selected);
   }
 
   clearSelected(){
     this.selected = []
     console.log(this.selected);
   }
-
-  
-  // clickEvent(i){
-  //   if(this.dummy.indexOf(i)===-1){
-  //  this.dummy.push(i);
-  //   }
-  //   else{
-  //     this.dummy.splice(i,1);
-  //   }
-
-  //  console.log(this.dummy);
-  // }
 
   cardCheck(item){
       if(this.selected.indexOf(item.id)===-1)
@@ -70,28 +61,24 @@ export class CardComponent implements OnInit {
   search(event){
     
      this.searchIndex=[];
+     this.btnClick=0;
      if(event.target.value==='')
      { 
        this.paginationMatrix = this.gMatrix(this.tempData, 8);
       this.currentlyShowing = this.paginationMatrix[0];
       this.currentMatrixIndex=0;
       this.disableFbttn= false;
-      // this.currentlyShowing = this.tempData;
-      // this.paginationMatrix = this.gMatrix(this.currentlyShowing, 8);
+      this.elementPagination=8;
      }
 
      else{
     let s = this.tempData.filter(card=>{
       let title = card.Title.toLowerCase();
-      // if(title.includes(event.target.value.toLowerCase()))
-      // {
-      //   this.searchIndex.push(card.id);
-      //   this.toggle=true;
-      // }
       return title.includes(event.target.value.toLowerCase())
     });
     this.currentlyShowing = s;
     this.paginationMatrix = this.gMatrix(this.currentlyShowing, 8);
+    this.elementPagination=this.paginationMatrix[0].length;
      }
     this.currentlyShowing = this.paginationMatrix[0];
     if(this.paginationMatrix.length<2)
@@ -100,6 +87,7 @@ export class CardComponent implements OnInit {
             this.disableFbttn= true;
     }
     console.log("search array",this.searchIndex);
+    
     
   }
 
@@ -122,22 +110,24 @@ export class CardComponent implements OnInit {
     this.currentlyShowing=this.paginationMatrix[this.currentMatrixIndex+1];
     this.currentMatrixIndex=this.currentMatrixIndex+1;
     this.disableBbttn=false;
+    this.elementPagination=this.elementPagination+this.currentlyShowing.length;
   } 
   if(this.currentMatrixIndex===this.paginationMatrix.length-1)
   {
     this.disableFbttn=true
   }
- //  console.log(this.currentlyShowing);
   
 }
 
 showBack(){
 if(this.currentMatrixIndex>0)
 {
+  this.elementPagination=this.elementPagination-this.currentlyShowing.length;
   this.disableFbttn=false;
   this.btnClick=this.btnClick-1;
   this.currentlyShowing=this.paginationMatrix[this.currentMatrixIndex-1];
     this.currentMatrixIndex=this.currentMatrixIndex-1;
+    
 }
 if(this.currentMatrixIndex===0)
   {

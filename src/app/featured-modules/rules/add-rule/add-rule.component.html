@@ -5,9 +5,9 @@
     <li class="breadcrumb-item active">Add Rule</li>
   </ol>
 </nav>
-<div class="row overflow-hidden">
+<div class="row">
   <div class="col ">
-    <mat-vertical-stepper style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper>
+    <mat-vertical-stepper linear style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper>
       <mat-step #ruleName [stepControl]="firstFormGroup">
         <ng-template matStepLabel> Define the rule Name</ng-template>
         <form [formGroup]="firstFormGroup">
@@ -31,7 +31,7 @@
             <button [disabled]="!firstFormGroup.valid" color="primary" class="mr-3 btn-clr"
                     mat-raised-button matStepperNext>NEXT
             </button>
-            <button mat-button> Cancel</button>
+            <button routerLink="/rules" mat-button> Cancel</button>
           </div>
         </form>
       </mat-step>
@@ -40,12 +40,14 @@
         <div *ngIf="selectedIndex===1">
           <h4>Parameters</h4>
           <ul class="parameters">
-            <li *ngFor="let param of parameters">{{param}}</li>
+            <li *ngFor="let param of parameters">
+              <i class="fa fa-check-circle-o" aria-hidden="true"></i>
+              {{param}}</li>
           </ul>
           <form class="mt-4" [formGroup]="secondFormGroup">
             <div>
               <h4>Actions</h4>
-              <mat-button-toggle-group formControlName="action" style="border: none;">
+              <mat-button-toggle-group required formControlName="action" style="border: none;">
                 <mat-button-toggle [value]="action" class="m-2"
                                    *ngFor="let action of actions">{{action}}</mat-button-toggle>
               </mat-button-toggle-group>
@@ -60,14 +62,16 @@
             </mat-form-field>
             <div class="d-flex justify-content-center position-relative align-items-center mt-2">
               <button style="left: 0" mat-button class="position-absolute">Cancel</button>
-              <button (click)="submit()" mat-button class="btn submit-btn">Create Rule</button>
+              <button [disabled]="!secondFormGroup.valid" (click)="submit()" mat-button class="btn submit-btn">Create
+                Rule
+              </button>
             </div>
           </form>
         </div>
       </mat-step>
     </mat-vertical-stepper>
   </div>
-  <div style="background-color: #eeeaef;height: 362px" class="col-3 con-wrapper d-md-block d-none con-box">
+  <div style="background-color: #eeeaef;height: 362px" class="col-3 con-wrapper d-md-block d-none con-box ">
     <h4>Condition Notes</h4>
     <dl>
       <dt>Simple Operators</dt>

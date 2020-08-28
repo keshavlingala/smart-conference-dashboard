@@ -1,6 +1,8 @@
+<div class="ml-3">
 <h1 class="title">{{title| uppercase}}</h1>
 <button mat-raised-button style="color:#fff; background-color:coral" [routerLink]="['add-device-group']" routerLinkActive="router-link-active" > Add Group</button>
-<br> <br>
+</div>
+<br> 
 <app-data-table [config]="dataTableConfig"
                     [actions]="dataTableActions"
                     [data]="data"
@@ -8,6 +10,7 @@
                     (filterChange)="filterChange($event)"
                     (bulkActionClick)="actionChange($event)"
                      [columnNames]  = columnNames
+                     [keys]="[ 'type', 'name', 'createdDate']"
     >
     </app-data-table>
 
