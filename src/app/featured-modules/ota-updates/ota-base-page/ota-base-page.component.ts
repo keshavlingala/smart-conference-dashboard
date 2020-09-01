@@ -1,3 +1,4 @@
+import { ActivatedRoute } from '@angular/router';
 import { Card, Setting } from './../../../common/card-module/models/card.model';
 import { Component, OnInit } from '@angular/core';
 
@@ -9,59 +10,60 @@ import { Component, OnInit } from '@angular/core';
 export class OtaBasePageComponent implements OnInit {
   cardData : Card[];
   otaSetting : Setting[];
-  constructor() {
-    this.cardData = [
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-    ]
+  constructor(private _route:ActivatedRoute) {
+    this.cardData= this._route.snapshot.data['otaData'];
+    // this.cardData = [
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    //   {
+    //     'Title': 'Factory Default',
+    //     'Content':'Ambient Sensing',
+    //     'Footer': 'May 6th,2020'
+    //   },
+    // ]
     this.otaSetting=[{
       Elements_Number: 8,
       color: 'pink',

@@ -53,7 +53,6 @@ export class MyCardComponent implements OnInit, OnChanges {
           changes.startIndex.currentValue,
           changes.endIndex.currentValue
         );
-        console.log(this.cardData);
       }
     }
   }

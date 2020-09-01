@@ -3,22 +3,22 @@
 </div>
 
 <div class="side-nav-container d-flex">
-    <div class="side-nav" #side_nav> 
+    <div class="side-nav" #side_nav>
 
         <mat-list>
 
             <div *ngIf="showHeading; else donotshowheading">
                 <h2 class="side-nav-heading">{{heading | uppercase}}</h2>
             </div>
-        
+
             <ng-template #donotshowheading>
                 <h2 class="side-nav-heading"></h2>
             </ng-template>
-    
+
             <div class="d-flex flex-column">
-    
+
                 <div *ngFor="let navItem of navItems; let i = index">
-    
+
                     <div *ngIf="navItem.isGrouped; else notGrouped ">
                         <mat-expansion-panel #expansionPanel (opened)="closeAllExpansionPanelsExcept(i)" (click)="toggleSideNav()">
                             <mat-expansion-panel-header class="side-nav-item">
@@ -33,12 +33,12 @@
                                             <mat-icon class="nav-item-icon">{{child.icon}}</mat-icon>&nbsp;&nbsp;
                                             <span>{{child.name}}</span>
                                         </p>
-                                    </mat-list-item>   
+                                    </mat-list-item>
                                 </div>
                             </div>
                         </mat-expansion-panel>
                     </div>
-    
+
                     <ng-template #notGrouped>
                         <div *ngIf="navItem.isVisible">
                             <mat-list-item style="height: 40px !important" (click)="toggleSideNav()">
@@ -50,20 +50,21 @@
                             </mat-list-item>
                         </div>
                     </ng-template>
-                    
-                </div>            
+
+                </div>
             </div>
-    
+
             <div *ngIf="showLogoutBtn">
                 <p class="side-nav-logout-btn"><mat-icon class="logout_icon">power_settings_new</mat-icon>&nbsp;&nbsp;Logout</p>
             </div>
         </mat-list>
     </div>
-    
 
+    <div *ngIf="showLoadingIndicator">
+      <mat-spinner></mat-spinner>
+    </div>
     <div class="side-nav-content">
         <router-outlet></router-outlet>
     </div>
 </div>
-   
-   
+
