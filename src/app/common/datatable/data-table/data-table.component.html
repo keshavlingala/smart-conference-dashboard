@@ -19,7 +19,12 @@
       <mat-icon matSuffix>search</mat-icon>
     </mat-form-field>
   </div>
-  <table class="table" mat-table [dataSource]="dataSource" matSort>
+  <!--  <ng-template #loader>-->
+  <!--  </ng-template>-->
+  <div *ngIf="!dataSource" class="row justify-content-center align-items-center mb-auto">
+    <mat-spinner></mat-spinner>
+  </div>
+  <table *ngIf="dataSource" class="table" mat-table [dataSource]="dataSource" matSort>
     <!--    Columns-->
     <ng-container matColumnDef="checkbox">
       <th mat-header-cell *matHeaderCellDef>
@@ -83,6 +88,6 @@
       <td class="mat-cell" colspan="4">No data Available</td>
     </tr>
   </table>
-  <mat-paginator color="primary" [showFirstLastButtons]="true" [pageSize]="config.pageSize"
+  <mat-paginator  color="primary" [showFirstLastButtons]="true" [pageSize]="config.pageSize"
                  [pageSizeOptions]="this.config.pageSizeOptions"></mat-paginator>
 </div>

@@ -26,8 +26,6 @@ export class RuleListComponent implements OnInit {
     private rulesService: RulesService,
     private dialog: MatDialog
   ) {
-    this.rule_lists = rulesService.getRuleDevices();
-    this.totalSize = this.rule_lists.length;
   }
 
   onPageChange(index) {
@@ -36,7 +34,10 @@ export class RuleListComponent implements OnInit {
     console.log(this.selectedIndex)
   }
 
-  ngOnInit(): void {
+  async  ngOnInit() {
+    await  new Promise(res => setTimeout(res, 2000))
+    this.rule_lists = this.rulesService.getRuleDevices();
+    this.totalSize = this.rule_lists.length;
     this.pages = this.reshape(this.rule_lists.slice(0), this.pageSize)
     this.shownData.next(this.pages[this.selectedIndex])
     // this.changeDetector.detectChanges();

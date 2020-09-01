@@ -28,7 +28,13 @@ width: 70%;
 .buttonColor{
 background-color: #fb7b6b;
 }
-
+.mat-spinner {
+  z-index: 900;
+  top:40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
 .container {
   height: 100%;
   min-height: 100%;
