@@ -30,7 +30,7 @@ export class CardComponent implements OnInit {
   }
 
   showSelected(){
-    console.log(this.selected);
+    //console.log(this.selected);
     this.sendData.emit(this.selected);
   }
 
@@ -52,7 +52,7 @@ export class CardComponent implements OnInit {
      {
        this.showBtn=true;
      }
-      console.log("selected",this.selected);
+     // console.log("selected",this.selected);
 
     
   }
@@ -72,13 +72,22 @@ export class CardComponent implements OnInit {
      }
 
      else{
-    let s = this.tempData.filter(card=>{
+     let s = this.tempData.filter(card=>{
       let title = card.Title.toLowerCase();
       return title.includes(event.target.value.toLowerCase())
     });
+    if(s.length>0)
+    {
     this.currentlyShowing = s;
     this.paginationMatrix = this.gMatrix(this.currentlyShowing, 8);
     this.elementPagination=this.paginationMatrix[0].length;
+    }
+    else{
+      this.currentlyShowing=[];
+      this.paginationMatrix = this.gMatrix(this.currentlyShowing, 8);
+      
+      this.elementPagination=0;
+    }
      }
     this.currentlyShowing = this.paginationMatrix[0];
     if(this.paginationMatrix.length<2)
@@ -86,7 +95,7 @@ export class CardComponent implements OnInit {
         this.disableBbttn=true;
             this.disableFbttn= true;
     }
-    console.log("search array",this.searchIndex);
+   // console.log("search array",this.searchIndex);
     
     
   }
