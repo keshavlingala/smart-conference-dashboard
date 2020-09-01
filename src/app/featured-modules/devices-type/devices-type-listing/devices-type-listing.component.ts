@@ -8,7 +8,7 @@ import {DevicesTypeService} from '../../../core/services/devices-type.service';
 })
 export class DevicesTypeListingComponent implements OnInit {
 
-  public devicesTypeData = [];
+  public devicesTypeData;
   public devicesTypeCount = 0;
   public searchedDevicesTypeData = [];
   public loading:boolean = true;
@@ -30,14 +30,7 @@ export class DevicesTypeListingComponent implements OnInit {
     this.currentlyShowingDevicesType = this.devicesTypeData;
   }
   constructor(private __devicesTypeService: DevicesTypeService, private _router: Router){
-    this._router.events.subscribe((routerEvent: Event)=>{
-      if(routerEvent instanceof NavigationStart){
-        this.loading = true;
-      }
-      if(routerEvent instanceof NavigationEnd){
-        this.loading = false;
-      }
-    });
+  
   }
 
   ngOnInit(){
@@ -45,7 +38,14 @@ export class DevicesTypeListingComponent implements OnInit {
       this.getDevicesTypeCount(); 
       this.getDevicesTypeData(0); 
     },2000);
-       
+    // this._router.events.subscribe((routerEvent: Event)=>{
+    //   if(routerEvent instanceof NavigationStart){
+    //     this.loading = true;
+    //   }
+    //   if(routerEvent instanceof NavigationEnd){
+    //     this.loading = false;
+    //   }
+    // }); 
   }
 
   
