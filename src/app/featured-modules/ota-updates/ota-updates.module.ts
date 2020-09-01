@@ -1,3 +1,5 @@
+import { OtaResolverService } from './ota-resolver.service';
+import { OtaServiceService } from './ota-service.service';
 import { SharedModule } from './../../shared/shared.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -34,5 +36,6 @@ const routes: Routes = [
     NewUpdateFormComponent,
     OtaBasePageComponent,
   ],
+  providers:[OtaServiceService,OtaResolverService]
 })
 export class OtaUpdatesModule { }

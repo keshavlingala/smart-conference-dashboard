@@ -1,5 +1,5 @@
 import { Component, OnInit, Input,ViewChildren,ViewChild,ElementRef, QueryList, AfterViewInit, OnChanges, SimpleChanges,Renderer2 } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, NavigationStart, NavigationEnd, Event} from '@angular/router';
 import {NavItem, GroupedNavItem} from '../models/side-nav-models';
 @Component({
   selector: 'side-navigation-side-nav',
@@ -7,7 +7,7 @@ import {NavItem, GroupedNavItem} from '../models/side-nav-models';
   styleUrls: ['./side-nav.component.scss']
 })
 export class SideNavComponent implements OnInit, AfterViewInit, OnChanges {
-
+  showLoadingIndicator: boolean=true;
   @Input('heading') public heading:string = null;
   public showHeading:boolean;
   @Input('showLogoutBtn') public showLogoutBtn:boolean = true;
@@ -15,7 +15,16 @@ export class SideNavComponent implements OnInit, AfterViewInit, OnChanges {
   public groupedNavItems:number[] = [];
   @ViewChildren('expansionPanel') expansionPanels:QueryList<any>;
   @ViewChild('side_nav') sideNav: ElementRef;
-  constructor(private route: Router, private renderer: Renderer2) { }
+  constructor(private route: Router, private renderer: Renderer2) {
+    this.route.events.subscribe((routerEvent: Event)=>{
+        if(routerEvent instanceof NavigationStart){
+          this.showLoadingIndicator=true;
+        }
+        if(routerEvent instanceof NavigationEnd){
+          this.showLoadingIndicator=false;
+        }
+    })
+   }
 
   ngOnInit(): void {
     if(this.heading!=null){

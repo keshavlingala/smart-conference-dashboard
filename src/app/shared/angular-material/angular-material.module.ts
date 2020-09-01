@@ -51,7 +51,8 @@ const MaterialComponents = [MatDialogModule,
   MatStepperModule,
   ReactiveFormsModule,
   MatChipsModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
