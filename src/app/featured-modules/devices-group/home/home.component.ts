@@ -1,3 +1,4 @@
+//import {Event, Router,NavigationStart, NavigationEnd , NavigationCancel , NavigationError } from '@angular/router';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
 import {DataService} from '../../../core/services/data.service';
@@ -11,6 +12,24 @@ import {DialogFactoryService} from '../../../core/services/dialog-factory.servic
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+ showLoadingIndigator :boolean = true;
+  constructor(
+    public deviceService: DataService,
+    public dialogService: DialogFactoryService,
+    //private router  : Router
+  ) {
+    // this.router.events.subscribe((routerEvent : Event)=>{
+    //   if(routerEvent instanceof NavigationStart)
+    //   {
+    //     this.showLoadingIndigator=true;
+    //   }
+
+    //   if(routerEvent instanceof NavigationEnd || routerEvent instanceof NavigationCancel || routerEvent instanceof NavigationError)
+    //   {
+    //     this.showLoadingIndigator=false;
+    //   }
+    // });
+  }
 
 
   columnNames=[ ' Group Name', 'Group Type', ' Created Date', ' Actions'];
@@ -128,12 +147,7 @@ export class HomeComponent implements OnInit {
   dataTableConfig: DataTableConfig;
   dataTableActions: DataTableActions;
 
-  constructor(
-    public deviceService: DataService,
-    public dialogService: DialogFactoryService
-  ) {
-  }
-
+ 
   async ngOnInit(): Promise<any> {
     // Pop Up Cards
     this.tempData = this.popUpData.tabs.attributes;

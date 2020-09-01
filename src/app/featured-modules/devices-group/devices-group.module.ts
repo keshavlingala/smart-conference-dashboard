@@ -11,7 +11,7 @@ import { AddDeviceGroupComponent } from './add-device-group/add-device-group.com
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent],
@@ -23,7 +23,8 @@ import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
     RouterModule,
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
     
   ]
 })
