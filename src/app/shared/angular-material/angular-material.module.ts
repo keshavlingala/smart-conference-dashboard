@@ -25,6 +25,7 @@ import {MatStepperModule} from "@angular/material/stepper";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 const MaterialComponents = [MatDialogModule,
   MatNativeDateModule,
@@ -50,7 +51,8 @@ const MaterialComponents = [MatDialogModule,
   MatStepperModule,
   ReactiveFormsModule,
   MatChipsModule,
-  MatButtonToggleModule
+  MatButtonToggleModule,
+  MatProgressSpinnerModule
 ];
 
 @NgModule({
