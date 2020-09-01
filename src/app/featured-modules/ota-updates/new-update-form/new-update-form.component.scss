@@ -16,6 +16,12 @@ input{
 select{
   width: 70%;
 }
+.mat-spinner {
+  top:40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
 .buttonColor{
   background-color: #fb7b6b;
 }
@@ -41,11 +47,6 @@ select{
 
   label {
     color: #679fff;
-    // width: 183px;
-    // height: 44px;
-    // border-radius: 21.5px;
-    // background-color: #db202f;
-    // padding: 8px 16px;
   }
 
   h3 {
