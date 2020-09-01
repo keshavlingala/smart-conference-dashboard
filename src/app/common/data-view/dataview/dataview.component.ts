@@ -17,7 +17,7 @@ export class DataviewComponent implements OnInit {
 
   ngOnInit(): void {
     // console.log(this.dataViewConfig);
-    this.selectedUpdate = this.dataViewConfig.all_updates[0];
+    this.selectedUpdate = this.dataViewConfig?.all_updates[0];
   }
 
   addUpdate(): void {
