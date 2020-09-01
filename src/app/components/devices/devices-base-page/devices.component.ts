@@ -154,8 +154,8 @@ export class DevicesComponent implements OnInit {
         {icon: 'visibility', name: 'disable'}
       ],
     };
+    await  new Promise(res => setTimeout(res, 2000))
     this.data = await this.deviceService.getJson().toPromise();
-    // console.log(this.data);
   }
 
   async actionChange($event: ActionChange): Promise<any> {

@@ -6,6 +6,9 @@
     </mat-select>
   </mat-form-field>
 </div>
+<div *ngIf="!selectedUpdate" class="row justify-content-center align-items-center mb-auto">
+  <mat-spinner></mat-spinner>
+</div>
 <app-timeline>
   <app-timeline-item *ngFor="let item of selectedUpdate.items">
     <mat-card style="padding: 10px">
