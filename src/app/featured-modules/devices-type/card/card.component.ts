@@ -12,20 +12,6 @@ export class CardComponent implements OnInit {
   @Input('cardData') public cardData:any;
   
   public chart;
-  public dummyChartOptions = {
-        circumference: 0,
-        responsive: true,
-        cutoutPercentage: 80,
-        legend:{
-          display: true,
-          position: 'top',
-          align: 'start',
-          labels: {
-            usePointStyle: true,
-            fontSize: 10,
-          }
-        }
-      }
   constructor(public dialog: MatDialog) { }
 
   ngOnInit(): void {
@@ -40,7 +26,13 @@ export class CardComponent implements OnInit {
         responsive: true,
         cutoutPercentage: 80,
         legend:{
-          display: false,
+          display: true,
+          position: 'right',
+          align: 'start',
+          labels: {
+            usePointStyle: true,
+            fontSize: 10
+          }
         }
       }
     }
