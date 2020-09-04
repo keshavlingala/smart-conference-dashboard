@@ -21,10 +21,10 @@
   </div>
   <!--  <ng-template #loader>-->
   <!--  </ng-template>-->
-  <div *ngIf="!dataSource" class="row justify-content-center align-items-center">
+  <div *ngIf="!data" class="row justify-content-center align-items-center">
     <mat-spinner></mat-spinner>
   </div>
-  <table *ngIf="dataSource" class="table" mat-table [dataSource]="dataSource" matSort>
+  <table [ngStyle]="{opacity:data?1:0}" class="table" mat-table [dataSource]="dataSource" matSort>
     <!--    Columns-->
     <ng-container matColumnDef="checkbox">
       <th mat-header-cell *matHeaderCellDef>
@@ -41,9 +41,9 @@
       </td>
     </ng-container>
 
-    <ng-container [matColumnDef]="column" *ngFor="let column of keys;let i=index">
+    <ng-container [matColumnDef]="key" *ngFor="let key of keys;let i=index">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> {{columnNames[i]}}</th>
-      <td mat-cell *matCellDef="let row"> {{row[column]}} </td>
+      <td mat-cell *matCellDef="let row"> {{row[key]}} </td>
     </ng-container>
 
     <!--    <ng-container *ngIf="columnNames[1]" matColumnDef="type">-->
@@ -68,7 +68,7 @@
     <ng-container matColumnDef="options">
       <th mat-header-cell *matHeaderCellDef>{{actionsHeaderName}}</th>
       <td mat-cell *matCellDef="let row">
-        <div class="row">
+        <div class="d-flex justify-content-around ">
           <button (click)="rowAction(row,'action',action.name);$event.stopPropagation()"
                   *ngFor="let action of actions.actions"
                   mat-icon-button>

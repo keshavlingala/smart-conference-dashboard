@@ -38,7 +38,7 @@ export class DataService {
         return data.map(doc => {
           return {
             id: doc._id,
-            createdDate: new Date(doc.createdAt),
+            createdDate: doc.createdAt,
             deviceData: null,
             name: doc.name,
             type: doc.type,
@@ -54,7 +54,7 @@ export class DataService {
       map(doc => {
         return {
           id: doc._id,
-          createdDate: new Date(doc.createdAt),
+          createdDate: doc.createdAt,
           deviceData: null,
           name: doc.name,
           type: doc.type,

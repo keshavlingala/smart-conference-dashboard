@@ -47,16 +47,17 @@ export class DataTableComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // console.log('On Changes Called');
-    // console.log('Data', this.data);
+    console.log('On Changes Called');
+    console.log('Data', this.data);
     if (this.data) {
       this.dataSource = new MatTableDataSource<Device>(this.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.selection.clear();
+      console.log(this.sort)
+      console.log(this.dataSource)
     }
   }
-
   bulkActionHandler(type: 'action' | 'bulk-action', name: string): void {
     this.bulkActionClick.emit({
       type,
