@@ -16,10 +16,23 @@ export class DataService {
   }
 
   getJson(): Observable<Device[]> {
-    return this.http.get<Device[]>(`http://localhost:4200/assets/data.json`);
+    return this.http.get<Device[]>(`http://localhost:4200/assets/data.json`).pipe(
+      map(arr => {
+        return arr.map(d => {
+          return {...d, createdDate: new Date(d.createdDate).toString().split("GMT")[0]}
+        })
+      })
+    )
   }
 
   getDevices(): Observable<Device[]> {
+    return this.http.get<Device[]>(`http://localhost:4200/assets/data.json`).pipe(
+      map(arr => {
+        return arr.map(d => {
+          return {...d, createdDate: new Date(d.createdDate).toString().split("GMT")[0]}
+        })
+      })
+    )
     return this.http.get<Res[]>(`${BASE_URL}/devices/`).pipe(
       map(data => {
         return data.map(doc => {
