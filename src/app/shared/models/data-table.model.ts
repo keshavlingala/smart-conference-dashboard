@@ -2,7 +2,7 @@ export interface Device {
   id: string;
   type: string;
   name: string;
-  createdDate: Date;
+  createdDate: Date | string | number;
   deviceData: any;
   disable: boolean;
 }
