@@ -37,15 +37,7 @@ export class DevicesTypeListingComponent implements OnInit {
     setTimeout(()=>{
       this.getDevicesTypeCount(); 
       this.getDevicesTypeData(0); 
-    },2000);
-    // this._router.events.subscribe((routerEvent: Event)=>{
-    //   if(routerEvent instanceof NavigationStart){
-    //     this.loading = true;
-    //   }
-    //   if(routerEvent instanceof NavigationEnd){
-    //     this.loading = false;
-    //   }
-    // }); 
+    },500);
   }
 
   
