@@ -1,5 +1,6 @@
 import * as Chance from 'chance';
 import {RuleDevice} from "../../featured-modules/rules/rules.models";
+import {Device, DeviceResponse} from "../models/data-table.model";
 
 export const chance = new Chance() as Chance.Chance;
 export const ruleDeviceGenerator = (size = 20): RuleDevice[] => {
@@ -30,4 +31,32 @@ export const ruleDeviceGenerator = (size = 20): RuleDevice[] => {
       })
     }
   })
+}
+export const devicesGenerator = (size): DeviceResponse => {
+  return {
+    status: 'success',
+    message: 'Devices fetched successfully!',
+    data: {
+      count: size,
+      devices: Array.from({length: size}, (): Device => {
+        return {
+          _id: chance.string({length: 20, alpha: true, numeric: true}),
+          owner: chance.string(),
+          createdAt: chance.date(),
+          credentials: {
+            accessToken: null,
+            certificates: null
+          },
+          operations: {
+            deviceRules: [],
+            deviceStatus: chance.bool(),
+          },
+          name: chance.first() + " Sensor",
+          type: {
+            deviceType: chance.last() + " Type"
+          }
+        }
+      })
+    }
+  }
 }

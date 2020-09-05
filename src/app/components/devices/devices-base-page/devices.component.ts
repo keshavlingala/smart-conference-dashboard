@@ -4,6 +4,7 @@ import {DataService} from '../../../core/services/data.service';
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
 import {Card, Setting} from '../../../common/card-module/models/card.model';
 import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
+import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -122,13 +123,14 @@ export class DevicesComponent implements OnInit {
   startIndex = 0;
   endIndex: number = this.setting[0].Elements_Number;
 
-  data: Device[];
+  data: any[];
   dataTableConfig: DataTableConfig;
   dataTableActions: DataTableActions;
 
   constructor(
     public deviceService: DataService,
-    public dialogService: DialogFactoryService
+    public dialogService: DialogFactoryService,
+    private datePipe: DatePipe
   ) {
   }
 
@@ -154,8 +156,17 @@ export class DevicesComponent implements OnInit {
         {icon: 'visibility', name: 'disable'}
       ],
     };
-    await  new Promise(res => setTimeout(res, 700))
-    this.data = await this.deviceService.getJson().toPromise();
+    this.data = await this.getDevices();
+  }
+
+  async getDevices() {
+    return (await this.deviceService.getDeviceResponse().toPromise()).data.devices.map(device => {
+      return {
+        ...device,
+        type: device.type.deviceType,
+        createdAt: this.datePipe.transform(device.createdAt, 'medium')
+      }
+    })
   }
 
   async actionChange($event: ActionChange): Promise<any> {
@@ -165,15 +176,14 @@ export class DevicesComponent implements OnInit {
       case 'action':
         selected = $event.selected as Device;
         if ($event.name === 'delete') {
-
           try {
-            await this.deviceService.deleteDevice(selected.id).toPromise()
+            await this.deviceService.deleteDevice(selected._id).toPromise()
           } catch (e) {
             console.log('Cannot Do Data manipulation ', e)
           }
         } else if ($event.name === 'disable') {
           try {
-            await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
+            this.deviceService.disableDevice(selected, !selected.operations.deviceStatus)
           } catch (e) {
             console.log('Cannot Do Data manipulation ', e)
           }
@@ -189,27 +199,21 @@ export class DevicesComponent implements OnInit {
       case 'bulk-action':
         selected = $event.selected as Device[];
         if ($event.name === 'delete') {
-          try {
-            await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise()
-          } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
-          }
+          this.deviceService.deleteDevices(selected)
         } else if ($event.name === 'disable') {
           try {
-            await this.deviceService
-              .disableDevices(selected, selected.length / 2 > selected
-                .filter(i => i.disable).length).toPromise()
+            // await this.deviceService
+            //   .disableDevices(selected, selected.length / 2 > selected
+            //     .filter(i => i.operations.deviceStatus).length).toPromise()
+            this.deviceService.disableDevices(selected, selected.length / 2 > selected
+              .filter(i => i.operations.deviceStatus).length);
           } catch (e) {
             console.log('Cannot Do Data manipulation ', e)
           }
         }
         break;
     }
-    try {
-      this.data = await this.deviceService.getDevices().toPromise()
-    } catch (e) {
-      this.data = await this.deviceService.getJson().toPromise();
-    }
+    this.data = await this.getDevices()
   }
 
   filterChange($event: Device[]): void {

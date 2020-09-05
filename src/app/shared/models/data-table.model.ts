@@ -1,13 +1,3 @@
-export interface Device {
-  id: string;
-  type: string;
-  name: string;
-  createdDate: string;
-  deviceData: any;
-  disable: boolean;
-}
-
-
 export interface Res {
   '_id': string;
   'type': string;
@@ -17,6 +7,7 @@ export interface Res {
   '__v': number;
   disable: boolean;
 }
+
 
 export interface DataTableConfig {
   checkbox: boolean;
@@ -49,3 +40,52 @@ export interface ActionChange {
   name: string;
 }
 
+
+export interface GCP301 {
+  _id: string;
+  clientCertificate: string;
+  privateKey: string;
+}
+
+export interface Cloud {
+  GCP301: GCP301;
+}
+
+export interface Certificates {
+  cloud: Cloud[];
+}
+
+export interface Credentials {
+  certificates: Certificates;
+  accessToken: string;
+}
+
+export interface Operations {
+  deviceStatus: boolean;
+  deviceRules: any[];
+}
+
+export interface Type {
+  deviceType: string;
+}
+
+export interface Device {
+  _id: string;
+  owner: string;
+  createdAt: Date;
+  credentials: Credentials;
+  operations: Operations;
+  name: string;
+  type: Type;
+}
+
+export interface Data {
+  devices: Device[];
+  count: number;
+}
+
+export interface DeviceResponse {
+  status: string;
+  message: string;
+  data: Data;
+}
