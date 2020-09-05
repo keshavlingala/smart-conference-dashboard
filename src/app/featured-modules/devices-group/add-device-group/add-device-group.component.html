@@ -21,8 +21,8 @@
     <div class="col ml-md-5 col-md-4" >
         <label >Group Type</label><br>
         <mat-button-toggle-group id="GroupType" formControlName="GroupType"   value="homogeneous" style="border : none;" (change)="toggleCalled()">
-          <mat-button-toggle value="homogeneous">Homogeneous</mat-button-toggle>
-          <mat-button-toggle class="ml-5" value="hetrogeneous">Hetrogeneous</mat-button-toggle>
+          <mat-button-toggle value="Single">Homogeneous</mat-button-toggle>
+          <mat-button-toggle class="ml-5" value="Multi">Hetrogeneous</mat-button-toggle>
         </mat-button-toggle-group>
         
         <br>
@@ -30,7 +30,7 @@
     </div>
 
     <!-- Single Select Dropdown -->
-    <div class="form-group col-md-4"  *ngIf="DeviceGroupForm.value.GroupType=='homogeneous'">
+    <div class="form-group col-md-4"  *ngIf="DeviceGroupForm.value.GroupType=='Single'">
         <label >Device Type</label>
         <select id="inputState" id="DeviceType" formControlName="DeviceType" class="form-control" placeholder="hello" [class.invalid]="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) " >
           <option selected></option>
@@ -41,7 +41,7 @@
 
 
  <!-- Multiselect Dropdown -->
-  <div class="form-group  ml-3" *ngIf="DeviceGroupForm.value.GroupType=='hetrogeneous'" >
+  <div class="form-group  ml-3" *ngIf="DeviceGroupForm.value.GroupType=='Multi'" >
     <label >Device Type</label>
       <ng-multiselect-dropdown
       [placeholder]="''"

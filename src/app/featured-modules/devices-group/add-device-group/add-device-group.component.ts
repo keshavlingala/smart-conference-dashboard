@@ -18,6 +18,13 @@ export class AddDeviceGroupComponent implements OnInit {
   selectedCard =[];
   dropdownSettings:IDropdownSettings ;
   hetroFlag : boolean= false;
+  public finalData = [];
+  result = {
+    "groupName":"",
+    "deviceTypes":[],
+    "groupType":"",
+    "devices":[]
+  }
   constructor( private fb :FormBuilder) { }
   ngOnInit(): void {
     
@@ -190,8 +197,26 @@ export class AddDeviceGroupComponent implements OnInit {
     // Catching Event from Card
     DatafromCard(event)
     {
-      this.selectedCard=event;
-      console.log(this.selectedCard);
+     // this.selectedCard.push(event);
+        this.selectedCard = event.map(String);
+        console.log(this.selectedCard);
+        this.finalData.push(this.DeviceGroupForm.value );
+      
+         var dummy = [];
+     // console.log(this.finalData);
+       if(this.DeviceGroupForm.controls['GroupType'].value==='Single')
+        {
+         this.result.deviceTypes.push(this.DeviceGroupForm.controls['DeviceType'].value.item_text );
+        }
+        if(this.DeviceGroupForm.controls['GroupType'].value==='Multi')
+        {
+          this.DeviceGroupForm.controls['DeviceType'].value.map(data=>{ dummy.push(data.item_text)});
+          this.result.deviceTypes=dummy;
+        }
+       this.result.groupType= this.DeviceGroupForm.controls['GroupType'].value ;
+       this.result.groupName= this.DeviceGroupForm.controls['GroupName'].value ;
+       this.result.devices = this.selectedCard;
+        console.log(this.result);
     }
 
     toggleCalled(){

@@ -1,3 +1,4 @@
+import { DevicesGroupService } from './../../../core/services/devices-group.service';
 //import {Event, Router,NavigationStart, NavigationEnd , NavigationCancel , NavigationError } from '@angular/router';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
@@ -16,8 +17,11 @@ export class HomeComponent implements OnInit {
   constructor(
     public deviceService: DataService,
     public dialogService: DialogFactoryService,
+    private service : DevicesGroupService
     //private router  : Router
   ) {
+
+   
     // this.router.events.subscribe((routerEvent : Event)=>{
     //   if(routerEvent instanceof NavigationStart)
     //   {
@@ -32,7 +36,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  columnNames=[ ' Group Name', 'Group Type', ' Created Date', ' Actions'];
+  columnNames=[ ' Group Name', 'Group Type', ' Created At'];
   title  =  "Devices Group"
   @ViewChild(TemplateRef) tpl: TemplateRef<any>;
   @ViewChild('userDialogTemplate')
@@ -143,12 +147,13 @@ export class HomeComponent implements OnInit {
   startIndex = 0;
   endIndex: number = this.setting[0].Elements_Number;
 
-  data: Device[];
+  data=[];
   dataTableConfig: DataTableConfig;
   dataTableActions: DataTableActions;
 
  
   async ngOnInit(): Promise<any> {
+    this.data= this.service.getData();
     // Pop Up Cards
     this.tempData = this.popUpData.tabs.attributes;
     this.cardData = this.setting[0].apipaginator === false ? this.tempData.slice(this.startIndex, this.endIndex) : this.tempData;
@@ -169,8 +174,8 @@ export class HomeComponent implements OnInit {
         {icon: 'visibility', name: 'disable'}
       ],
     }; 
-    this.data = await this.deviceService.getJson().toPromise();
-    // console.log(this.data);
+   // this.data = await this.deviceService.getJson().toPromise();
+    this.data = this.data[0];
   }
 
   async actionChange($event: ActionChange): Promise<any> {
@@ -178,35 +183,26 @@ export class HomeComponent implements OnInit {
     let selected = $event.selected;
     switch ($event.type) {
       case 'action':
-        selected = $event.selected as Device;
+        selected = $event.selected as any;
         if ($event.name === 'delete') {
-          await this.deviceService.deleteDevice(selected.id).toPromise();
-        } else if ($event.name === 'disable') {
-          await this.deviceService.disableDevice($event.selected as Device, !selected.disable).toPromise();
-        }else if ($event.name === 'analytics') {
-          this.dialogService.open(
-            {
-              template: this.userDialogTemplate,
-            },
-            {width: 500, height: 605, disableClose: true}
-          );
-          }
+         // await this.deviceService.deleteDevice(selected.id).toPromise();
+        } 
         break;
       case 'bulk-action':
-        selected = $event.selected as Device[];
+        selected = $event.selected as any[];
         if ($event.name === 'delete') {
-          await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise();
+           // await this.deviceService.deleteDevices(($event.selected as Device[])).toPromise();
         } else if ($event.name === 'disable') {
-          await this.deviceService
-            .disableDevices(selected, selected.length / 2 > selected
-              .filter(i => i.disable).length).toPromise();
+          // await this.deviceService
+          //   .disableDevices(selected, selected.length / 2 > selected
+          //     .filter(i => i.disable).length).toPromise();
         }
         break;
     }
-    this.data = await this.deviceService.getDevices().toPromise();
+   // this.data = await this.deviceService.getDevices().toPromise();
   }
 
-  filterChange($event: Device[]): void {
+  filterChange($event: any[]): void {
     console.log($event);
   }
 

@@ -1,3 +1,4 @@
+import { DevicesGroupService } from './../../core/services/devices-group.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { DatatableModule } from './../../common/datatable/datatable.module';
@@ -26,6 +27,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ReactiveFormsModule,
     MatProgressSpinnerModule
     
-  ]
+  ],
+  providers: [DevicesGroupService]
 })
 export class DevicesGroupModule { }
