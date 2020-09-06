@@ -72,7 +72,7 @@ export interface Type {
 export interface Device {
   _id: string;
   owner: string;
-  createdAt: Date;
+  createdAt: string;
   credentials: Credentials;
   operations: Operations;
   name: string;

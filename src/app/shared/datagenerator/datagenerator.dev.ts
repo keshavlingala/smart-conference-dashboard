@@ -1,36 +1,49 @@
 import * as Chance from 'chance';
-import {RuleDevice} from "../../featured-modules/rules/rules.models";
+import {RulesResponse} from "../../featured-modules/rules/rules.models";
 import {Device, DeviceResponse} from "../models/data-table.model";
+import {DatePipe} from "@angular/common";
+
+const datePipe = new DatePipe('en-US');
+const action = [
+  'Turn On AC',
+  'Turn Off AC',
+  'Start Meeting',
+  'End Meeting',
+  'Turn On Projector',
+  'Turn off Projector',
+  'Focus On',
+  'Focus Off'
+]
+const deviceTypes = ["Jack Sensing", "Hester Sensing", "Viola Sensing", "Sara Sensing", "Lloyd Sensing", "Clara Sensing", "Shawn Sensing", "Nelle Sensing", "Celia Sensing", "George Sensing", "Leah Sensing", "Ophelia Sensing", "Stephen Sensing", "Mayme Sensing", "Fred Sensing", "Elsie Sensing", "Bill Sensing", "Claudia Sensing", "Addie Sensing", "Callie Sensing", "Johnny Sensing", "Eugene Sensing"]
 
 export const chance = new Chance() as Chance.Chance;
-export const ruleDeviceGenerator = (size = 20): RuleDevice[] => {
-  const action = [
-    'Turn On AC',
-    'Turn Off AC',
-    'Start Meeting',
-    'End Meeting',
-    'Turn On Projector',
-    'Turn off Projector',
-    'Focus On',
-    'Focus Off'
-  ]
-  return Array.from({length: size}, () => {
-    return {
-      id: chance.string({numeric: false, symbols: false, length: 10}),
-      name: chance.first() + ' Sensing',
-      rules: Array.from({length: chance.integer({min: 2, max: 10})}, () => {
+export const ruleDeviceGenerator = (size = 20): RulesResponse => {
+  return {
+    message: 'Rules fetched successfully',
+    status: 'success',
+    data: {
+      rules: Array.from({length: size}, () => {
         return {
-          action: {
-            name: action[chance.integer({min: 0, max: action.length - 1})],
-            icon: 'ac_unit'
-          },
-          condition: 'Occupancy>4',
-          createdDate: chance.date().toDateString(),
-          name: chance.last() + ' Check'
+          _id: chance.string({alpha: true, numeric: true, length: 25}),
+          actions: chance.pickset(action, chance.integer({min: 1, max: 3})),
+          condition: chance.first() + chance.pickset(['<', '>'], 1) + chance.integer({
+            min: 10,
+            max: 99
+          }),
+          createdAt: datePipe.transform(chance.date(), 'medium'),
+          groupIds: ["5f4fa2f0dbd8c900279ec0c1"],
+          deviceIds: [],
+          createdBy: "vishwa@virtusa.com",
+          ruleName: chance.last() + ' Condition',
+          updatedAt: datePipe.transform(chance.date(), 'medium'),
+          type: {
+            deviceType: chance.pickone(deviceTypes)
+          }
         }
-      })
+      }),
+      total: size
     }
-  })
+  }
 }
 export const devicesGenerator = (size): DeviceResponse => {
   return {
@@ -42,7 +55,7 @@ export const devicesGenerator = (size): DeviceResponse => {
         return {
           _id: chance.string({length: 20, alpha: true, numeric: true}),
           owner: chance.string(),
-          createdAt: chance.date(),
+          createdAt: datePipe.transform(chance.date(), 'medium'),
           credentials: {
             accessToken: null,
             certificates: null
@@ -51,12 +64,14 @@ export const devicesGenerator = (size): DeviceResponse => {
             deviceRules: [],
             deviceStatus: chance.bool(),
           },
-          name: chance.first() + " Sensor",
+          name: chance.first() + " Device",
           type: {
-            deviceType: chance.last() + " Type"
+            deviceType: chance.last() + " Sensing"
           }
         }
       })
     }
   }
 }
+
+
