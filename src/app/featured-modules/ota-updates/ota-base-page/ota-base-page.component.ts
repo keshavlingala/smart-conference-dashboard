@@ -1,7 +1,7 @@
-import { DatePipe } from '@angular/common';
 import { Card, Setting } from './../../../common/card-module/models/card.model';
 import { Component, OnInit } from '@angular/core';
 import { OtaServiceService } from '../ota-service.service';
+import {deviceTypes} from '../../../shared/datagenerator/datagenerator.dev';
 
 @Component({
   selector: 'app-ota-base-page',
@@ -11,11 +11,11 @@ import { OtaServiceService } from '../ota-service.service';
 export class OtaBasePageComponent implements OnInit {
   cardData: Card[];
   otaSetting: Setting[];
+  deviceTypes = deviceTypes;
+  selectedCards: Card[];
   constructor(
-    private otaService: OtaServiceService,
-    private datePipe: DatePipe
+    private otaService: OtaServiceService
   ) {
-    // this.cardData= this._route.snapshot.data['otaData'];
 
     this.otaSetting = [
       {
@@ -37,5 +37,9 @@ export class OtaBasePageComponent implements OnInit {
         Title: ota.ota.otaName,
       };
     });
+  }
+
+  onSelect(value: any) {
+    this.selectedCards = this.cardData.filter(data => data.Content === value);
   }
 }

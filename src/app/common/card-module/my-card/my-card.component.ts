@@ -23,7 +23,7 @@ export class MyCardComponent implements OnInit, OnChanges {
 
   // Boolean value to show Default data or else it will show Custom data
   @Input() showDefaultContent: boolean;
-  percentage =0;
+  percentage = 0;
   constructor() {
   }
 
@@ -50,8 +50,9 @@ export class MyCardComponent implements OnInit, OnChanges {
         this.firstRender = true;
       } else {
         this.cardData = this.cardDataClone.slice(
-          changes.startIndex.currentValue,
-          changes.endIndex.currentValue
+          this.startIndex, this.endIndex
+          // changes.startIndex.currentValue,
+          // changes.endIndex.currentValue
         );
       }
     }

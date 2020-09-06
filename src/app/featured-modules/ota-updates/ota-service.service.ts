@@ -10,67 +10,15 @@ import { OtaResponse } from './ota.model';
 export class OtaServiceService {
   cardData : Card[];
   constructor() {
-    this.cardData = [
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-      {
-        'Title': 'Factory Default',
-        'Content':'Ambient Sensing',
-        'Footer': 'May 6th,2020'
-      },
-    ]
    }
 
-   getCards() : Observable<Card[]>{
+   getCards(): Observable<Card[]>{
      return of(this.cardData).pipe(delay(2000));
    }
    getData(){
     return this.cardData;
    }
    getOtaResponse(): Observable<OtaResponse> {
-    return of(otaUpdatesGenerator(30)).pipe(delay(700));
+    return of(otaUpdatesGenerator(300)).pipe(delay(700));
   }
 }

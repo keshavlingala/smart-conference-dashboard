@@ -112,7 +112,7 @@ export const otaUpdatesGenerator = (size): OtaResponse => {
         {length: size},
         (): Ota => {
           return {
-            deviceType: chance.last() + ' Sensing',
+            deviceType: chance.pickone(deviceTypes),
             versionCounter: 2,
             ota: {
               _id: chance.string({length: 20, alpha: true, numeric: true}),
