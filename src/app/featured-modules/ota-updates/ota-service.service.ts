@@ -71,6 +71,6 @@ export class OtaServiceService {
     return this.cardData;
    }
    getOtaResponse(): Observable<OtaResponse> {
-    return of(otaUpdatesGenerator(30));
+    return of(otaUpdatesGenerator(30)).pipe(delay(700));
   }
 }

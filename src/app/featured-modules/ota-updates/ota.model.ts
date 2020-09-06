@@ -2,16 +2,17 @@ export class Form {
   otaName: string;
   deviceType: string;
   otaVersion: string;
-  description:string;
+  description: string;
   files: any[];
 };
+
 export interface Ota2 {
   _id: string;
   otaName: string;
   otaVersion: string;
   otaDescription: string;
   fileUrl: string;
-  createdAt: Date;
+  createdAt: string;
 }
 
 export interface Ota {

@@ -1,8 +1,8 @@
-import { OtaResponse, Ota } from './../../featured-modules/ota-updates/ota.model';
+import {Ota, OtaResponse} from './../../featured-modules/ota-updates/ota.model';
 import * as Chance from 'chance';
-import { RulesResponse } from '../../featured-modules/rules/rules.models';
-import { Device, DeviceResponse } from '../models/data-table.model';
-import { DatePipe } from '@angular/common';
+import {RulesResponse} from '../../featured-modules/rules/rules.models';
+import {Device, DeviceResponse} from '../models/data-table.model';
+import {DatePipe} from '@angular/common';
 
 const datePipe = new DatePipe('en-US');
 const action = [
@@ -15,7 +15,7 @@ const action = [
   'Focus On',
   'Focus Off',
 ];
-const deviceTypes = [
+export const deviceTypes = [
   'Jack Sensing',
   'Hester Sensing',
   'Viola Sensing',
@@ -46,10 +46,10 @@ export const ruleDeviceGenerator = (size = 20): RulesResponse => {
     message: 'Rules fetched successfully',
     status: 'success',
     data: {
-      rules: Array.from({ length: size }, () => {
+      rules: Array.from({length: size}, () => {
         return {
-          _id: chance.string({ alpha: true, numeric: true, length: 25 }),
-          actions: chance.pickset(action, chance.integer({ min: 1, max: 3 })),
+          _id: chance.string({alpha: true, numeric: true, length: 25}),
+          actions: chance.pickset(action, chance.integer({min: 1, max: 3})),
           condition:
             chance.first() +
             chance.pickset(['<', '>'], 1) +
@@ -79,10 +79,10 @@ export const devicesGenerator = (size): DeviceResponse => {
     data: {
       count: size,
       devices: Array.from(
-        { length: size },
+        {length: size},
         (): Device => {
           return {
-            _id: chance.string({ length: 20, alpha: true, numeric: true }),
+            _id: chance.string({length: 20, alpha: true, numeric: true}),
             owner: chance.string(),
             createdAt: datePipe.transform(chance.date(), 'medium'),
             credentials: {
@@ -109,18 +109,18 @@ export const otaUpdatesGenerator = (size): OtaResponse => {
     message: 'All ota details fetched successfully',
     data: {
       ota: Array.from(
-        { length: size },
-        (): Ota=> {
+        {length: size},
+        (): Ota => {
           return {
             deviceType: chance.last() + ' Sensing',
             versionCounter: 2,
             ota: {
-              _id: chance.string({ length: 20, alpha: true, numeric: true }),
+              _id: chance.string({length: 20, alpha: true, numeric: true}),
               otaName: chance.first() + 'Version',
               otaVersion: '1.' + (chance.age() % 10),
-              otaDescription: chance.sentence({ words: 3 }),
+              otaDescription: chance.sentence({words: 3}),
               fileUrl: chance.string(),
-              createdAt: chance.date(),
+              createdAt: datePipe.transform(chance.date(), 'mediumDate')
             },
           };
         }
