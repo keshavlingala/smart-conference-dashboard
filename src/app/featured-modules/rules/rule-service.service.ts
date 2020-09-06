@@ -34,8 +34,7 @@ export class RulesService {
     return this.rules.slice(0);
   }
 
-  addRule(rule: Rule, id: string) {
-    // this.rules.find((d) => d.id === id).rules.push(rule);
+  addRule(rule) {
     console.log('Add New Rule', rule)
   }
 }

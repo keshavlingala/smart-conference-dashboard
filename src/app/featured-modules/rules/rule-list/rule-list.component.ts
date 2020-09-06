@@ -31,7 +31,6 @@ export class RuleListComponent implements OnInit {
   onPageChange(index) {
     this.selectedIndex = index;
     this.shownData.next(this.pages[index]);
-    console.log(this.selectedIndex)
   }
 
   async ngOnInit() {
