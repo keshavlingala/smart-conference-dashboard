@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Form } from '../otaform';
+import { Form } from '../ota.model';
 
 @Component({
   selector: 'app-new-update-form',

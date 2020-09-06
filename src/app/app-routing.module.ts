@@ -30,7 +30,7 @@ const routes: Routes = [
     loadChildren: () => import('./featured-modules/rules/rules.module').then(m => m.RulesModule),
   },
   {path: "ota-updates", canActivate: [SideNavigationGuard],
-  resolve: {otaData: OtaResolverService},
+  // resolve: {otaData: OtaResolverService},
   loadChildren: () => import('./featured-modules/ota-updates/ota-updates.module').then(m => m.OtaUpdatesModule)
 },
   {path: "generate-keys", component: GenerateKeysComponent, canActivate: [SideNavigationGuard]},
