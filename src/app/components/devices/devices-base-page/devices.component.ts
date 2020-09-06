@@ -1,6 +1,6 @@
+import { DataTableService } from './../../../core/services/data-table.service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
-import {DataTableService} from '../../../core/services/data.service';
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
 import {Card, Setting} from '../../../common/card-module/models/card.model';
 import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
