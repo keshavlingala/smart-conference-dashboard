@@ -19,8 +19,8 @@
             </mat-form-field>
             <mat-form-field class=" col-4">
               <mat-select formControlName="type" placeholder="Device Type">
-                <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.id">
-                  {{d.name}}
+                <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.deviceType">
+                  {{d.deviceType}}
                 </mat-option>
                 <mat-option value="Other Sensing">Other Sensing</mat-option>
               </mat-select>

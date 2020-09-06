@@ -1,4 +1,4 @@
-import { Component, OnInit,Renderer2,Input,Output, EventEmitter} from '@angular/core';
+import { Component, OnInit,Input,Output, EventEmitter} from '@angular/core';
 
 @Component({
   selector: 'device-type-card-list',
@@ -8,14 +8,14 @@ import { Component, OnInit,Renderer2,Input,Output, EventEmitter} from '@angular/
 export class CardListComponent implements OnInit {
 
   @Input('devicesTypeData') public cards = [];
-  @Input('devicesTypeCount') public cardsCount:number;
-  @Input('perPageData') public perPageCards;
+  @Input('devicesTypeCount') public cardsCount;
+  @Input('perPageData') public perPageCards; 
   @Output() paginationEvent = new EventEmitter();
   public currentPage = 0; //0 based indexing
   public math = Math;
   public paginationArray = [];
 
-  constructor(private renderer: Renderer2) { 
+  constructor() { 
 
   }
 

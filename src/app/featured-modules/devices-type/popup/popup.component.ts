@@ -8,7 +8,7 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class PopupComponent implements OnInit {
 
-  public allWarningDevices = this.data.warningState.devicesID;
+  public allWarningDevices = this.data.status.warning.devicesID;
   public currentlyShowingWarningDevices = [];
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
   

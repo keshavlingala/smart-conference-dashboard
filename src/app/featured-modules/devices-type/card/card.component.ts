@@ -16,8 +16,8 @@ export class CardComponent implements OnInit {
 
   ngOnInit(): void {
     this.chart = {
-      data: [this.cardData.active, this.cardData.inactive, this.cardData.faulty],
-      labels: [`${this.cardData.active} Active`,`${this.cardData.inactive} Inactive`,`${this.cardData.faulty} faulty`],
+      data: [this.cardData.status.active, this.cardData.status.inactive, this.cardData.status.faulty],
+      labels: [`${this.cardData.status.active} Active`,`${this.cardData.status.inactive} Inactive`,`${this.cardData.status.faulty} faulty`],
       colors: [
         {backgroundColor:this.generateRandomRGBcolors(3)}
       ],
@@ -42,7 +42,9 @@ export class CardComponent implements OnInit {
 
   openDialog(){
     this.dialog.open(PopupComponent,{
-      data: this.cardData
+      data: this.cardData,
+      height: '400x',
+      width: '600px'
   });
   }
 

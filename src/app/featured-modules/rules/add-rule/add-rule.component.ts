@@ -56,17 +56,17 @@ export class AddRuleComponent implements OnInit {
 
   async submit() {
     // console.log(this.firstFormGroup.value, this.secondFormGroup.value);
-    const {name, type} = this.firstFormGroup.value;
-    const {action, condition} = this.secondFormGroup.value;
-    const rule: Rule = {
-      name,
-      action: {name: action, icon: 'ac_unit'},
-      condition,
-      createdDate: new Date().toDateString()
-    }
-    await this.router.navigate(['/rules'])
-    console.log('Rule Created', rule);
-    this.rulesService.addRule(rule, type);
+    // const {name, type} = this.firstFormGroup.value;
+    // const {action, condition} = this.secondFormGroup.value;
+    // const rule: Rule = {
+    //   name,
+    //   action: {name: action, icon: 'ac_unit'},
+    //   condition,
+    //   createdDate: new Date().toDateString()
+    // }
+    // await this.router.navigate(['/rules'])
+    // console.log('Rule Created', rule);
+    // this.rulesService.addRule(rule, type);
     // this.firstFormGroup.reset();
     // this.secondFormGroup.reset();
 
