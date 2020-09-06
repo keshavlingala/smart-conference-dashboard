@@ -1,12 +1,11 @@
-import { Component, OnInit} from '@angular/core';
-import {Router, NavigationStart, NavigationEnd, Event} from '@angular/router';
+import { Component, OnInit,OnChanges,SimpleChanges} from '@angular/core';
 import {DevicesTypeService} from '../../../core/services/devices-type.service';
 @Component({
   selector: 'devices-type-listing',
   templateUrl: './devices-type-listing.component.html',
   styleUrls: ['./devices-type-listing.component.scss']
 })
-export class DevicesTypeListingComponent implements OnInit {
+export class DevicesTypeListingComponent implements OnInit, OnChanges {
 
   public devicesTypeData;
   public devicesTypeCount = 0;
@@ -21,6 +20,7 @@ export class DevicesTypeListingComponent implements OnInit {
   
   getDevicesTypeCount(){
     this.devicesTypeCount = this.__devicesTypeService.getDevicesTypeCount();
+    console.log(this.devicesTypeCount);
   }
 
   getDevicesTypeData(pageNumber){
@@ -29,22 +29,23 @@ export class DevicesTypeListingComponent implements OnInit {
     this.devicesTypeData = this.__devicesTypeService.getDevicesTypeData(start,end);
     this.currentlyShowingDevicesType = this.devicesTypeData;
   }
-  constructor(private __devicesTypeService: DevicesTypeService, private _router: Router){
+  constructor(private __devicesTypeService: DevicesTypeService){
   
   }
 
   ngOnInit(){
-    setTimeout(()=>{
       this.getDevicesTypeCount(); 
       this.getDevicesTypeData(0); 
-    },500);
   }
 
-  
+  ngOnChanges(changes:SimpleChanges){
+    console.log(changes);
+  }
+
   search(e){
     var str = e.target.value.toLowerCase();
     this.searchedDevicesTypeData=this.devicesTypeData.filter((device)=>{
-      if(device.title.toLowerCase().includes(str)){
+      if(device.deviceType.toLowerCase().includes(str)){
         return true;
       }
     });
