@@ -1,4 +1,4 @@
-import {Ota, OtaResponse} from './../../featured-modules/ota-updates/ota.model';
+import {Ota, OtaResponse} from '../../featured-modules/ota-updates/ota.model';
 import * as Chance from 'chance';
 import {RulesResponse} from '../../featured-modules/rules/rules.models';
 import {Device, DeviceResponse} from '../models/data-table.model';

@@ -21,7 +21,7 @@
         <h3 style="margin: 0;color: #fb7e6e">{{device.deviceType}}</h3>
         <span class="flex-fill"></span>
         <mat-chip-list>
-          <mat-chip selected
+          <mat-chip selected (click)="popRules(device)"
                     style="background-color: rgba(234,82,222,0.68);padding: 6px;font-size: smaller;color: #7d2e90;">
             {{device.rules.length}} rules
           </mat-chip>
