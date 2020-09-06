@@ -25,7 +25,6 @@ export class CardListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.cardsCount);
     this.paginationArray = new Array(Math.ceil(this.cardsCount/this.perPageCards)).fill(0);
   }
 }

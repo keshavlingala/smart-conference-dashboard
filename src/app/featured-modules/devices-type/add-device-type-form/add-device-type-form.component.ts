@@ -13,31 +13,42 @@ export class AddDeviceTypeFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.deviceTypeForm = this.fb.group({
-      name: ['' , Validators.required],
+      deviceType: ['' , Validators.required],
       actions: ['', Validators.required],
-      attribute: ['', Validators.required],
-      account: ['', Validators.required],
-      type:['', Validators.required],
-      security: ['', Validators.required],
-      anotherAttributes: this.fb.array([])
+      attributes: this.fb.array([])
     });
+
+    this.addAnotherAttribute();
   }
 
-  get anotherAttributes(){
-    return this.deviceTypeForm.get('anotherAttributes') as FormArray;
+  get attributes(){
+    return this.deviceTypeForm.get('attributes') as FormArray;
   }
 
+  get actions(){
+    return this.deviceTypeForm.get('actions');
+  }
+
+  
   addAnotherAttribute(){
     let attribute = this.fb.group({
       name: ['', Validators.required],
-      account: ['', Validators.required],
-      type: ['',Validators.required],
-      security: ['', Validators.required]
+      accId: ['', Validators.required],
+      dataType: ['',Validators.required],
+      securitySetting: ['', Validators.required]
     });
-    this.anotherAttributes.push(attribute);
+    this.attributes.push(attribute);
   }
 
   deleteAttribute(i){
-    this.anotherAttributes.removeAt(i);
+    this.attributes.removeAt(i);
+  }
+
+  onFormSubmit(){
+    this.deviceTypeForm.value.actions = this.deviceTypeForm.value.actions.split(','); //convert array into actions
+    this.deviceTypeForm.value.attributes.forEach(attribute=>{
+      attribute.accId = [attribute.accId];
+    })
+    console.log(JSON.stringify(this.deviceTypeForm.value));
   }
 }
