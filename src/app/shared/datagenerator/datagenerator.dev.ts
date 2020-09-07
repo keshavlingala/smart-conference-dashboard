@@ -118,7 +118,7 @@ export const otaUpdatesGenerator = (size): OtaResponse => {
               _id: chance.string({length: 20, alpha: true, numeric: true}),
               otaName: chance.first() + 'Version',
               otaVersion: '1.' + (chance.age() % 10),
-              otaDescription: chance.sentence({words: 3}),
+              otaDescription: chance.paragraph(),
               fileUrl: chance.string(),
               createdAt: datePipe.transform(chance.date(), 'mediumDate')
             },

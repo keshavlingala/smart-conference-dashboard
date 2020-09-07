@@ -1,5 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {DataViewConfig, Update} from "../models/timeline.model";
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
+
+import {Ota2} from "../../../featured-modules/ota-updates/ota.model";
+import {DataViewConfig} from "../models/timeline.model";
 
 
 @Component({
@@ -7,21 +9,32 @@ import {DataViewConfig, Update} from "../models/timeline.model";
   templateUrl: './dataview.component.html',
   styleUrls: ['./dataview.component.scss']
 })
-export class DataviewComponent implements OnInit {
+export class DataviewComponent implements OnInit, OnChanges {
   @Input() dataViewConfig: DataViewConfig;
   @Output() addNew = new EventEmitter<string>();
-  selectedUpdate: Update;
+  selectedUpdates: Ota2[];
+  deviceTypes: string[];
 
   constructor() {
   }
 
-  ngOnInit(): void {
-    // console.log(this.dataViewConfig);
-    this.selectedUpdate = this.dataViewConfig?.all_updates[0];
+  ngOnChanges(changes: SimpleChanges): void {
+    if (this.dataViewConfig) {
+      this.selectedUpdates = this.dataViewConfig[Object.keys(this.dataViewConfig)[0]]
+      this.deviceTypes = Object.keys(this.dataViewConfig);
+    }
+  }
+
+  ngOnInit() {
+    if (this.dataViewConfig) {
+      this.selectedUpdates = this.dataViewConfig[Object.keys(this.dataViewConfig)[0]]
+      this.deviceTypes = Object.keys(this.dataViewConfig);
+    }
   }
 
   addUpdate(): void {
     this.addNew.emit('add');
-    this.selectedUpdate.items.push(this.selectedUpdate.items[0]);
   }
+
+
 }
