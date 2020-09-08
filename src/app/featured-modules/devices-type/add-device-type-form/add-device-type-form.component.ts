@@ -45,10 +45,12 @@ export class AddDeviceTypeFormComponent implements OnInit {
   }
 
   onFormSubmit(){
-    this.deviceTypeForm.value.actions = this.deviceTypeForm.value.actions.split(','); //convert array into actions
-    this.deviceTypeForm.value.attributes.forEach(attribute=>{
+    if(this.deviceTypeForm.valid){
+      this.deviceTypeForm.value.actions = this.deviceTypeForm.value.actions.split(','); //convert array into actions
+      this.deviceTypeForm.value.attributes.forEach(attribute=>{
       attribute.accId = [attribute.accId];
-    })
-    console.log(JSON.stringify(this.deviceTypeForm.value));
+      });
+      console.log(JSON.stringify(this.deviceTypeForm.value));
+    }    
   }
 }
