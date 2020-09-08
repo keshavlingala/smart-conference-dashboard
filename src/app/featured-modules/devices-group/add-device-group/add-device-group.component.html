@@ -1,6 +1,7 @@
+<div class="w-100" style="margin:0; padding:0;">
 <h1 class="title ml-3">DEVICES GROUP</h1>
 
-<div class="row ml-3"><a  [routerLink]="['/devices-group']" routerLinkActive="router-link-active" >Devices Group</a>
+<div class="row ml-3 mr-0"><a  [routerLink]="['/devices-group']" routerLinkActive="router-link-active" >Devices Group</a>
   <mat-icon class="mt-1 ml-1"style="font-size: small; color:darkgrey">arrow_forward_ios</mat-icon >
     <a class="disabled">Add Group</a>
    </div> <br>
@@ -10,7 +11,7 @@
 <form [formGroup]="DeviceGroupForm" class="FORM" >
   <!-- {{DeviceGroupForm.value | json}} -->
 
-    <div class="row">
+    <div class="row mr-0">
     <div class="col ml-3 form-group col-md-4">
       <label >Group Name</label>
       <input type="text" id="GroupName" formControlName="GroupName" [class.is-invalid]="DeviceGroupForm.get('GroupName').errors && (DeviceGroupForm.get('GroupName').touched || DeviceGroupForm.get('GroupName').dirty) " class="form-control" >
@@ -70,4 +71,4 @@
       <app-card  [tempData]="tempData" (sendData)="DatafromCard($event)"></app-card>
 
     </div> 
-  
+  </div>
