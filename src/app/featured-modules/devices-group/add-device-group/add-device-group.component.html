@@ -22,7 +22,7 @@
         <label >Group Type</label><br>
         <mat-button-toggle-group id="GroupType" formControlName="GroupType"   value="homogeneous" style="border : none;" (change)="toggleCalled()">
           <mat-button-toggle value="Single">Homogeneous</mat-button-toggle>
-          <mat-button-toggle class="ml-5" value="Multi">Hetrogeneous</mat-button-toggle>
+          <mat-button-toggle class="ml-5" value="Multi">Heterogeneous</mat-button-toggle>
         </mat-button-toggle-group>
         
         <br>
@@ -64,8 +64,8 @@
   <!-- Existing Devices -->
 
     <div class="ml-3" *ngIf="DeviceGroupForm.valid" > 
-      <div style="position: relative;" >
-      <h1 style="color: darkgray; float: left; ">Existing Devices</h1>
+      <div style="position: relative;" class="mt-4">
+      <h1 style="color: rgb(107, 104, 104); float: left; font-weight: 500; ">Select Devices</h1>
     </div>
       <app-card  [tempData]="tempData" (sendData)="DatafromCard($event)"></app-card>
 
