@@ -58,5 +58,7 @@ body {
 }
 
 .mat-form-field-appearance-outline .mat-form-field-outline {
-  color: darkgray;
+  background-color: white !important;
+  border-radius: 5px !important;
+  color: lightgray !important;
 }

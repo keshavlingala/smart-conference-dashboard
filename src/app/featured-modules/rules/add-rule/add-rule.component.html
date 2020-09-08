@@ -1,4 +1,4 @@
-<div class="p-3">
+<div class="pl-3 pr-3">
   <h1>RULES</h1>
   <nav class="mb-0">
     <ol class="breadcrumb pl-0" style="background-color: transparent;">
@@ -9,31 +9,40 @@
 </div>
 <div class="row">
   <div class="col ">
-    <mat-vertical-stepper linear style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper>
-      <mat-step #ruleName [stepControl]="firstFormGroup">
+    <mat-vertical-stepper #stepper (selectionChange)="selectionChange($event)" linear style="background-color: inherit">
+
+      <mat-step #ruleName [stepControl]="firstFormGroup" editable>
+        <ng-template matStepperIcon="number">
+          <mat-icon>create</mat-icon>
+        </ng-template>
         <ng-template matStepLabel> Define the rule Name</ng-template>
         <form [formGroup]="firstFormGroup">
           <div class="row">
-            <mat-form-field appearance="outline" class="col-4">
-              <mat-label>Rule Name</mat-label>
-              <input matInput placeholder="Ex:Occupancy" formControlName="name">
-              <mat-error>Name Required</mat-error>
-            </mat-form-field>
-            <mat-form-field appearance="outline" class=" col-4">
-              <mat-select formControlName="type" placeholder="Device Type">
-                <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.deviceType">
-                  {{d.deviceType}}
-                </mat-option>
-                <mat-option value="Other Sensing">Other Sensing</mat-option>
-              </mat-select>
-              <mat-error>Feild Required</mat-error>
-            </mat-form-field>
+            <div class="col-4">
+              <label class="d-block m-0">Rule Name</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input formControlName="name" matInput placeholder="Ex:Occupancy">
+                <mat-error>Name Required</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-4">
+              <label class="d-block m-0">Device Type</label>
+              <mat-form-field appearance="outline" class=" w-100">
+                <mat-select formControlName="type" placeholder="Device Type">
+                  <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.deviceType">
+                    {{d.deviceType}}
+                  </mat-option>
+                  <mat-option value="Other Sensing">Other Sensing</mat-option>
+                </mat-select>
+                <mat-error>Feild Required</mat-error>
+              </mat-form-field>
+            </div>
           </div>
           <div *ngIf="selectedIndex===0">
-            <button [disabled]="!firstFormGroup.valid" color="primary" class="mr-3 btn-clr"
+            <button [disabled]="!firstFormGroup.valid" class="mr-3 btn-clr" color="primary"
                     mat-raised-button matStepperNext>NEXT
             </button>
-            <button routerLink="/rules" mat-button> Cancel</button>
+            <button mat-button routerLink="/rules"> Cancel</button>
           </div>
         </form>
       </mat-step>
@@ -43,29 +52,26 @@
           <h4>Parameters</h4>
           <ul class="parameters">
             <li *ngFor="let param of parameters">
-              <i style="color: green" class="fa fa-check-circle-o" aria-hidden="true"></i>
+              <i aria-hidden="true" class="fa fa-check-circle-o" style="color: green"></i>
               {{param}}</li>
           </ul>
-          <form class="mt-4" [formGroup]="secondFormGroup">
+          <form [formGroup]="secondFormGroup" class="mt-4">
             <div>
               <h4>Actions</h4>
-              <mat-button-toggle-group required formControlName="action" style="border: none;">
-                <mat-button-toggle [value]="action" class="m-2"
-                                   *ngFor="let action of actions">{{action}}</mat-button-toggle>
+              <mat-button-toggle-group class="types" formControlName="action" required style="border: none;">
+                <mat-button-toggle *ngFor="let action of actions" [value]="action"
+                                   class="m-2 rounded">{{action}}</mat-button-toggle>
               </mat-button-toggle-group>
             </div>
-            <h4 class="mt-4">Condition</h4>
-            <mat-form-field class="w-100" appearance="outline">
-              <mat-label>Condition</mat-label>
-              <label>
-                <textarea formControlName="condition" style="resize: none" matInput></textarea>
-              </label>
+            <label class="mt-4 d-block">Condition</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <textarea formControlName="condition" matInput style="resize: none"></textarea>
               <mat-error>Condition Required</mat-error>
             </mat-form-field>
             <div class="d-flex justify-content-center position-relative align-items-center mt-2">
-              <button style="left: 0" mat-button class="position-absolute">Cancel</button>
-              <button type="button" (click)="submit()" mat-button
-                      class="btn submit-btn">Create Rule
+              <button class="position-absolute" mat-button routerLink="../" style="left: 0">Cancel</button>
+              <button (click)="submit()" class="btn submit-btn" mat-button
+                      type="button">Create Rule
               </button>
             </div>
             <div class="d-flex justify-content-around align-items-center mt-2">
@@ -76,7 +82,7 @@
       </mat-step>
     </mat-vertical-stepper>
   </div>
-  <div style="background-color: #eeeaef;height: 362px" class="col-3 con-wrapper d-lg-block d-none con-box ">
+  <div class="col-3 con-wrapper d-lg-block d-none con-box " style="background-color: #eeeaef;height: 362px">
     <h4>Condition Notes</h4>
     <dl>
       <dt>Simple Operators</dt>
