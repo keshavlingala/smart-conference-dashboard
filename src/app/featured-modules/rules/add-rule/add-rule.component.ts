@@ -3,7 +3,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {StepperSelectionEvent} from "@angular/cdk/stepper";
 import {MatStep, MatStepper} from "@angular/material/stepper";
 import {RulesService} from "../rule-service.service";
-import {Rule} from "../rules.models";
 import {Router} from "@angular/router";
 
 @Component({
@@ -39,12 +38,6 @@ export class AddRuleComponent implements OnInit {
     });
   }
 
-  log(event?) {
-    console.log(event)
-    console.log(this.selectedIndex)
-    console.log(this.firstFormGroup)
-  }
-
   selectionChange($event: StepperSelectionEvent) {
     this.selectedIndex = $event.selectedIndex;
     if ($event.selectedIndex === 0) {
@@ -55,20 +48,21 @@ export class AddRuleComponent implements OnInit {
   }
 
   async submit() {
-    // console.log(this.firstFormGroup.value, this.secondFormGroup.value);
     const {name, type} = this.firstFormGroup.value;
     const {action, condition} = this.secondFormGroup.value;
-    const rule: Rule = {
-      name,
-      action: {name: action, icon: 'ac_unit'},
+    const rule = {
+      ruleName: name,
+      actions: [action],
       condition,
-      createdDate: new Date().toDateString()
+      groupIds: [],
+      deviceType: type
     }
-    await this.router.navigate(['/rules'])
-    console.log('Rule Created', rule);
-    this.rulesService.addRule(rule, type);
-    // this.firstFormGroup.reset();
-    // this.secondFormGroup.reset();
+    this.rulesService.addRule(rule)
+    // await this.router.navigate(['/rules'])
+    this.stepper.reset();
+    this.secondFormGroup.reset();
+    this.firstFormGroup.enable();
+    this.firstFormGroup.reset();
 
   }
 }

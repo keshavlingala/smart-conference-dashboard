@@ -1,3 +1,5 @@
+import {Ota2} from "../../../featured-modules/ota-updates/ota.model";
+
 export interface TimelineItem {
   color?: string;
   heading: string;
@@ -7,11 +9,5 @@ export interface TimelineItem {
 }
 
 export interface DataViewConfig {
-  title: string;
-  all_updates: Update[];
-}
-
-export interface Update {
-  name: string;
-  items: TimelineItem[];
+  [deviceType: string]: Ota2[]
 }

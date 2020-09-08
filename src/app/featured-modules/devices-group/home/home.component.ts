@@ -1,8 +1,9 @@
+import { DataTableService } from './../../../core/services/data-table.service';
 import { DevicesGroupService } from './../../../core/services/devices-group.service';
 //import {Event, Router,NavigationStart, NavigationEnd , NavigationCancel , NavigationError } from '@angular/router';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
-import {DataService} from '../../../core/services/data.service';
+// import {DataTableService} from '../../../core/services/data.service';
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
 import {Card, Setting} from '../../../common/card-module/models/card.model';
 import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
@@ -15,13 +16,13 @@ import {DialogFactoryService} from '../../../core/services/dialog-factory.servic
 export class HomeComponent implements OnInit {
  showLoadingIndigator :boolean = true;
   constructor(
-    public deviceService: DataService,
+    public deviceService: DataTableService,
     public dialogService: DialogFactoryService,
     private service : DevicesGroupService
     //private router  : Router
   ) {
 
-   
+
     // this.router.events.subscribe((routerEvent : Event)=>{
     //   if(routerEvent instanceof NavigationStart)
     //   {
@@ -151,7 +152,7 @@ export class HomeComponent implements OnInit {
   dataTableConfig: DataTableConfig;
   dataTableActions: DataTableActions;
 
- 
+
   async ngOnInit(): Promise<any> {
     this.data= this.service.getData();
     // Pop Up Cards
@@ -173,7 +174,7 @@ export class HomeComponent implements OnInit {
         {icon: 'delete', name: 'delete', color: 'warn'},
         {icon: 'visibility', name: 'disable'}
       ],
-    }; 
+    };
    // this.data = await this.deviceService.getJson().toPromise();
     this.data = this.data[0];
   }
@@ -186,7 +187,7 @@ export class HomeComponent implements OnInit {
         selected = $event.selected as any;
         if ($event.name === 'delete') {
          // await this.deviceService.deleteDevice(selected.id).toPromise();
-        } 
+        }
         break;
       case 'bulk-action':
         selected = $event.selected as any[];

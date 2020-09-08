@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
-import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
+import {ActionChange, DataTableActions, DataTableConfig} from '../../../shared/models/data-table.model';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -13,21 +13,21 @@ import {DialogFactoryService} from '../../../core/services/dialog-factory.servic
   styleUrls: ['./data-table.component.scss']
 })
 export class DataTableComponent implements OnChanges, OnInit {
-  @Input() data: Device[];
+  @Input() data: any[];
   @Input() config: DataTableConfig;
   @Input() actions: DataTableActions;
   @Output() actionClick = new EventEmitter<ActionChange>();
   @Output() bulkActionClick = new EventEmitter<ActionChange>();
-  @Output() filterChange = new EventEmitter<Device[]>();
+  @Output() filterChange = new EventEmitter<any[]>();
   checkBox = ['checkbox']
   actionKey = ['options']
   @Input() actionsHeaderName = ' View Device Data'
   @Input() keys: string[] = ['id', 'type', 'name', 'createdDate',];
   @Input() columnNames = ['ID', 'Type', 'Name(User Defined)', ' Created Date',];
-  dataSource: MatTableDataSource<Device>;
+  dataSource: MatTableDataSource<any>;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
   @ViewChild(MatSort, {static: true}) sort: MatSort;
-  selection = new SelectionModel<Device>(true, []);
+  selection = new SelectionModel<any>(true, []);
   @Input() addButtonName = 'Add Devices';
 
   constructor(
@@ -47,17 +47,18 @@ export class DataTableComponent implements OnChanges, OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log('On Changes Called');
-    console.log('Data', this.data);
+    // console.log('On Changes Called');
+    // console.log('Data', this.data);
     if (this.data) {
-      this.dataSource = new MatTableDataSource<Device>(this.data);
+      this.dataSource = new MatTableDataSource<any>(this.data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.selection.clear();
-      console.log(this.sort)
-      console.log(this.dataSource)
+      // console.log(this.sort)
+      // console.log(this.dataSource)
     }
   }
+
   bulkActionHandler(type: 'action' | 'bulk-action', name: string): void {
     this.bulkActionClick.emit({
       type,
@@ -66,7 +67,7 @@ export class DataTableComponent implements OnChanges, OnInit {
     });
   }
 
-  assertType(row: Device): Device {
+  assertType(row: any): any {
     return row;
   }
 
@@ -87,7 +88,7 @@ export class DataTableComponent implements OnChanges, OnInit {
     this.filterChange.emit(this.dataSource.filteredData);
   }
 
-  rowAction(row: Device, action: 'action' | 'bulk-action', name: string): void {
+  rowAction(row: any, action: 'action' | 'bulk-action', name: string): void {
     this.actionClick.emit({
       selected: row,
       type: action,

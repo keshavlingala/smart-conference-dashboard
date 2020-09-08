@@ -11,32 +11,33 @@
     </mat-icon>
   </div>
 </div>
-<div *ngIf="!rule_lists" class="row justify-content-center align-items-center mb-auto">
+<div *ngIf="!ruleCards" class="row justify-content-center align-items-center mb-auto">
   <mat-spinner></mat-spinner>
 </div>
 <div class="row mt-3">
   <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2 pr-4" *ngFor="let device of (shownData | async)">
-    <mat-card style="padding: 10px">
+    <div class="mat-elevation-z2 rounded bg-white d-flex flex-column" style="padding: 10px;min-height: 200px;">
       <div class="d-flex align-items-center">
-        <h3 style="margin: 0;color: #fb7e6e">{{device.name}}</h3>
+        <h3 style="margin: 0;color: #fb7e6e">{{device.deviceType}}</h3>
         <span class="flex-fill"></span>
         <mat-chip-list>
-          <mat-chip selected
+          <mat-chip selected (click)="popRules(device)"
                     style="background-color: rgba(234,82,222,0.68);padding: 6px;font-size: smaller;color: #7d2e90;">
             {{device.rules.length}} rules
           </mat-chip>
         </mat-chip-list>
       </div>
-      <div style="font-size: 13px" class="d-flex flex-column" *ngFor="let rule of device.rules.slice(0,2);let i=index">
-        <span>{{rule.name}}</span>
-        <span>{{rule.action.name}}</span>
-        <span style="font-size: 0.7rem;color: gray;">{{ rule.createdDate}}</span>
+      <div style="font-size: 13px;" class="d-flex flex-column"
+           *ngFor="let rule of device.rules.slice(0,2);let i=index">
+        <span>{{rule.ruleName}}</span>
+        <span>{{rule.actions[0]}}</span>
+        <span style="font-size: 0.7rem;color: gray;">Created on {{ rule.createdAt | date:'mediumDate'}}</span>
         <hr *ngIf="i==0" style="margin-top: 2px;margin-bottom: 2px;">
       </div>
-      <div style="color: #7589df;font-size: smaller;" class="text-right">
+      <div style="color: #7589df;font-size: smaller;margin-top: auto" class="text-right">
         <span (click)="popRules(device)" class="pointer">View More Rules</span>
       </div>
-    </mat-card>
+    </div>
   </div>
 </div>
 <ng-template #noData>

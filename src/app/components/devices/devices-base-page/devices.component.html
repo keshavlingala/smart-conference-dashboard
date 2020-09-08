@@ -3,7 +3,7 @@
 <app-data-table [config]="dataTableConfig"
                 [actions]="dataTableActions"
                 [data]="data"
-                [keys]="['id', 'type', 'name', 'createdDate']"
+                [keys]="['_id', 'type', 'name', 'createdAt']"
                 [columnNames]="['ID','Type', 'Name(User Defined)', ' Created Date']"
                 actionsHeaderName="View Device Data"
                 (actionClick)="actionChange($event)"

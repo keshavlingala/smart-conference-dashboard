@@ -1,6 +1,6 @@
 <div class="d-flex row" style=" width: 100%; margin:0 auto; ">
   <div *ngIf="showDefaultContent; else: custom_data" class="d-flex flex-row flex-wrap w-100">
-    <div *ngFor="let card of cardData; let i=index;" class=" main"  [ngStyle]="{'width': percentage+'%'}"[ngSwitch]=setting[0].design>
+    <div *ngFor="let card of cardData; let i=index;" class="main"  [ngStyle]="{'width': percentage+'%'}"[ngSwitch]=setting[0].design>
         <div class="col">
           <mat-card class="example-card main1" *ngSwitchCase="'design1'" [ngStyle]="{backgroundColor: setting[0].color}">
             <mat-card-title class='title'>

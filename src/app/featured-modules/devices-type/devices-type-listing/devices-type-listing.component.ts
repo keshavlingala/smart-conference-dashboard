@@ -1,12 +1,11 @@
 import { Component, OnInit} from '@angular/core';
-import {Router, NavigationStart, NavigationEnd, Event} from '@angular/router';
 import {DevicesTypeService} from '../../../core/services/devices-type.service';
 @Component({
   selector: 'devices-type-listing',
   templateUrl: './devices-type-listing.component.html',
   styleUrls: ['./devices-type-listing.component.scss']
 })
-export class DevicesTypeListingComponent implements OnInit {
+export class DevicesTypeListingComponent implements OnInit{
 
   public devicesTypeData;
   public devicesTypeCount = 0;
@@ -29,22 +28,19 @@ export class DevicesTypeListingComponent implements OnInit {
     this.devicesTypeData = this.__devicesTypeService.getDevicesTypeData(start,end);
     this.currentlyShowingDevicesType = this.devicesTypeData;
   }
-  constructor(private __devicesTypeService: DevicesTypeService, private _router: Router){
+  constructor(private __devicesTypeService: DevicesTypeService){
   
   }
 
   ngOnInit(){
-    setTimeout(()=>{
       this.getDevicesTypeCount(); 
       this.getDevicesTypeData(0); 
-    },500);
   }
 
-  
   search(e){
     var str = e.target.value.toLowerCase();
     this.searchedDevicesTypeData=this.devicesTypeData.filter((device)=>{
-      if(device.title.toLowerCase().includes(str)){
+      if(device.deviceType.toLowerCase().includes(str)){
         return true;
       }
     });

@@ -19,8 +19,8 @@
             </mat-form-field>
             <mat-form-field class=" col-4">
               <mat-select formControlName="type" placeholder="Device Type">
-                <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.id">
-                  {{d.name}}
+                <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.deviceType">
+                  {{d.deviceType}}
                 </mat-option>
                 <mat-option value="Other Sensing">Other Sensing</mat-option>
               </mat-select>
@@ -62,7 +62,8 @@
             </mat-form-field>
             <div class="d-flex justify-content-center position-relative align-items-center mt-2">
               <button style="left: 0" mat-button class="position-absolute">Cancel</button>
-              <button [disabled]="!secondFormGroup.valid" (click)="submit()" mat-button class="btn submit-btn">Create
+              <button type="button" [disabled]="!secondFormGroup.valid" (click)="submit()" mat-button
+                      class="btn submit-btn">Create
                 Rule
               </button>
             </div>
@@ -71,7 +72,7 @@
       </mat-step>
     </mat-vertical-stepper>
   </div>
-  <div style="background-color: #eeeaef;height: 362px" class="col-3 con-wrapper d-md-block d-none con-box ">
+  <div style="background-color: #eeeaef;height: 362px" class="col-3 con-wrapper d-lg-block d-none con-box ">
     <h4>Condition Notes</h4>
     <dl>
       <dt>Simple Operators</dt>
