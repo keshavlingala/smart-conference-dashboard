@@ -1,5 +1,8 @@
-<mat-toolbar>{{title}}</mat-toolbar>
-<button style="margin-left: 1vw" color="primary" mat-raised-button routerLink="/devices/add-device">Add Device</button>
+<div class="p-3">
+  <h1>Devices</h1>
+  <button color="primary" mat-raised-button routerLink="/devices/add-device">Add Device
+  </button>
+</div>
 <app-data-table [config]="dataTableConfig"
                 [actions]="dataTableActions"
                 [data]="data"
