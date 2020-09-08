@@ -1,6 +1,6 @@
+import { DataTableService } from './../../../core/services/data-table.service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
-import {DataService} from '../../../core/services/data.service';
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
 import {Card, Setting} from '../../../common/card-module/models/card.model';
 import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
@@ -128,7 +128,7 @@ export class DevicesComponent implements OnInit {
   dataTableActions: DataTableActions;
 
   constructor(
-    public deviceService: DataService,
+    public deviceService: DataTableService,
     public dialogService: DialogFactoryService,
     private datePipe: DatePipe
   ) {
@@ -170,14 +170,13 @@ export class DevicesComponent implements OnInit {
   }
 
   async actionChange($event: ActionChange): Promise<any> {
-    console.log($event);
     let selected = $event.selected;
     switch ($event.type) {
       case 'action':
         selected = $event.selected as Device;
         if ($event.name === 'delete') {
           try {
-            await this.deviceService.deleteDevice(selected._id).toPromise()
+            await this.deviceService.deleteDevice(selected._id)
           } catch (e) {
             console.log('Cannot Do Data manipulation ', e)
           }
@@ -213,7 +212,6 @@ export class DevicesComponent implements OnInit {
         }
         break;
     }
-    this.data = await this.getDevices()
   }
 
   filterChange($event: Device[]): void {

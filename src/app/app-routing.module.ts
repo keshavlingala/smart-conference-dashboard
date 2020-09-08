@@ -1,4 +1,4 @@
-import { OtaResolverService } from './featured-modules/ota-updates/ota-resolver.service';
+
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
@@ -30,7 +30,6 @@ const routes: Routes = [
     loadChildren: () => import('./featured-modules/rules/rules.module').then(m => m.RulesModule),
   },
   {path: "ota-updates", canActivate: [SideNavigationGuard],
-  resolve: {otaData: OtaResolverService},
   loadChildren: () => import('./featured-modules/ota-updates/ota-updates.module').then(m => m.OtaUpdatesModule)
 },
   {path: "generate-keys", component: GenerateKeysComponent, canActivate: [SideNavigationGuard]},

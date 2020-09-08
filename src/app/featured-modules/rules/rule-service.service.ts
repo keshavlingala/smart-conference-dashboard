@@ -1,19 +1,32 @@
 import {Injectable} from '@angular/core';
-import {Rule, RuleDevice} from "./rules.models";
+import {Rule, RuleCard} from "./rules.models";
 import {ruleDeviceGenerator} from "../../shared/datagenerator/datagenerator.dev";
 
 @Injectable({
   providedIn: 'root'
 })
 export class RulesService {
-  rules: RuleDevice[] = [];
+  rules: Rule[] = [];
+  ruleCards: RuleCard[];
 
   constructor() {
-    this.rules = ruleDeviceGenerator(52)
+    this.rules = ruleDeviceGenerator(52).data.rules
+    let types: { [deviceType: string]: Rule[] } = {};
+    this.rules.forEach(rule => {
+      if (rule.type.deviceType in types) {
+        types[rule.type.deviceType].push(rule);
+      } else types[rule.type.deviceType] = [rule];
+    })
+    this.ruleCards = Object.keys(types).map(deviceType => {
+      return {
+        deviceType,
+        rules: types[deviceType]
+      }
+    })
   }
 
-  getRuleDevices(): RuleDevice[] {
-    return this.rules.slice(0);
+  getRuleDevices(): RuleCard[] {
+    return this.ruleCards
   }
 
   getDevices(): any[] {
@@ -21,7 +34,7 @@ export class RulesService {
     return this.rules.slice(0);
   }
 
-  addRule(rule: Rule,id:string) {
-    this.rules.find((d)=>d.id===id).rules.push(rule);
+  addRule(rule) {
+    console.log('Add New Rule', rule)
   }
 }

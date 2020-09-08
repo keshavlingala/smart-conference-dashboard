@@ -1,3 +1,4 @@
+import { deviceTypes } from './../../../shared/datagenerator/datagenerator.dev';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 @Component({
@@ -16,7 +17,7 @@ export class AddDeviceComponent implements OnInit {
 
   addDeviceForm: FormGroup;
   ngOnInit(): void {
-    this.deviceTypes=['Device Type A','Device Type B','Device Type C']
+    this.deviceTypes = deviceTypes;
     this.createForm();
   }
   createForm() {

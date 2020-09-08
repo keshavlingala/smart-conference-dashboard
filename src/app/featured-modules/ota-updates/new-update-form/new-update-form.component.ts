@@ -1,6 +1,7 @@
+import { deviceTypes } from './../../../shared/datagenerator/datagenerator.dev';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Form } from '../otaform';
+import { Form } from '../ota.model';
 
 @Component({
   selector: 'app-new-update-form',
@@ -14,7 +15,7 @@ export class NewUpdateFormComponent implements OnInit {
   updatesForm: FormGroup;
   form: Form;
   deviceTypes: string[];
-  loader: boolean = false;
+  loader = false;
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
@@ -22,7 +23,7 @@ export class NewUpdateFormComponent implements OnInit {
   ngOnInit() {
     this.fileFetchError = false;
     this.showError = false;
-    this.deviceTypes = ['Device Type A', 'Device Type B', 'Device Type C'];
+    this.deviceTypes = deviceTypes;
   }
   createForm() {
     this.updatesForm = this.fb.group({

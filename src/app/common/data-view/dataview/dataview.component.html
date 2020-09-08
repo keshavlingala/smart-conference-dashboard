@@ -1,38 +1,38 @@
 <div class="row justify-content-center mt-4 mr-0 w-100">
   <mat-form-field appearance="fill">
     <mat-label>Select OTA type</mat-label>
-    <mat-select [(ngModel)]="selectedUpdate" [value]="selectedUpdate">
-      <mat-option [value]="update" *ngFor="let update of dataViewConfig.all_updates">{{update.name}}</mat-option>
+    <mat-select [(ngModel)]="selectedUpdates">
+      <mat-option [value]="dataViewConfig[device]" *ngFor="let device of deviceTypes">{{device}}</mat-option>
     </mat-select>
   </mat-form-field>
 </div>
-<div *ngIf="!selectedUpdate" class="row justify-content-center align-items-center mb-auto">
+<div *ngIf="!dataViewConfig" class="row justify-content-center align-items-center mb-auto">
   <mat-spinner></mat-spinner>
 </div>
 <app-timeline>
-  <app-timeline-item *ngFor="let item of selectedUpdate.items">
+  <app-timeline-item *ngFor="let item of selectedUpdates">
     <mat-card style="padding: 10px">
       <div class="d-flex ">
         <div class="w-75 pr-1">
           <h4 class="mb-1">
-            {{item.heading}}
+            {{item.otaName}}
           </h4>
           <h5 class="m-0">
-            {{item.subheading}}
+            V{{item.otaVersion}}
           </h5>
           <p class="overflow-hidden m-0">
-            {{item.description | slice:0:100}}...
+            {{item.otaDescription | slice:0:100}}...
           </p>
         </div>
         <div class="w-25  d-flex flex-column align-items-center justify-content-center border-left">
           <h3 class="mb-2" style="font-size: 1rem">
-            {{item.date | date:'MMM'}}
+            {{item.createdAt | date:'MMM'}}
           </h3>
           <h1 class="mb-2" style="font-size: 1.5rem;font-weight: 500">
-            {{item.date | date:'dd'}}
+            {{item.createdAt | date:'dd'}}
           </h1>
           <h3 class="m-0" style="font-size: 1rem">
-            {{item.date | date:'yyyy'}}
+            {{item.createdAt | date:'yyyy'}}
           </h3>
         </div>
       </div>
