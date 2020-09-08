@@ -4,7 +4,7 @@ import {AngularMaterialModule} from './angular-material/angular-material.module'
 // import {AppRoutingModule} from '../app-routing.module';
 import {CardModule} from '../common/card-module/card.module';
 import {DialogModule} from '../common/dialog/dialog.module';
-
+import {HttpClientModule} from '@angular/common/http';
 
 
 @NgModule({
@@ -12,12 +12,15 @@ import {DialogModule} from '../common/dialog/dialog.module';
   imports: [
     CommonModule,
     CardModule,
-    DialogModule
+    DialogModule,
+    HttpClientModule
   ],
   exports: [
     AngularMaterialModule,
     // AppRoutingModule,
-    CardModule
+    CardModule,
+    HttpClientModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

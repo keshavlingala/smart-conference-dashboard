@@ -19,6 +19,10 @@ $small: 40em;
 .breadcrumb-item + .breadcrumb-item::before {
   content: ">";
 }
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
+}
 input{
 width: 70%;
 }

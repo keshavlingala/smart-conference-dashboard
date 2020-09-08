@@ -1,12 +1,13 @@
 import { deviceTypes } from './../../../shared/datagenerator/datagenerator.dev';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
   styleUrls: ['./add-device.component.scss']
 })
 export class AddDeviceComponent implements OnInit {
+  @ViewChild('myForm') myForm: NgForm;
   title = "Devices";
   deviceTypes:string[];
   showError:boolean=false;
@@ -22,11 +23,11 @@ export class AddDeviceComponent implements OnInit {
   }
   createForm() {
     this.addDeviceForm = this.fb.group({
-    name:  ['', Validators.required ],
+    deviceName:  ['', Validators.required ],
     deviceType:   ['', Validators.required ],
-    authType: ['', Validators.required ],
-    staticMetadata: ['', Validators.required ],
-    dynamicMetaData: '',
+    certificate: ['', Validators.required ],
+    staticD: ['', Validators.required ],
+    dynamicD: '',
     });
   }
 
@@ -40,15 +41,21 @@ export class AddDeviceComponent implements OnInit {
     this.loader=true;
     setTimeout(()=>{
       this.loader=false;
-      console.log(this.addDeviceForm.value);
-      this.addDeviceForm.reset({
-        name:  '',
-        deviceType: '',
-        authType:'',
-        staticMetadata: '',
-        dynamicMetaData: '',
-        });
-      },2000)
+      const {deviceName,deviceType,certificate,staticD,dynamicD} = this.addDeviceForm.value;
+      const update={
+        deviceName : deviceName,
+        deviceType: deviceType,
+        certificate: certificate,
+        metadata: {
+          static : staticD,
+          dynamic: dynamicD,
+        }
+      }
+      console.log(update);
+      this.addDeviceForm.markAllAsTouched();
+      this.addDeviceForm.reset();
+      this.myForm.resetForm();
+      },700)
 
     }
     showHide(element: HTMLInputElement){

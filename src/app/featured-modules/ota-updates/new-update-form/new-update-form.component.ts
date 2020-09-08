@@ -1,6 +1,6 @@
 import { deviceTypes } from './../../../shared/datagenerator/datagenerator.dev';
-import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { Form } from '../ota.model';
 
 @Component({
@@ -9,6 +9,7 @@ import { Form } from '../ota.model';
   styleUrls: ['./new-update-form.component.scss'],
 })
 export class NewUpdateFormComponent implements OnInit {
+  @ViewChild('myForm') myForm: NgForm;
   files: any;
   fileFetchError: boolean;
   showError: boolean;
@@ -16,6 +17,7 @@ export class NewUpdateFormComponent implements OnInit {
   form: Form;
   deviceTypes: string[];
   loader = false;
+
   constructor(private fb: FormBuilder) {
     this.createForm();
   }
@@ -25,13 +27,14 @@ export class NewUpdateFormComponent implements OnInit {
     this.showError = false;
     this.deviceTypes = deviceTypes;
   }
+
   createForm() {
     this.updatesForm = this.fb.group({
       otaName: ['', Validators.required],
       deviceType: ['', Validators.required],
       otaVersion: ['', Validators.required],
-      description: ['', Validators.required],
-      files: null,
+      otaDescription: ['', Validators.required],
+      fileUrl: null,
     });
   }
 
@@ -46,26 +49,27 @@ export class NewUpdateFormComponent implements OnInit {
       this.loader = true;
       this.showError = false;
       setTimeout(() => {
-        this.loader = false;
-        this.updatesForm.patchValue({
-          files: this.files,
-        });
-        this.form = this.updatesForm.value;
-        console.log(this.form);
-        this.files = null;
-        this.updatesForm.reset({
-          otaName: '',
-          deviceType: '',
-          otaVersion: '',
-          description: '',
-        });
-      }, 2000);
+      this.loader = false;
+
+      const formData: FormData = new FormData();
+      formData.append('file', this.files, this.files.name);
+      this.updatesForm.patchValue({
+        fileUrl: formData.get('file'),
+      });
+      this.form = this.updatesForm.value;
+      console.log(this.form);
+      this.files = null;
+      this.updatesForm.markAllAsTouched();
+      this.updatesForm.reset();
+      this.myForm.resetForm();
+      }, 700);
     }
   }
 
   onFileDropped($event) {
     this.prepareFilesList($event);
   }
+
   fileBrowseHandler(files) {
     this.prepareFilesList(files);
   }
@@ -87,9 +91,9 @@ export class NewUpdateFormComponent implements OnInit {
           } else {
             this.files.progress += 5;
           }
-        }, 200);
+        }, 100);
       }
-    }, 1000);
+    }, 500);
   }
 
   deleteFile() {

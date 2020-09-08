@@ -26,8 +26,9 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-
+import {MatRadioModule} from '@angular/material/radio';
 const MaterialComponents = [MatDialogModule,
+  MatRadioModule,
   MatNativeDateModule,
   MatTabsModule,
   MatExpansionModule,

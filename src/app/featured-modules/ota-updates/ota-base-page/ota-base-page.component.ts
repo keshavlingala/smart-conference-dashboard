@@ -1,7 +1,7 @@
-import { Card, Setting } from './../../../common/card-module/models/card.model';
+import { deviceTypes } from './../../../shared/datagenerator/datagenerator.dev';
+import { Card } from './../../../common/card-module/models/card.model';
 import { Component, OnInit } from '@angular/core';
 import { OtaServiceService } from '../ota-service.service';
-import {deviceTypes} from '../../../shared/datagenerator/datagenerator.dev';
 
 @Component({
   selector: 'app-ota-base-page',
@@ -10,23 +10,13 @@ import {deviceTypes} from '../../../shared/datagenerator/datagenerator.dev';
 })
 export class OtaBasePageComponent implements OnInit {
   cardData: Card[];
-  otaSetting: Setting[];
-  deviceTypes = deviceTypes;
+  deviceTypes= deviceTypes;
   selectedCards: Card[];
+  selected: string;
   constructor(
     private otaService: OtaServiceService
   ) {
 
-    this.otaSetting = [
-      {
-        Elements_Number: 8,
-        color: 'pink',
-        icon: 'build',
-        design: 'design2',
-        apipaginator: true,
-        column: 4,
-      },
-    ];
   }
 
   async ngOnInit() {

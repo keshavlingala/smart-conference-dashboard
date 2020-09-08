@@ -17,7 +17,7 @@ import {AppRoutingModule} from './app-routing.module';
 //Services
 import {SideNavigationService} from './core/services/side-navigation.service';
 
-//Components
+// Components
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {AppComponent} from './app.component';
 import {DevicesTypeComponent} from './components/devices-type/devices-type.component';
