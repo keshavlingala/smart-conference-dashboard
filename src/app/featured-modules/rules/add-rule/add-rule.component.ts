@@ -19,6 +19,7 @@ export class AddRuleComponent implements OnInit {
   @ViewChild('stepper') stepper: MatStepper;
   parameters = ['Humidity', 'Lights On', 'Luminosity', 'Occupancy', 'Projector On', 'Temperature']
   actions = ['Start Meeting', 'End Meeting', 'Focus On', 'Turn on AC']
+  notValid: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -38,16 +39,23 @@ export class AddRuleComponent implements OnInit {
     });
   }
 
+
   selectionChange($event: StepperSelectionEvent) {
     this.selectedIndex = $event.selectedIndex;
     if ($event.selectedIndex === 0) {
       this.firstFormGroup.enable()
     } else {
       this.firstFormGroup.disable()
+      this.notValid = false;
     }
   }
 
   async submit() {
+    if (!this.secondFormGroup.valid) {
+      this.notValid = true;
+      return
+    }
+    this.notValid = false;
     const {name, type} = this.firstFormGroup.value;
     const {action, condition} = this.secondFormGroup.value;
     const rule = {

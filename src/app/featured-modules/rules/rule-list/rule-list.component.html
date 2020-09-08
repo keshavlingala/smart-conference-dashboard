@@ -1,14 +1,15 @@
-<h1>RULES</h1>
-
-<div class="d-flex align-items-start justify-content-between flex-wrap">
-  <button mat-raised-button style="background-color: #79A831; color: white;" routerLink="add">Add Rule</button>
-  <span class="flex-fill"></span>
-  <div class="position-relative">
-    <input (keyup)="filterSearch(searchInput.value)" type="text" #searchInput placeholder="Search by any parameter"
-           class="p-2 pr-4 rounded" style="border: none; outline: none;">
-    <mat-icon class="position-absolute text-secondary"
-              style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search
-    </mat-icon>
+<div class="p-3">
+  <h1>RULES</h1>
+  <div class="d-flex align-items-start justify-content-between flex-wrap">
+    <button mat-raised-button style="background-color: #79A831; color: white;" routerLink="add">Add Rule</button>
+    <span class="flex-fill"></span>
+    <div class="position-relative">
+      <input (keyup)="filterSearch(searchInput.value)" type="text" #searchInput placeholder="Search by any parameter"
+             class="p-2 pr-4 rounded" style="border: none; outline: none;">
+      <mat-icon class="position-absolute text-secondary"
+                style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search
+      </mat-icon>
+    </div>
   </div>
 </div>
 <div *ngIf="!ruleCards" class="row justify-content-center align-items-center mb-auto">

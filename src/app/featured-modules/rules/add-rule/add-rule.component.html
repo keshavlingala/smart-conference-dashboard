@@ -1,10 +1,12 @@
-<h1 class="mb-0">RULES</h1>
-<nav class="mb-0">
-  <ol class="breadcrumb pl-0" style="background-color: transparent;">
-    <li class="breadcrumb-item"><a routerLink="/rules">Rules</a></li>
-    <li class="breadcrumb-item active">Add Rule</li>
-  </ol>
-</nav>
+<div class="p-3">
+  <h1>RULES</h1>
+  <nav class="mb-0">
+    <ol class="breadcrumb pl-0" style="background-color: transparent;">
+      <li class="breadcrumb-item"><a routerLink="/rules">Rules</a></li>
+      <li class="breadcrumb-item active">Add Rule</li>
+    </ol>
+  </nav>
+</div>
 <div class="row">
   <div class="col ">
     <mat-vertical-stepper linear style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper>
@@ -12,12 +14,12 @@
         <ng-template matStepLabel> Define the rule Name</ng-template>
         <form [formGroup]="firstFormGroup">
           <div class="row">
-            <mat-form-field class="col-4">
+            <mat-form-field appearance="outline" class="col-4">
               <mat-label>Rule Name</mat-label>
               <input matInput placeholder="Ex:Occupancy" formControlName="name">
               <mat-error>Name Required</mat-error>
             </mat-form-field>
-            <mat-form-field class=" col-4">
+            <mat-form-field appearance="outline" class=" col-4">
               <mat-select formControlName="type" placeholder="Device Type">
                 <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.deviceType">
                   {{d.deviceType}}
@@ -62,10 +64,12 @@
             </mat-form-field>
             <div class="d-flex justify-content-center position-relative align-items-center mt-2">
               <button style="left: 0" mat-button class="position-absolute">Cancel</button>
-              <button type="button" [disabled]="!secondFormGroup.valid" (click)="submit()" mat-button
-                      class="btn submit-btn">Create
-                Rule
+              <button type="button" (click)="submit()" mat-button
+                      class="btn submit-btn">Create Rule
               </button>
+            </div>
+            <div class="d-flex justify-content-around align-items-center mt-2">
+              <mat-error *ngIf="notValid&&!secondFormGroup.valid">Fill the Complete form</mat-error>
             </div>
           </form>
         </div>
