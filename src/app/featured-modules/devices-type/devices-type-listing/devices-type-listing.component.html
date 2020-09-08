@@ -1,7 +1,7 @@
-<h1>DEVICES TYPE</h1>
+<h1 class="pl-3">DEVICES TYPE</h1>
 
     
-<div class="d-flex align-items-start justify-content-between flex-wrap">
+<div class="d-flex justify-content-between flex-wrap pr-3 pl-3">
     <button mat-raised-button style="background-color: #79A831; color: white;" routerLink="add">Add Device Type</button>
     <mat-spinner *ngIf="!devicesTypeData"></mat-spinner>
     <div class="position-relative">
@@ -11,7 +11,7 @@
 
 </div>
 
-<device-type-card-list (paginationEvent)="getDevicesTypeData($event)"
+<device-type-card-list class="w-100" (paginationEvent)="getDevicesTypeData($event)"
 [devicesTypeData]="currentlyShowingDevicesType"
 [devicesTypeCount] = "devicesTypeCount"
 [perPageData] = "config.perPageData"
