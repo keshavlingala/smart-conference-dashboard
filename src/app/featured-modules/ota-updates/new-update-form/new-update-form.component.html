@@ -12,19 +12,16 @@
   <form #myForm="ngForm" novalidate [formGroup]="updatesForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-6">
-
+        <mat-label for="otaName">OTA Name</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="otaName">OTA Name</mat-label>
           <input matInput type="text"  formControlName="otaName" />
         <mat-error >OTA Name is required</mat-error>
         </mat-form-field>
       </div>
       <div class="form-group col-md-6">
-
+        <mat-label for="deviceType">Device Type</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="deviceType">Device Type</mat-label>
           <mat-select id="inputState" formControlName="deviceType" >
-            <!-- <mat-option></mat-option> -->
             <mat-option *ngFor="let item of deviceTypes" [value]="item">{{
               item
             }}</mat-option>
@@ -36,18 +33,18 @@
     </div>
     <div class="form-row">
       <div class="form-group col-md-6">
-
+        <mat-label for="otaVersion">OTA Version</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="otaVersion">OTA Version</mat-label>
+
           <input matInput type="text" formControlName="otaVersion" />
         <mat-error >OTA Version is required</mat-error>
         </mat-form-field>
       </div>
 
       <div class="form-group col-md-6">
-
+        <mat-label for="otaDescription">Description</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="otaDescription">Description</mat-label>
+
           <input matInput type="text"  formControlName="otaDescription" />
         <mat-error >Description is required</mat-error>
         </mat-form-field>

@@ -54,8 +54,9 @@ export class NewUpdateFormComponent implements OnInit {
       const formData: FormData = new FormData();
       formData.append('file', this.files, this.files.name);
       this.updatesForm.patchValue({
-        fileUrl: formData.get('file'),
+        fileUrl: formData,
       });
+
       this.form = this.updatesForm.value;
       console.log(this.form);
       this.files = null;

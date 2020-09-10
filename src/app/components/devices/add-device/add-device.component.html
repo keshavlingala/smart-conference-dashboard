@@ -9,8 +9,8 @@
   <form #myForm="ngForm"  novalidate [formGroup]="addDeviceForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="form-group col-md-6">
+        <mat-label for="deviceType">Device Type</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="deviceType">Device Type</mat-label>
           <mat-select id="inputState" formControlName="deviceType">
             <mat-option *ngFor="let item of deviceTypes" [value]="item">{{item}}</mat-option>
           </mat-select>
@@ -19,8 +19,8 @@
 
       </div>
       <div class="form-group col-md-6">
+        <mat-label for="deviceName">Name</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="deviceName">Name</mat-label>
           <input matInput type="text" formControlName="deviceName" />
           <mat-error>Name is required</mat-error>
         </mat-form-field>
@@ -50,8 +50,8 @@
     </div>
     <div class="form-row">
       <div class="col-md-6">
+        <mat-label for="staticMetadata">Static Metadata</mat-label><br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-label for="staticMetadata">Static Metadata</mat-label>
         <input matInput type="text" formControlName="staticD" />
         <mat-error>Static MetaData is required</mat-error>
         </mat-form-field>

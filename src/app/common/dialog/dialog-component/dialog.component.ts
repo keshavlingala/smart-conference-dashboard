@@ -13,7 +13,6 @@ export class DialogComponent<T> {
     @Inject(MAT_DIALOG_DATA)
     public data: {
       template: TemplateRef<any>
-      context: T
     }
   ) {
   }

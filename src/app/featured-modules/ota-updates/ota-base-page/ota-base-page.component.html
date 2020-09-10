@@ -7,10 +7,9 @@
     Page
   </button>
   <div *ngIf="cardData">
-  <!-- <div mat-line class="mt-4">Select OTA Device Type (To View Update History)</div> -->
+  <div mat-line class="mt-4">Select OTA Device Type (To View Update History)</div>
 
-    <mat-form-field appearance="outline" class="w-50 mt-4">
-      <mat-label>Select OTA Device Type (To View Update History)</mat-label>
+    <mat-form-field appearance="outline" class="w-50 col-3 pl-0">
       <mat-select class=" mt-2" [(value)]="selected" (selectionChange)="onSelect(selected)" >
         <mat-option *ngFor="let item of deviceTypes" [value]="item">{{item}}</mat-option>
       </mat-select>

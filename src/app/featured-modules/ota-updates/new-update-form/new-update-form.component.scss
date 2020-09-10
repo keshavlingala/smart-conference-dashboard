@@ -14,12 +14,9 @@
   background-color: white;
   border-radius: 5px;
 }
-input{
-  width: 70%;
-}
-select{
-  width: 70%;
-}
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.6em 0 !important;}
+
+
 .mat-spinner {
   top:40%;
   left: 50%;
