@@ -32,6 +32,7 @@ export class AddRuleComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       name: ['', Validators.required],
       type: ['', Validators.required],
+      groupIds: ['', Validators.required]
     });
     this.secondFormGroup = this._formBuilder.group({
       action: ['', Validators.required],
@@ -47,6 +48,7 @@ export class AddRuleComponent implements OnInit {
     } else {
       this.firstFormGroup.disable()
       this.notValid = false;
+      this.ruleStep.editable = false;
     }
   }
 
@@ -56,13 +58,13 @@ export class AddRuleComponent implements OnInit {
       return
     }
     this.notValid = false;
-    const {name, type} = this.firstFormGroup.value;
+    const {name, type, groupIds} = this.firstFormGroup.value;
     const {action, condition} = this.secondFormGroup.value;
     const rule = {
       ruleName: name,
       actions: [action],
       condition,
-      groupIds: [],
+      groupIds: [groupIds],
       deviceType: type
     }
     this.rulesService.addRule(rule)

@@ -129,3 +129,10 @@ export const otaUpdatesGenerator = (size): OtaResponse => {
     },
   };
 };
+
+export const groupIDGenerator = (size): string[] => {
+  return Array.from({length: size}, () => {
+      return chance.string({length: 25, alpha: true, numeric: true})
+    }
+  )
+}
