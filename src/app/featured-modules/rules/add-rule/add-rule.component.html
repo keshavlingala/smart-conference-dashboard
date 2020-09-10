@@ -9,13 +9,16 @@
 </div>
 <div class="row">
   <div class="col ">
-    <mat-vertical-stepper #stepper (selectionChange)="selectionChange($event)" linear style="background-color: inherit">
-
-      <mat-step #ruleName [stepControl]="firstFormGroup" editable>
-        <ng-template matStepperIcon="number">
-          <mat-icon>create</mat-icon>
+    <mat-vertical-stepper #stepper (selectionChange)="selectionChange($event)" [disableRipple]="true" linear
+                          style="background-color: inherit">
+      <mat-step #ruleName [editable]="false" [stepControl]="firstFormGroup">
+        <ng-template matStepLabel> Define the rule Name
+          <button (click)="stepper.selectedIndex==1&&stepper.previous();ruleName.editable=true"
+                  class="rounded-circle bg-white m-2"
+                  mat-icon-button>
+            <i aria-hidden="true" class="fa fa-pencil-square-o" style="color: black!important;"></i>
+          </button>
         </ng-template>
-        <ng-template matStepLabel> Define the rule Name</ng-template>
         <form [formGroup]="firstFormGroup">
           <div class="row">
             <div class="col-4">
@@ -32,9 +35,21 @@
                   <mat-option *ngFor="let d of rulesService.getRuleDevices()" [value]="d.deviceType">
                     {{d.deviceType}}
                   </mat-option>
-                  <mat-option value="Other Sensing">Other Sensing</mat-option>
                 </mat-select>
-                <mat-error>Feild Required</mat-error>
+                <mat-error>Field Required</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-4">
+              <label class="d-block m-0">Group ID</label>
+              <mat-form-field appearance="outline" class=" w-100">
+                <mat-select formControlName="groupIds" placeholder="Group ID">
+                  <mat-option *ngFor="let d of rulesService.getGroupIds()" [value]="d">
+                    {{d}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>Field Required</mat-error>
               </mat-form-field>
             </div>
           </div>
@@ -46,7 +61,7 @@
           </div>
         </form>
       </mat-step>
-      <mat-step [stepControl]="secondFormGroup">
+      <mat-step [stepControl]="secondFormGroup" editable="false">
         <ng-template matStepLabel>Create Rule</ng-template>
         <div *ngIf="selectedIndex===1">
           <h4>Parameters</h4>

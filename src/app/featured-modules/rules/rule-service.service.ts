@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Rule, RuleCard} from "./rules.models";
-import {ruleDeviceGenerator} from "../../shared/datagenerator/datagenerator.dev";
+import {groupIDGenerator, ruleDeviceGenerator} from "../../shared/datagenerator/datagenerator.dev";
 
 @Injectable({
   providedIn: 'root'
@@ -8,6 +8,7 @@ import {ruleDeviceGenerator} from "../../shared/datagenerator/datagenerator.dev"
 export class RulesService {
   rules: Rule[] = [];
   ruleCards: RuleCard[];
+  groupIDs: string[];
 
   constructor() {
     this.rules = ruleDeviceGenerator(52).data.rules
@@ -23,6 +24,7 @@ export class RulesService {
         rules: types[deviceType]
       }
     })
+    this.groupIDs = groupIDGenerator(10);
   }
 
   getRuleDevices(): RuleCard[] {
@@ -36,5 +38,9 @@ export class RulesService {
 
   addRule(rule) {
     console.log('Add New Rule', rule)
+  }
+
+  getGroupIds() {
+    return this.groupIDs;
   }
 }
