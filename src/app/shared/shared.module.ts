@@ -6,7 +6,6 @@ import {CardModule} from '../common/card-module/card.module';
 import {DialogModule} from '../common/dialog/dialog.module';
 
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -20,4 +19,5 @@ import {DialogModule} from '../common/dialog/dialog.module';
     CardModule
   ]
 })
-export class SharedModule { }
+export class SharedModule {
+}

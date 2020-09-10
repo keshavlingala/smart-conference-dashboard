@@ -22,10 +22,11 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatSelectModule} from "@angular/material/select";
 import {MatStepperModule} from "@angular/material/stepper";
-import {ReactiveFormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {ClipboardModule} from "@angular/cdk/clipboard";
 
 const MaterialComponents = [MatDialogModule,
   MatNativeDateModule,
@@ -52,7 +53,9 @@ const MaterialComponents = [MatDialogModule,
   ReactiveFormsModule,
   MatChipsModule,
   MatButtonToggleModule,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  FormsModule,
+  ClipboardModule
 ];
 
 @NgModule({

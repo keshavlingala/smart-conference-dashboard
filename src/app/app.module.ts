@@ -1,8 +1,7 @@
-import { DevicesModule } from './components/devices/devices.module';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {DevicesModule} from './components/devices/devices.module';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -60,7 +59,7 @@ import {DataViewModule} from './common/data-view/data-view.module';
   ],
   providers: [SideNavigationService, SideNavigationGuard],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

@@ -129,10 +129,19 @@ export const otaUpdatesGenerator = (size): OtaResponse => {
     },
   };
 };
-
 export const groupIDGenerator = (size): string[] => {
   return Array.from({length: size}, () => {
       return chance.string({length: 25, alpha: true, numeric: true})
     }
   )
+}
+
+export const generateKeys = (type, size) => {
+  return {
+    deviceType: type,
+    keys: {
+      used: Array.from({length: size * 2 / 3}, () => chance.guid()),
+      unused: Array.from({length: size / 3}, () => chance.guid())
+    }
+  }
 }
