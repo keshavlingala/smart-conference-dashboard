@@ -1,8 +1,7 @@
-import { DevicesModule } from './components/devices/devices.module';
-import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import {DevicesModule} from './components/devices/devices.module';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
@@ -17,14 +16,13 @@ import {AppRoutingModule} from './app-routing.module';
 //Services
 import {SideNavigationService} from './core/services/side-navigation.service';
 
-//Components
+// Components
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
 import {AppComponent} from './app.component';
 import {DevicesTypeComponent} from './components/devices-type/devices-type.component';
 import {DevicesGroupComponent} from './components/devices-group/devices-group.component';
 import {RulesComponent} from './components/rules/rules.component';
 import {OtaUpdatesComponent} from './components/ota-updates/ota-updates.component';
-import {GenerateKeysComponent} from './components/generate-keys/generate-keys.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 //Guards
@@ -40,7 +38,6 @@ import {DataViewModule} from './common/data-view/data-view.module';
     DevicesGroupComponent,
     RulesComponent,
     OtaUpdatesComponent,
-    GenerateKeysComponent,
     DashboardComponent,
     Dummy1Component,
   ],
@@ -58,7 +55,7 @@ import {DataViewModule} from './common/data-view/data-view.module';
   ],
   providers: [SideNavigationService, SideNavigationGuard],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {
 }

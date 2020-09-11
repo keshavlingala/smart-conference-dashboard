@@ -35,7 +35,7 @@ export interface BulkAction {
 }
 
 export interface ActionChange {
-  selected: Device[] | Device;
+  selected: any;
   type: 'action' | 'bulk-action';
   name: string;
 }

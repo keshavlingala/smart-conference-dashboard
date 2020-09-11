@@ -80,3 +80,9 @@
 .row {
   width: calc(100% - 10px);
 }
+.types {
+  ::ng-deep .mat-button-toggle-checked {
+    background-color: #B77AC5;
+    color: white !important;
+  }
+}

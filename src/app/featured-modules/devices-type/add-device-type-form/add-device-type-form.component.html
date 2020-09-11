@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="ml-3 mt-3">
   <h1 class="m-0">DEVICES TYPE</h1>
   <nav aria-label="breadcrumb">
@@ -121,7 +122,85 @@
           
                 
           
+=======
+<h1>DEVICE TYPE</h1>
+<form class="m-1" [formGroup]="deviceTypeForm" (ngSubmit)="onFormSubmit()">
+    <div class="row">
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="w-75">
+          <mat-label>Name</mat-label>
+          <input matInput placeholder="Name" formControlName="deviceType">
+          <mat-error *ngIf="
+            deviceTypeForm.get('deviceType').hasError('required') &&
+            deviceTypeForm.get('deviceType').touched">Name is required</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="col-6">
+        <mat-form-field appearance="outline" class="w-75">
+          <mat-label>Actions</mat-label>
+          <input matInput placeholder="Actions" formControlName="actions">
+          <mat-error *ngIf="
+            deviceTypeForm.get('actions').hasError('required') &&
+            deviceTypeForm.get('actions').touched">It is required</mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+
+
+
+    <div formArrayName="attributes">
+      <div *ngFor="let attribute of attributes.controls; let i=index" [formGroupName]="i">
+        <div class="row">
+          <div class="col-6">
+            <mat-form-field appearance="outline" class="w-75">
+              <mat-label>Attribute Name</mat-label>
+              <input matInput placeholder="Attribute Name" formControlName="name">
+            </mat-form-field>
+          </div>
+
+          <div class="col-6">
+            <mat-form-field appearance="outline" class="w-75">
+              <mat-select formControlName="accId">
+                <mat-option value="1">1</mat-option>
+                <mat-option value="2">2</mat-option>
+                <mat-option value="3">3</mat-option>
+                <mat-option value="4">4</mat-option>
+                <mat-option value="5">5</mat-option>
+                <mat-option value="6">6</mat-option>
+              </mat-select>
+              <mat-label>Account</mat-label>
+            </mat-form-field>
+          </div>
         </div>
+
+        <div class="row">
+          <div class="col-12">
+            <p>Type</p>
+            <mat-button-toggle-group class="types" style="border: none;" formControlName="dataType">
+                <mat-button-toggle class="m-2 rounded" value="STRING">String</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="NUMBER">Number</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="DOUBLE">Double</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="FLOAT">Float</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="TIMESTAMP">Timestamp</mat-button-toggle>
+              </mat-button-toggle-group>
+          </div>
+
+          <div class="col-12">
+            <p>Security</p>
+            <mat-button-toggle-group class="security" style="border: none;" formControlName="securitySetting">
+                <mat-button-toggle class="m-2 rounded" value="0">Intrinsic</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="1">Dynamic</mat-button-toggle>
+                <mat-button-toggle class="m-2 rounded" value="2">BC</mat-button-toggle>
+              </mat-button-toggle-group>
+          </div>
+        </div>
+
+        <div *ngIf="i>0" class="p-2">
+          <button class="btn btn-danger" (click)="deleteAttribute(i)">Delete</button>
+>>>>>>> 9c7d3932f279d17c4bbbe8daf453a49a5efd9b45
+        </div>
+
       </div>
       
       

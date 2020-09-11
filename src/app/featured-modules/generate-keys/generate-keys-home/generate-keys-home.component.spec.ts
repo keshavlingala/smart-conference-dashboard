@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GenerateKeysComponent } from './generate-keys.component';
+import { GenerateKeysHomeComponent } from './generate-keys-home.component';
 
-describe('GenerateKeysComponent', () => {
-  let component: GenerateKeysComponent;
-  let fixture: ComponentFixture<GenerateKeysComponent>;
+describe('GenerateKeysHomeComponent', () => {
+  let component: GenerateKeysHomeComponent;
+  let fixture: ComponentFixture<GenerateKeysHomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GenerateKeysComponent ]
+      declarations: [ GenerateKeysHomeComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(GenerateKeysComponent);
+    fixture = TestBed.createComponent(GenerateKeysHomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -19,12 +19,12 @@ $small: 40em;
 .breadcrumb-item + .breadcrumb-item::before {
   content: ">";
 }
-input{
-width: 70%;
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+  background-color: white;
+  border-radius: 5px;
 }
-select{
-width: 70%;
-}
+::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.6em 0 !important;}
+
 .buttonColor{
 background-color: #fb7b6b;
 }
@@ -48,6 +48,7 @@ background-color: #fb7b6b;
   margin-top: -2.5em;
   @media (max-width: $small) {margin-top: -1.5em;}
 }
+
 
 .button-label {
   display: inline-block;

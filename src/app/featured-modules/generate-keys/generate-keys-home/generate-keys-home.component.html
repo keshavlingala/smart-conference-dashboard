@@ -1,0 +1,65 @@
+<div class="pl-3 w-100 overflow-hidden">
+  <h1>GENERATE KEYS</h1>
+  <h2>Generate new Keys</h2>
+  <div class="row">
+    <div class="col-7">
+      <div class="row">
+        <div class="col-6">
+          <label class="d-block">Device Type</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-select (valueChange)="deviceSelected()" [(ngModel)]="selectedDevice">
+              <mat-option *ngFor="let device of deviceTypes" [value]="device">{{device}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+        <div class="col-6">
+          <label class="d-block">Number of Keys</label>
+          <mat-form-field appearance="outline" class="w-100">
+            <input [(ngModel)]="numberOfKeys" matInput type="number">
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center m-3">
+        <button (click)="generateKeys()" mat-raised-button style="background-color: #79A831;color: white">Generate
+          Keys
+        </button>
+      </div>
+      <div *ngIf="keys&&selectedDevice">
+        <div class="d-flex justify-content-between">
+          <h2 class="d-inline-flex">Generated keys ({{selectedDevice}})</h2>
+          <button mat-button style="height: 35px;margin-bottom: 16px;">
+            <mat-icon>publish</mat-icon>
+            Export Keys
+          </button>
+        </div>
+        <div class="row">
+          <div *ngFor="let key of keys.used" class="col-6">
+            <div (click)="copyToClipboard(key)" class="keys p-2 m-1">
+              {{key}}
+            </div>
+          </div>
+        </div>
+        <div class="d-flex justify-content-between">
+          <h2 class="d-inline-flex">Unused keys ({{selectedDevice}})</h2>
+          <button mat-button style="height: 35px;margin-bottom: 16px;">
+            <mat-icon>publish</mat-icon>
+            Export Keys
+          </button>
+        </div>
+        <div class="row">
+          <div *ngFor="let key of keys.unused" class="col-6">
+            <div (click)="copyToClipboard(key)" class="keys p-2 m-1">
+              {{key}}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!--    Side Card-->
+    <div class="col-5">
+      <app-generate-keys-card></app-generate-keys-card>
+    </div>
+
+  </div>
