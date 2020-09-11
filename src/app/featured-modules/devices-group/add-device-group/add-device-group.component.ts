@@ -21,6 +21,7 @@ export class AddDeviceGroupComponent implements OnInit {
   dropdownSettings:IDropdownSettings ;
   hetroFlag : boolean= false;
   selectedIndex = 0;
+  deviceTypeClone;
   public finalData = [];
   @ViewChild('form1') form1;
   result = {
@@ -31,7 +32,8 @@ export class AddDeviceGroupComponent implements OnInit {
   }
   constructor( private fb :FormBuilder) { }
   ngOnInit(): void {
-    
+     
+   this.deviceTypeClone = JSON.stringify(this.DeviceType);
     this.DeviceGroupForm = this.fb.group({
       GroupName : ['', Validators.required],
       GroupType : [''],
@@ -69,7 +71,25 @@ export class AddDeviceGroupComponent implements OnInit {
       
     }
   }
+  filterDropdown(e)
+  {
 
+      if(e.target.value===""){
+        this.DeviceType = JSON.parse(this.deviceTypeClone);
+        return;
+      }
+    this.DeviceType = this.DeviceType.filter((d)=>{
+      var text = d.item_text.toLowerCase();
+      var searchValue = e.target.value.toLowerCase();
+      return text.includes(searchValue);
+    })
+
+
+  }
+
+  filterMyOptions(e){
+    console.log(e);
+  }
 
 
     DeviceType=[

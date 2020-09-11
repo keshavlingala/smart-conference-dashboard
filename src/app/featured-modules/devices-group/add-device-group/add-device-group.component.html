@@ -72,7 +72,7 @@
  <!-- Multiselect Dropdown -->
   <div class="form-group  ml-3" *ngIf="DeviceGroupForm.value.GroupType=='Multi'" >
     <label >Device Type</label>
-      <!-- <ng-multiselect-dropdown #multiselect [disabled]="selectedIndex===1"
+      <ng-multiselect-dropdown #multiselect [disabled]="selectedIndex===1"
       [placeholder]="''"
       [settings]="dropdownSettings"
       [data]="dropdownList"
@@ -83,15 +83,15 @@
       required
       
     >
-    </ng-multiselect-dropdown> -->
+    </ng-multiselect-dropdown>
 
-    <mat-form-field appearance="outline" class="w-100">
+    <!-- <mat-form-field appearance="outline" class="w-100">
       <mat-select id="DeviceType" formControlName="DeviceType" multiple>
-        <mat-select-search [formControl]="DeviceType"></mat-select-search>
+        <input matInput placeholder="Search" (keyup)="filterDropdown($event)">
         <mat-option *ngFor="let item of DeviceType" [value]="item">{{item.item_text}}</mat-option>
        
       </mat-select>
-    </mat-form-field>
+    </mat-form-field> -->
     <small class="text-danger" *ngIf="(DeviceGroupForm.value.DeviceType.length < 2) && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) ">Select more than 1 Device Type</small>
   </div> 
 

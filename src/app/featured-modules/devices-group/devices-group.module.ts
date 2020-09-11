@@ -14,6 +14,7 @@ import { CardComponent } from './card/card.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatMenuModule} from '@angular/material/menu';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 @NgModule({
   declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent],
@@ -27,7 +28,8 @@ import {MatMenuModule} from '@angular/material/menu';
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
     MatProgressSpinnerModule,
-    MatMenuModule
+    MatMenuModule,
+    NgxMatSelectSearchModule
     
   ],
   providers: [DevicesGroupService]
