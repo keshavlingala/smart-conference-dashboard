@@ -57,8 +57,7 @@
                     <mat-form-field appearance="outline" class="w-100">
                       <input matInput formControlName="name">
                       <mat-error *ngIf="
-                      attribute.get('name').hasError('required') &&
-                      attribute.get('name').touched">
+                      attribute.get('name').hasError('required')">
                       Attribute name is required
                     </mat-error>
                     </mat-form-field>
@@ -89,6 +88,10 @@
                         <mat-button-toggle class="m-2 rounded" value="FLOAT">Float</mat-button-toggle>
                         <mat-button-toggle class="m-2 rounded" value="TIMESTAMP">Timestamp</mat-button-toggle>
                       </mat-button-toggle-group>
+                      <!-- <mat-error *ngIf="
+                      attribute.get('dataType').hasError('required')">
+                      Attribute name is required
+                    </mat-error> -->
                   </div>
             
                   <div class="col-6">
