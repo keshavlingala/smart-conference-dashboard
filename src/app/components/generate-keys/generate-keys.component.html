@@ -2,14 +2,17 @@
   <mat-card-title>Unused Cards</mat-card-title>
   <div class="row">
     <mat-form-field appearance="outline" class="col-10 pl-3 pr-0 m-0">
-      <mat-label>Device Type</mat-label>
+      <mat-label>Select Device Type</mat-label>
       <mat-select (selectionChange)="change(selectedDeviceType)" [(value)]="selectedDeviceType">
         <mat-option *ngFor="let d of deviceTypes" [value]="d">{{d}}</mat-option>
       </mat-select>
     </mat-form-field>
     <button class="col-2 bg-white pl-0 " mat-icon-button><i class="fa fa-filter fa-2x filterButton"></i></button>
   </div>
+
   <mat-card-content>
+
+
     <div *ngIf="!selected" >
         <mat-panel-title class="text-secondary">Recently Used</mat-panel-title>
         <div class="container mt-2">
@@ -24,18 +27,23 @@
           </div>
           <a href="#" class="mt-4 ">View More</a>
         </div>
+
         <mat-panel-title class="text-secondary mt-2">Most Used</mat-panel-title>
         <div class="container mt-2">
           <div class="row">
             <mat-chip-list >
               <div class="col-6 d-flex justify-content-between" *ngFor="let type of deviceTypes |slice: 0:4">
-                <mat-chip>{{type}}</mat-chip>
+                <mat-chip (click)="viewKeys(type)">{{type}}
+                  <button class="col-2 bg-white pl-2 " mat-icon-button>10</button>
+                </mat-chip>
               </div>
             </mat-chip-list>
           </div>
           <a href="#" class="mt-4">View More</a>
         </div>
     </div>
+
+
     <div *ngIf="selected">
       <div class="row">
         <div class="col-7">
