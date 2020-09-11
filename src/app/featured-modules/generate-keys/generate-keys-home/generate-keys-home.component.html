@@ -20,35 +20,35 @@
         </div>
       </div>
       <div class="d-flex justify-content-center m-3">
-        <button  (click)="generateKeys()" mat-raised-button style="background-color: #79A831;color: white">Generate
+        <button (click)="generateKeys()" mat-raised-button style="background-color: #79A831;color: white">Generate
           Keys
         </button>
       </div>
       <div *ngIf="keys&&selectedDevice">
         <div class="d-flex justify-content-between">
           <h2 class="d-inline-flex">Generated keys ({{selectedDevice}})</h2>
-          <button style="height: 35px;margin-bottom: 16px;" mat-button>
+          <button mat-button style="height: 35px;margin-bottom: 16px;">
             <mat-icon>publish</mat-icon>
             Export Keys
           </button>
         </div>
-        <div class="row" >
+        <div class="row">
           <div *ngFor="let key of keys.used" class="col-6">
-            <div (click)="copyToClipboard(key)"  class="keys p-2 m-1">
+            <div (click)="copyToClipboard(key)" class="keys p-2 m-1">
               {{key}}
             </div>
           </div>
         </div>
         <div class="d-flex justify-content-between">
           <h2 class="d-inline-flex">Unused keys ({{selectedDevice}})</h2>
-          <button  style="height: 35px;margin-bottom: 16px;" mat-button>
+          <button mat-button style="height: 35px;margin-bottom: 16px;">
             <mat-icon>publish</mat-icon>
             Export Keys
           </button>
         </div>
-        <div class="row" >
+        <div class="row">
           <div *ngFor="let key of keys.unused" class="col-6">
-            <div (click)="copyToClipboard(key)"  class="keys p-2 m-1">
+            <div (click)="copyToClipboard(key)" class="keys p-2 m-1">
               {{key}}
             </div>
           </div>
@@ -59,10 +59,7 @@
 
     <!--    Side Card-->
     <div class="col-5">
-      <span class="d-block" style="width: 100%;min-height: 500px; background-color: #fb7b6b;height: 100%">
-        You Do here
-      </span>
+      <app-generate-keys-card></app-generate-keys-card>
     </div>
-  </div>
 
-</div>
+  </div>
