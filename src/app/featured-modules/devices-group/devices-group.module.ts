@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
 import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent],
@@ -25,7 +26,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatMenuModule
     
   ],
   providers: [DevicesGroupService]

@@ -1,9 +1,11 @@
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
+import {StepperSelectionEvent} from "@angular/cdk/stepper";
 import { Card, Setting } from './../../../common/card-module/models/card.model';
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
+import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-add-device-group',
@@ -18,7 +20,9 @@ export class AddDeviceGroupComponent implements OnInit {
   selectedCard =[];
   dropdownSettings:IDropdownSettings ;
   hetroFlag : boolean= false;
+  selectedIndex = 0;
   public finalData = [];
+  @ViewChild('form1') form1;
   result = {
     "groupName":"",
     "deviceTypes":[],
@@ -42,7 +46,8 @@ export class AddDeviceGroupComponent implements OnInit {
       selectAllText: 'Select All',
       unSelectAllText: 'UnSelect All',
       itemsShowLimit: 3,
-      allowSearchFilter: true
+      allowSearchFilter: true,
+       
     };
     this.dropdownList = [
       { id: 1, item_text: 'Mumbai' },
@@ -52,6 +57,21 @@ export class AddDeviceGroupComponent implements OnInit {
       { id: 5, item_text: 'New Delhi' }
     ];
   }
+
+  selectionChange($event: StepperSelectionEvent) {
+    this.selectedIndex = $event.selectedIndex;
+    if ($event.selectedIndex === 0) {
+      this.DeviceGroupForm.enable()
+    } else {
+      this.DeviceGroupForm.disable();
+      
+      
+      
+    }
+  }
+
+
+
     DeviceType=[
       { id: 1, item_text: 'Mumbai' },
       { id: 2, item_text: 'Bangaluru' },
@@ -67,99 +87,115 @@ export class AddDeviceGroupComponent implements OnInit {
     tempData=[
       {
         "id": 1,
-        "Title": "Ankur is title 1",
+        "Title": "B",
          "Content" : "This is content 1",
-         "Footer"  : "This is Footer 1"
+         "Footer"  : "This is Footer 1",
+         "Date" : "2020-05-31T12:42:12.598Z"
       },
       {
         "id": 2,
-        "Title": "This is title 2",
+        "Title": "C",
          "Content" : "This is content 2",
-         "Footer"  : "This is Footer 2"
+         "Footer"  : "This is Footer 2",
+         "Date" : "2026-07-04T12:42:12.598Z"
       },
       {
         "id": 3,
-        "Title": "This is title 3",
+        "Title": "A",
          "Content" : "This is content 3",
-         "Footer"  : "This is Footer 3"
+         "Footer"  : "This is Footer 3",
+         "Date" : "2016-09-14T12:42:12.598Z"
       },
       {
         "id": 4,
-        "Title": "This is title 4",
+        "Title": "D",
          "Content" : "This is content 4",
-         "Footer"  : "This is Footer 4"
+         "Footer"  : "This is Footer 4",
+         "Date" : "2022-08-04T12:42:12.598Z"
       },
       {
         "id": 5,
-        "Title": "This is title 5",
+        "Title": "E",
          "Content" : "This is content 5",
-         "Footer"  : "This is Footer 5"
+         "Footer"  : "This is Footer 5",
+         "Date" : "2022-09-04T12:42:12.598Z"
       },
       {
         "id": 6,
-        "Title": "This is title 6",
+        "Title": "F",
          "Content" : "This is content 6",
-         "Footer"  : "This is Footer 6"
+         "Footer"  : "This is Footer 6",
+         "Date" : "2020-09-20T12:42:12.598Z"
       },
       {
         "id": 7,
-        "Title": "This is title 7",
+        "Title": "G",
          "Content" : "This is content 7",
-         "Footer"  : "This is Footer 7"
+         "Footer"  : "This is Footer 7",
+         "Date" : "2019-09-04T12:42:12.598Z"
       },
       {
         "id": 8,
-        "Title": "This is title 8",
+        "Title": "H",
          "Content" : "This is content 8",
-         "Footer"  : "This is Footer 8"
+         "Footer"  : "This is Footer 8",
+         "Date" : "2020-09-14T12:42:12.598Z"
       },
       {
         "id": 9,
-        "Title": "This is title 9",
+        "Title": "I",
          "Content" : "This is content 9",
-         "Footer"  : "This is Footer 9"
+         "Footer"  : "This is Footer 9",
+         "Date" : "2020-10-17T12:42:12.598Z"
       },
       {
         "id": 10,
-        "Title": "This is title 10",
+        "Title": "J",
          "Content" : "This is content 10",
-         "Footer"  : "This is Footer 10"
+         "Footer"  : "This is Footer 10",
+         "Date" : "2020-09-19T12:42:12.598Z"
       },
       {
         "id": 11,
-        "Title": "This is title 11",
+        "Title": "K",
          "Content" : "This is content 11",
-         "Footer"  : "This is Footer 11"
+         "Footer"  : "This is Footer 11",
+         "Date" : "2020-09-12T12:42:12.598Z"
       },
       {
         "id": 12,
-        "Title": "This is title 12",
+        "Title": "L",
          "Content" : "This is content 12",
-         "Footer"  : "This is Footer 12"
+         "Footer"  : "This is Footer 12",
+         "Date" : "2018-09-11T12:42:12.598Z"
       },
       {
         "id": 13,
-        "Title": "This is title 13",
+        "Title": "M",
          "Content" : "This is content 13",
-         "Footer"  : "This is Footer 13"
+         "Footer"  : "This is Footer 13",
+         "Date" : "2015-09-04T12:42:12.598Z"
       },
       {
         "id": 14,
-        "Title": "This is title 14",
+        "Title": "N",
          "Content" : "This is content 14",
-         "Footer"  : "This is Footer 14"
+         "Footer"  : "This is Footer 14",
+         "Date" : "2020-09-05T12:42:12.598Z"
       },
       {
         "id": 15,
-        "Title": "This is title 15",
+        "Title": "O",
          "Content" : "This is content 15",
-         "Footer"  : "This is Footer 15"
+         "Footer"  : "This is Footer 15",
+         "Date" : "2021-09-10T12:42:12.598Z"
       },
       {
         "id": 16,
-        "Title": "This is title 16",
+        "Title": "P",
          "Content" : "This is content 16",
-         "Footer"  : "This is Footer 16"
+         "Footer"  : "This is Footer 16",
+         "Date" : "2020-09-04T12:42:12.598Z"
       }
       ];
       

@@ -7,21 +7,38 @@
    </div> <br>
 
    <!-- Form -->
-   
-<form [formGroup]="DeviceGroupForm" class="FORM" >
+   <div class="step">
+   <mat-vertical-stepper  [disableRipple]="true" style="background-color: inherit" (selectionChange)="selectionChange($event)" #stepper linear>
+    <mat-step #AddDevice [editable]="false" [stepControl]="DeviceGroupForm" >
+      <ng-template matStepLabel>
+        Select Device, Group Type
+        <button  [disableRipple]="true" *ngIf="selectedIndex===1" (click)="stepper.selectedIndex==1&&stepper.previous();AddDevice.editable=true"
+                  class="rounded-circle bg-white m-2"
+                  mat-icon-button>
+            <i aria-hidden="true" class="fa fa-pencil-square-o" style="color: black!important;"></i>
+          </button>
+      </ng-template>
+    
+
+<form [formGroup]="DeviceGroupForm" #form1 class="FORM" >
+  <ng-template matStepLabel>Fill out your name</ng-template>
   <!-- {{DeviceGroupForm.value | json}} -->
 
     <div class="row mr-0">
     <div class="col ml-3 form-group col-md-4">
-      <label >Group Name</label>
-      <input type="text" id="GroupName" formControlName="GroupName" [class.is-invalid]="DeviceGroupForm.get('GroupName').errors && (DeviceGroupForm.get('GroupName').touched || DeviceGroupForm.get('GroupName').dirty) " class="form-control" >
-       <small class="text-danger" *ngIf="DeviceGroupForm.get('GroupName').errors && (DeviceGroupForm.get('GroupName').touched || DeviceGroupForm.get('GroupName').dirty)">Name is required</small>
+      <label class="d-block">Group Name</label>
+      <mat-form-field appearance="outline" class="w-100">
+        <input matInput formControlName="GroupName">
+      </mat-form-field>
+
+      <!-- <input type="text" id="GroupName" formControlName="GroupName" [class.is-invalid]="DeviceGroupForm.get('GroupName').errors && (DeviceGroupForm.get('GroupName').touched || DeviceGroupForm.get('GroupName').dirty) " class="form-control" > -->
+       <small style="margin-top: -8px;" class="text-danger d-block" *ngIf="DeviceGroupForm.get('GroupName').errors && (DeviceGroupForm.get('GroupName').touched || DeviceGroupForm.get('GroupName').dirty)">Group Name is required</small>
     </div>
 
    
     <div class="col ml-md-5 col-md-4" >
         <label >Group Type</label><br>
-        <mat-button-toggle-group id="GroupType" formControlName="GroupType"   value="homogeneous" style="border : none;" (change)="toggleCalled()">
+        <mat-button-toggle-group id="GroupType" formControlName="GroupType"   value="homogeneous" style="border : none; margin-top: 5px;" (change)="toggleCalled()">
           <mat-button-toggle value="Single">Homogeneous</mat-button-toggle>
           <mat-button-toggle class="ml-5" value="Multi">Heterogeneous</mat-button-toggle>
         </mat-button-toggle-group>
@@ -33,18 +50,29 @@
     <!-- Single Select Dropdown -->
     <div class="form-group col-md-4"  *ngIf="DeviceGroupForm.value.GroupType=='Single'">
         <label >Device Type</label>
-        <select id="inputState" id="DeviceType" formControlName="DeviceType" class="form-control" placeholder="hello" [class.invalid]="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) " >
+        <!-- <select id="inputState" id="DeviceType" formControlName="DeviceType" class="form-control" placeholder="hello" [class.invalid]="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) " >
           <option selected></option>
           <option *ngFor="let item of DeviceType" [ngValue]="item">{{item.item_text}}</option>
         </select>
-        <small class="text-danger" *ngIf="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty)">Select Device Type</small>
+        <small class="text-danger" *ngIf="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty)">Select Device Type</small> -->
+        
+
+        <mat-form-field appearance="outline" class="w-100">
+          <mat-select id="DeviceType" formControlName="DeviceType">
+            
+            <mat-option *ngFor="let item of DeviceType" [value]="item">{{item.item_text}}</mat-option>
+           
+          </mat-select>
+        </mat-form-field>
+        <small style="margin-top: -8px;" class="text-danger d-block" *ngIf="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty)">Select Device Type</small>
+    
       </div>
 
 
  <!-- Multiselect Dropdown -->
   <div class="form-group  ml-3" *ngIf="DeviceGroupForm.value.GroupType=='Multi'" >
     <label >Device Type</label>
-      <ng-multiselect-dropdown
+      <!-- <ng-multiselect-dropdown #multiselect [disabled]="selectedIndex===1"
       [placeholder]="''"
       [settings]="dropdownSettings"
       [data]="dropdownList"
@@ -53,22 +81,41 @@
       name="selectedItems"
        formControlName="DeviceType"
       required
+      
     >
-    </ng-multiselect-dropdown>
+    </ng-multiselect-dropdown> -->
+
+    <mat-form-field appearance="outline" class="w-100">
+      <mat-select id="DeviceType" formControlName="DeviceType" multiple>
+        <mat-select-search [formControl]="DeviceType"></mat-select-search>
+        <mat-option *ngFor="let item of DeviceType" [value]="item">{{item.item_text}}</mat-option>
+       
+      </mat-select>
+    </mat-form-field>
     <small class="text-danger" *ngIf="(DeviceGroupForm.value.DeviceType.length < 2) && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) ">Select more than 1 Device Type</small>
   </div> 
 
 
 
     </form>
+    <div *ngIf="selectedIndex===0">
+    <button mat-button matStepperNext style="background-color: #79A831; color: white;" class="ml-3">Next</button>
+    <button mat-button [disableRipple]="true" class="ml-1" [routerLink]="['/devices-group']" style="background-color: rgb(241,242,246);" >Cancel</button>
+  </div>
+  </mat-step>
    
   <!-- Existing Devices -->
-
-    <div class="ml-3" *ngIf="DeviceGroupForm.valid" > 
+  <mat-step editable="false" >
+    <ng-template matStepLabel>Select Devices</ng-template>
+    <div class="ml-3"  *ngIf="selectedIndex===1  "> 
       <div style="position: relative;" class="mt-4">
-      <h1 style="color: rgb(107, 104, 104); float: left; font-weight: 500; ">Select Devices</h1>
+      <h1 style="color: rgb(107, 104, 104); float: left; font-weight: 300; ">Existing Devices</h1>
     </div>
       <app-card  [tempData]="tempData" (sendData)="DatafromCard($event)"></app-card>
 
     </div> 
+  </mat-step>
+
+  </mat-vertical-stepper>
+</div>
   </div>
