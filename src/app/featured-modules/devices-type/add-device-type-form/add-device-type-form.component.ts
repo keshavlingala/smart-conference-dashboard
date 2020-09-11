@@ -15,10 +15,10 @@ export class AddDeviceTypeFormComponent implements OnInit {
     this.deviceTypeForm = this.fb.group({
       deviceType: ['' , Validators.required],
       actions: ['', Validators.required],
-      attributes: this.fb.array([])
+      attributes: this.fb.array([]),
     });
 
-    this.addAnotherAttribute();
+    this.initilalizeAttributes();
   }
 
   get attributes(){
@@ -29,8 +29,7 @@ export class AddDeviceTypeFormComponent implements OnInit {
     return this.deviceTypeForm.get('actions');
   }
 
-  
-  addAnotherAttribute(){
+  initilalizeAttributes(){
     let attribute = this.fb.group({
       name: ['', Validators.required],
       accId: ['', Validators.required],
@@ -39,10 +38,23 @@ export class AddDeviceTypeFormComponent implements OnInit {
     });
     this.attributes.push(attribute);
   }
+  
+  addAnotherAttribute(i){
+    if(this.attributes.controls[i].valid){
+      let attribute = this.fb.group({
+        name: ['', Validators.required],
+        accId: ['', Validators.required],
+        dataType: ['',Validators.required],
+        securitySetting: ['', Validators.required]
+      });
+      this.attributes.push(attribute);
+    }
+  }
 
   deleteAttribute(i){
     this.attributes.removeAt(i);
   }
+
 
   onFormSubmit(){
     if(this.deviceTypeForm.valid){

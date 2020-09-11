@@ -1,0 +1,16 @@
+Properties
+------------------------------------------------------------------------------------------------------------------------------
+@Input('heading'):string
+
+The heading to be shown in the left side nav.
+If it is not passed then no heading will be shown.
+--------------------------------------------------------------------------------------------------------------------------------
+@Input('showLogoutBtn):boolean
+
+if you do not want to show the logout button then pass it as false.
+------------------------------------------------------------------------------------------------------------------------------
+@Input('navItems'): (NavItem|GroupedNavItem)[]
+
+It is list of nav items to be shown.
+Some of the nav items may be grouped
+------------------------------------------------------------------------------------------------------------------------------

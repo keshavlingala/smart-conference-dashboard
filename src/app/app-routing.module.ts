@@ -5,7 +5,6 @@ import {PageNotFoundComponent} from './components/page-not-found/page-not-found.
 import {DevicesComponent} from './components/devices/devices-base-page/devices.component';
 import {GenerateKeysComponent} from './components/generate-keys/generate-keys.component';
 import {DashboardComponent} from './components/dashboard/dashboard.component';
-import {MembersComponent} from './components/members/members.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 
@@ -34,7 +33,6 @@ const routes: Routes = [
 },
   {path: "generate-keys", component: GenerateKeysComponent, canActivate: [SideNavigationGuard]},
   {path: "dashboard", component: DashboardComponent, canActivate: [SideNavigationGuard]},
-  {path: "members", component: MembersComponent, canActivate: [SideNavigationGuard]},
   {path: "dummy1", component: Dummy1Component, canActivate: [SideNavigationGuard]},
   {path: "dummy2", component: Dummy1Component, canActivate: [SideNavigationGuard]},
   {path: "dummy3", component: Dummy1Component, canActivate: [SideNavigationGuard]},
