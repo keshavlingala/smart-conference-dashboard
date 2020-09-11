@@ -1,0 +1,13 @@
+
+MAT_DIALOG_DATA:
+Injection token that can be used to access the data that was passed in to a dialog component.
+---------------------------------------------------------------------------------------------------
+data: DialogData (Injected through MAT_DIALOG_DATA)
+Data sent from the parent component. Data consists of template : TemplateRef<any>
+---------------------------------------------------------------------------------------------------
+dialogRef: MatDialogRef
+Reference to a dialog opened
+----------------------------------------------------------------------------------------------------
+ngTemplateOutlet
+To place the template passed by the parent component in the present component
+----------------------------------------------------------------------------------------------------

@@ -1,0 +1,33 @@
+[33m65a7438[m[33m ([m[1;36mHEAD -> [m[1;32mbranch0[m[33m, [m[1;31morigin/branch0[m[33m)[m HEAD@{0}: reset: moving to 65a743834dffc4f5edc2ef40f82ba7d0c145bb35
+[33mff486e9[m HEAD@{1}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33m8a83c09[m HEAD@{2}: commit: Added documentation
+[33m8264101[m HEAD@{3}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33mc7acb34[m HEAD@{4}: commit: Added material inputs
+[33m5a53b89[m HEAD@{5}: pull origin branch0: Fast-forward
+[33mbf809a7[m HEAD@{6}: commit: Fixed Data Service imports
+[33m98f0d8c[m HEAD@{7}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33m76d4be0[m HEAD@{8}: commit: Updated dropdown Functionality
+[33m47e44ec[m HEAD@{9}: commit: Ota Response Integrated
+[33ma5becc0[m HEAD@{10}: commit (merge): Conflict Fixed
+[33md35d717[m HEAD@{11}: commit: OTA backup
+[33m502f11f[m HEAD@{12}: pull origin branch0: Fast-forward
+[33me87af6c[m HEAD@{13}: pull origin branch0: Fast-forward
+[33m150468e[m HEAD@{14}: pull origin branch0: Fast-forward
+[33mc7834ee[m HEAD@{15}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33m6cd640a[m HEAD@{16}: commit: Removed spinner
+[33mfc1425c[m HEAD@{17}: commit: Put the spinner's css in styles.css
+[33m77408e7[m HEAD@{18}: commit: Added the resolver and updated the spinner
+[33m412219f[m HEAD@{19}: pull origin branch0: Fast-forward
+[33maeba02e[m HEAD@{20}: commit (merge): Updated validators for forms
+[33m10527fc[m HEAD@{21}: commit: Updated validators for forms
+[33mad36f2e[m HEAD@{22}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33m8637201[m HEAD@{23}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33ma97943e[m HEAD@{24}: commit: Added loader for submit button
+[33mfb2f6c3[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{25}: checkout: moving from master to branch0
+[33mfb2f6c3[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{26}: checkout: moving from master to master
+[33mfb2f6c3[m[33m ([m[1;32mmaster[m[33m)[m HEAD@{27}: commit: Integrated OTA Updates and Add Device
+[33m1313eb3[m HEAD@{28}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33m9f91ad9[m HEAD@{29}: commit: Temp1
+[33mffe67b3[m HEAD@{30}: pull origin branch0: Merge made by the 'recursive' strategy.
+[33mcf79a4f[m HEAD@{31}: commit (merge): Temp
+[33mc7432d8[m HEAD@{32}: commit (initial): Temporary

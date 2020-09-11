@@ -1,11 +1,12 @@
-<div class="p-3">
+<div class="pl-3 pr-3">
   <h1>RULES</h1>
   <div class="d-flex align-items-start justify-content-between flex-wrap">
-    <button mat-raised-button style="background-color: #79A831; color: white;" routerLink="add">Add Rule</button>
+    <button mat-raised-button routerLink="add" style="background-color: #79A831; color: white;">Add Rule</button>
     <span class="flex-fill"></span>
     <div class="position-relative">
-      <input (keyup)="filterSearch(searchInput.value)" type="text" #searchInput placeholder="Search by any parameter"
-             class="p-2 pr-4 rounded" style="border: none; outline: none;">
+      <input #searchInput (keyup)="filterSearch(searchInput.value)" class="p-2 pr-4 rounded"
+             placeholder="Search by any parameter"
+             style="border: none; outline: none;" type="text">
       <mat-icon class="position-absolute text-secondary"
                 style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search
       </mat-icon>
@@ -16,26 +17,32 @@
   <mat-spinner></mat-spinner>
 </div>
 <div class="row mt-3">
-  <div class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2 pr-4" *ngFor="let device of (shownData | async)">
+  <div *ngFor="let device of (shownData | async)" class="col-12 col-sm-6 col-md-6 col-lg-4 col-xl-3 mb-2 pr-4">
     <div class="mat-elevation-z2 rounded bg-white d-flex flex-column" style="padding: 10px;min-height: 200px;">
       <div class="d-flex align-items-center">
         <h3 style="margin: 0;color: #fb7e6e">{{device.deviceType}}</h3>
         <span class="flex-fill"></span>
         <mat-chip-list>
-          <mat-chip selected (click)="popRules(device)"
+          <mat-chip (click)="popRules(device)" selected
                     style="background-color: rgba(234,82,222,0.68);padding: 6px;font-size: smaller;color: #7d2e90;">
             {{device.rules.length}} rules
           </mat-chip>
         </mat-chip-list>
       </div>
-      <div style="font-size: 13px;" class="d-flex flex-column"
-           *ngFor="let rule of device.rules.slice(0,2);let i=index">
+      <div *ngFor="let rule of device.rules.slice(0,2);let i=index" class="d-flex flex-column mt-1"
+           style="font-size: 13px;">
         <span>{{rule.ruleName}}</span>
-        <span>{{rule.actions[0]}}</span>
-        <span style="font-size: 0.7rem;color: gray;">Created on {{ rule.createdAt | date:'mediumDate'}}</span>
+        <div class="d-flex justify-content-start mt-1">
+          <span *ngFor="let action of rule.actions.slice(0,2)" class="d-flex align-items-center m-1"
+                style="font-size: 1rem">
+            <mat-icon>ac_unit</mat-icon>
+            <span style="font-size: 0.8rem">{{action}}</span>
+          </span>
+        </div>
+        <!--        <span style="font-size: 0.7rem;color: gray;">Created on {{ rule.createdAt | date:'mediumDate'}}</span>-->
         <hr *ngIf="i==0" style="margin-top: 2px;margin-bottom: 2px;">
       </div>
-      <div style="color: #7589df;font-size: smaller;margin-top: auto" class="text-right">
+      <div class="text-right" style="color: #7589df;font-size: smaller;margin-top: auto">
         <span (click)="popRules(device)" class="pointer">View More Rules</span>
       </div>
     </div>
@@ -52,11 +59,11 @@
     ((selectedIndex + 1) * pageSize - pageSize + 1) + ' - ' + min((selectedIndex + 1) * pageSize, totalSize) + ' of ' + totalSize
     }}
   </span>
-  <div *ngIf="selectedIndex>0" (click)="onPageChange(selectedIndex-1)" class="page-button">{{"<"}}</div>
-  <div (click)="onPageChange(i)" [ngClass]="{'active-page':selectedIndex===i}" class="page-button"
-       *ngFor="let page of pages;let i = index">
+  <div (click)="onPageChange(selectedIndex-1)" *ngIf="selectedIndex>0" class="page-button">{{"<"}}</div>
+  <div (click)="onPageChange(i)" *ngFor="let page of pages;let i = index" [ngClass]="{'active-page':selectedIndex===i}"
+       class="page-button">
     {{i + 1}}
   </div>
-  <div *ngIf="selectedIndex<pages.length-1" (click)="onPageChange(selectedIndex+1)" class="page-button">{{">"}}</div>
+  <div (click)="onPageChange(selectedIndex+1)" *ngIf="selectedIndex<pages.length-1" class="page-button">{{">"}}</div>
 </div>
 

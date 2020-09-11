@@ -1,0 +1,19 @@
+OTA UPDATES
+
+Overview:
+As the project is about devices. Each device is associated with a device type and each device type has a set of OTA Updates.
+
+Features:
+1. List of existing OTA updates: Once the user selects a device type, ota updates for that device type are listed.
+The listing is done in two ways:
+  A. Cards: OTA updates from latest to old with the feasibility of pagination are displayed. Each card consists of the information of OTA name, device type, and date it was created on.
+  B. Timeline: The OTA updates are shown in a sorted way, the most recent updates are displayed at the top. It also gives a choice to filter the updates according to date, ota version, ota name, and description.
+
+2. Add an ota update under a particular device type
+After viewing the existing updates if needed the user can add an ota update. A form comprising of the below details must be filled.
+Fields to be filled:
+  A. Ota name
+  B. Device type
+  C. Ota version
+  D. Description
+  E. A relevant file

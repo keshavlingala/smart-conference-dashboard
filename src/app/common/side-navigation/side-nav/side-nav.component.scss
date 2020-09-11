@@ -149,48 +149,49 @@ color: red;
     border-radius: 3px;
 }
 
-::ng-deep .mat-expansion-panel {
-    background-color: $mainColor;
-    box-shadow: none !important;
+.side-nav {
+    ::ng-deep .mat-expansion-panel {
+        background-color: $mainColor;
+        box-shadow: none !important;
+    }
+    
+    ::ng-deep .mat-expansion-panel-header{
+        font-family: Cambria;
+        color: #816788;
+        height: 30px !important;
+        margin-bottom: 12px;
+    }
+    
+    ::ng-deep .mat-list-item-content {
+        padding: 0 !important;
+    }
+    
+    ::ng-deep .mat-expansion-panel-header .nav-active-pointer{
+        display: none;
+    }
+    
+    ::ng-deep .mat-expansion-panel-body{
+        padding: 0 !important;
+    }
+    
+    ::ng-deep .mat-expansion-indicator::after{
+        color: #816788 !important;
+    }
+    
+    ::ng-deep .mat-expansion-panel-header.mat-expanded {
+        color: white !important;
+        border-left: 5px solid #ED756A;
+      }
+    
+    ::ng-deep .mat-expansion-panel-header.mat-expanded .nav-active-pointer {
+        display: block;
+      }
+    
+    ::ng-deep .mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after{
+        color: white !important;
+    }
+    
+    ::ng-deep .mat-expansion-panel-header:hover {
+        background: none !important;
+    }    
 }
-
-::ng-deep .mat-expansion-panel-header{
-    font-family: Cambria;
-    color: #816788;
-    height: 30px !important;
-    margin-bottom: 12px;
-}
-
-::ng-deep .mat-list-item-content {
-    padding: 0 !important;
-}
-
-::ng-deep .mat-expansion-panel-header .nav-active-pointer{
-    display: none;
-}
-
-::ng-deep .mat-expansion-panel-body{
-    padding: 0 !important;
-}
-
-::ng-deep .mat-expansion-indicator::after{
-    color: #816788 !important;
-}
-
-::ng-deep .mat-expansion-panel-header.mat-expanded {
-    color: white !important;
-    border-left: 5px solid #ED756A;
-  }
-
-::ng-deep .mat-expansion-panel-header.mat-expanded .nav-active-pointer {
-    display: block;
-  }
-
-::ng-deep .mat-expansion-panel-header.mat-expanded .mat-expansion-indicator::after{
-    color: white !important;
-}
-
-::ng-deep .mat-expansion-panel-header:hover {
-    background: none !important;
-}
-

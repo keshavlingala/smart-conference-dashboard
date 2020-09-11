@@ -9,8 +9,6 @@ export class DevicesTypeListingComponent implements OnInit{
 
   public devicesTypeData;
   public devicesTypeCount = 0;
-  public searchedDevicesTypeData = [];
-  public loading:boolean = true;
   public currentlyShowingDevicesType;
   
   public config  = {
@@ -39,12 +37,11 @@ export class DevicesTypeListingComponent implements OnInit{
 
   search(e){
     var str = e.target.value.toLowerCase();
-    this.searchedDevicesTypeData=this.devicesTypeData.filter((device)=>{
+    this.currentlyShowingDevicesType=this.devicesTypeData.filter((device)=>{
       if(device.deviceType.toLowerCase().includes(str)){
         return true;
       }
     });
-    this.currentlyShowingDevicesType = this.searchedDevicesTypeData;
   }
 
 }

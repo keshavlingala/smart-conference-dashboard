@@ -8,8 +8,8 @@ import { Component, OnInit,Input,Output, EventEmitter} from '@angular/core';
 export class CardListComponent implements OnInit {
 
   @Input('devicesTypeData') public cards = [];
-  @Input('devicesTypeCount') public cardsCount;
-  @Input('perPageData') public perPageCards; 
+  @Input('devicesTypeCount') public cardsCount:number;
+  @Input('perPageData') public perPageCards:number; 
   @Output() paginationEvent = new EventEmitter();
   public currentPage = 0; //0 based indexing
   public math = Math;

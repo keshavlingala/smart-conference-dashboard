@@ -2,7 +2,8 @@ import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges
 
 import {Ota2} from "../../../featured-modules/ota-updates/ota.model";
 import {DataViewConfig} from "../models/timeline.model";
-import {animate, state, style, transition, trigger} from "@angular/animations";
+import {MatDatepickerInputEvent} from "@angular/material/datepicker";
+import {DatePipe} from "@angular/common";
 
 
 @Component({
@@ -45,16 +46,18 @@ export class DataviewComponent implements OnInit, OnChanges {
   filterRes(key: string) {
     key = key.toLowerCase();
     this.selectedUpdates = this.dataViewConfig[this.selectedType].filter(ota => {
-      return ota.createdAt.toLowerCase().includes(key) ||
-        ota.otaDescription.toLowerCase().includes(key) ||
-        ota.otaName.toLowerCase().includes(key) ||
-        ota.otaVersion.toLowerCase().includes(key) ||
-        ota._id.toLowerCase().includes(key)
+      return ota.createdAt.toLowerCase().includes(key)
     })
     console.log(this.selectedUpdates)
   }
 
   typeChanged() {
     this.selectedUpdates = this.dataViewConfig[this.selectedType]
+  }
+
+  dateChange($event: MatDatepickerInputEvent<unknown, unknown>) {
+    const pipe = new DatePipe('en-US');
+    const key = pipe.transform($event.value, 'MMM')
+    this.filterRes(key);
   }
 }
