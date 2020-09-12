@@ -78,10 +78,12 @@ export class AddDeviceGroupComponent implements OnInit {
         this.DeviceType = JSON.parse(this.deviceTypeClone);
         return;
       }
-    this.DeviceType = this.DeviceType.filter((d)=>{
+    this.DeviceType = JSON.parse(this.deviceTypeClone).filter((d)=>{
       var text = d.item_text.toLowerCase();
       var searchValue = e.target.value.toLowerCase();
-      return text.includes(searchValue);
+       if(text.includes(searchValue)){
+        return d.id;
+      };
     })
 
 
@@ -259,14 +261,16 @@ export class AddDeviceGroupComponent implements OnInit {
         this.finalData.push(this.DeviceGroupForm.value );
       
          var dummy = [];
-     // console.log(this.finalData);
+    //  console.log(this.DeviceGroupForm.controls['GroupType'].value);
        if(this.DeviceGroupForm.controls['GroupType'].value==='Single')
         {
+          
          this.result.deviceTypes.push(this.DeviceGroupForm.controls['DeviceType'].value.item_text );
         }
         if(this.DeviceGroupForm.controls['GroupType'].value==='Multi')
         {
-          this.DeviceGroupForm.controls['DeviceType'].value.map(data=>{ dummy.push(data.item_text)});
+         // this.DeviceGroupForm.controls['DeviceType'].value.map(data=>{ dummy.push(data.item_text)});
+          this.DeviceGroupForm.controls['DeviceType'].value.map(data=>{ this.DeviceType.map((d)=>{ if(d.id==data){dummy.push(d.item_text) }})});
           this.result.deviceTypes=dummy;
         }
        this.result.groupType= this.DeviceGroupForm.controls['GroupType'].value ;
@@ -277,5 +281,7 @@ export class AddDeviceGroupComponent implements OnInit {
 
     toggleCalled(){
       this.DeviceGroupForm.controls['DeviceType'].setValue('');
+      this.result.deviceTypes=[];
+      this.DeviceType= JSON.parse(this.deviceTypeClone);
     }
 }
