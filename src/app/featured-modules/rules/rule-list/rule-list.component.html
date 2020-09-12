@@ -32,8 +32,8 @@
       <div *ngFor="let rule of device.rules.slice(0,2);let i=index" class="d-flex flex-column mt-1"
            style="font-size: 13px;">
         <span>{{rule.ruleName}}</span>
-        <div class="d-flex justify-content-start mt-1">
-          <span *ngFor="let action of rule.actions.slice(0,2)" class="d-flex align-items-center m-1"
+        <div class="d-flex justify-content-between pr-1 mt-1 ">
+          <span *ngFor="let action of rule.actions.slice(0,2)" class="d-flex align-items-center"
                 style="font-size: 1rem">
             <mat-icon>ac_unit</mat-icon>
             <span style="font-size: 0.8rem">{{action}}</span>
