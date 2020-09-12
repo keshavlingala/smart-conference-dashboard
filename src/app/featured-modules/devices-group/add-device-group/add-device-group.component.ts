@@ -2,10 +2,8 @@ import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import {StepperSelectionEvent} from "@angular/cdk/stepper";
-import { Card, Setting } from './../../../common/card-module/models/card.model';
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { IDropdownSettings } from 'ng-multiselect-dropdown';
-import {MatSelectModule} from '@angular/material/select';
 
 @Component({
   selector: 'app-add-device-group',
@@ -255,13 +253,10 @@ export class AddDeviceGroupComponent implements OnInit {
     // Catching Event from Card
     DatafromCard(event)
     {
-     // this.selectedCard.push(event);
         this.selectedCard = event.map(String);
-        console.log(this.selectedCard);
         this.finalData.push(this.DeviceGroupForm.value );
       
          var dummy = [];
-    //  console.log(this.DeviceGroupForm.controls['GroupType'].value);
        if(this.DeviceGroupForm.controls['GroupType'].value==='Single')
         {
           

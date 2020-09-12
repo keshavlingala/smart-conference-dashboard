@@ -97,7 +97,6 @@ export class CardComponent implements OnInit {
         this.disableBbttn=true;
             this.disableFbttn= true;
     }
-   // console.log("search array",this.searchIndex);
     
     
   }
@@ -175,7 +174,6 @@ if(this.currentMatrixIndex===0)
      else{
        this.resetAll();
      }
-     //console.log(this.currentlyShowing);
  }
 
  resetAll(){

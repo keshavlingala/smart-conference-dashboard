@@ -19,10 +19,9 @@
           </button>
       </ng-template>
     
-
 <form [formGroup]="DeviceGroupForm" #form1 class="FORM" >
   <ng-template matStepLabel>Fill out your name</ng-template>
-  {{DeviceGroupForm.value | json}}
+  <!-- {{DeviceGroupForm.value | json}} -->
 
     <div class="row mr-0">
     <div class="col ml-3 form-group col-md-4">
@@ -50,13 +49,6 @@
     <!-- Single Select Dropdown -->
     <div class="form-group col-md-4"  *ngIf="DeviceGroupForm.value.GroupType=='Single'">
         <label >Device Type</label>
-        <!-- <select id="inputState" id="DeviceType" formControlName="DeviceType" class="form-control" placeholder="hello" [class.invalid]="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) " >
-          <option selected></option>
-          <option *ngFor="let item of DeviceType" [ngValue]="item">{{item.item_text}}</option>
-        </select>
-        <small class="text-danger" *ngIf="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty)">Select Device Type</small> -->
-        
-
         <mat-form-field appearance="outline" class="w-100">
           <mat-select id="DeviceType" formControlName="DeviceType">
             
@@ -89,10 +81,9 @@
       <mat-select id="DeviceType" formControlName="DeviceType" multiple>
         <input class="searchInput" autocomplete="" matInput placeholder="Search" (keyup)="filterDropdown($event)">
         <mat-option *ngFor="let item of DeviceType" [value]="item.id">{{item.item_text}}</mat-option>
-       
       </mat-select>
     </mat-form-field>
-    <small class="text-danger" *ngIf="(DeviceGroupForm.value.DeviceType.length < 2) && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) ">Select more than 1 Device Type</small>
+    <small style="margin-top: -8px;" class="text-danger" *ngIf="(DeviceGroupForm.value.DeviceType.length < 2) && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty) ">Select more than 1 Device Type</small>
   </div> 
 
 

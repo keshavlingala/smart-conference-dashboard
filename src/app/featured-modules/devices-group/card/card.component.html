@@ -8,13 +8,6 @@
 
         <!-- Search button -->
         <div class="searchbox ml-5">
-    <!-- <mat-form-field style="float: right;" class="search" appearance="outline">
-      <mat-label>Search by any parameter</mat-label>
-       <label>
-       <input  (keyup)="search($event)" matInput>
-      </label>
-       <mat-icon class="mr-3" color="primary" matSuffix>search</mat-icon>
-   </mat-form-field>  -->
    <div class="position-relative mr-lg-3">
     <input (keyup)="search($event)" type="text" #searchStr placeholder="Search by any parameter" class="p-1 pr-4 rounded" style="border: none; outline: none; height:42px">
     <mat-icon class="position-absolute text-secondary" style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search</mat-icon>
