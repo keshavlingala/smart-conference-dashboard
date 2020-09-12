@@ -1,0 +1,30 @@
+Add Devices Group Documentation 
+
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+Add Devices group mainly consist form that include:
+
+1) There is a title in the top left upper corner.
+
+2) There is a Bread crump , by which you can move to home page of Devices group.
+
+3) There are two main things first one is steeper and the other one is Form : which consist of mainly 3 fields and all the fields are mandatory. If the fields are not valid then if you click to next button then it will show error on particular fields. If you want to go to the next stepper then you need to properly validate the form. The Form is build by using the material form. The 3 Form Fields are:
+
+   a) Group Name: This Field is of type text. This field is mandatory field.
+
+   b) Group Type: This is a 2 Toggle buttons. The values are Homogeneous and Heterogeneous.When selected Homogeneous a Device Type is 
+      shown which is single drop down menu and you can select only one option. On selecting Heterogeneous a Device Type is shown which 
+      is a multi select dropdown. You can select more than 1 value. You need to select more than one value to validate the form. In 
+      multi select dropdown you can select all, un-select all and search for options.
+
+   c) Device Type: This is a dropdown menu. Its depend on Group Type, if the Group Type toggle button is selcted as Homogeneous then single
+      dropdown menu is enabled. and if the Group Type toggle button is selcted as Heterogeneous then multi select dropdown menu is enabled.
+      which have certain features like select-all, un-select-all and search for the option.
+
+-----------------------------------------------------------------------------------------------------------------------------------------------
+
+When the Devices Group form is valid the the output is shown on the same page.Which call's app-card component. Where you can see Heading i.e Select Device , Search box input and Selectable Cards.
+
+NOTE : FOR MORE INFORMATION SEE app-card README AND DOCUMENTATION FILES.
+
+------------------------------------------------------------------------------------------------------------------------------------------------

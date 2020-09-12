@@ -1,0 +1,23 @@
+
+Devices-Group Home page Docuentation
+----------------------------------------------------------------------------------------------------------------------------
+
+1) The Title of the page is dispalayed on the top most left upper cornor.
+
+2) A button named Add Group is there. When click on this button the page will route to '/devices-group/add-device-group'.
+   which contain a form and the add-device-group component is called.
+   NOTE : FOR MORE INFORMATION SEE add-device-group component DOCUMENTATION.
+
+3) A data coming from the api will be shown in the table. which will show 3 columns i.e Group Name , Group Type and Created 
+   At. Each row have seperate edit and delete button. which on clicking will provide you the data i.e on which row you have 
+   clicked.The table also have search input which you can filter the table data. There is also Bulk delete and disable buttons
+   present, which will provide the selected rows data.The pagination is also present in which you can move to next Page.You 
+   can also configure the number of items you want to display i.e Items per page dropdown.Each coloumn is having sorting 
+   funtion.
+
+-----------------------------------------------------------------------------------------------------------------------------
+
+NOTE : FOR MORE INFORMATION REGARDING THE TABLE REFER app-data-table README AND DOCUMENTATION.
+
+------------------------------------------------------------------------------------------------------------------------------
+   

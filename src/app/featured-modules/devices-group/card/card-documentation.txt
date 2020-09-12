@@ -1,0 +1,44 @@
+Card Component Documentation
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+The card component mainly consist of displaying selectable cards and displaying all the properties related to cards like: search box ,
+pagination, forward and backward arrow buttons, etc.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Displaying Selectable Cards:
+
+The card component accepts the data parameter which consist of the Card Data (id, title, content and footer), looping through and showing 
+the card data in 4 rows and 2 columns. These cards are selectable, if you click on any card a green checkbox icon appear's which indicate that 
+the card has been selected. On clicking back on that card will d-select the card and green-checkbox icon will get disappear. You can also hover
+on all cards.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Pagination :
+
+The pagination consist of move forward and backward icons and text to show how many cards are being displayed. On clicking the move forward icon
+the next card will be shown. On clicking the backward icon button the previous cards are displayed.Disabled property is also applied to the forward and backward buttons. If the forward button reached the end of the cards then the icon turns to grey similarly when you are displaying the first page then the backward icon button turns to grey.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Search Box:
+
+The search box accepts field of type text and  is used to filter the data from cards and showing the relevant data.
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+Buttons:
+
+It consist of two buttons Add to Group and Cancel button. When you select a card greater than or equal to 1, then these 2 buttons are visible just above the cards. When you have selected some cards and click on 'Add to Group' Button the the Event is Emitted to the component which is callig this component which contain an array selected cards id's. When you de-select all the cards then this button got disabled and the button turns to grey color. On clicking Cancel button the page is routed ('/devices-group') to the home page of the Devices Group.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------
+
+Filter Icon button:
+
+It is present just right side of the search bar. If you click on this Icon you will be able to see the dropdown, which contain sertain sorting techniques
+for example: Recently Used, Sort A-Z , Recently Deleted and Filter Condition 1. On clicking Sort A-Z it will sort the cards in ascending order. On clicking Recently Used, it will sort the cards based on Date.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------
+
