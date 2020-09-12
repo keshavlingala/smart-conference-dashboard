@@ -1,0 +1,20 @@
+
+Documentation of app-my card
+
+---------------------------------------------------------------------------------------------------------------------------
+
+The app-my-card component is used to show the data in form of cards i.e Title, Footer and Content.This component is 
+completely configurable.You can send the data, boolean value for showDefault content, design , icon , number of 
+columns you want to show , number of elements per page , apipaginator , etc.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+The app-my-card component is capable of showing custom data also.If you want to show the custom data then you need to set 
+boolean value of showDefault content to 'false', and you can pass the data within the tag of app-my card and the data will
+be projected accordingly. For applying this feature content projection approch is used.
+
+---------------------------------------------------------------------------------------------------------------------------
+
+NOTE : REFER app-my-card-ReadMe.txt for more Information.
+
+----------------------------------------------------------------------------------------------------------------------------

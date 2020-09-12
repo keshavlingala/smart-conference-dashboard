@@ -20,11 +20,13 @@ export class CardComponent implements OnInit {
   Searchindex : number=0;
   toggle:boolean=false;
   elementPagination = 8;
-  searchIndex=[]
+  searchIndex=[];
+  tempDataClone;
   // public dummy=[];
   constructor() { }
 
   ngOnInit(): void {
+    this.tempDataClone = JSON.stringify(this.tempData);
     this.paginationMatrix = this.gMatrix(this.tempData, 8);
     this.currentlyShowing = this.paginationMatrix[0];
   }
@@ -95,7 +97,6 @@ export class CardComponent implements OnInit {
         this.disableBbttn=true;
             this.disableFbttn= true;
     }
-   // console.log("search array",this.searchIndex);
     
     
   }
@@ -143,5 +144,42 @@ if(this.currentMatrixIndex===0)
     this.disableBbttn=true;
   }
 }
+
+ sortAlpha(x){
+   
+   if(x)
+   {
+     this.tempData.sort((a, b) => (a.Title > b.Title) ? 1 : -1);
+     this.paginationMatrix = this.gMatrix(this.tempData, 8);
+    this.currentlyShowing = this.paginationMatrix[0];
+   }
+   else {
+     this.resetAll();
+   }
+   
+ }
+ sortByRecentlyAdded(x){
+     if(x)
+     {
+       this.tempData.sort((a,b)=>{
+         var d1 = new Date(a.Date);
+         var d2 = new Date(b.Date);
+        return Number(d2)- Number(d1)
+       });
+       this.paginationMatrix = this.gMatrix(this.tempData, 8);
+        this.currentlyShowing = this.paginationMatrix[0];
+      
+      
+     }
+     else{
+       this.resetAll();
+     }
+ }
+
+ resetAll(){
+  this.tempData = JSON.parse(this.tempDataClone);
+  this.paginationMatrix = this.gMatrix(this.tempData, 8);
+    this.currentlyShowing = this.paginationMatrix[0];
+ }
 
 }
