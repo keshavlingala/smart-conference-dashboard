@@ -8,109 +8,138 @@ $blue: #4183D7;
 $font-stack: "Lato", sans-serif;
 $small: 40em;
 
-.body{
+.body {
   padding: 30px;
-  h1{
+
+  h1 {
     color: #5a3863;
   }
-.col-md-6{
-  justify-content: space-between;
-}
-.breadcrumb-item + .breadcrumb-item::before {
-  content: ">";
-}
-::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
-  background-color: white;
-  border-radius: 5px;
-}
-::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.6em 0 !important;}
 
-.buttonColor{
-background-color: #fb7b6b;
-}
-.mat-spinner {
-  z-index: 900;
-  top:40%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  position: absolute;
-}
-.container {
-  height: 100%;
-  min-height: 100%;
-  margin: 0 auto;
-}
-
-.button-wrap {
-  position: relative;
-  // text-align: center;
-  // top: 50%;
-  margin-top: -2.5em;
-  @media (max-width: $small) {margin-top: -1.5em;}
-}
-
-
-.button-label {
-  display: inline-block;
-  padding: 6px 18px;
-  padding-top: 10px;
-  margin-right: 1em;
-  cursor: pointer;
-  color: $dark;
-  border-radius: 0.25em;
-  background: $light;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
-  transition: 0.3s;
-  user-select: none;
-  padding-bottom: 0px;
-  h1 {
-    font-size: 1em;
-    font-family: $font-stack;
-
+  .col-md-6 {
+    justify-content: space-between;
   }
-  &:hover {
-    background: darken($light, 10%);
-    color: darken($dark, 10%);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.32);
+
+  .breadcrumb-item + .breadcrumb-item::before {
+    content: ">";
   }
-  &:active {
-    transform: translateY(2px);
-    box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0px -1px 0 rgba(0,0,0,0.22);
+
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-outline {
+    background-color: white;
+    border-radius: 5px;
   }
-  @media (max-width: $small) {
-    padding: 0em 1em 3px;
-    margin: 0.25em;
+
+  ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+    padding: 0.6em 0 !important;
+  }
+
+  .buttonColor {
+    background-color: #fb7b6b;
+  }
+
+  .mat-spinner {
+    z-index: 900;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+  }
+
+  .container {
+    height: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+  }
+
+  .button-wrap {
+    position: relative;
+    // text-align: center;
+    // top: 50%;
+    margin-top: -2.5em;
+    @media (max-width: $small) {
+      margin-top: -1.5em;
+    }
+  }
+
+
+  .button-label {
+    display: inline-block;
+    padding: 6px 18px;
+    padding-top: 10px;
+    margin-right: 1em;
+    cursor: pointer;
+    color: $dark;
+    border-radius: 0.25em;
+    background: $light;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
+    transition: 0.3s;
+    user-select: none;
+    padding-bottom: 0px;
+
+    h1 {
+      font-size: 1em;
+      font-family: $font-stack;
+
+    }
+
+    &:hover {
+      background: darken($light, 10%);
+      color: darken($dark, 10%);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
+    }
+
+    &:active {
+      transform: translateY(2px);
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0px -1px 0 rgba(0, 0, 0, 0.22);
+    }
+
+    @media (max-width: $small) {
+      padding: 0em 1em 3px;
+      margin: 0.25em;
+    }
+  }
+
+  #yes-button:checked + .button-label {
+    background: $blue;
+    color: $light;
+
+    &:hover {
+      background: darken($blue, 5%);
+      color: darken($light, 5%);
+    }
+  }
+
+  #no-button:checked + .button-label {
+    background: $blue;
+    color: $light;
+
+    &:hover {
+      background: darken($blue, 5%);
+      color: darken($light, 5%);
+    }
+  }
+
+  #maybe-button:checked + .button-label {
+    background: $blue;
+    color: $light;
+
+    &:hover {
+      background: darken($blue, 5%);
+      color: darken($light, 5%);
+    }
+  }
+
+  .hidden {
+    display: none;
   }
 }
 
-#yes-button:checked + .button-label {
-  background: $blue;
-  color: $light;
-  &:hover {
-    background: darken($blue, 5%);
-    color: darken($light, 5%);
+.types {
+  ::ng-deep .mat-button-toggle-checked {
+    background-color: #4A75FA;
+    color: white !important;
   }
 }
 
-#no-button:checked + .button-label {
-  background: $blue;
-  color: $light;
-  &:hover {
-    background: darken($blue, 5%);
-    color: darken($light, 5%);
-  }
-}
-
-#maybe-button:checked + .button-label {
-  background: $blue;
-  color: $light;
-  &:hover {
-    background: darken($blue, 5%);
-    color: darken($light, 5%);
-  }
-}
-
-.hidden {
-  display: none;
-}
+::ng-deep .mat-button-toggle-label-content {
+  line-height: 36px !important;
 }

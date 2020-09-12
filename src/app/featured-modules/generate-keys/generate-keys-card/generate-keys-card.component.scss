@@ -1,6 +1,6 @@
 .mat-card {
   width: 400px;
-  height: 550px;
+  height: 531px;
   overflow-y: scroll;
 
   .mat-card-title {
@@ -11,8 +11,6 @@
 ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
   padding: 0.6em 0 !important;
 }
-
-
 
 
 .deviceTitle {
@@ -26,6 +24,7 @@
   position: relative;
   width: 300px;
   text-align: center;
+  cursor: pointer;
 
   &:focus, &:hover {
     box-shadow: 0 5px 10px 0 #3535357a;
@@ -83,6 +82,7 @@
   color: grey;
   font-weight: 500;
   border: 2px solid lightgray;
+  cursor: pointer;
 
   &:hover {
     background-color: purple;
@@ -111,7 +111,28 @@
   align-items: center;
   justify-content: center;
   padding: 0;
-  margin: 3px;
   width: 20px;
   height: 20px;
+  cursor: pointer;
+}
+
+.drop-search {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 10px 0;
+
+  input {
+    outline: none;
+    padding: 10px;
+    width: 100%;
+    border: none;
+  }
+}
+
+.fake-option {
+  opacity: 0;
+  z-index: -1;
 }

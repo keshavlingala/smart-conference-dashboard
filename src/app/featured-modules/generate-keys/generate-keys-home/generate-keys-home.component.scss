@@ -4,6 +4,7 @@
   color: #522D5B !important;
   position: relative;
   text-align: center;
+  cursor: pointer;
 
   &:focus, &:hover {
     box-shadow: 0 5px 10px 0 #3535357a;
@@ -52,4 +53,23 @@
     text-transform: uppercase;
     font-weight: 600;
   }
+}
+
+.purple {
+  color: purple;
+}
+
+.bg-purple {
+  background-color: purple;
+}
+
+.bg-orange {
+  background-color: orange;
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.6em 0 !important;
+}
+.cursor-pointer{
+  cursor: pointer;
 }

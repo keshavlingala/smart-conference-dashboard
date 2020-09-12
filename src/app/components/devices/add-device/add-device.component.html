@@ -3,15 +3,16 @@
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb pl-0" style="background-color: transparent;">
       <li class="breadcrumb-item"><a routerLink="/devices">Devices</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Add Devices</li>
+      <li aria-current="page" class="breadcrumb-item active">Add Devices</li>
     </ol>
   </nav>
-  <form #myForm="ngForm"  novalidate [formGroup]="addDeviceForm" (ngSubmit)="onSubmit()">
-    <div class="form-row">
+  <form #myForm="ngForm" (ngSubmit)="onSubmit()" [formGroup]="addDeviceForm" novalidate>
+    <div class="form-row ">
       <div class="form-group col-md-6">
-        <mat-label for="deviceType">Device Type</mat-label><br>
+        <mat-label for="deviceType">Device Type</mat-label>
+        <br>
         <mat-form-field appearance="outline" class="w-75">
-          <mat-select id="inputState" formControlName="deviceType">
+          <mat-select formControlName="deviceType" id="inputState">
             <mat-option *ngFor="let item of deviceTypes" [value]="item">{{item}}</mat-option>
           </mat-select>
           <mat-error>Device Type is required</mat-error>
@@ -19,54 +20,62 @@
 
       </div>
       <div class="form-group col-md-6">
-        <mat-label for="deviceName">Name</mat-label><br>
+        <mat-label for="deviceName">Name</mat-label>
+        <br>
         <mat-form-field appearance="outline" class="w-75">
-          <input matInput type="text" formControlName="deviceName" />
+          <input formControlName="deviceName" matInput type="text"/>
           <mat-error>Name is required</mat-error>
         </mat-form-field>
       </div>
     </div>
-    <div class="form-row">
-      <mat-radio-group class="form-group col-md-6">
-        <mat-label>Authentication Type</mat-label>
-        <div class="container mt-5">
-          <div class="button-wrap">
-            <input class="hidden radio-label" id="yes-button" type="radio" value="false"
-              formControlName="certificate" />
-            <label class="button-label" for="yes-button">
-              <h1>Access Token</h1>
-            </label>
-            <input class="hidden radio-label" id="no-button" type="radio" value="true" formControlName="certificate" />
-            <label class="button-label" for="no-button">
-              <h1>Certificate</h1>
-            </label>
-          </div>
-          <mat-error *ngIf="
-          addDeviceForm.get('certificate').hasError('required') &&
-          addDeviceForm.get('certificate').touched">Authentication Type is required</mat-error>
-        </div>
-      </mat-radio-group>
-      <div class="col-md-6"></div>
+    <div class="mb-4">
+      <label class="d-block ">Authentication Type</label>
+      <mat-button-toggle-group class="types border-0" formControlName="certificate">
+        <mat-button-toggle class="m-2 rounded">
+          Access Token
+        </mat-button-toggle>
+        <mat-button-toggle class="m-2 rounded">
+          Certificate
+        </mat-button-toggle>
+        <!--        <div class="container mt-5">-->
+        <!--          <div class="button-wrap">-->
+        <!--            <input class="hidden radio-label" formControlName="certificate" id="yes-button" type="radio"-->
+        <!--                   value="false"/>-->
+        <!--            <label class="button-label" for="yes-button">-->
+        <!--              <h1>Access Token</h1>-->
+        <!--            </label>-->
+        <!--            <input class="hidden radio-label" formControlName="certificate" id="no-button" type="radio" value="true"/>-->
+        <!--            <label class="button-label" for="no-button">-->
+        <!--              <h1>Certificate</h1>-->
+        <!--            </label>-->
+        <!--          </div>-->
+        <!--          <mat-error *ngIf="-->
+        <!--          addDeviceForm.get('certificate').hasError('required') &&-->
+        <!--          addDeviceForm.get('certificate').touched">Authentication Type is required-->
+        <!--          </mat-error>-->
+        <!--        </div>-->
+      </mat-button-toggle-group>
     </div>
-    <div class="form-row">
+    <div class="form-row mb-3 ">
       <div class="col-md-6">
-        <mat-label for="staticMetadata">Static Metadata</mat-label><br>
+        <mat-label for="staticMetadata">Static Metadata</mat-label>
+        <br>
         <mat-form-field appearance="outline" class="w-75">
-        <input matInput type="text" formControlName="staticD" />
-        <mat-error>Static MetaData is required</mat-error>
+          <input formControlName="staticD" matInput type="text"/>
+          <mat-error>Static MetaData is required</mat-error>
         </mat-form-field>
       </div>
       <div class="col-md-6"></div>
     </div>
-    <div class="form-row mt-3">
+    <div class="form-row mb-3 ">
       <div class="col-md-6">
         <div class="custom-control custom-checkbox">
-          <input type="checkbox" class="custom-control-input" id="customCheck1" #input (click)="showHide(input)">
+          <input #input (click)="showHide(input)" class="custom-control-input" id="customCheck1" type="checkbox">
           <label class="custom-control-label" for="customCheck1">Dynamic Metadata</label>
         </div>
-        <div style="display:none" id="textarea">
+        <div id="textarea" style="display:none">
           <mat-form-field appearance="outline" class="w-75">
-            <input matInput type="text" formControlName="dynamicD" />
+            <input formControlName="dynamicD" matInput type="text"/>
           </mat-form-field>
         </div>
       </div>
@@ -74,12 +83,12 @@
 
     <div class="row mt-3">
       <div class="col-4">
-        <button type="button" class="btn btn-lg btn-light" style="background-color: #d5d4d4;" routerLink="/devices">
+        <button class="btn btn-lg btn-light" routerLink="/devices" style="background-color: #d5d4d4;" type="button">
           Back
         </button>
       </div>
       <div class="col-6">
-        <button type="submit" class="btn btn-primary buttonColor btn-lg pr-5 pl-5">
+        <button class="btn btn-primary buttonColor btn-lg pr-5 pl-5" type="submit">
           Add Device
         </button>
       </div>

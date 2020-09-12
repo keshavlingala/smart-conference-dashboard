@@ -1,17 +1,21 @@
 <div class="body">
   <h1>OTA Updates</h1>
-  <button type="button" class="btn btn-warning buttonColor mt-3" routerLink="/ota-updates/ota-new-update-form">Add New
+  <button class="btn btn-warning buttonColor mt-3" routerLink="/ota-updates/ota-new-update-form" type="button">Add New
     Update
   </button>
   <button class="btn btn-warning buttonColor mt-3 float-right" routerLink="/ota-updates/ota-timeline">View Timeline
     Page
   </button>
   <div *ngIf="cardData">
-  <div mat-line class="mt-4">Select OTA Device Type (To View Update History)</div>
+    <div class="mt-4" mat-line>Select OTA Device Type (To View Update History)</div>
 
     <mat-form-field appearance="outline" class="w-50 col-3 pl-0">
-      <mat-select class=" mt-2" [(value)]="selected" (selectionChange)="onSelect(selected)" >
-        <mat-option *ngFor="let item of deviceTypes" [value]="item">{{item}}</mat-option>
+      <mat-select (selectionChange)="onSelect(selected)" [(value)]="selected" class=" mt-2">
+        <mat-option [formGroup]="deviceSearch">
+          <ngx-mat-select-search formControlName="deviceType" noEntriesFoundLabel="No Device Types Found"
+                                 placeholderLabel="Search Device Type"></ngx-mat-select-search>
+        </mat-option>
+        <mat-option *ngFor="let item of deviceTypes|async" [value]="item">{{item}}</mat-option>
       </mat-select>
     </mat-form-field>
 
