@@ -6,15 +6,15 @@
       <li class="breadcrumb-item active" aria-current="page">Add Devices Type</li>
     </ol>
   </nav>
-  <form [formGroup]="deviceTypeForm" (ngSubmit)="onFormSubmit()" class="devices-type-form">
+  <form [formGroup]="deviceTypeForm" (ngSubmit)="onFormSubmit()" class="devices-type-form" [hidden]="isFormSubmittedSuccessfully">
       <div class="row"> 
         <div class="col-6">
           <label class="d-block">Name</label>
           <mat-form-field appearance="outline" class="w-75">
             <input matInput formControlName="deviceType">
-            <mat-error *ngIf="
-              deviceTypeForm.get('deviceType').hasError('required') &&
-              deviceTypeForm.get('deviceType').touched">Name is required</mat-error>
+            <mat-error *ngIf="deviceTypeName.hasError('required') && deviceTypeName.touched">
+              Name is required
+            </mat-error>
           </mat-form-field>
         </div>
   
@@ -22,27 +22,32 @@
           <label class="d-block">Actions</label>
           <mat-form-field appearance="outline" class="w-75">
             <input matInput formControlName="actions">
-            <mat-error *ngIf="
-              deviceTypeForm.get('actions').hasError('required') &&
-              deviceTypeForm.get('actions').touched">It is required</mat-error>
+            <mat-error *ngIf="actions.hasError('required') && actions.touched">
+              Actions are required
+            </mat-error>
+            <mat-hint>Comma separated actions (Eg. a1,a2,a3 and so on)</mat-hint>
           </mat-form-field>
         </div>
       </div>
   
       
     
-      <div formArrayName="attributes">
+      <div formArrayName="attributes" class="mt-2">
         <div *ngFor="let attribute of attributes.controls; let i=index" [formGroupName]="i">
           <!-- <form ngNoForm> -->
             <mat-expansion-panel hideToggle style="width: 87%;" class="mb-1" [expanded]="i==attributes.length-1">
-              <mat-expansion-panel-header class="d-flex align-items-center w-100" #panelH (click)="panelH._toggle()">
+              <mat-expansion-panel-header class="d-flex align-items-center w-100" style="cursor: auto;" #panelH (click)="panelH._toggle()">
                 <div *ngIf="i<attributes.length-1" class="d-flex justify-content-between w-100">
                   <mat-panel-title>
                     <b style="color: #B77AC5;">{{attributes.value[i].name}}</b>
                   </mat-panel-title>
                   <div>
-                    <mat-icon class="mr-2 text-primary" (click)="panelH._toggle()">create</mat-icon>
-                    <mat-icon class="ml-2 text-danger" (click)="deleteAttribute(i)">delete</mat-icon>
+                    <mat-icon class="mr-2 text-primary" (click)="panelH._toggle()" style="cursor: pointer">
+                      create
+                    </mat-icon>
+                    <mat-icon class="ml-2 text-danger" (click)="deleteAttribute(i)" style="cursor: pointer;">
+                      delete
+                    </mat-icon>
                   </div>
                 </div>
   
@@ -56,8 +61,7 @@
                     <label class="d-block">Attribute Name</label>
                     <mat-form-field appearance="outline" class="w-100">
                       <input matInput formControlName="name">
-                      <mat-error *ngIf="
-                      attribute.get('name').hasError('required')">
+                      <mat-error *ngIf="attribute.get('name').hasError('required') && attribute.get('name').touched">
                       Attribute name is required
                     </mat-error>
                     </mat-form-field>
@@ -74,6 +78,9 @@
                         <mat-option value="5">5</mat-option>
                         <mat-option value="6">6</mat-option>
                       </mat-select>
+                      <mat-error *ngIf="attribute.get('accId').touched && attribute.get('accId').hasError('required')">
+                      Account ID is required
+                    </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
@@ -82,16 +89,15 @@
                   <div class="col-12">
                     <label class="d-block">Type</label>
                     <mat-button-toggle-group class="types" style="border: none;" formControlName="dataType">
-                        <mat-button-toggle class="m-2 rounded" value="STRING">String</mat-button-toggle>
-                        <mat-button-toggle class="m-2 rounded" value="NUMBER">Number</mat-button-toggle>
-                        <mat-button-toggle class="m-2 rounded" value="DOUBLE">Double</mat-button-toggle>
-                        <mat-button-toggle class="m-2 rounded" value="FLOAT">Float</mat-button-toggle>
-                        <mat-button-toggle class="m-2 rounded" value="TIMESTAMP">Timestamp</mat-button-toggle>
+                        <mat-button-toggle class="m-2 rounded border" value="STRING">String</mat-button-toggle>
+                        <mat-button-toggle class="m-2 rounded border" value="NUMBER">Number</mat-button-toggle>
+                        <mat-button-toggle class="m-2 rounded border" value="DOUBLE">Double</mat-button-toggle>
+                        <mat-button-toggle class="m-2 rounded border" value="FLOAT">Float</mat-button-toggle>
+                        <mat-button-toggle class="m-2 rounded border" value="TIMESTAMP">Timestamp</mat-button-toggle>
                       </mat-button-toggle-group>
-                      <!-- <mat-error *ngIf="
-                      attribute.get('dataType').hasError('required')">
-                      Attribute name is required
-                    </mat-error> -->
+                      <mat-error class="pl-3" style="font-size: 11px;" *ngIf="attribute.get('dataType').hasError('required') && attribute.get('dataType').touched">
+                        Data Type is required
+                      </mat-error>
                   </div>
             
                   <div class="col-6">
@@ -102,13 +108,16 @@
                         <mat-option value="1">Dynamic</mat-option>
                         <mat-option value="2">BC</mat-option>
                       </mat-select>
+                      <mat-error *ngIf="attribute.get('securitySetting').hasError('required') && attribute.get('securitySetting').touched">
+                        Security setting is required
+                      </mat-error>
                     </mat-form-field>
                   </div>
                 </div>
           
                 <div class="d-flex justify-content-between" *ngIf="i==attributes.length-1">
           
-                  <button mat-button [disableRipple]="true" (click)="addAnotherAttribute(i)" class="d-inline-flex justify-content-center align-items-center m-2">
+                  <button mat-button type="button" [disableRipple]="true" (click)="addAnotherAttribute(i)" class="d-inline-flex justify-content-center align-items-center m-2">
                     <mat-icon style="color: #143FFC; width: auto; height: auto;">add_circle</mat-icon>
                     &nbsp; 
                     <span style="color: #4A75FA;">
@@ -131,10 +140,29 @@
 
 
       <div class="d-flex justify-content-center align-items-center mt-3">
-          <button mat-button style="background-color: #79A831; color: white;">
+          <button [hidden]="isFormSubmissionLoading" mat-button style="background-color: #79A831; color: white;">
             Create Device Type
+          </button>
+    
+          <button [hidden]="!isFormSubmissionLoading" disabled mat-button>
+            <div class="d-flex flex-row justify-content-between">
+              <span>Adding Device Type&nbsp;</span>
+              <mat-spinner color="warn" diameter="30"></mat-spinner>
+            </div>
           </button>
       </div>
       
     </form>  
+
+
+    <!-- Device Type Added Succesfully message -->
+    <div class="w-100 d-flex justify-content-center">
+      <mat-card [hidden]="!isFormSubmittedSuccessfully" class="w-50 p-4">
+        <mat-card-title>Device Type Added Succesfully</mat-card-title>
+        <mat-card-actions>
+          <button  mat-raised-button color="primary" routerLink="/devices-type">Go back to listing page</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+    
 </div>

@@ -9,6 +9,8 @@ import {FormBuilder, Validators, FormArray} from '@angular/forms';
 export class AddDeviceTypeFormComponent implements OnInit {
 
   public deviceTypeForm;
+  public isFormSubmittedSuccessfully:boolean = false;
+  public isFormSubmissionLoading:boolean = false;
   constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
@@ -19,6 +21,10 @@ export class AddDeviceTypeFormComponent implements OnInit {
     });
 
     this.initilalizeAttributes();
+  }
+
+  get deviceTypeName(){
+    return this.deviceTypeForm.get('deviceType');
   }
 
   get attributes(){
@@ -40,6 +46,7 @@ export class AddDeviceTypeFormComponent implements OnInit {
   }
   
   addAnotherAttribute(i){
+    this.attributes.controls[i].markAllAsTouched();
     if(this.attributes.controls[i].valid){
       let attribute = this.fb.group({
         name: ['', Validators.required],
@@ -57,12 +64,23 @@ export class AddDeviceTypeFormComponent implements OnInit {
 
 
   onFormSubmit(){
+    if(!this.deviceTypeForm.valid){
+      this.deviceTypeForm.markAllAsTouched();
+    }
     if(this.deviceTypeForm.valid){
+      console.log('valid');
       this.deviceTypeForm.value.actions = this.deviceTypeForm.value.actions.split(','); //convert array into actions
       this.deviceTypeForm.value.attributes.forEach(attribute=>{
       attribute.accId = [attribute.accId];
       });
-      console.log(JSON.stringify(this.deviceTypeForm.value));
-    }    
+      console.log(this.deviceTypeForm.value);
+      this.deviceTypeForm.disable();
+      this.isFormSubmissionLoading = true;
+      setTimeout(()=>{
+        this.isFormSubmittedSuccessfully = true;
+        this.isFormSubmissionLoading = false;
+        this.deviceTypeForm.reset();
+      },2000);
+    }   
   }
 }
