@@ -2,7 +2,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {MembersComponent} from './components/members/members.component';
+import {DevicesComponent} from './components/devices/devices-base-page/devices.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 
@@ -27,16 +27,12 @@ const routes: Routes = [
     canActivate: [SideNavigationGuard],
     loadChildren: () => import('./featured-modules/rules/rules.module').then(m => m.RulesModule),
   },
-  {
-    path: "ota-updates", canActivate: [SideNavigationGuard],
-    loadChildren: () => import('./featured-modules/ota-updates/ota-updates.module').then(m => m.OtaUpdatesModule)
-  },
-  {
-    path: "generate-keys",
-    loadChildren: () => import('./featured-modules/generate-keys/generate-keys.module').then(m => m.GenerateKeysModule)
-  },
+  {path: "ota-updates", canActivate: [SideNavigationGuard],
+  loadChildren: () => import('./featured-modules/ota-updates/ota-updates.module').then(m => m.OtaUpdatesModule)
+},
+  {path: "generate-keys", canActivate: [SideNavigationGuard],
+  loadChildren:()=> import('./featured-modules/generate-keys/generate-keys.module').then(m=>m.GenerateKeysModule)},
   {path: "dashboard", component: DashboardComponent, canActivate: [SideNavigationGuard]},
-  {path: "members", component: MembersComponent, canActivate: [SideNavigationGuard]},
   {path: "dummy1", component: Dummy1Component, canActivate: [SideNavigationGuard]},
   {path: "dummy2", component: Dummy1Component, canActivate: [SideNavigationGuard]},
   {path: "dummy3", component: Dummy1Component, canActivate: [SideNavigationGuard]},

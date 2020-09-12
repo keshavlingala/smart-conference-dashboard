@@ -1,0 +1,46 @@
+@Input('perPageData'):Number
+
+The number of cards to show per Page.
+If it is set to 8, then only 8 cards will be shown per Page.
+
+----------------------------------------------------------------------------------------------------------
+@Input('devicesTypeCount'):Number
+
+The total count of devices type.
+It helps in designing pagination.
+It helps to find out the total Pages we have to create in this component. 
+
+E.g
+Suppose 
+    @Input('perPageData') = 8;
+    @Input('devicesTypeCount) = 20;
+
+    then total Number of Pages => 20 divided by 8 => 3 (Math.ceil)
+-------------------------------------------------------------------------------------------------------------
+
+@Input('devicesTypeData')
+
+Data of devices type that has to be shown on a particular page of this component.
+
+Its length at any point can't be more than @Input('perPageData').
+
+Whenever user clicks on any page in the pagination, this component will fire an 
+event with that pageNumber to the devices-type listing component. And devices-type listing component
+will get the devices-type data for that pageNumber from devices-type service and pass it to this component. 
+
+---------------------------------------------------------------------------------------------------------
+
+@Output() paginationEvent: EventEmitter<Number>
+
+this event is fired whenever user clicks on any of the pageNumber or the previous & Next buttons
+It emits the value of that pageNumber.
+
+Suppose, user clicks on pageNumber 2, then this event is fired with value 2.
+
+There is also a currentPage property in this component. 
+It always has the value of the current page we're at right now. Suppose, it has the value of 4.
+
+Now, if user clicks on next button, then this event will be fired with the value of 
+currentPage+1, 4+1 = 5 in this example.
+
+and currentPage-1, for the previous button
