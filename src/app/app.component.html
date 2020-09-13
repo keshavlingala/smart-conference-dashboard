@@ -1,4 +1,5 @@
-<side-navigation-side-nav 
+<login [hidden]="isLoggedIn" (onLogin)="onLogin()"></login>
+<side-navigation-side-nav [hidden]="!isLoggedIn"
 [heading]='heading'
 [showLogoutBtn]= 'showLogoutBtn'
 [navItems]='navItems'>

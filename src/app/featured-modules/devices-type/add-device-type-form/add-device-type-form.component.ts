@@ -68,7 +68,6 @@ export class AddDeviceTypeFormComponent implements OnInit {
       this.deviceTypeForm.markAllAsTouched();
     }
     if(this.deviceTypeForm.valid){
-      console.log('valid');
       this.deviceTypeForm.value.actions = this.deviceTypeForm.value.actions.split(','); //convert array into actions
       this.deviceTypeForm.value.attributes.forEach(attribute=>{
       attribute.accId = [attribute.accId];

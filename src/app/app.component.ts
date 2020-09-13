@@ -13,6 +13,8 @@ export class AppComponent implements OnInit {
   public showLogoutBtn: boolean = true;
   public navItems: (NavItem | GroupedNavItem)[] = [];
 
+  public isLoggedIn: boolean = false;
+
   constructor(private __sideNavService: SideNavigationService) {
 
   }
@@ -21,4 +23,7 @@ export class AppComponent implements OnInit {
     this.__sideNavService.getNavItems().subscribe(data => this.navItems = data);
   }
 
+  onLogin(){
+    this.isLoggedIn = true;
+  }
 }
