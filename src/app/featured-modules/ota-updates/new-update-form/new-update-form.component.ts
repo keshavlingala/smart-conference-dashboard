@@ -43,11 +43,9 @@ export class NewUpdateFormComponent implements OnInit {
       this.fileFetchError = true;
     }
     if (this.updatesForm.invalid) {
-      this.showError = true;
       return;
     } else if (this.files != null) {
       this.loader = true;
-      this.showError = false;
       setTimeout(() => {
       this.loader = false;
 

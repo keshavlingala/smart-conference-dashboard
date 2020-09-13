@@ -14,6 +14,7 @@
       <mat-step #ruleName [editable]="false" [stepControl]="firstFormGroup">
         <ng-template matStepLabel> Define the rule Name
           <button (click)="stepper.selectedIndex==1&&stepper.previous();ruleName.editable=true"
+                  *ngIf="stepper.selectedIndex==1"
                   class="rounded-circle bg-white m-2"
                   mat-icon-button>
             <i aria-hidden="true" class="fa fa-pencil-square-o" style="color: black!important;"></i>
@@ -21,14 +22,14 @@
         </ng-template>
         <form [formGroup]="firstFormGroup">
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
               <label class="d-block m-0">Rule Name</label>
               <mat-form-field appearance="outline" class="w-100">
                 <input formControlName="name" matInput placeholder="Ex:Occupancy">
                 <mat-error>Name Required</mat-error>
               </mat-form-field>
             </div>
-            <div class="col-4">
+            <div class="col-6">
               <label class="d-block m-0">Device Type</label>
               <mat-form-field appearance="outline" class=" w-100">
                 <mat-select formControlName="type" placeholder="Device Type">
@@ -41,7 +42,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
               <label class="d-block m-0">Group ID</label>
               <mat-form-field appearance="outline" class=" w-100">
                 <mat-select formControlName="groupIds" placeholder="Group ID">

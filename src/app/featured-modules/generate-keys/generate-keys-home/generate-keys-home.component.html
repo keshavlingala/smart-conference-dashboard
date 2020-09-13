@@ -3,55 +3,82 @@
   <h2>Generate new Keys</h2>
   <div class="row">
     <div class="col-7">
-      <div class="row">
-        <div class="col-6">
-          <label class="d-block">Device Type</label>
-          <mat-form-field appearance="outline" class="w-100">
-            <mat-select (valueChange)="deviceSelected()" [(ngModel)]="selectedDevice">
-              <mat-option *ngFor="let device of deviceTypes" [value]="device">{{device}}</mat-option>
-            </mat-select>
-          </mat-form-field>
+      <form [formGroup]="form">
+        <div class="row">
+          <div class="col-6">
+            <label class="d-block">Device Type</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <mat-select (valueChange)="deviceSelected()" formControlName="deviceType">
+                <mat-option *ngFor="let device of keysService.deviceTypes" [value]="device">{{device}}</mat-option>
+              </mat-select>
+              <mat-error>Field Required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <label class="d-block">Number of Keys</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input formControlName="numberOfKeys" matInput type="text">
+              <mat-error>{{form.value.numberOfKeys ? 'Only Number ranging from 1-1000 are valid' : 'Field is Required'}}</mat-error>
+            </mat-form-field>
+          </div>
         </div>
-        <div class="col-6">
-          <label class="d-block">Number of Keys</label>
-          <mat-form-field appearance="outline" class="w-100">
-            <input [(ngModel)]="numberOfKeys" matInput type="number">
-          </mat-form-field>
-        </div>
-      </div>
+      </form>
       <div class="d-flex justify-content-center m-3">
         <button (click)="generateKeys()" mat-raised-button style="background-color: #79A831;color: white">Generate
           Keys
         </button>
       </div>
-      <div *ngIf="keys&&selectedDevice">
+      <div *ngIf="(usedKeys|async) as used">
         <div class="d-flex justify-content-between">
-          <h2 class="d-inline-flex">Generated keys ({{selectedDevice}})</h2>
+          <h2 class="d-inline-flex">Generated keys ({{form.value.deviceType}})</h2>
           <button mat-button style="height: 35px;margin-bottom: 16px;">
             <mat-icon>publish</mat-icon>
             Export Keys
           </button>
         </div>
         <div class="row">
-          <div *ngFor="let key of keys.used" class="col-6">
+          <div *ngFor="let key of used" class="col-6">
             <div (click)="copyToClipboard(key)" class="keys p-2 m-1">
               {{key}}
             </div>
           </div>
         </div>
+        <div class="d-flex mt-2 justify-content-center">
+          <button (click)="usedPageChange(usedPage-1)" *ngIf="usedPage>0" class="m-1" mat-button>
+            <mat-icon>keyboard_arrow_left</mat-icon>
+            Prev
+          </button>
+          <button (click)="usedPageChange(usedPage+1)" *ngIf="usedPage<pages.used.length-1" class="m-1" mat-button>
+            Next
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div *ngIf="(unusedKeys|async) as unused">
         <div class="d-flex justify-content-between">
-          <h2 class="d-inline-flex">Unused keys ({{selectedDevice}})</h2>
+          <h2 class="d-inline-flex">Unused keys ({{form.value.deviceType}})</h2>
           <button mat-button style="height: 35px;margin-bottom: 16px;">
             <mat-icon>publish</mat-icon>
             Export Keys
           </button>
         </div>
         <div class="row">
-          <div *ngFor="let key of keys.unused" class="col-6">
+          <div *ngFor="let key of unused" class="col-6">
             <div (click)="copyToClipboard(key)" class="keys p-2 m-1">
               {{key}}
             </div>
           </div>
+        </div>
+        <div class="d-flex  justify-content-center">
+          <button (click)="unusedPageChange(unusedPage-1)" *ngIf="unusedPage>0" class="m-1" mat-button>
+            <mat-icon>keyboard_arrow_left</mat-icon>
+            Prev
+          </button>
+          <button (click)="unusedPageChange(unusedPage+1)" *ngIf="unusedPage<pages.unused.length-1" class="m-1"
+                  mat-button>
+            Next
+            <mat-icon>keyboard_arrow_right</mat-icon>
+          </button>
         </div>
       </div>
     </div>
@@ -63,3 +90,4 @@
     </div>
 
   </div>
+</div>

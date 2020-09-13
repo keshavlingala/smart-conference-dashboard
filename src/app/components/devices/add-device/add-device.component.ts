@@ -32,14 +32,14 @@ export class AddDeviceComponent implements OnInit {
   }
 
   onSubmit() {
-    if(this.addDeviceForm.invalid)
-    {
+    if(this.addDeviceForm.invalid){
       this.showError=true;
       return;
     }
     this.showError=false;
     this.loader=true;
     setTimeout(()=>{
+
       this.loader=false;
       const {deviceName,deviceType,certificate,staticD,dynamicD} = this.addDeviceForm.value;
       const update={

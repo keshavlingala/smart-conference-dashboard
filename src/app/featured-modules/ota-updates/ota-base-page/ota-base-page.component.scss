@@ -1,21 +1,32 @@
-.body{
+.body {
   padding: 30px;
-  h1{
+
+  h1 {
     color: #5a3863;
   }
-  .buttonColor{
+
+  .buttonColor {
     background-color: #fb7b6b;
-    &::after{
+
+    &::after {
       background-color: #fb7b6b;
     }
   }
-  ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4rem 0 !important;}
+
+  ::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+    padding: 0.6em 0 !important;
+  }
+
   .mat-spinner {
     z-index: 900;
-    top:50%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     position: absolute;
   }
 
+}
+
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.6em 0 !important;
 }

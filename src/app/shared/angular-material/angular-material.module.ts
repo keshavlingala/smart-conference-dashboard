@@ -1,4 +1,4 @@
-import { MatRadioModule } from '@angular/material/radio';
+import {MatRadioModule} from '@angular/material/radio';
 import {NgModule} from '@angular/core';
 
 import {MatSidenavModule} from '@angular/material/sidenav';
@@ -28,6 +28,7 @@ import {MatChipsModule} from "@angular/material/chips";
 import {MatButtonToggleModule} from "@angular/material/button-toggle";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 import {ClipboardModule} from "@angular/cdk/clipboard";
+import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
 
 const MaterialComponents = [MatDialogModule,
   MatRadioModule,
@@ -57,7 +58,8 @@ const MaterialComponents = [MatDialogModule,
   MatButtonToggleModule,
   MatProgressSpinnerModule,
   FormsModule,
-  ClipboardModule
+  ClipboardModule,
+  NgxMatSelectSearchModule
 ];
 
 @NgModule({

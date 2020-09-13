@@ -11,7 +11,7 @@ The device component contains a data table view page and add a device page.
     B. Here in this case the data table's configuration is set up as to have 3 actions for each device, which will emit out
     of the table component when clicked by user and we can do appropriate action based on the `ActionChange` object
     
-    C. The actions configutation has 3 actions and 2 bulk actions and operations are performed based on the selected feild
+    C. The actions configutation has 3 actions and 2 bulk actions and operations are performed based on the selected field
     emitted by `selected`
     
     D. Each action and bulk action object should be given as `{name: 'action name', icon: 'icon name(material-icon)', iconOpp: 'opposite icon'(optional), color: 'accent'(optional)}`
@@ -20,8 +20,8 @@ The device component contains a data table view page and add a device page.
     where all are self-explanatory.
      
     B. Each record consists 3 buttons that are delete, disable and view more details.
-        I.	Delete button:
-        II.	Disable button:
+        I.	Delete button
+        II.	Disable button
         III.View more details button:  This fires up like a popup window which gives the user detailed information about a device.
       The popup contains two tabs named Attributes and Actions.
           Attributes:
@@ -39,12 +39,23 @@ The device component contains a data table view page and add a device page.
     A form comprising of the below details must be filled.
     Fields to be filled:
       
-    A. Device Type(required)
-    
-    B. Name(required)
-    
-    C. Authentication Type(required)
-    
-    D. Static MetaData(required)
-    
-    E. Dynamic MetaData(optional)
+    A. Device Type
+        - Dropdown
+        - Required Field
+        - Example: Ambient Sensing
+    B. Name
+        - Text Field
+        - Required Field
+        - Example: Apple Device
+    C. Authentication Type
+        - Text Field
+        - Required Field
+        - Example: Access Token/ Certificate
+    D. Static MetaData
+        - Text Field
+        - Required Field
+        - Example: "staticData":"Staticvalue"
+    E. Dynamic MetaData
+        - Text Field
+        - Optional Field
+        - Example: "dynamicData":"dynamicValue"

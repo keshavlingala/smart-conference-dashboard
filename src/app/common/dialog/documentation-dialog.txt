@@ -1,0 +1,67 @@
+DIALOG COMPONENT
+
+Parent Component:
+
+    Task: Sends a template.
+    To send a template the parent component calls the method present in dialog-factory service. It passes two objects
+    dialogData that contains template and options that contains height(number in pixels), width(number in pixels) and disableClose(boolean)
+
+
+
+Dialog Factory Service:
+
+    Has a method open() which takes in two parameters dialogData and options.
+    DialogData is an object that contains a template sent my the parent component. And options contain details of dialog's width,height and disableClose button(close button
+    on the dialog box should be displayed or not) feature.
+
+      Method:
+      open(dialogData: DialogData<T>,
+          options: DialogOptions): void {
+        const dialogRef = this.dialog.open<DialogComponent<T>, DialogData<T>>(
+          DialogComponent,
+          {
+            ...this.fetchOptions(options),
+            data: dialogData
+          }
+        );
+        dialogRef.afterClosed().pipe(first());
+      }
+
+    In the open method the template is then passed to the Dialog Component using the inbuilt method dialog.open(<component name> , data)
+    where dialog is of type MatDialog. Using dialogRef the dialog can be closed.
+
+        private fetchOptions({
+                            width,
+                            height,
+                            disableClose
+                          }: DialogOptions): any {
+        return {
+          width: `${width}px`,
+          height: `${height}px`,
+          disableClose
+        };
+      }
+
+    The fetchOptions method is called inside dialog.open() to set the width, height and disableClose parameters.
+    With all these details a dialog component can be set and opened and closed whenever required.
+
+
+Dialog Component:
+
+    Recieves data from the service with the help of MAT_DIALOG_DATA.
+
+    constructor( public dialogRef: MatDialogRef<DialogComponent<T>>, @Inject(MAT_DIALOG_DATA)
+        public data: {
+          template: TemplateRef<any>
+        }
+      )
+      {  }
+
+    The data object contains the template
+
+    This template is used in html in the below tag:
+    <ng-container [ngTemplateOutlet]="data.template"></ng-container>
+
+
+
+In this way reusablity of this component is achieved and any componend can send a template to the Dialog Component to display it as a popup.
