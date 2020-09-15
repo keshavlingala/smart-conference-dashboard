@@ -3,21 +3,21 @@
         "icon": "account_circle",
         "name":"Devices",
         "routerLink":"/devices",
-        "isDisabled":false,
+        "isDisabled":true,
         "isVisible": true
     },
     {
         "icon": "add_shopping_cart",
         "name":"Devices Type",
         "routerLink":"/devices-type",
-        "isDisabled":false,
+        "isDisabled":true,
         "isVisible": true
     },
     {
         "icon": "addchart",
         "name":"Devices-group",
         "routerLink":"/devices-group",
-        "isDisabled":false,
+        "isDisabled":true,
         "isVisible": true
     },
     {

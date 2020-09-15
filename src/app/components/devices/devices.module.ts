@@ -7,8 +7,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {DatatableModule} from 'src/app/common/datatable/datatable.module';
 
 const routes: Routes = [
-  {path: "", redirectTo: "devices-base-page", pathMatch: "full"},
-  {path: "devices-base-page", component: DevicesComponent},
+  {path: "", component: DevicesComponent},
   {path: "add-device", component: AddDeviceComponent},
 ];
 
