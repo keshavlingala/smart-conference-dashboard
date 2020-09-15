@@ -29,6 +29,7 @@ import {DashboardComponent} from './components/dashboard/dashboard.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 //Guards
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
+
 import {DataViewModule} from './common/data-view/data-view.module';
 
 

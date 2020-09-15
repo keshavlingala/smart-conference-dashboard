@@ -1,4 +1,5 @@
-<div class="ml-3 mt-3">
+<div class="ml-3 mt-3 position-relative">
+  <mat-spinner class="position-absolute" style="top: 40%; left:40%; z-index: 100;" *ngIf="isFormSubmissionLoading" color="warn" diameter="50"></mat-spinner>
   <h1 class="m-0">DEVICES TYPE</h1>
   <nav aria-label="breadcrumb">
     <ol class="breadcrumb pl-0" style="background-color: transparent;">
@@ -6,7 +7,7 @@
       <li class="breadcrumb-item active" aria-current="page">Add Devices Type</li>
     </ol>
   </nav>
-  <form [formGroup]="deviceTypeForm" (ngSubmit)="onFormSubmit()" class="devices-type-form" [hidden]="isFormSubmittedSuccessfully">
+  <form [formGroup]="deviceTypeForm" (ngSubmit)="onFormSubmit()" class="devices-type-form">
       <div class="row"> 
         <div class="col-6">
           <label class="d-block">Name</label>
@@ -140,29 +141,10 @@
 
 
       <div class="d-flex justify-content-center align-items-center mt-3">
-          <button [hidden]="isFormSubmissionLoading" mat-button style="background-color: #79A831; color: white;">
+          <button [disabled]="isFormSubmissionLoading" mat-button style="background-color: #79A831; color: white;">
             Create Device Type
-          </button>
-    
-          <button [hidden]="!isFormSubmissionLoading" disabled mat-button>
-            <div class="d-flex flex-row justify-content-between">
-              <span>Adding Device Type&nbsp;</span>
-              <mat-spinner color="warn" diameter="30"></mat-spinner>
-            </div>
           </button>
       </div>
       
     </form>  
-
-
-    <!-- Device Type Added Succesfully message -->
-    <div class="w-100 d-flex justify-content-center">
-      <mat-card [hidden]="!isFormSubmittedSuccessfully" class="w-50 p-4">
-        <mat-card-title>Device Type Added Succesfully</mat-card-title>
-        <mat-card-actions>
-          <button  mat-raised-button color="primary" routerLink="/devices-type">Go back to listing page</button>
-        </mat-card-actions>
-      </mat-card>
-    </div>
-    
 </div>

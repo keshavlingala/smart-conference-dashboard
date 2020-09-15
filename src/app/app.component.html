@@ -1,5 +1,5 @@
-<login [hidden]="isLoggedIn" (onLogin)="onLogin()"></login>
-<side-navigation-side-nav [hidden]="!isLoggedIn"
+<login (onLogin)="onLogin()" *ngIf="!isLoggedIn"></login>
+<side-navigation-side-nav *ngIf="isLoggedIn"
 [heading]='heading'
 [showLogoutBtn]= 'showLogoutBtn'
 [navItems]='navItems'>

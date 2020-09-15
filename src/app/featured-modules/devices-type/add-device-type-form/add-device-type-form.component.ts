@@ -9,7 +9,6 @@ import {FormBuilder, Validators, FormArray} from '@angular/forms';
 export class AddDeviceTypeFormComponent implements OnInit {
 
   public deviceTypeForm;
-  public isFormSubmittedSuccessfully:boolean = false;
   public isFormSubmissionLoading:boolean = false;
   constructor(private fb: FormBuilder) { }
 
@@ -76,9 +75,8 @@ export class AddDeviceTypeFormComponent implements OnInit {
       this.deviceTypeForm.disable();
       this.isFormSubmissionLoading = true;
       setTimeout(()=>{
-        this.isFormSubmittedSuccessfully = true;
         this.isFormSubmissionLoading = false;
-        this.deviceTypeForm.reset();
+        this.deviceTypeForm.enable();
       },2000);
     }   
   }
