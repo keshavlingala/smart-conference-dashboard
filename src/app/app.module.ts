@@ -12,7 +12,7 @@ import {SideNavigationModule} from './common/side-navigation/side-navigation.mod
 import {DatatableModule} from './common/datatable/datatable.module';
 import {AppRoutingModule} from './app-routing.module';
 
-import {LoginModuleModule} from './login-module/login-module.module';
+import {AuthModule} from './auth/auth.module';
 
 
 //Services
@@ -55,7 +55,7 @@ import {DataViewModule} from './common/data-view/data-view.module';
     DatatableModule,
     DataViewModule,
     DevicesModule,
-    LoginModuleModule
+    AuthModule
   ],
   providers: [SideNavigationService, SideNavigationGuard],
   bootstrap: [AppComponent],

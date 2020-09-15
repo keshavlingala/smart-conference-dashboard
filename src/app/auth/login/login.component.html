@@ -1,0 +1,38 @@
+<div class="row" style="height: 100vh; width: 100vw; overflow: hidden;">
+    <div class="col-7">
+    <img class="w-100 h-100" src="https://datasciencegyan.com/wp-content/uploads/2017/07/IOT.jpg" alt="">
+    </div>
+    
+    <div class="col-5 pt-3">
+    <h2 class="p-0 m-0" style="font-family: Cambria;">COGNISENSE</h2>
+    <span class="text-secondary" style="color: #BCBBB9;">Unified Enterprise IOT</span>
+    
+    <div style="margin-top: 50px;" class="d-flex flex-column align-items-center w-100">
+        <h1 class="text-center" style="font-size: 40px; color: #450B50; font-family: cambria;">WELCOME BACK!!</h1>
+    
+        <form [formGroup]="loginForm" class="w-75" (ngSubmit)="login()">
+            <label class="d-block" style="color: #BCBBB9;">Username</label>
+            <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="username">
+            </mat-form-field>
+        
+            <label class="d-block" style="color: #BCBBB9;">Password</label>
+              <mat-form-field appearance="outline" class="w-100">
+                <input matInput formControlName="password">
+              </mat-form-field>
+              <p class="text-right text-secondary">Forgot Password?</p>
+    
+              <div class="w-100 d-flex justify-content-center align-items-center">
+                <button [disabled]="!loginForm.valid" [hidden]="loginLoading" mat-raised-button tye="submit" color="primary">LOGIN</button>
+                <button [hidden]="!loginLoading" disabled mat-button>
+                  <div class="d-flex flex-row justify-content-between">
+                    <span>Logging you in&nbsp;</span>
+                    <mat-spinner color="warn" diameter="30"></mat-spinner>
+                  </div>
+                </button>
+              </div>
+        </form>
+    </div>
+    
+    </div>
+    </div>
