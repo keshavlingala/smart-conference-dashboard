@@ -18,7 +18,9 @@ export class GenerateKeysHomeComponent implements OnInit {
   pages: { used: string[][], unused: string[][] };
   usedPage = 0;
   unusedPage = 0;
-
+  deviceSearch: FormGroup;
+  allDeviceTypes: string[];
+  filteredDeviceTypes: string[];
 
   constructor(
     public keysService: GenerateKeysService,
@@ -29,19 +31,32 @@ export class GenerateKeysHomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.allDeviceTypes = this.keysService.deviceTypes;
+    this.deviceSearch = this.fb.group({
+      search: ['']
+    })
     this.form = this.fb.group({
       deviceType: ['', Validators.required],
       numberOfKeys: ['', [Validators.required, Validators.min(1), Validators.pattern('(^\\d{0,3}$)|(^1000$)')]]
     })
-
+    this.filteredDeviceTypes = this.allDeviceTypes;
+    this.deviceSearch.valueChanges.subscribe(() => {
+      let key = this.deviceSearch.value.search;
+      this.filteredDeviceTypes = this.allDeviceTypes.filter(d => {
+        return d.toLowerCase().includes(key.toLowerCase());
+      })
+    })
+    this.form.valueChanges.subscribe(()=>{
+      this.reset();
+    })
     // this.keys = this.keysService.generateKeys('TiTag', 6).keys
   }
 
   reshape(keys: Keys) {
     const used = []
     const unused = []
-    while (keys.used.length) used.push(keys.used.splice(0, 4));
-    while (keys.unused.length) unused.push(keys.unused.splice(0, 4));
+    while (keys.used.length) used.push(keys.used.splice(0, 10));
+    while (keys.unused.length) unused.push(keys.unused.splice(0, 10));
     return {used, unused}
   }
 
@@ -78,6 +93,11 @@ export class GenerateKeysHomeComponent implements OnInit {
   unusedPageChange(number: number) {
     this.unusedPage = number;
     this.unusedKeys.next(this.pages.unused[this.unusedPage])
+  }
+
+  reset() {
+    this.usedKeys.next(null);
+    this.unusedKeys.next(null);
   }
 }
 

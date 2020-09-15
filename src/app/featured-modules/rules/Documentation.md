@@ -12,6 +12,7 @@ Features:
     Each rule has the information of creation date, selected action and rule condition.
    
 2. Add a rule under a particular device type
+
 After viewing the existing rules in a device type, if needed, the user can add a rule under a specific device type. A form comprising of the below details must be filled.
 Fields to be filled:
 The form is divided into two sections: 'Define the rule name' and 'Create Rule'

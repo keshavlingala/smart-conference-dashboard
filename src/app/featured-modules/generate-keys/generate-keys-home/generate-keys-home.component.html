@@ -9,7 +9,11 @@
             <label class="d-block">Device Type</label>
             <mat-form-field appearance="outline" class="w-100">
               <mat-select (valueChange)="deviceSelected()" formControlName="deviceType">
-                <mat-option *ngFor="let device of keysService.deviceTypes" [value]="device">{{device}}</mat-option>
+                <mat-option [formGroup]="deviceSearch">
+                  <ngx-mat-select-search formControlName="search" noEntriesFoundLabel="No Device Types Found"
+                                         placeholderLabel="Search Device Type"></ngx-mat-select-search>
+                </mat-option>
+                <mat-option *ngFor="let device of filteredDeviceTypes" [value]="device">{{device}}</mat-option>
               </mat-select>
               <mat-error>Field Required</mat-error>
             </mat-form-field>
