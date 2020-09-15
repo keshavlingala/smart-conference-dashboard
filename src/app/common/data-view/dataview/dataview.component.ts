@@ -59,5 +59,6 @@ export class DataviewComponent implements OnInit, OnChanges {
     const pipe = new DatePipe('en-US');
     const key = pipe.transform($event.value, 'MMM')
     this.filterRes(key);
+    console.log($event.value);
   }
 }
