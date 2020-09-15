@@ -59,7 +59,7 @@
                 "routerLink":"/generate-keys",
                 "isDisabled":false,
                 "isVisible": true
-            }  
+            }
         ]
     },
     {
@@ -80,7 +80,7 @@
                 "routerLink":"/dummy2",
                 "isDisabled":false,
                 "isVisible": true
-            }  
+            }
         ]
     },
     {
@@ -101,7 +101,7 @@
                 "routerLink":"/dummy4",
                 "isDisabled":false,
                 "isVisible": true
-            }  
+            }
         ]
     }
 ]
