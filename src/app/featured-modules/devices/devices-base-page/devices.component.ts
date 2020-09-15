@@ -1,4 +1,4 @@
-import { DataTableService } from './../../../core/services/data-table.service';
+import { DataTableService } from '../../../core/services/data-table.service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';

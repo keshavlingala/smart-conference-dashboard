@@ -2,7 +2,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {PageNotFoundComponent} from './components/page-not-found/page-not-found.component';
-import {DevicesComponent} from './components/devices/devices-base-page/devices.component';
+import {DevicesComponent} from './featured-modules/devices/devices-base-page/devices.component';
 import {Dummy1Component} from './components/dummy1/dummy1.component';
 import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 
@@ -10,7 +10,7 @@ const routes: Routes = [
   {path: "", redirectTo: "devices", pathMatch: "full"},
   {
     path: "devices", canActivate: [SideNavigationGuard],
-    loadChildren: () => import('./components/devices/devices.module').then(m => m.DevicesModule),
+    loadChildren: () => import('./featured-modules/devices/devices.module').then(m => m.DevicesModule),
   },
   {
     path: "devices-type",

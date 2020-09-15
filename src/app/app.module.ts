@@ -1,4 +1,4 @@
-import {DevicesModule} from './components/devices/devices.module';
+import {DevicesModule} from './featured-modules/devices/devices.module';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';

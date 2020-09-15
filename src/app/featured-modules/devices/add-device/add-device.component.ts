@@ -1,4 +1,4 @@
-import { deviceTypes } from './../../../shared/datagenerator/datagenerator.dev';
+import { deviceTypes } from '../../../shared/datagenerator/datagenerator.dev';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 @Component({
