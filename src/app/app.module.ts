@@ -1,36 +1,20 @@
-import {DevicesModule} from './featured-modules/devices/devices.module';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {HttpClientModule} from '@angular/common/http';
-import {SharedModule} from './shared/shared.module';
 
-//featured modules
-import {SideNavigationModule} from './common/side-navigation/side-navigation.module';
-import {DatatableModule} from './common/datatable/datatable.module';
-import {AppRoutingModule} from './app-routing.module';
-
-import {AuthModule} from './auth/auth.module';
-
-
-//Services
-import {SideNavigationService} from './core/services/side-navigation.service';
-
-// Components
-import {PageNotFoundComponent} from './common/page-not-found/page-not-found.component';
 import {AppComponent} from './app.component';
-//Guards
-import {SideNavigationGuard} from './core/routing-guards/side-navigation.guard';
 
-import {DataViewModule} from './common/data-view/data-view.module';
+import {LoginGuard} from './core/routing-guards/login.guard';
+//featured modules
+import {AppRoutingModule} from './app-routing.module';
 
 
 @NgModule({
   declarations: [
-    AppComponent,
-    PageNotFoundComponent,
+    AppComponent
   ],
   imports: [
     CommonModule,
@@ -38,15 +22,9 @@ import {DataViewModule} from './common/data-view/data-view.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    SharedModule,
-    SideNavigationModule,
-    DatatableModule,
-    DataViewModule,
-    DevicesModule,
-    AuthModule
   ],
-  providers: [SideNavigationService, SideNavigationGuard],
   bootstrap: [AppComponent],
+  providers:[LoginGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {

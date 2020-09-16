@@ -2,35 +2,35 @@
     {
         "icon": "account_circle",
         "name":"Devices",
-        "routerLink":"/devices",
+        "routerLink":"devices",
         "isDisabled":false,
         "isVisible": true
     },
     {
         "icon": "add_shopping_cart",
         "name":"Devices Type",
-        "routerLink":"/devices-type",
+        "routerLink":"devices-type",
         "isDisabled":false,
         "isVisible": true
     },
     {
         "icon": "addchart",
         "name":"Devices-group",
-        "routerLink":"/devices-group",
+        "routerLink":"devices-group",
         "isDisabled":false,
         "isVisible": true
     },
     {
         "icon": "assignment_return",
         "name":"Rules",
-        "routerLink":"/rules",
+        "routerLink":"rules",
         "isDisabled":false,
         "isVisible": true
     },
     {
         "icon": "analytics",
         "name":"OTA Updates",
-        "routerLink":"/ota-updates",
+        "routerLink":"ota-updates",
         "isDisabled":false,
         "isVisible": true
     },
@@ -42,21 +42,21 @@
             {
                 "icon": "app_blocking",
                 "name":"Dashboard",
-                "routerLink":"/dashboard",
+                "routerLink":"dashboard",
                 "isDisabled":false,
                 "isVisible": true
             },
             {
                 "icon": "accessible_forward",
                 "name":"Members",
-                "routerLink":"/members",
+                "routerLink":"members",
                 "isDisabled":false,
                 "isVisible": true
             },
             {
                 "icon": "api",
                 "name":"Generate Keys",
-                "routerLink":"/generate-keys",
+                "routerLink":"generate-keys",
                 "isDisabled":false,
                 "isVisible": true
             }
@@ -70,14 +70,14 @@
             {
                 "icon": "account_circle",
                 "name":"dummy1",
-                "routerLink":"/dummy1",
+                "routerLink":"dummy1",
                 "isDisabled":false,
                 "isVisible": true
             },
             {
                 "icon": "add_shopping_cart",
                 "name":"dummy2",
-                "routerLink":"/dummy2",
+                "routerLink":"dummy2",
                 "isDisabled":false,
                 "isVisible": true
             }
@@ -91,14 +91,14 @@
             {
                 "icon": "account_circle",
                 "name":"dummy1",
-                "routerLink":"/dummy3",
+                "routerLink":"dummy3",
                 "isDisabled":false,
                 "isVisible": true
             },
             {
                 "icon": "add_shopping_cart",
                 "name":"dummy2",
-                "routerLink":"/dummy4",
+                "routerLink":"dummy4",
                 "isDisabled":false,
                 "isVisible": true
             }

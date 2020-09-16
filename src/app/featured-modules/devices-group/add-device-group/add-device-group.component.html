@@ -1,7 +1,7 @@
 <div class="w-100" style="margin:0; padding:0;">
 <h1 class="title ml-3">DEVICES GROUP</h1>
 
-<div class="row ml-3 mr-0"><a  [routerLink]="['/devices-group']" routerLinkActive="router-link-active" >Devices Group</a>
+<div class="row ml-3 mr-0"><a  routerLink=".." routerLinkActive="router-link-active" >Devices Group</a>
   <mat-icon class="mt-1 ml-1"style="font-size: small; color:darkgrey">arrow_forward_ios</mat-icon >
     <a class="disabled">Add Group</a>
    </div> <br>
@@ -91,7 +91,7 @@
     </form>
     <div *ngIf="selectedIndex===0">
     <button mat-button matStepperNext style="background-color: #79A831; color: white;" class="ml-3">Next</button>
-    <button mat-button [disableRipple]="true" class="ml-1" [routerLink]="['/devices-group']" style="background-color: rgb(241,242,246);" >Cancel</button>
+    <button mat-button [disableRipple]="true" class="ml-1" routerLink=".." style="background-color: rgb(241,242,246);" >Cancel</button>
   </div>
   </mat-step>
    

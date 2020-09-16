@@ -14,7 +14,7 @@ constructor(private __sideNavService: SideNavigationService, private __router: R
 }
 
 canLoad(route: Route): Observable<boolean> | boolean{
-  var url = `/${route['path']}`;
+  var url = route['path']
   return this.__sideNavService.getNavItems().pipe(map(data=>{
       var isDisabled = data.filter(ele => {
         if(ele['isGrouped']){
@@ -35,6 +35,7 @@ canLoad(route: Route): Observable<boolean> | boolean{
 
       if(isDisabled.length!=0){
         alert("You can't access this url");
+        this.__router.navigateByUrl("/");
         return false;
       }
       return true;

@@ -2,7 +2,7 @@
   <h1>RULES</h1>
   <nav class="mb-0">
     <ol class="breadcrumb pl-0" style="background-color: transparent;">
-      <li class="breadcrumb-item"><a routerLink="/rules">Rules</a></li>
+      <li class="breadcrumb-item"><a routerLink="..">Rules</a></li>
       <li class="breadcrumb-item active">Add Rule</li>
     </ol>
   </nav>
@@ -58,7 +58,7 @@
             <button [disabled]="!firstFormGroup.valid" class="mr-3 btn-clr" color="primary"
                     mat-raised-button matStepperNext>NEXT
             </button>
-            <button mat-button routerLink="/rules"> Cancel</button>
+            <button mat-button routerLink=".."> Cancel</button>
           </div>
         </form>
       </mat-step>
@@ -85,7 +85,7 @@
               <mat-error>Condition Required</mat-error>
             </mat-form-field>
             <div class="d-flex justify-content-center position-relative align-items-center mt-2">
-              <button class="position-absolute" mat-button routerLink="../" style="left: 0">Cancel</button>
+              <button class="position-absolute" mat-button routerLink=".." style="left: 0">Cancel</button>
               <button (click)="submit()" class="btn submit-btn" mat-button
                       type="button">Create Rule
               </button>

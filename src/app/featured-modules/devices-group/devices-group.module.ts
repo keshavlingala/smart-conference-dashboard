@@ -16,6 +16,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatMenuModule} from '@angular/material/menu';
 import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
+import { DatePipe } from '@angular/common';
 @NgModule({
   declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent],
   imports: [
@@ -32,6 +33,6 @@ import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
     NgxMatSelectSearchModule
     
   ],
-  providers: [DevicesGroupService]
+  providers: [DevicesGroupService,DatePipe]
 })
 export class DevicesGroupModule { }

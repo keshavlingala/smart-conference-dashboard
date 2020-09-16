@@ -13,8 +13,7 @@ import { DataViewModule } from 'src/app/common/data-view/data-view.module';
 import {FormsModule} from '@angular/forms';
 import { OtaCardsComponent } from './ota-cards/ota-cards.component';
 const routes: Routes = [
-  {path: "", redirectTo: "ota-base-page", pathMatch: "full"},
-  {path: "ota-base-page", component: OtaBasePageComponent},
+  {path: "", component:OtaBasePageComponent},
   {path: "ota-new-update-form", component: NewUpdateFormComponent},
   {path:"ota-timeline", component:OtaTimelineComponent}
 ];
