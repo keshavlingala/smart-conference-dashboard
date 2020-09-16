@@ -1,24 +1,26 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { CanActivate, CanLoad, Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
 import {SideNavigationService} from '../services/side-navigation.service';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
+import { Route } from '@angular/compiler/src/core';
 
 @Injectable({
   providedIn: 'root'
 })
-export class SideNavigationGuard implements CanActivate {
+export class SideNavigationGuard implements CanLoad {
 constructor(private __sideNavService: SideNavigationService, private __router: Router){
 
 }
 
-canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean>{
-    return this.__sideNavService.getNavItems().pipe(map(data=>{
+canLoad(route: Route): Observable<boolean> | boolean{
+  var url = `/${route['path']}`;
+  return this.__sideNavService.getNavItems().pipe(map(data=>{
       var isDisabled = data.filter(ele => {
         if(ele['isGrouped']){
           var isAnyChildDisabled = 0;
           ele['children'].forEach(item=>{
-            if(item['routerLink'] === state.url && item['isDisabled']){
+            if(item['routerLink'] === url && item['isDisabled']){
               isAnyChildDisabled++;
             }
           });
@@ -27,7 +29,7 @@ canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observabl
           }
         }
         else {
-          return ele['routerLink'] === state.url && ele['isDisabled']
+          return ele['routerLink'] === url && ele['isDisabled']
         }
       });
 
