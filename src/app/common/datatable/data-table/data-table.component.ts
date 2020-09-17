@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig} from '../../../shared/models/data-table.model';
 import {MatTableDataSource} from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {SelectionModel} from '@angular/cdk/collections';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -19,6 +19,7 @@ export class DataTableComponent implements OnChanges, OnInit {
   @Output() actionClick = new EventEmitter<ActionChange>();
   @Output() bulkActionClick = new EventEmitter<ActionChange>();
   @Output() filterChange = new EventEmitter<any[]>();
+  @Output() page = new EventEmitter<PageEvent>();
   checkBox = ['checkbox']
   actionKey = ['options']
   @Input() actionsHeaderName = ' View Device Data'
@@ -94,5 +95,10 @@ export class DataTableComponent implements OnChanges, OnInit {
       type: action,
       name
     });
+  }
+
+  pageEvent($event: PageEvent) {
+    console.log($event);
+    this.page.emit($event);
   }
 }

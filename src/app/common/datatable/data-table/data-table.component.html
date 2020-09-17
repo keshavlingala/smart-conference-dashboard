@@ -1,9 +1,9 @@
 <div class="table-container mat-elevation-z8">
   <!--  Top actions bar-->
   <div class="bar">
-    <div class="ml-auto" *ngIf="config.checkbox">
-      <button *ngFor="let bulkAction of actions.bulkActions"
-              (click)="bulkActionHandler('bulk-action',bulkAction.name)"
+    <div *ngIf="config.checkbox&&selection.selected.length>0" class="ml-auto">
+      <button (click)="bulkActionHandler('bulk-action',bulkAction.name)"
+              *ngFor="let bulkAction of actions.bulkActions"
               [color]="bulkAction.color"
               mat-stroked-button>
         <mat-icon>{{bulkAction.icon}}</mat-icon>
@@ -24,26 +24,26 @@
   <div *ngIf="!data" class="row justify-content-center align-items-center w-100">
     <mat-spinner></mat-spinner>
   </div>
-  <table [ngStyle]="{opacity:data?1:0}" class="table" mat-table [dataSource]="dataSource" matSort>
+  <table [dataSource]="dataSource" [ngStyle]="{opacity:data?1:0}" class="table" mat-table matSort>
     <!--    Columns-->
     <ng-container matColumnDef="checkbox">
-      <th mat-header-cell *matHeaderCellDef>
+      <th *matHeaderCellDef mat-header-cell>
         <mat-checkbox (change)="$event ? masterToggle() : null"
                       [checked]="selection.hasValue() && isAllSelected()"
                       [indeterminate]="selection.hasValue() && !isAllSelected()">
         </mat-checkbox>
       </th>
-      <td mat-cell *matCellDef="let row">
-        <mat-checkbox color="primary" (click)="$event.stopPropagation()"
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)">
+      <td *matCellDef="let row" mat-cell>
+        <mat-checkbox (change)="$event ? selection.toggle(row) : null" (click)="$event.stopPropagation()"
+                      [checked]="selection.isSelected(row)"
+                      color="primary">
         </mat-checkbox>
       </td>
     </ng-container>
 
-    <ng-container [matColumnDef]="key" *ngFor="let key of keys;let i=index">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> {{columnNames[i]}}</th>
-      <td mat-cell *matCellDef="let row">{{row[key]||row[key].deviceType}} </td>
+    <ng-container *ngFor="let key of keys;let i=index" [matColumnDef]="key">
+      <th *matHeaderCellDef mat-header-cell mat-sort-header> {{columnNames[i]}}</th>
+      <td *matCellDef="let row" mat-cell>{{row[key] || row[key].deviceType}} </td>
     </ng-container>
 
     <!--    <ng-container *ngIf="columnNames[1]" matColumnDef="type">-->
@@ -66,8 +66,8 @@
     <!--    </ng-container>-->
     <!--device data-->
     <ng-container matColumnDef="options">
-      <th mat-header-cell *matHeaderCellDef>{{actionsHeaderName}}</th>
-      <td mat-cell *matCellDef="let row">
+      <th *matHeaderCellDef mat-header-cell>{{actionsHeaderName}}</th>
+      <td *matCellDef="let row" mat-cell>
         <div class="d-flex justify-content-around ">
           <button (click)="rowAction(row,'action',action.name);$event.stopPropagation()"
                   *ngFor="let action of actions.actions"
@@ -79,15 +79,15 @@
       </td>
     </ng-container>
 
-    <tr mat-header-row *matHeaderRowDef="checkBox.concat(keys).concat(actionKey)"></tr>
+    <tr *matHeaderRowDef="checkBox.concat(keys).concat(actionKey)" mat-header-row></tr>
 
-    <tr class="pointer" (click)="this.selection.toggle(row)" mat-row
-        *matRowDef="let row; columns: checkBox.concat(keys).concat(actionKey)"></tr>
+    <tr (click)="this.selection.toggle(row)" *matRowDef="let row; columns: checkBox.concat(keys).concat(actionKey)" class="pointer"
+        mat-row></tr>
 
-    <tr class="mat-row" *matNoDataRow>
+    <tr *matNoDataRow class="mat-row">
       <td class="mat-cell" colspan="4">No data Available</td>
     </tr>
   </table>
-  <mat-paginator  color="primary" [showFirstLastButtons]="true" [pageSize]="config.pageSize"
-                 [pageSizeOptions]="this.config.pageSizeOptions"></mat-paginator>
+  <mat-paginator (page)="pageEvent($event)" [pageSizeOptions]="this.config.pageSizeOptions" [pageSize]="config.pageSize" [showFirstLastButtons]="true"
+                 color="primary"></mat-paginator>
 </div>
