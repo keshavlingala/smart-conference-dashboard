@@ -19,8 +19,8 @@ export class DataTableService {
   }
 
 
-  getDeviceResponse(): Observable<DeviceResponse> {
-    return of(devicesGenerator(20)).pipe(delay(700));
+  getDeviceResponse(length: number): Observable<DeviceResponse> {
+    return of(devicesGenerator(length)).pipe(delay(700));
 
   }
 

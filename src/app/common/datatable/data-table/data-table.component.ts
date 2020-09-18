@@ -52,7 +52,7 @@ export class DataTableComponent implements OnChanges, OnInit {
     // console.log('Data', this.data);
     if (this.data) {
       this.dataSource = new MatTableDataSource<any>(this.data);
-      this.dataSource.paginator = this.paginator;
+      // this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.selection.clear();
       // console.log(this.sort)
@@ -100,5 +100,6 @@ export class DataTableComponent implements OnChanges, OnInit {
   pageEvent($event: PageEvent) {
     console.log($event);
     this.page.emit($event);
+
   }
 }

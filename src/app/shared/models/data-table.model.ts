@@ -14,6 +14,7 @@ export interface DataTableConfig {
   pageSize: number;
   pageSizeOptions: number[];
   searchBox: boolean;
+  totalCount?: number;
 }
 
 export interface DataTableActions {

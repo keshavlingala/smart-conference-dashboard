@@ -5,6 +5,7 @@ import {CommonModule, DatePipe} from '@angular/common';
 import {SharedModule} from 'src/app/shared/shared.module';
 import {RouterModule, Routes} from '@angular/router';
 import {DatatableModule} from 'src/app/common/datatable/datatable.module';
+import {DeleteConfirmationComponent} from "./delete-confirmation.component";
 
 const routes: Routes = [
   {path: "", component: DevicesComponent},
@@ -14,7 +15,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     DevicesComponent,
-    AddDeviceComponent
+    AddDeviceComponent,
+    DeleteConfirmationComponent
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,13 @@
-import { DataTableService } from '../../../core/services/data-table.service';
+import {DataTableService} from '../../../core/services/data-table.service';
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../shared/models/data-table.model';
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
 import {Card, Setting} from '../../../common/card-module/models/card.model';
 import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
 import {DatePipe} from "@angular/common";
+import {MatDialog} from "@angular/material/dialog";
+import {DeleteConfirmationComponent} from "../delete-confirmation.component";
+import {PageEvent} from "@angular/material/paginator";
 
 
 @Component({
@@ -130,6 +133,7 @@ export class DevicesComponent implements OnInit {
   constructor(
     public deviceService: DataTableService,
     public dialogService: DialogFactoryService,
+    public matDialog: MatDialog,
     private datePipe: DatePipe
   ) {
   }
@@ -143,7 +147,8 @@ export class DevicesComponent implements OnInit {
       checkbox: true,
       pageSize: 5,
       pageSizeOptions: [5, 10, 15, 20, 50],
-      searchBox: true
+      searchBox: true,
+      totalCount: 20
     };
     this.dataTableActions = {
       actions: [
@@ -156,11 +161,12 @@ export class DevicesComponent implements OnInit {
         {icon: 'visibility', name: 'disable'}
       ],
     };
-    this.data = await this.getDevices();
+    // = await this.getDevices();
+    this.getDevices(this.dataTableConfig.pageSize)
   }
 
-  async getDevices() {
-    return (await this.deviceService.getDeviceResponse().toPromise()).data.devices.map(device => {
+  async getDevices(size: number) {
+    this.data = (await this.deviceService.getDeviceResponse(size).toPromise()).data.devices.map(device => {
       return {
         ...device,
         type: device.type.deviceType,
@@ -176,7 +182,15 @@ export class DevicesComponent implements OnInit {
         selected = $event.selected as Device;
         if ($event.name === 'delete') {
           try {
-            await this.deviceService.deleteDevice(selected._id)
+            this.matDialog.open(DeleteConfirmationComponent, {
+              data: {
+                single: selected
+              }
+            }).afterClosed().subscribe(yes => {
+              if (yes) {
+                this.deviceService.deleteDevice(selected._id)
+              }
+            })
           } catch (e) {
             console.log('Cannot Do Data manipulation ', e)
           }
@@ -198,7 +212,15 @@ export class DevicesComponent implements OnInit {
       case 'bulk-action':
         selected = $event.selected as Device[];
         if ($event.name === 'delete') {
-          this.deviceService.deleteDevices(selected)
+          this.matDialog.open(DeleteConfirmationComponent, {
+            data: {
+              multiple: selected
+            }
+          }).afterClosed().subscribe(yes => {
+            if (yes) {
+              this.deviceService.deleteDevices(selected)
+            }
+          })
         } else if ($event.name === 'disable') {
           try {
             // await this.deviceService
@@ -243,5 +265,9 @@ export class DevicesComponent implements OnInit {
       this.cardData = this.setting[0].apipaginator === false ? this.tempData.slice(this.startIndex, this.endIndex) : this.tempData;
       this.tempData = this.popUpData.tabs.attributes;
     }
+  }
+
+  pageChange($event: PageEvent) {
+    this.getDevices($event.pageSize)
   }
 }

@@ -7,6 +7,7 @@
                 (bulkActionClick)="actionChange($event)"
                 (filterChange)="filterChange($event)"
                 [actions]="dataTableActions"
+                (page)="pageChange($event)"
                 [columnNames]="['ID','Type', 'Name(User Defined)', ' Created Date']"
                 [config]="dataTableConfig"
                 [data]="data"

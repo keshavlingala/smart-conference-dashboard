@@ -21,10 +21,10 @@
   </div>
   <!--  <ng-template #loader>-->
   <!--  </ng-template>-->
-  <div *ngIf="!data" class="row justify-content-center align-items-center w-100">
-    <mat-spinner></mat-spinner>
-  </div>
-  <table [dataSource]="dataSource" [ngStyle]="{opacity:data?1:0}" class="table" mat-table matSort>
+<!--  <div *ngIf="!data" class="row justify-content-center align-items-center w-100">-->
+<!--    <mat-spinner></mat-spinner>-->
+<!--  </div>-->
+  <table [dataSource]="dataSource"  class="table" mat-table matSort>
     <!--    Columns-->
     <ng-container matColumnDef="checkbox">
       <th *matHeaderCellDef mat-header-cell>
@@ -88,6 +88,6 @@
       <td class="mat-cell" colspan="4">No data Available</td>
     </tr>
   </table>
-  <mat-paginator (page)="pageEvent($event)" [pageSizeOptions]="this.config.pageSizeOptions" [pageSize]="config.pageSize" [showFirstLastButtons]="true"
+  <mat-paginator [length]="config.totalCount" (page)="pageEvent($event)" [pageSizeOptions]="this.config.pageSizeOptions" [pageSize]="config.pageSize" [showFirstLastButtons]="true"
                  color="primary"></mat-paginator>
 </div>
