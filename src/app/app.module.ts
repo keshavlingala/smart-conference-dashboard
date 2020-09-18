@@ -1,3 +1,4 @@
+import { PopupMessageModule } from './common/popup-message/popup-message.module';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
 //Modules
 import {BrowserModule} from '@angular/platform-browser';
@@ -22,6 +23,7 @@ import {AppRoutingModule} from './app-routing.module';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
+    PopupMessageModule
   ],
   bootstrap: [AppComponent],
   providers:[LoginGuard],

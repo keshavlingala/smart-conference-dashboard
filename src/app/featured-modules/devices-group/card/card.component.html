@@ -1,72 +1,81 @@
 <!-- Buttons -->
-<div class="d-flex justify-content-end" >
-         <!-- Other Buttons -->
-        <div  *ngIf="showBtn" class="mr-3 mt-1" >
-          <button  mat-raised-button routerLink=".."  class="yellow-btn mr-3" >Cancel</button>
-          <button [disabled]="selected.length==0" class="mbutton" mat-raised-button style="background-color: coral; color:white;" (click)="showSelected()">Add to Group</button>
-        </div>
-
-        <!-- Search button -->
-        <div class="searchbox ml-5">
-   <div class="position-relative mr-lg-3">
-    <input (keyup)="search($event)" type="text" #searchStr placeholder="Search by any parameter" class="p-1 pr-4 rounded" style="border: none; outline: none; height:42px">
-    <mat-icon class="position-absolute text-secondary" style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search</mat-icon>
-</div>
-
+<div class="d-flex justify-content-end">
+  <!-- Other Buttons -->
+  <div *ngIf="showBtn" class="mr-3 mt-1">
+    <button mat-raised-button routerLink=".." class="yellow-btn mr-3">Cancel</button>
+    <button [disabled]="selected.length==0" class="mbutton" mat-raised-button
+      style="background-color: coral; color:white;" (click)="showSelected()">Add to Group</button>
   </div>
 
-<div>
-  <div style="background-color:white; width: 40px; height: 40px; border-radius: 50%;">
-  <div [matMenuTriggerFor]="menu"><mat-icon class="text-primary ml-1 mt-1" style="font-size:30px;">tune</mat-icon></div>
-</div>
-<mat-menu #menu="matMenu" class="p-3 pb-0" style="color: grey;">
-  <h3 style="font-weight: 500;">Filter Devices By</h3>
-  <section class="example-section">
-    <mat-checkbox color="primary"  class="example-margin" (change)="sortByRecentlyAdded($event.checked)">Recently Added</mat-checkbox>
-  </section>
-  <section class="example-section">
-    <mat-checkbox color="primary" class="example-margin">Recently Deleted</mat-checkbox>
-  </section>
-
-  <section class="example-section">
-    <mat-checkbox color="primary" class="example-margin" (change)="sortAlpha($event.checked)">Sort by A-Z</mat-checkbox>
-  </section>
-
-  <section class="example-section">
-    <mat-checkbox color="primary" class="example-margin">Filter Condition 1</mat-checkbox>
-  </section>
-
-</mat-menu>
-</div>
-</div>
-  
-<!-- Displaying CardData -->
-<div class="row  w-100" >
-<div class="col-3 p-2" *ngFor="let item of currentlyShowing;
-  let i=index">
-<mat-card (click)="cardCheck(item);"  [ngClass]="{'Active': selected.indexOf(currentlyShowing[i].id)!=-1}"  >
-  
-  <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)!=-1" style="float:right; color:green;">library_add_check</mat-icon>
-  <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)==-1" style="float:right; color: grey;">check_box_outline_blank</mat-icon>
-    <mat-card-title class="title">{{item.Title}}</mat-card-title>
-    <mat-card-content class="content">{{item.Content}}</mat-card-content>
-    <mat-card-content class="content1">{{item.Footer}}</mat-card-content>
-
-  </mat-card>
-  </div>
-</div>
-
- <!-- Forward and backward pagination buttons with Elements Shown -->
- 
-<div class="d-flex mr-3 justify-content-center align-items-center ">
-  <div class="d-inline-flex  position-absolute text-secondary " style="margin-right: 85%;" >Viewing {{elementPagination}} of {{tempData.length}}</div>
-
-    <div  class="m-4 buttonDiv"  [ngClass]="{'disableArow': disableBbttn}" >
-        <mat-icon class="mt-2 ml-2" (click)="showBack()">arrow_back_ios</mat-icon>
+  <!-- Search button -->
+  <div class="searchbox ml-5">
+    <div class="position-relative mr-lg-3">
+      <input (keyup)="search($event)" type="text" #searchStr placeholder="Search by any parameter"
+        class="p-1 pr-4 rounded" style="border: none; outline: none; height:42px">
+      <mat-icon class="position-absolute text-secondary"
+        style="width: auto; height: auto; top: 50%; right: 0; transform: translateY(-50%);">search</mat-icon>
     </div>
-    <div class="m-4 buttonDiv" [ngClass]="{'disableArow': disableFbttn}">
-        <mat-icon  class="mt-2 ml-2" (click)="showNext()">arrow_forward_ios</mat-icon>
-    </div>   
+
+  </div>
+
+  <!-- MENU -->
+  <div>
+    <div style="background-color:white; width: 40px; height: 40px; border-radius: 50%;">
+      <div [matMenuTriggerFor]="menu">
+        <mat-icon class="text-primary ml-1 mt-1" style="font-size:30px;">tune</mat-icon>
+      </div>
+    </div>
+    <mat-menu #menu="matMenu" class="p-3 pb-0" style="color: grey;">
+      <h3 style="font-weight: 500;">Filter Devices By</h3>
+      <section class="example-section">
+        <mat-checkbox color="primary" class="example-margin" (change)="sortByRecentlyAdded($event.checked)">Recently
+          Added</mat-checkbox>
+      </section>
+      <section class="example-section">
+        <mat-checkbox color="primary" class="example-margin">Recently Deleted</mat-checkbox>
+      </section>
+
+      <section class="example-section">
+        <mat-checkbox color="primary" class="example-margin" (change)="sortAlpha($event.checked)">Sort by A-Z
+        </mat-checkbox>
+      </section>
+
+      <section class="example-section">
+        <mat-checkbox color="primary" class="example-margin">Filter Condition 1</mat-checkbox>
+      </section>
+
+    </mat-menu>
+  </div>
 </div>
-  
-    
+
+<!-- Displaying CardData -->
+<div class="row  w-100">
+  <div class="col-3 p-2" *ngFor="let item of currentlyShowing;
+  let i=index">
+    <mat-card (click)="cardCheck(item);" [ngClass]="{'Active': selected.indexOf(currentlyShowing[i].id)!=-1}">
+
+      <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)!=-1" style="float:right; color:green;">library_add_check
+      </mat-icon>
+      <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)==-1" style="float:right; color: grey;">
+        check_box_outline_blank</mat-icon>
+      <mat-card-title class="title">{{item.Title}}</mat-card-title>
+      <mat-card-content class="content">{{item.Content}}</mat-card-content>
+      <mat-card-content class="content1">{{item.Footer}}</mat-card-content>
+
+    </mat-card>
+  </div>
+</div>
+
+<!-- Forward and backward pagination buttons with Elements Shown -->
+
+<div class="d-flex mr-3 justify-content-center align-items-center ">
+  <div class="d-inline-flex  position-absolute text-secondary " style="margin-right: 85%;">Viewing {{elementPagination}}
+    of {{tempData.length}}</div>
+
+  <div class="m-4 buttonDiv" [ngClass]="{'disableArow': disableBbttn}">
+    <mat-icon class="mt-2 ml-2" (click)="showBack()">arrow_back_ios</mat-icon>
+  </div>
+  <div class="m-4 buttonDiv" [ngClass]="{'disableArow': disableFbttn}">
+    <mat-icon class="mt-2 ml-2" (click)="showNext()">arrow_forward_ios</mat-icon>
+  </div>
+</div>

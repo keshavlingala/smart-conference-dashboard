@@ -11,18 +11,15 @@ export class CardComponent implements OnInit {
   public paginationMatrix = [];
   public currentlyShowing = [];
   public currentMatrixIndex = 0;
-  public checked: boolean=false;
   public btnClick : number=0;
   public selected = [];
   public showBtn : boolean =false;
   public disableFbttn : boolean=false;
   public disableBbttn : boolean=true;
   Searchindex : number=0;
-  toggle:boolean=false;
   elementPagination = 8;
   searchIndex=[];
   tempDataClone;
-  // public dummy=[];
   constructor() { }
 
   ngOnInit(): void {
@@ -36,10 +33,7 @@ export class CardComponent implements OnInit {
     this.sendData.emit(this.selected);
   }
 
-  clearSelected(){
-    this.selected = []
-    console.log(this.selected);
-  }
+  
 
   cardCheck(item){
       if(this.selected.indexOf(item.id)===-1)

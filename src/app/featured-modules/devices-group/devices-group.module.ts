@@ -1,3 +1,4 @@
+import { PopupMsgService } from './../../core/services/popup-msg.service';
 import { DevicesGroupService } from './../../core/services/devices-group.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -11,10 +12,7 @@ import { HomeComponent } from './home/home.component';
 import { AddDeviceGroupComponent } from './add-device-group/add-device-group.component';
 import { FormsModule } from '@angular/forms';
 import { CardComponent } from './card/card.component';
-import { NgMultiSelectDropDownModule } from 'ng-multiselect-dropdown';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatMenuModule} from '@angular/material/menu';
-import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
 
 import { DatePipe } from '@angular/common';
 @NgModule({
@@ -26,13 +24,10 @@ import { DatePipe } from '@angular/common';
     DatatableModule,
     RouterModule,
     FormsModule,
-    NgMultiSelectDropDownModule.forRoot(),
     ReactiveFormsModule,
-    MatProgressSpinnerModule,
-    MatMenuModule,
-    NgxMatSelectSearchModule
+    MatMenuModule
     
   ],
-  providers: [DevicesGroupService,DatePipe]
+  providers: [DevicesGroupService,DatePipe , PopupMsgService]
 })
 export class DevicesGroupModule { }
