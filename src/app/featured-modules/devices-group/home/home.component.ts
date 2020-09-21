@@ -1,4 +1,3 @@
-import { DataTableService } from './../../../core/services/data-table.service';
 import { DevicesGroupService } from './../../../core/services/devices-group.service';
 import {Component, OnInit} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig} from '../../../shared/models/data-table.model';
@@ -17,11 +16,7 @@ export class HomeComponent implements OnInit {
   
   // Popup message service
   // openDialog(){
-  //   let data = {
-  //     status: 1,
-  //     statusMsg:"Device group created succesfully"
-  //   }
-  //  this.PopupMsgService.openDialog(data);
+  //  this.PopupMsgService.openDialog("success","Added Succesfully");
   // }
 
 
