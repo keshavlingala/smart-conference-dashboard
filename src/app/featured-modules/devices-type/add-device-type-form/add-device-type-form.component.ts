@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators, FormArray} from '@angular/forms';
+import {CommonLoaderService} from '../../../core/services/common-loader.service';
 
 @Component({
   selector: 'app-add-device-type-form',
@@ -10,7 +11,7 @@ export class AddDeviceTypeFormComponent implements OnInit {
 
   public deviceTypeForm;
   public isFormSubmissionLoading:boolean = false;
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private __loader: CommonLoaderService) { }
 
   ngOnInit(): void {
     this.deviceTypeForm = this.fb.group({
@@ -67,6 +68,7 @@ export class AddDeviceTypeFormComponent implements OnInit {
       this.deviceTypeForm.markAllAsTouched();
     }
     if(this.deviceTypeForm.valid){
+      this.__loader.appendLoaderComponentToBody();
       this.deviceTypeForm.value.actions = this.deviceTypeForm.value.actions.split(','); //convert array into actions
       this.deviceTypeForm.value.attributes.forEach(attribute=>{
       attribute.accId = [attribute.accId];
@@ -77,6 +79,7 @@ export class AddDeviceTypeFormComponent implements OnInit {
       setTimeout(()=>{
         this.isFormSubmissionLoading = false;
         this.deviceTypeForm.enable();
+        this.__loader.removeLoaderComponentFromBody();
       },2000);
     }   
   }

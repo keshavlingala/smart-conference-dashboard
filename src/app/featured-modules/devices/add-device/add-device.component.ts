@@ -1,6 +1,7 @@
 import { deviceTypes } from '../../../shared/datagenerator/datagenerator.dev';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import {CommonLoaderService} from '../../../core/services/common-loader.service';
 @Component({
   selector: 'app-add-device',
   templateUrl: './add-device.component.html',
@@ -12,7 +13,7 @@ export class AddDeviceComponent implements OnInit {
   deviceTypes:string[];
   showError:boolean=false;
   loader:boolean=false;
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private __loader: CommonLoaderService) {
 
   }
 
@@ -36,6 +37,7 @@ export class AddDeviceComponent implements OnInit {
       this.showError=true;
       return;
     }
+    this.__loader.appendLoaderComponentToBody();
     this.showError=false;
     this.loader=true;
     setTimeout(()=>{
@@ -55,6 +57,7 @@ export class AddDeviceComponent implements OnInit {
       this.addDeviceForm.markAllAsTouched();
       this.addDeviceForm.reset();
       this.myForm.resetForm();
+      this.__loader.removeLoaderComponentFromBody();
       },700)
 
     }

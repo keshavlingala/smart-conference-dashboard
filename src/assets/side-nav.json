@@ -35,6 +35,13 @@
         "isVisible": true
     },
     {
+        "icon": "api",
+        "name":"Generate Keys",
+        "routerLink":"generate-keys",
+        "isDisabled":false,
+        "isVisible": true
+    },
+    {
         "isGrouped": true,
         "name": "Group 1 ",
         "icon": "phone",
@@ -50,13 +57,6 @@
                 "icon": "accessible_forward",
                 "name":"Members",
                 "routerLink":"members",
-                "isDisabled":false,
-                "isVisible": true
-            },
-            {
-                "icon": "api",
-                "name":"Generate Keys",
-                "routerLink":"generate-keys",
                 "isDisabled":false,
                 "isVisible": true
             }

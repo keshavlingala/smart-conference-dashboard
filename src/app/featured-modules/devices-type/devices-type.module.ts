@@ -6,6 +6,9 @@ import {ChartsModule} from 'ng2-charts';
 
 import { DevicesTypeRoutingModule } from './devices-type-routing.module';
 
+import {CommonLoaderModule} from '../../common/common-loader/common-loader.module';
+import {CommonLoaderService} from '../../core/services/common-loader.service';
+
 
 import {DevicesTypeListingComponent} from './devices-type-listing/devices-type-listing.component';
 import { AddDeviceTypeFormComponent } from './add-device-type-form/add-device-type-form.component';
@@ -23,8 +26,9 @@ import {DevicesTypeService} from '../../core/services/devices-type.service';
     SharedModule,
     RouterModule,
     ChartsModule,
-    DevicesTypeRoutingModule
+    DevicesTypeRoutingModule,
+    CommonLoaderModule
   ],
-  providers: [DevicesTypeService]
+  providers: [DevicesTypeService, CommonLoaderService]
 })
 export class DevicesTypeModule { }

@@ -1,5 +1,7 @@
 import { Component, OnInit} from '@angular/core';
 import {DevicesTypeService} from '../../../core/services/devices-type.service';
+
+import {CommonLoaderService} from '../../../core/services/common-loader.service';
 @Component({
   selector: 'devices-type-listing',
   templateUrl: './devices-type-listing.component.html',
@@ -26,7 +28,7 @@ export class DevicesTypeListingComponent implements OnInit{
     this.devicesTypeData = this.__devicesTypeService.getDevicesTypeData(start,end);
     this.currentlyShowingDevicesType = this.devicesTypeData;
   }
-  constructor(private __devicesTypeService: DevicesTypeService){
+  constructor(private __devicesTypeService: DevicesTypeService, private cl: CommonLoaderService){
   
   }
 
