@@ -1,6 +1,6 @@
 import { PopupMsgComponent } from './../../common/popup-message/popup-msg/popup-msg.component';
 import { Injectable } from '@angular/core';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog} from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'
@@ -11,10 +11,20 @@ export class PopupMsgService {
     public dialog: MatDialog,
     ) { }
 
-  openDialog(data){
+  openDialog(status , statusMsg){
+   let data1 ={status , statusMsg};
+   if(status==="success")
+   {
+     data1.status = 1;
+   }
+   else 
+   {
+     data1.status=0;
+   }
+   data1.statusMsg = statusMsg;
 
     const dialog_ref= this.dialog.open(PopupMsgComponent,{
-     data:data
+     data:data1
  }
 );
 
@@ -23,4 +33,7 @@ export class PopupMsgService {
 //  })
   return dialog_ref;
  }
+
 }
+
+
