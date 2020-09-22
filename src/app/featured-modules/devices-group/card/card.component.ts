@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class CardComponent implements OnInit {
   @Input() tempData=[];
+  @Input () action : string;
   @Output() sendData = new EventEmitter();
   public paginationMatrix = [];
   public currentlyShowing = [];
@@ -17,7 +18,7 @@ export class CardComponent implements OnInit {
   public disableFbttn : boolean=false;
   public disableBbttn : boolean=true;
   Searchindex : number=0;
-  elementPagination = 8;
+  elementPagination = 0;
   searchIndex=[];
   tempDataClone;
   constructor() { }
@@ -26,11 +27,21 @@ export class CardComponent implements OnInit {
     this.tempDataClone = JSON.stringify(this.tempData);
     this.paginationMatrix = this.gMatrix(this.tempData, 8);
     this.currentlyShowing = this.paginationMatrix[0];
+    this.elementPagination = this.currentlyShowing.length; 
+    if(this.paginationMatrix.length <2)
+    {
+      this.disableFbttn = true;
+      this.disableBbttn = true;
+    }
   }
 
   showSelected(){
     //console.log(this.selected);
-    this.sendData.emit(this.selected);
+    
+    this.sendData.emit({
+      selected : this.selected,
+      action: this.action
+    });
   }
 
   

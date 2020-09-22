@@ -3,8 +3,10 @@
   <!-- Other Buttons -->
   <div *ngIf="showBtn" class="mr-3 mt-1">
     <button mat-raised-button routerLink=".." class="yellow-btn mr-3">Cancel</button>
-    <button [disabled]="selected.length==0" class="mbutton" mat-raised-button
+    <button [disabled]="selected.length==0"  *ngIf="action==='add'" class="mbutton" mat-raised-button
       style="background-color: coral; color:white;" (click)="showSelected()">Add to Group</button>
+      <button [disabled]="selected.length==0" class="mbutton" mat-raised-button
+      style="background-color: coral; color:white;" *ngIf="action==='remove'" (click)="showSelected()">Remove Devices</button>
   </div>
 
   <!-- Search button -->
@@ -19,7 +21,7 @@
   </div>
 
   <!-- MENU -->
-  <div>
+  <div class="mr-1">
     <div style="background-color:white; width: 40px; height: 40px; border-radius: 50%;">
       <div [matMenuTriggerFor]="menu">
         <mat-icon class="text-primary ml-1 mt-1" style="font-size:30px;">tune</mat-icon>
