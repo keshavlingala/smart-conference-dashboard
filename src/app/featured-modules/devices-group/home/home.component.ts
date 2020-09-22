@@ -2,6 +2,7 @@ import { DataTableService } from './../../../core/services/data-table.service';
 import { DevicesGroupService } from './../../../core/services/devices-group.service';
 import {Component, OnInit} from '@angular/core';
 import {ActionChange, DataTableActions, DataTableConfig} from '../../../shared/models/data-table.model';
+import {Router} from '@angular/router';
 
 
 @Component({
@@ -11,7 +12,8 @@ import {ActionChange, DataTableActions, DataTableConfig} from '../../../shared/m
 })
 export class HomeComponent implements OnInit {
   constructor(
-    private service : DevicesGroupService
+    private service : DevicesGroupService,
+    private router: Router
   ) {
   }
   
@@ -56,7 +58,6 @@ export class HomeComponent implements OnInit {
   }
 
   async actionChange($event: ActionChange): Promise<any> {
-    console.log($event);
     let selected = $event.selected;
     switch ($event.type) {
       case 'action':
@@ -65,7 +66,8 @@ export class HomeComponent implements OnInit {
          
         }
         else if ($event.name === 'edit') {
-          
+          let selectedGroupId = $event.selected._id;
+          this.router.navigate(['side-nav/devices-group/edit-group',selectedGroupId]);
          }
         break;
       case 'bulk-action':

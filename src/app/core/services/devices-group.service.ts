@@ -128,6 +128,8 @@ export class DevicesGroupService {
     })
   }
 
-
+  getDeviceGroupById(id:any){
+    return this.deviceGroupData[0].data.groups.find(group=>group._id===id);
+  }
 
 }

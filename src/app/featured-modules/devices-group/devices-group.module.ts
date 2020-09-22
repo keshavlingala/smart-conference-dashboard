@@ -15,8 +15,9 @@ import { CardComponent } from './card/card.component';
 import {MatMenuModule} from '@angular/material/menu';
 
 import { DatePipe } from '@angular/common';
+import { EditGroupComponent } from './edit-group/edit-group.component';
 @NgModule({
-  declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent],
+  declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent, EditGroupComponent],
   imports: [
     CommonModule,
     DevicesGroupRoutingModule,

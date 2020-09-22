@@ -1,0 +1,29 @@
+<div class="w-100 ml-3" style="margin:0; padding:0;">
+    <h1>DEVICES GROUP </h1>
+    {{groupData | json}}
+    <div class="d-flex flex-row flex-wrap justify-content-start">
+        <div class="mr-5">
+            <small class="mb-1 text-secondary">Group Name</small>
+            <p>{{groupData.groupName}}</p>
+        </div>
+        <div class="mr-5">
+            <small class="mb-1 text-secondary">Group Type</small>
+            <p>Homogenous</p>
+        </div>
+        <div class="mr-5">
+            <small class="mb-1 text-secondary">Created Date</small>
+            <p>{{groupData.createdAt}}</p>
+        </div>
+    </div>    
+
+<!-- Tabs -->
+    <mat-tab-group class="mt-2">
+        <mat-tab label="Existing Devices">
+            Existing Devices
+        </mat-tab>
+        <mat-tab label="Not Added Devices">
+            Not added devices
+        </mat-tab>
+    </mat-tab-group>
+
+</div>
