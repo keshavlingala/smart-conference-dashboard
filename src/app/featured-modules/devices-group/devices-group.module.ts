@@ -1,3 +1,4 @@
+import { DevicesService } from './../../core/services/devices.service';
 import { PopupMsgService } from './../../core/services/popup-msg.service';
 import { DevicesGroupService } from './../../core/services/devices-group.service';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -15,8 +16,9 @@ import { CardComponent } from './card/card.component';
 import {MatMenuModule} from '@angular/material/menu';
 
 import { DatePipe } from '@angular/common';
+import { EditGroupComponent } from './edit-group/edit-group.component';
 @NgModule({
-  declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent],
+  declarations: [HomeComponent, AddDeviceGroupComponent, CardComponent, EditGroupComponent],
   imports: [
     CommonModule,
     DevicesGroupRoutingModule,
@@ -28,6 +30,6 @@ import { DatePipe } from '@angular/common';
     MatMenuModule
     
   ],
-  providers: [DevicesGroupService,DatePipe , PopupMsgService]
+  providers: [DevicesGroupService,DatePipe , PopupMsgService , DevicesService]
 })
 export class DevicesGroupModule { }

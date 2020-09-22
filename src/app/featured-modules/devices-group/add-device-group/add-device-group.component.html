@@ -55,10 +55,11 @@
             <mat-form-field appearance="outline" class="w-100">
               <mat-select id="DeviceType" formControlName="DeviceType">
 
-                <mat-option *ngFor="let item of DeviceType" [value]="item">{{item.item_text}}</mat-option>
+                <mat-option *ngFor="let item of DeviceType " [value]="item">{{item.item_text}}</mat-option>
 
               </mat-select>
             </mat-form-field>
+            
             <small style="margin-top: -8px;" class="text-danger d-block"
               *ngIf="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty)">Select
               Device Type</small>
@@ -98,7 +99,7 @@
           <div style="position: relative;" class="mt-4">
             <h1 style="color: rgb(107, 104, 104); float: left; font-weight: 300; ">Existing Devices</h1>
           </div>
-          <app-card [tempData]="tempData" (sendData)="DatafromCard($event)"></app-card>
+          <app-card [tempData]="tempData" (sendData)="DatafromCard($event)"  action= "add"></app-card>
 
         </div>
       </mat-step>
