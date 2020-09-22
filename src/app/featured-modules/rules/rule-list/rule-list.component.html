@@ -36,7 +36,7 @@
           <span *ngFor="let action of rule.actions.slice(0,2)" class="d-flex align-items-center"
                 style="font-size: 1rem">
             <mat-icon>ac_unit</mat-icon>
-            <span style="font-size: 0.8rem">{{action}}</span>
+            <span style="font-size: 0.8rem">{{action | slice:0:8}}..</span>
           </span>
         </div>
         <!--        <span style="font-size: 0.7rem;color: gray;">Created on {{ rule.createdAt | date:'mediumDate'}}</span>-->
