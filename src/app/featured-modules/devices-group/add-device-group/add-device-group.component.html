@@ -55,10 +55,11 @@
             <mat-form-field appearance="outline" class="w-100">
               <mat-select id="DeviceType" formControlName="DeviceType">
 
-                <mat-option *ngFor="let item of DeviceType" [value]="item">{{item.item_text}}</mat-option>
+                <mat-option *ngFor="let item of DeviceType " [value]="item">{{item.item_text}}</mat-option>
 
               </mat-select>
             </mat-form-field>
+            
             <small style="margin-top: -8px;" class="text-danger d-block"
               *ngIf="DeviceGroupForm.get('DeviceType').errors && (DeviceGroupForm.get('DeviceType').touched || DeviceGroupForm.get('DeviceType').dirty)">Select
               Device Type</small>

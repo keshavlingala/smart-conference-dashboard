@@ -1,3 +1,4 @@
+import { DevicesGroupService } from './../../../core/services/devices-group.service';
 import { Validators } from '@angular/forms';
 import { FormBuilder } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
@@ -23,15 +24,45 @@ export class AddDeviceGroupComponent implements OnInit {
     "groupType":"",
     "devices":[]
   }
-  constructor( private fb :FormBuilder) { }
+  
+  DeviceType =[]
+  // DeviceType=[
+  //     { id: "1", item_text: 'Mumbai' },
+  //     { id: "2", item_text: 'Bangaluru' },
+  //     { id: "3", item_text: 'Pune' },
+  //     { id: "4", item_text: 'Navsari' },
+  //     { id: "5", item_text: 'New Delhi' }
+  //   ];
+
+  constructor( private fb :FormBuilder, private DevicesGroupService : DevicesGroupService) { }
   ngOnInit(): void {
      
-   this.deviceTypeClone = JSON.stringify(this.DeviceType);
+   
+    let array = [];
+    let deviceTypeData = this.DevicesGroupService.getdeviceTypeData();
+    deviceTypeData.data.types.forEach((data)=>{
+      let id = data._id;
+      let deviceType = data.deviceType;
+      let a = {
+        id: id,
+        item_text : deviceType
+      }
+      array.push(a);
+    });
+    // console.log(deviceTypeData.data.types);
+    //console.log(array);
+    this.DeviceType=array;
+    //console.log(this.DeviceType);
+
+
+    this.deviceTypeClone = JSON.stringify(this.DeviceType);
     this.DeviceGroupForm = this.fb.group({
       GroupName : ['', Validators.required],
       GroupType : [''],
       DeviceType : [[],[Validators.required , Validators.minLength(2)]]
     });
+
+
   }
 
   selectionChange($event: StepperSelectionEvent) {
@@ -40,9 +71,6 @@ export class AddDeviceGroupComponent implements OnInit {
       this.DeviceGroupForm.enable()
     } else {
       this.DeviceGroupForm.disable();
-      
-      
-      
     }
   }
   filterDropdown(e)
@@ -63,13 +91,13 @@ export class AddDeviceGroupComponent implements OnInit {
 
   }
 
-    DeviceType=[
-      { id: 1, item_text: 'Mumbai' },
-      { id: 2, item_text: 'Bangaluru' },
-      { id: 3, item_text: 'Pune' },
-      { id: 4, item_text: 'Navsari' },
-      { id: 5, item_text: 'New Delhi' }
-    ];
+    // DeviceType=[
+    //   { id: 1, item_text: 'Mumbai' },
+    //   { id: 2, item_text: 'Bangaluru' },
+    //   { id: 3, item_text: 'Pune' },
+    //   { id: 4, item_text: 'Navsari' },
+    //   { id: 5, item_text: 'New Delhi' }
+    // ];
     
     
     tempData=[
