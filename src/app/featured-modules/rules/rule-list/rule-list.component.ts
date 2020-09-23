@@ -1,10 +1,10 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from "@angular/material/paginator";
-import {BehaviorSubject} from "rxjs";
-import {RuleCard} from "../rules.models";
-import {RulesService} from "../rule-service.service";
-import {MatDialog} from "@angular/material/dialog";
-import {RulePopupComponent} from "../rule-popup.component";
+import {MatPaginator} from '@angular/material/paginator';
+import {BehaviorSubject} from 'rxjs';
+import {RuleCard} from '../rules.models';
+import {RulesService} from '../rule-service.service';
+import {MatDialog} from '@angular/material/dialog';
+import {RulePopupComponent} from '../rule-popup.component';
 
 @Component({
   selector: 'app-rule-list',
@@ -15,9 +15,9 @@ export class RuleListComponent implements OnInit {
   date = new Date();
   ruleCards: RuleCard[];
   shownData = new BehaviorSubject<RuleCard[]>([]);
-  @ViewChild(MatPaginator, {static: true}) paginator
-  currPage = []
-  pages = []
+  @ViewChild(MatPaginator, {static: true}) paginator;
+  currPage = [];
+  pages = [];
   pageSize = 8;
   selectedIndex = 0;
   totalSize = 0;
@@ -34,11 +34,11 @@ export class RuleListComponent implements OnInit {
   }
 
   async ngOnInit() {
-    await new Promise(res => setTimeout(res, 700))
+    await new Promise(res => setTimeout(res, 700));
     this.ruleCards = this.rulesService.getRuleDevices();
     this.totalSize = this.ruleCards.length;
-    this.pages = this.reshape(this.ruleCards.slice(0), this.pageSize)
-    this.shownData.next(this.pages[this.selectedIndex])
+    this.pages = this.reshape(this.ruleCards.slice(0), this.pageSize);
+    this.shownData.next(this.pages[this.selectedIndex]);
     // this.changeDetector.detectChanges();
     // console.log(this.rule_lists)
     // this.shownData = this.rule_lists.connect()
@@ -46,13 +46,13 @@ export class RuleListComponent implements OnInit {
   }
 
   reshape(data, size) {
-    const pages = []
-    while (data.length) pages.push(data.splice(0, size));
+    const pages = [];
+    while (data.length) { pages.push(data.splice(0, size)); }
     return pages;
   }
 
   max(a, b) {
-    return Math.max(a, b)
+    return Math.max(a, b);
   }
 
   min(a, b) {
@@ -60,7 +60,7 @@ export class RuleListComponent implements OnInit {
   }
 
   filterSearch(searchInput: string) {
-    console.log('Search API call with input ', searchInput)
+    console.log('Search API call with input ', searchInput);
     // console.log('search String', searchInput);
     // const key = searchInput.toLowerCase();
     // const filteredData = this.ruleCards.slice(0).filter((d) => {
@@ -85,6 +85,6 @@ export class RuleListComponent implements OnInit {
       data: device,
       width: '70vw',
       height: '70vh'
-    })
+    });
   }
 }
