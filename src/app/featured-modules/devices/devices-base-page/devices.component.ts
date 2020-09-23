@@ -184,7 +184,7 @@ export class DevicesComponent implements OnInit {
           try {
             this.matDialog.open(DeleteConfirmationComponent, {
               data: {
-                single: selected
+                single: true
               }
             }).afterClosed().subscribe(yes => {
               if (yes) {
@@ -214,7 +214,7 @@ export class DevicesComponent implements OnInit {
         if ($event.name === 'delete') {
           this.matDialog.open(DeleteConfirmationComponent, {
             data: {
-              multiple: selected
+              multiple: true
             }
           }).afterClosed().subscribe(yes => {
             if (yes) {

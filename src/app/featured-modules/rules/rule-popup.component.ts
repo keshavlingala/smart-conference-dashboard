@@ -1,6 +1,6 @@
-import {Component, Inject, OnInit} from "@angular/core";
-import {MAT_DIALOG_DATA} from "@angular/material/dialog";
-import {RuleCard} from "./rules.models";
+import {Component, Inject, OnInit} from '@angular/core';
+import {MAT_DIALOG_DATA} from '@angular/material/dialog';
+import {RuleCard} from './rules.models';
 
 @Component({
   template: `
