@@ -84,7 +84,9 @@ export class AddDeviceGroupComponent implements OnInit {
   }
 
 
-
+  dataOfPages(e){
+    console.log(e)
+  }
 
 
 

@@ -1,14 +1,15 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
   styleUrls: ['./card.component.scss']
 })
-export class CardComponent implements OnInit {
+export class CardComponent implements OnInit, OnChanges {
   @Input() tempData=[];
   @Input () action : string;
   @Output() sendData = new EventEmitter();
+  @Output() pageData = new EventEmitter();
   public paginationMatrix = [];
   public currentlyShowing = [];
   public currentMatrixIndex = 0;
@@ -23,8 +24,14 @@ export class CardComponent implements OnInit {
   tempDataClone;
   constructor() { }
 
-  ngOnInit(): void {
-    this.tempDataClone = JSON.stringify(this.tempData);
+ngOnChanges(SimpleChanges : SimpleChanges)
+{
+     if(this.tempData== undefined)
+     {
+       this.tempData=[];
+     }
+
+  this.tempDataClone = JSON.stringify(this.tempData);
     this.paginationMatrix = this.gMatrix(this.tempData, 8);
     this.currentlyShowing = this.paginationMatrix[0];
     this.elementPagination = this.currentlyShowing.length; 
@@ -33,6 +40,11 @@ export class CardComponent implements OnInit {
       this.disableFbttn = true;
       this.disableBbttn = true;
     }
+}
+
+
+  ngOnInit(): void {
+    
   }
 
   showSelected(){
@@ -126,6 +138,10 @@ export class CardComponent implements OnInit {
     this.currentMatrixIndex=this.currentMatrixIndex+1;
     this.disableBbttn=false;
     this.elementPagination=this.elementPagination+this.currentlyShowing.length;
+    this.pageData.emit({
+      page : this.currentMatrixIndex+1,
+      pageElements : this.paginationMatrix[this.currentMatrixIndex].length
+    })
   } 
   if(this.currentMatrixIndex===this.paginationMatrix.length-1)
   {
@@ -142,6 +158,10 @@ if(this.currentMatrixIndex>0)
   this.btnClick=this.btnClick-1;
   this.currentlyShowing=this.paginationMatrix[this.currentMatrixIndex-1];
     this.currentMatrixIndex=this.currentMatrixIndex-1;
+    this.pageData.emit({
+      page : this.currentMatrixIndex+1,
+      pageElements : this.paginationMatrix[this.currentMatrixIndex].length
+    })
     
 }
 if(this.currentMatrixIndex===0)

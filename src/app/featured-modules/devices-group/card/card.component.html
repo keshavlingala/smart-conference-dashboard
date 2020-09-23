@@ -2,7 +2,7 @@
 <div class="d-flex justify-content-end">
   <!-- Other Buttons -->
   <div *ngIf="showBtn" class="mr-3 mt-1">
-    <button mat-raised-button routerLink=".." class="yellow-btn mr-3">Cancel</button>
+    <button mat-raised-button routerLink="/side-nav/devices-group" class="yellow-btn mr-3">Cancel</button>
     <button [disabled]="selected.length==0"  *ngIf="action==='add'" class="mbutton" mat-raised-button
       style="background-color: coral; color:white;" (click)="showSelected()">Add to Group</button>
       <button [disabled]="selected.length==0" class="mbutton" mat-raised-button
@@ -61,12 +61,12 @@
       </mat-icon>
       <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)==-1" style="float:right; color: grey;">
         check_box_outline_blank</mat-icon>
-      <mat-card-title class="title">{{item.Title}}</mat-card-title>
+      <mat-card-title class="title">{{(item.Title.length>8) ? (item.Title | slice:0:8 )+'..' : (item.Title) }}</mat-card-title>
       <mat-card-content class="content">{{item.Content}}</mat-card-content>
       <mat-card-content class="content1">{{item.Footer}}</mat-card-content>
 
     </mat-card>
-  </div>
+  </div>  
 </div>
 
 <!-- Forward and backward pagination buttons with Elements Shown -->

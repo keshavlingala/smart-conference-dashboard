@@ -99,7 +99,7 @@
           <div style="position: relative;" class="mt-4">
             <h1 style="color: rgb(107, 104, 104); float: left; font-weight: 300; ">Existing Devices</h1>
           </div>
-          <app-card [tempData]="tempData" (sendData)="DatafromCard($event)"  action= "add"></app-card>
+          <app-card [tempData]="tempData" (sendData)="DatafromCard($event)" (pageData)="dataOfPages($event)" action= "add"></app-card>
 
         </div>
       </mat-step>

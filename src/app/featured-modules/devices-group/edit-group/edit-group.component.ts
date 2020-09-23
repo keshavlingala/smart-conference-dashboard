@@ -49,6 +49,10 @@ export class EditGroupComponent implements OnInit, OnDestroy{
   }
 
 
+  dataOfPages(e){
+    console.log(e)
+  }
+
 
   ngOnDestroy(){
     this.routeParamsSubscription.unsubscribe();

@@ -4,10 +4,10 @@
         <div class="col">
           <mat-card class="example-card main1" *ngSwitchCase="'design1'" [ngStyle]="{backgroundColor: setting[0].color}">
             <mat-card-title class='title'>
-              {{card.Title}}
+              {{(card.Title.length>14) ? (card.Title | slice:0:14 )+'..' : (card.Title) }}
             </mat-card-title>
-            <mat-card-content class="content">{{card.Content}}</mat-card-content>
-            <mat-card-footer class="footer">{{card.Footer}}</mat-card-footer>
+            <mat-card-content class="content">{{(card.Content.length>14) ? (card.Content | slice:0:14 )+'..' : (card.Content) }}</mat-card-content>
+            <mat-card-footer class="footer">{{(card.Footer.length>24) ? (card.Footer | slice:0:24 )+'..' : (card.Footer) }} </mat-card-footer>
           </mat-card>
 
           <!-- Design 2 -->
@@ -17,14 +17,14 @@
 
               <div class="col-sm-12 col-md-10">
                 <mat-card-title class='design1title'>
-                  {{card.Title}}
+                  {{(card.Title.length>14) ? (card.Title | slice:0:14 )+'..' : (card.Title) }}
                 </mat-card-title>
 
                 <div class="row">
                   <mat-icon class="pl-4 col-3" style="color:darkgoldenrod;">{{setting[0].icon}}</mat-icon>
-                  <mat-card-content class="design1content ml-1">{{card.Content}}</mat-card-content>
+                  <mat-card-content class="design1content ml-1">{{(card.Content.length>14) ? (card.Content | slice:0:14 )+'..' : (card.Content) }}</mat-card-content>
                 </div>
-                <mat-card-footer class="design1footer ml-4">{{card.Footer}}</mat-card-footer>
+                <mat-card-footer class="design1footer ml-4">{{(card.Footer.length>24) ? (card.Footer | slice:0:24 )+'..' : (card.Footer) }}</mat-card-footer>
               </div>
             </div>
           </mat-card>
@@ -33,10 +33,10 @@
 
           <mat-card class="main1 design2 " *ngSwitchCase="'design3'">
             <mat-card-title class='title'>
-              {{card.Title}}
+              {{(card.Title.length>14) ? (card.Title | slice:0:14 )+'..' : (card.Title) }}
             </mat-card-title>
-            <mat-card-content class="content">{{card.Content}}</mat-card-content>
-            <mat-card-footer class="footer">{{card.Footer}}</mat-card-footer>
+            <mat-card-content class="content">{{(card.Content.length>14) ? (card.Content | slice:0:14 )+'..' : (card.Content) }}</mat-card-content>
+            <mat-card-footer class="footer">{{(card.Footer.length>24) ? (card.Footer | slice:0:24 )+'..' : (card.Footer) }}</mat-card-footer>
           </mat-card>
         </div>
     </div>
