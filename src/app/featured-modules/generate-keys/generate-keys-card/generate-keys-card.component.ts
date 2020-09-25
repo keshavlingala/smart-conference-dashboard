@@ -21,6 +21,7 @@ export class GenerateKeysCardComponent implements OnInit {
   deviceSearch: FormGroup;
   pages: string[][];
   pageIndex = 0;
+  keysCount = 20;
 
   constructor(private keysService: GenerateKeysService,
               private clipboard: Clipboard,
@@ -46,7 +47,7 @@ export class GenerateKeysCardComponent implements OnInit {
 
   change(type) {
     this.selected = true;
-    this.keys = this.keysService.generate(type, 50).usedKeys;
+    this.keys = this.keysService.generate(type, 50).unusedKeys;
     this.pageIndex = 0;
   }
 
@@ -69,6 +70,7 @@ export class GenerateKeysCardComponent implements OnInit {
 
   viewMainPage() {
     this.selected = !this.selected;
+    this.selectedDeviceType = '';
   }
 
   filterDeviceType($event: KeyboardEvent) {

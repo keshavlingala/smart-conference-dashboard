@@ -78,8 +78,7 @@ export class GenerateKeysHomeComponent implements OnInit, OnDestroy {
     this.unusedKeys = this.keysService.generate(deviceType, numberOfKeys).unusedKeys;
     this.usedKeysCount = this.keysService.generate(deviceType, numberOfKeys).usedCount;
     this.unUsedKeysCount = this.keysService.generate(deviceType, numberOfKeys).unusedCount;
-    console.log(this.keysService.generate(deviceType, numberOfKeys));
-    console.log(this);
+    console.log(this.form.value);
   }
 
   copyToClipboard(key: string) {
@@ -95,12 +94,12 @@ export class GenerateKeysHomeComponent implements OnInit, OnDestroy {
 
   usedPageChange(n: number) {
     this.usedPage = n;
-    console.log(this.usedPage);
+    console.log(this.usedPage, this.form.value);
   }
 
   unusedPageChange(n: number) {
     this.unusedPage = n;
-    console.log(this.unusedPage);
+    console.log(this.unusedPage, this.form.value);
   }
 
   reset() {

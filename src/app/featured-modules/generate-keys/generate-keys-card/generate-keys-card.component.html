@@ -67,7 +67,7 @@
             <mat-icon>keyboard_arrow_left</mat-icon>
             Prev
           </button>
-          <button (click)="onPageChange(pageIndex+1)" *ngIf="pageIndex<pages.length-1" class="m-1"
+          <button (click)="onPageChange(pageIndex+1)" *ngIf="pageIndex*8<keysCount" class="m-1"
                   mat-button>
             Next
             <mat-icon>keyboard_arrow_right</mat-icon>
