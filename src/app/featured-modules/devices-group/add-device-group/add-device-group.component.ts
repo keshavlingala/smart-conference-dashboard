@@ -30,14 +30,20 @@ export class AddDeviceGroupComponent implements OnInit {
   }
 
   tempData =[];
-  DeviceType = []
+  DeviceType = [];
+  totalCount : number ;
  
   constructor(private fb: FormBuilder, private DevicesGroupService: DevicesGroupService, private devicesService: DevicesService) { }
   ngOnInit(): void {
 
-    let devicesData = this.getDevicesData();
+    let devicesData = this.devicesService.getDevices(0,8);
     let mappedData:DevicesCardData[] = this.mapDevicesDataToCardData(devicesData);
     this.tempData = mappedData;
+    
+    let count = this.devicesService.getCount();
+    this.totalCount = count.count;
+
+
     let array = [];
     let deviceTypeData = this.DevicesGroupService.getdeviceTypeData();
     deviceTypeData.data.types.forEach((data) => {
@@ -50,6 +56,10 @@ export class AddDeviceGroupComponent implements OnInit {
       array.push(a);
     });
     this.DeviceType = array;
+
+    
+     
+    
 
 
     this.deviceTypeClone = JSON.stringify(this.DeviceType);
@@ -85,7 +95,9 @@ export class AddDeviceGroupComponent implements OnInit {
 
 
   dataOfPages(e){
-    console.log(e)
+    let devicesData = this.devicesService.getDevices(e.startIndex,e.endIndex);
+    let mappedData:DevicesCardData[] = this.mapDevicesDataToCardData(devicesData);
+    this.tempData = mappedData;
   }
 
 

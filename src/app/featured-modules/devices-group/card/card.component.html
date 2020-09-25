@@ -62,8 +62,8 @@
       <mat-icon *ngIf="selected.indexOf(currentlyShowing[i].id)==-1" style="float:right; color: grey;">
         check_box_outline_blank</mat-icon>
       <mat-card-title class="title">{{(item.Title.length>8) ? (item.Title | slice:0:8 )+'..' : (item.Title) }}</mat-card-title>
-      <mat-card-content class="content">{{item.Content}}</mat-card-content>
-      <mat-card-content class="content1">{{item.Footer}}</mat-card-content>
+      <mat-card-content class="content">{{(item.Content.length>12) ? (item.Content | slice:0:12 )+'..' : (item.Content) }}</mat-card-content>
+      <mat-card-content class="content1">{{(item.Footer.length>24) ? (item.Footer | slice:0:24 )+'..' : (item.Footer) }}</mat-card-content>
 
     </mat-card>
   </div>  
@@ -73,12 +73,12 @@
 
 <div class="d-flex mr-3 justify-content-center align-items-center ">
   <div class="d-inline-flex  position-absolute text-secondary " style="margin-right: 85%;">Viewing {{elementPagination}}
-    of {{tempData.length}}</div>
+    of {{totalCount}}</div>
 
-  <div class="m-4 buttonDiv" [ngClass]="{'disableArow': disableBbttn}">
-    <mat-icon class="mt-2 ml-2" (click)="showBack()">arrow_back_ios</mat-icon>
-  </div>
-  <div class="m-4 buttonDiv" [ngClass]="{'disableArow': disableFbttn}">
-    <mat-icon class="mt-2 ml-2" (click)="showNext()">arrow_forward_ios</mat-icon>
-  </div>
+  <button class="m-4 buttonDiv d-flex justify-content-center align-items-center" [ngClass]="{disableArow: currentPage===1}"  (click)="showBack()" [disabled]= "currentPage===1">
+    <mat-icon class="mt-2 ml-1">arrow_back_ios</mat-icon>
+  </button>
+  <button class="m-4 buttonDiv d-flex justify-content-center align-items-center" [ngClass]="{disableArow: currentPage>=totalPages}"  (click)="showNext()" [disabled]= "currentPage>=totalPages">
+    <mat-icon class="mt-2 ml-2">arrow_forward_ios</mat-icon>
+  </button>
 </div>

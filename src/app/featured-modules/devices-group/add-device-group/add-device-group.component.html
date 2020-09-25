@@ -22,7 +22,6 @@
 
         <form [formGroup]="DeviceGroupForm" #form1 class="FORM">
           <ng-template matStepLabel>Fill out your name</ng-template>
-          <!-- {{DeviceGroupForm.value | json}} -->
 
           <div class="row mr-0">
             <div class="col ml-3 form-group col-md-4">
@@ -99,7 +98,7 @@
           <div style="position: relative;" class="mt-4">
             <h1 style="color: rgb(107, 104, 104); float: left; font-weight: 300; ">Existing Devices</h1>
           </div>
-          <app-card [tempData]="tempData" (sendData)="DatafromCard($event)" (pageData)="dataOfPages($event)" action= "add"></app-card>
+          <app-card [tempData]="tempData" (sendData)="DatafromCard($event)" [totalCount]="totalCount" (pageData)="dataOfPages($event)" action= "add"></app-card>
 
         </div>
       </mat-step>
