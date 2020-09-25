@@ -4,10 +4,10 @@ import {ActionChange, DataTableActions, DataTableConfig, Device} from '../../../
 import {ViewDetailsPopup} from '../../../common/dialog/models/data.model';
 import {Card, Setting} from '../../../common/card-module/models/card.model';
 import {DialogFactoryService} from '../../../core/services/dialog-factory.service';
-import {DatePipe} from "@angular/common";
-import {MatDialog} from "@angular/material/dialog";
-import {DeleteConfirmationComponent} from "../delete-confirmation.component";
-import {PageEvent} from "@angular/material/paginator";
+import {DatePipe} from '@angular/common';
+import {MatDialog} from '@angular/material/dialog';
+import {DeleteConfirmationComponent} from '../delete-confirmation.component';
+import {PageEvent} from '@angular/material/paginator';
 
 
 @Component({
@@ -16,7 +16,7 @@ import {PageEvent} from "@angular/material/paginator";
   styleUrls: ['./devices.component.scss']
 })
 export class DevicesComponent implements OnInit {
-  title = "Devices";
+  title = 'Devices';
   @ViewChild(TemplateRef) tpl: TemplateRef<any>;
   @ViewChild('userDialogTemplate')
   userDialogTemplate: TemplateRef<any>;
@@ -162,7 +162,7 @@ export class DevicesComponent implements OnInit {
       ],
     };
     // = await this.getDevices();
-    this.getDevices(this.dataTableConfig.pageSize)
+    this.getDevices(this.dataTableConfig.pageSize);
   }
 
   async getDevices(size: number) {
@@ -171,8 +171,8 @@ export class DevicesComponent implements OnInit {
         ...device,
         type: device.type.deviceType,
         createdAt: this.datePipe.transform(device.createdAt, 'medium')
-      }
-    })
+      };
+    });
   }
 
   async actionChange($event: ActionChange): Promise<any> {
@@ -188,17 +188,17 @@ export class DevicesComponent implements OnInit {
               }
             }).afterClosed().subscribe(yes => {
               if (yes) {
-                this.deviceService.deleteDevice(selected._id)
+                this.deviceService.deleteDevice(selected._id);
               }
-            })
+            });
           } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
+            console.log('Cannot Do Data manipulation ', e);
           }
         } else if ($event.name === 'disable') {
           try {
-            this.deviceService.disableDevice(selected, !selected.operations.deviceStatus)
+            this.deviceService.disableDevice(selected, !selected.operations.deviceStatus);
           } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
+            console.log('Cannot Do Data manipulation ', e);
           }
         } else if ($event.name === 'analytics') {
           this.dialogService.open(
@@ -218,9 +218,9 @@ export class DevicesComponent implements OnInit {
             }
           }).afterClosed().subscribe(yes => {
             if (yes) {
-              this.deviceService.deleteDevices(selected)
+              this.deviceService.deleteDevices(selected);
             }
-          })
+          });
         } else if ($event.name === 'disable') {
           try {
             // await this.deviceService
@@ -229,7 +229,7 @@ export class DevicesComponent implements OnInit {
             this.deviceService.disableDevices(selected, selected.length / 2 > selected
               .filter(i => i.operations.deviceStatus).length);
           } catch (e) {
-            console.log('Cannot Do Data manipulation ', e)
+            console.log('Cannot Do Data manipulation ', e);
           }
         }
         break;
@@ -268,6 +268,6 @@ export class DevicesComponent implements OnInit {
   }
 
   pageChange($event: PageEvent) {
-    this.getDevices($event.pageSize)
+    this.getDevices($event.pageSize);
   }
 }

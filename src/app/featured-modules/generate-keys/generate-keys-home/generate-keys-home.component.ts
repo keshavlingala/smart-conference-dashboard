@@ -1,26 +1,28 @@
-import {Component, OnInit} from '@angular/core';
-import {GenerateKeysService} from "../generate-keys.service";
-import {Clipboard} from '@angular/cdk/clipboard'
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {BehaviorSubject} from "rxjs";
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {GenerateKeysService} from '../generate-keys.service';
+import {Clipboard} from '@angular/cdk/clipboard';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {BehaviorSubject, Subscription} from 'rxjs';
 
 @Component({
   selector: 'app-generate-keys-home',
   templateUrl: './generate-keys-home.component.html',
   styleUrls: ['./generate-keys-home.component.scss']
 })
-export class GenerateKeysHomeComponent implements OnInit {
+export class GenerateKeysHomeComponent implements OnInit, OnDestroy {
   form: FormGroup;
-  usedKeys = new BehaviorSubject<string[]>(null);
-  unusedKeys = new BehaviorSubject<string[]>(null);
-  generatedKeys: Keys
-  pages: { used: string[][], unused: string[][] };
+  usedKeys: string[];
+  unusedKeys: string[];
+  usedKeysCount: number;
+  unUsedKeysCount: number;
+  generatedKeys: Keys;
   usedPage = 0;
   unusedPage = 0;
   deviceSearch: FormGroup;
   allDeviceTypes: string[];
   filteredDeviceTypes: string[];
+  subs: Subscription[] = [];
 
   constructor(
     public keysService: GenerateKeysService,
@@ -34,74 +36,85 @@ export class GenerateKeysHomeComponent implements OnInit {
     this.allDeviceTypes = this.keysService.deviceTypes;
     this.deviceSearch = this.fb.group({
       search: ['']
-    })
+    });
     this.form = this.fb.group({
       deviceType: ['', Validators.required],
       numberOfKeys: ['', [Validators.required, Validators.min(1), Validators.pattern('(^\\d{0,3}$)|(^1000$)')]]
-    })
+    });
     this.filteredDeviceTypes = this.allDeviceTypes;
-    this.deviceSearch.valueChanges.subscribe(() => {
-      let key = this.deviceSearch.value.search;
+    this.subs.push(this.deviceSearch.valueChanges.subscribe(() => {
+      const key = this.deviceSearch.value.search;
       this.filteredDeviceTypes = this.allDeviceTypes.filter(d => {
         return d.toLowerCase().includes(key.toLowerCase());
-      })
-    })
-    this.form.valueChanges.subscribe(()=>{
+      });
+    }));
+    this.subs.push(this.form.valueChanges.subscribe(() => {
       this.reset();
-    })
+    }));
     // this.keys = this.keysService.generateKeys('TiTag', 6).keys
   }
 
   reshape(keys: Keys) {
-    const used = []
-    const unused = []
-    while (keys.used.length) used.push(keys.used.splice(0, 10));
-    while (keys.unused.length) unused.push(keys.unused.splice(0, 10));
-    return {used, unused}
+    const used = [];
+    const unused = [];
+    while (keys.used.length) {
+      used.push(keys.used.splice(0, 10));
+    }
+    while (keys.unused.length) {
+      unused.push(keys.unused.splice(0, 10));
+    }
+    return {used, unused};
   }
 
   generateKeys() {
     if (this.form.invalid) {
       this.snack.open('Select DeviceType and number of keys', 'Dismiss', {
         duration: 1000
-      })
-      return
+      });
+      return;
     }
-    const {deviceType, numberOfKeys} = this.form.value
-    this.generatedKeys = this.keysService.generateKeys(deviceType, numberOfKeys).keys
-    this.pages = this.reshape(this.generatedKeys);
-    this.usedKeys.next(this.pages.used[this.usedPage]);
-    this.unusedKeys.next(this.pages.unused[this.unusedPage]);
+    const {deviceType, numberOfKeys} = this.form.value;
+    this.usedKeys = this.keysService.generate(deviceType, numberOfKeys).usedKeys;
+    this.unusedKeys = this.keysService.generate(deviceType, numberOfKeys).unusedKeys;
+    this.usedKeysCount = this.keysService.generate(deviceType, numberOfKeys).usedCount;
+    this.unUsedKeysCount = this.keysService.generate(deviceType, numberOfKeys).unusedCount;
+    console.log(this.keysService.generate(deviceType, numberOfKeys));
+    console.log(this);
   }
 
   copyToClipboard(key: string) {
     this.clipboard.copy(key);
     this.snack.open('Copied to Clipboard', 'Dismiss', {
       duration: 500
-    })
+    });
   }
 
   deviceSelected() {
     // console.log('Changed')
   }
 
-  usedPageChange(number: number) {
-    this.usedPage = number;
-    this.usedKeys.next(this.pages.used[this.usedPage]);
+  usedPageChange(n: number) {
+    this.usedPage = n;
+    console.log(this.usedPage);
   }
 
-  unusedPageChange(number: number) {
-    this.unusedPage = number;
-    this.unusedKeys.next(this.pages.unused[this.unusedPage])
+  unusedPageChange(n: number) {
+    this.unusedPage = n;
+    console.log(this.unusedPage);
   }
 
   reset() {
-    this.usedKeys.next(null);
-    this.unusedKeys.next(null);
+    this.usedKeys = undefined;
+    this.unusedKeys = undefined;
+    this.usedPage = this.unusedPage = 0;
+  }
+
+  ngOnDestroy(): void {
+    this.subs.forEach(s => s.unsubscribe());
   }
 }
 
 export interface Keys {
-  used: string[],
-  unused: string[]
+  used: string[];
+  unused: string[];
 }

@@ -3,6 +3,7 @@ import * as Chance from 'chance';
 import {RulesResponse} from '../../featured-modules/rules/rules.models';
 import {Device, DeviceResponse} from '../models/data-table.model';
 import {DatePipe} from '@angular/common';
+import {min} from 'rxjs/operators';
 
 const datePipe = new DatePipe('en-US');
 const action = [
@@ -131,17 +132,17 @@ export const otaUpdatesGenerator = (size): OtaResponse => {
 };
 export const groupIDGenerator = (size): string[] => {
   return Array.from({length: size}, () => {
-      return chance.string({length: 25, alpha: true, numeric: true})
+      return chance.string({length: 25, alpha: true, numeric: true});
     }
-  )
-}
+  );
+};
 
 export const generateKeys = (type, size) => {
   return {
     deviceType: type,
-    keys: {
-      used: Array.from({length: size * 2 / 3}, () => chance.guid()),
-      unused: Array.from({length: size / 3}, () => chance.guid())
-    }
-  }
-}
+    usedKeys: Array.from({length: Math.min(10, size * 2 / 3)}, () => chance.guid()),
+    unusedKeys: Array.from({length: Math.min(10, size / 3)}, () => chance.guid()),
+    usedCount: size * 2 / 3,
+    unusedCount: size / 3
+  };
+};

@@ -1,7 +1,7 @@
-<div class="pl-3 w-100 overflow-hidden">
+<div class="pl-3 w-100 ">
   <h1>GENERATE KEYS</h1>
   <h2>Generate new Keys</h2>
-  <div class="row">
+  <div class="row w-100">
     <div class="col-7">
       <form [formGroup]="form">
         <div class="row">
@@ -32,7 +32,7 @@
           Keys
         </button>
       </div>
-      <div *ngIf="(usedKeys|async) as used">
+      <div *ngIf="usedKeys as used">
         <div class="d-flex justify-content-between">
           <h2 class="d-inline-flex">Generated keys ({{form.value.deviceType}})</h2>
           <button mat-button style="height: 35px;margin-bottom: 16px;">
@@ -48,17 +48,17 @@
           </div>
         </div>
         <div class="d-flex mt-2 justify-content-center">
-          <button (click)="usedPageChange(usedPage-1)" *ngIf="usedPage>0" class="m-1" mat-button>
+          <button (click)="usedPageChange(usedPage-1)" *ngIf="usedPage*10>0" class="m-1" mat-button>
             <mat-icon>keyboard_arrow_left</mat-icon>
             Prev
           </button>
-          <button (click)="usedPageChange(usedPage+1)" *ngIf="usedPage<pages.used.length-1" class="m-1" mat-button>
+          <button (click)="usedPageChange(usedPage+1)" *ngIf="usedPage*10<usedKeysCount" class="m-1" mat-button>
             Next
             <mat-icon>keyboard_arrow_right</mat-icon>
           </button>
         </div>
       </div>
-      <div *ngIf="(unusedKeys|async) as unused">
+      <div *ngIf="unusedKeys as unused">
         <div class="d-flex justify-content-between">
           <h2 class="d-inline-flex">Unused keys ({{form.value.deviceType}})</h2>
           <button mat-button style="height: 35px;margin-bottom: 16px;">
@@ -74,11 +74,13 @@
           </div>
         </div>
         <div class="d-flex  justify-content-center">
-          <button (click)="unusedPageChange(unusedPage-1)" *ngIf="unusedPage>0" class="m-1" mat-button>
+          <button (click)="unusedPageChange(unusedPage-1)" *ngIf="unusedPage*10>0" class="m-1"
+                  mat-button>
             <mat-icon>keyboard_arrow_left</mat-icon>
             Prev
           </button>
-          <button (click)="unusedPageChange(unusedPage+1)" *ngIf="unusedPage<pages.unused.length-1" class="m-1"
+          <button (click)="unusedPageChange(unusedPage+1)" *ngIf="(unusedPage+1)*10<unUsedKeysCount"
+                  class="m-1"
                   mat-button>
             Next
             <mat-icon>keyboard_arrow_right</mat-icon>
