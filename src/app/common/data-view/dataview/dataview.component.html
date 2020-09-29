@@ -1,4 +1,11 @@
-<div class="d-flex justify-content-end">
+<div class="d-flex flex-column flex-md-row flex-lg-row flex-xl-row justify-content-between">
+  <mat-form-field appearance="outline">
+    <mat-label>Select Device type</mat-label>
+    <mat-select (valueChange)="typeChanged()" [(ngModel)]="selectedType">
+      <mat-option *ngFor="let device of deviceTypes" [value]="device">{{device}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <mat-form-field appearance="outline">
     <input #search (dateChange)="dateChange($event)" (keyup)="filterRes(search.value)" [matDatepicker]="picker" matInput
            type="text">
@@ -8,13 +15,8 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 </div>
-<div class="row justify-content-center mt-4 mr-0 w-100">
-  <mat-form-field appearance="fill" color="primary">
-    <mat-label>Select Device type</mat-label>
-    <mat-select (valueChange)="typeChanged()" [(ngModel)]="selectedType">
-      <mat-option *ngFor="let device of deviceTypes" [value]="device">{{device}}</mat-option>
-    </mat-select>
-  </mat-form-field>
+<div class="row justify-content-start mt-4 mr-0 w-100">
+  
 </div>
 <div *ngIf="!dataViewConfig" class="row justify-content-center align-items-center mb-auto">
   <mat-spinner></mat-spinner>
