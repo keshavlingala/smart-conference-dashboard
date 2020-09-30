@@ -1,9 +1,8 @@
-<div style="padding:30px">
+<div class="d-flex justify-content-between" style="padding:30px">
   <h1>OTA Updates</h1>
-  <div class="d-flex">
-    <button mat-stroked-button routerLink="/ota-updates/ota-base-page"> Back</button>
+  <div>
     <span class="flex-fill"></span>
-    <button (click)="add('Add Card')" routerLink="/ota-updates/ota-new-update-form" color="primary" mat-button>
+    <button (click)="add('Add Card')" routerLink="ota-new-update-form" color="primary" mat-button>
       <mat-icon>update</mat-icon>
       Add new Update
     </button>
