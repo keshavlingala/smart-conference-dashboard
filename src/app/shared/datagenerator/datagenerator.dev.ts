@@ -17,28 +17,8 @@ const action = [
   'Focus Off',
 ];
 export const deviceTypes = [
-  'Jack Sensing',
-  'Hester Sensing',
-  'Viola Sensing',
-  'Sara Sensing',
-  'Lloyd Sensing',
-  'Clara Sensing',
-  'Shawn Sensing',
-  'Nelle Sensing',
-  'Celia Sensing',
-  'George Sensing',
-  'Leah Sensing',
-  'Ophelia Sensing',
-  'Stephen Sensing',
-  'Mayme Sensing',
-  'Fred Sensing',
-  'Elsie Sensing',
-  'Bill Sensing',
-  'Claudia Sensing',
-  'Addie Sensing',
-  'Callie Sensing',
-  'Johnny Sensing',
-  'Eugene Sensing',
+  'MedicalDevice',
+  'TiSesnorTag',
 ];
 
 export const chance = new Chance() as Chance.Chance;

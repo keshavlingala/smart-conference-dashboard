@@ -1043,5 +1043,9 @@ export class DevicesTypeService {
   getDevicesTypeData(start,end){
     return this.devicesTypeData.data.types.slice(start,end);
   }
+
+  getAllDevicesTypeName(){
+    return this.devicesTypeData.data.types.map((deviceType)=>deviceType.deviceType);
+  }
   constructor() { }
 }
