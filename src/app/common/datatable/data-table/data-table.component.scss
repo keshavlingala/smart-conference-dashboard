@@ -64,3 +64,18 @@ table td {
   background-color: #591fc1;
 }
 
+.showOnHover {
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  &:hover {
+    opacity: 1;
+  }
+}
+
+.action-hover {
+  &:hover {
+    .showOnHover {
+      opacity: 1;
+    }
+  }
+}

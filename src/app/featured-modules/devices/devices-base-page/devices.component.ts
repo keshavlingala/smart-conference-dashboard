@@ -153,8 +153,8 @@ export class DevicesComponent implements OnInit {
     this.dataTableActions = {
       actions: [
         {name: 'analytics', icon: 'analytics', color: 'primary'},
-        {name: 'disable', icon: 'visibility', iconOpp: 'visibility_off', color: 'accent'},
-        {name: 'delete', icon: 'delete', color: 'warn'}
+        {name: 'disable', icon: 'visibility', iconOpp: 'visibility_off', color: 'accent', showOnHover: true},
+        {name: 'delete', icon: 'delete', color: 'warn', showOnHover: true}
       ],
       bulkActions: [
         {icon: 'delete', name: 'delete', color: 'warn'},
