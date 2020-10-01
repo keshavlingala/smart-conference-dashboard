@@ -18,7 +18,7 @@
 
 <!--Pop up Model-->
 <ng-template  #userDialogTemplate>
-  <div class="container-fluid p-1 m-0">
+  <div class="container-fluid ">
     <mat-toolbar class="m-0 p-0" style="background: #fff;height: 40px;">
       <i aria-hidden="true" style="color: rgb(82,45,91);" class="fa {{popUpData.title.icon}} fa-lg float-left"></i>
       
@@ -45,7 +45,7 @@
 
           </div>
         </div>
-        <div class="attributeFooter m-0 p-0">
+        <div class="attributeFooter">
           <mat-form-field>
             <mat-label>Access Key</mat-label>
             <input #input [type]="show ? 'text' : 'password'" matInput/>
