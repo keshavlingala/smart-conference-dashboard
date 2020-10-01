@@ -2,3 +2,11 @@
   max-height: inherit !important;
   overflow: hidden;
 }
+
+
+
+::ng-deep .mat-dialog-container
+{
+  overflow: hidden;
+}
+

@@ -205,7 +205,7 @@ export class DevicesComponent implements OnInit {
             {
               template: this.userDialogTemplate,
             },
-            {width: 500, height: 620, disableClose: true}
+            {width: 500, height: 600, disableClose: true}
           );
         }
         break;

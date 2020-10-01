@@ -17,14 +17,14 @@
 </app-data-table>
 
 <!--Pop up Model-->
-<ng-template #userDialogTemplate>
-  <div class="container-fluid">
-    <mat-toolbar style="justify-content: space-between;background: #fff;height: 40px;">
-      <i aria-hidden="true" class="fa {{popUpData.title.icon}} fa-lg float-left"></i>
-      &nbsp;
+<ng-template  #userDialogTemplate>
+  <div class="container-fluid ">
+    <mat-toolbar class="m-0 p-0" style="background: #fff;height: 40px;">
+      <i aria-hidden="true" style="color: rgb(82,45,91);" class="fa {{popUpData.title.icon}} fa-lg float-left"></i>
+      
       {{ popUpData.title.name }}
       <span class="flex-spacer"></span>
-      <button *ngIf="popUpData.config.dismissbtn" class="fa fa-times pointer" mat-button mat-dialog-close></button>
+      <button *ngIf="popUpData.config.dismissbtn" class="fa fa-times pointer" style="margin-left: 50%;" mat-button mat-dialog-close></button>
     </mat-toolbar>
     <mat-tab-group>
       <mat-tab label="ATTRIBUTES">
