@@ -8,17 +8,44 @@ import {PageEvent} from '@angular/material/paginator';
 })
 export class PopupComponent implements OnInit {
 
-  public allWarningDevices = this.data.status.warning.devicesID;
-  public currentlyShowingWarningDevices = [];
+  allWarningDevices = this.data.status.warning.devicesID;
+  currentlyShowingWarningDevices = [];
+  perPageWarningDevices:number = 6;
+
+  allActions = this.data.actions;
+  currentlyShowingActions = [];
+  perPageActions:number = 2;
+
+  allAttributes = this.data.attributes;
+  currentlyShowingAttributes = [];
+  perPageAttributes:number = 1;
+
+
+
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) { }
   
   ngOnInit(): void {
-    this.currentlyShowingWarningDevices = this.allWarningDevices.slice(0,6);
+    this.currentlyShowingActions = this.allActions.slice(0,this.perPageActions);
+    this.currentlyShowingAttributes = this.allAttributes.slice(0,this.perPageAttributes);
+    this.currentlyShowingWarningDevices = this.allWarningDevices.slice(0,this.perPageWarningDevices);
   }
 
-  paginationEvent(e:PageEvent){
+  actionsPaginationEvent(e:PageEvent){
+    let startIndex = e.pageIndex*e.pageSize;
+    let endIndex = startIndex + e.pageSize;
+    this.currentlyShowingActions = this.allActions.slice(startIndex, endIndex);
+  }
+
+  attributesPaginationEvent(e:PageEvent){
+    let startIndex = e.pageIndex*e.pageSize;
+    let endIndex = startIndex + e.pageSize;
+    this.currentlyShowingAttributes = this.allAttributes.slice(startIndex, endIndex);
+  }
+
+  warningDevicesPaginationEvent(e:PageEvent){
     let startIndex = e.pageIndex*e.pageSize;
     let endIndex = startIndex + e.pageSize;
     this.currentlyShowingWarningDevices = this.allWarningDevices.slice(startIndex,endIndex);
   }
+
 }

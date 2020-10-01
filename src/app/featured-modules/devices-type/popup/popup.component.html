@@ -44,22 +44,33 @@
     
     
     <div class="row p-2 border border-top-0 border-right-0 border-left-0">
-        <h3 class="col-3 p-0 text-left" style="color: purple;">Actions</h3>
-        <div class="col-9">
-            <div class="row">
-                <p class="col-4" *ngFor="let action of data.actions">{{action}}</p>
+        <h3 class="col-3 p-0 m-0 text-left" style="color: purple; height: 30px;">Actions</h3>
+        <div class="col-9" style="height: 30px;">
+            <div class="row h-100">
+                <p class="col-4 h-100 d-flex justify-content-center align-items-center" *ngFor="let action of currentlyShowingActions">
+                    {{action}}
+                </p>
             </div>
         </div>
+        
+        <div class="col-12">
+            <mat-paginator [length]="allActions.length" [pageSize]="perPageActions" (page)="actionsPaginationEvent($event)"></mat-paginator>
+        </div>
+        
     </div>
     
+    
     <div class="row p-2 border border-top-0 border-right-0 border-left-0">
-        <h3 class="col-3 p-0 text-left" style="color: purple;">Attributes</h3>
-        <div class="col-9">
-            <div class="row">
-                <p class="col-4 d-flex justify-content-start align-items-center" *ngFor="let attribute of data.attributes">
+        <h3 class="col-3 p-0 m-0 text-left" style="color: purple; height: 30px;">Attributes</h3>
+        <div class="col-9" style="height: 30px;">
+            <div class="row h-100">
+                <p class="col-4 h-100 d-flex justify-content-start align-items-center" *ngFor="let attribute of currentlyShowingAttributes">
                     <mat-icon style="width: auto; height: auto; color: #858280;">accessibility</mat-icon>&nbsp;{{attribute.name}}
                 </p>
             </div>
+        </div>
+        <div class="col-12">
+            <mat-paginator [length]="allAttributes.length" [pageSize]="perPageAttributes" (page)="attributesPaginationEvent($event)"></mat-paginator>
         </div>
     </div>
     
@@ -73,5 +84,5 @@
             </div>        
         </div>
     </div>  
-    <mat-paginator [length]="allWarningDevices.length" [pageSize]="6" (page)="paginationEvent($event)"></mat-paginator> 
-</div>
+    <mat-paginator [length]="allWarningDevices.length" [pageSize]="perPageWarningDevices" (page)="warningDevicesPaginationEvent($event)"></mat-paginator> 
+</div> 

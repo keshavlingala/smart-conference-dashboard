@@ -27,7 +27,6 @@ export class OtaTimelineComponent implements OnInit {
 
   ngOnInit() {
     this.devicesType = this.devicesTypeService.getAllDevicesTypeName();
-    console.log(this.devicesType);
   }
 
   async deviceTypeChanged(deviceType){
@@ -45,7 +44,6 @@ export class OtaTimelineComponent implements OnInit {
       types[key] = types[key].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
     })
     this.dataViewConfig = types[deviceType];
-    console.log(this.dataViewConfig);
     this.commonLoader.removeLoaderComponentFromBody();
   }
 

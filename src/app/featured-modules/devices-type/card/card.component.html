@@ -18,7 +18,7 @@
     <div class="d-flex mt-2 p-1 justify-content-center align-items-center border border-left-0 border-right-0">
         <div class="w-25" style="font-size: small;">Actions</div>
         <div class="w-75 d-flex justify-content-start">
-            <div class="icon d-flex justify-content-center align-items-center"  *ngFor='let action of cardData.actions'>
+            <div class="icon d-flex justify-content-center align-items-center"  *ngFor='let action of cardData.actions.slice(0,3)'>
                 <mat-icon style="font-size: 18px; height: auto; width: auto;">accessibility</mat-icon>
             </div>
         </div>
