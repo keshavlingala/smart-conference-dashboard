@@ -13,6 +13,7 @@ import {CommonLoaderService} from '../../../core/services/common-loader.service'
 })
 export class OtaTimelineComponent implements OnInit {
   dataViewConfig = [];
+  filteredOtas = [];
   devicesType:string[];
   constructor(
     private otaService: OtaServiceService,
@@ -49,9 +50,9 @@ export class OtaTimelineComponent implements OnInit {
 
   filterRes(key: string) {
     key = key.toLowerCase();
-    this.dataViewConfig = this.dataViewConfig.filter(ota => {
+    this.filteredOtas = this.dataViewConfig.filter(ota => {
       return ota.createdAt.toLowerCase().includes(key);
-    })
+    });
   }
 
 
@@ -59,5 +60,5 @@ export class OtaTimelineComponent implements OnInit {
     const pipe = new DatePipe('en-US');
     const key = pipe.transform($event.value, 'MMM')
     this.filterRes(key);
-  }
+  } 
 }
