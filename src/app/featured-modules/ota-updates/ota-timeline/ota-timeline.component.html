@@ -29,6 +29,7 @@
 Please select a device type.
 </div>
 <div class="ml-5 mr-5" *ngIf="dataViewConfig.length>0">
-  <app-dataview [dataViewConfig]="dataViewConfig"></app-dataview>
+  <app-dataview *ngIf="filteredOtas.length===0" [dataViewConfig]="dataViewConfig"></app-dataview>
+  <app-dataview *ngIf="filteredOtas.length>0" [dataViewConfig]="filteredOtas"></app-dataview>
 </div>
  
