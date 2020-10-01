@@ -69,7 +69,7 @@
       <th *matHeaderCellDef mat-header-cell>{{actionsHeaderName}}</th>
       <td *matCellDef="let row" mat-cell>
         <div class="d-flex justify-content-around ">
-          <button (click)="rowAction(row,'action',action.name);$event.stopPropagation()"
+          <button [ngClass]="{'showOnHover':action.showOnHover}" (click)="rowAction(row,'action',action.name);$event.stopPropagation()"
                   *ngFor="let action of actions.actions"
                   mat-icon-button>
             <mat-icon
@@ -81,7 +81,7 @@
 
     <tr *matHeaderRowDef="checkBox.concat(keys).concat(actionKey)" mat-header-row></tr>
 
-    <tr (click)="this.selection.toggle(row)" *matRowDef="let row; columns: checkBox.concat(keys).concat(actionKey)" class="pointer"
+    <tr (click)="this.selection.toggle(row)" *matRowDef="let row; columns: checkBox.concat(keys).concat(actionKey)" class="pointer action-hover"
         mat-row></tr>
 
     <tr *matNoDataRow class="mat-row">
