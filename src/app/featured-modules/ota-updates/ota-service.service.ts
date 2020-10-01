@@ -23,7 +23,7 @@ export class OtaServiceService {
   }
 
   getOtaResponse(): Observable<OtaResponse> {
-    return of(otaUpdatesGenerator(300)).pipe(delay(700));
+    return of(otaUpdatesGenerator(20)).pipe(delay(700));
   }
 
   getDeviceTypes() {

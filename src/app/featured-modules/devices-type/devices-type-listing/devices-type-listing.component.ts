@@ -28,7 +28,7 @@ export class DevicesTypeListingComponent implements OnInit{
     this.devicesTypeData = this.__devicesTypeService.getDevicesTypeData(start,end);
     this.currentlyShowingDevicesType = this.devicesTypeData;
   }
-  constructor(private __devicesTypeService: DevicesTypeService, private cl: CommonLoaderService){
+  constructor(private __devicesTypeService: DevicesTypeService, private loader: CommonLoaderService){
   
   }
 

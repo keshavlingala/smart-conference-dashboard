@@ -1,4 +1,4 @@
-<div class="d-flex justify-content-between" style="padding:30px">
+<div class="d-flex justify-content-between pl-4 pr-4">
   <h1>OTA Updates</h1>
   <div>
     <span class="flex-fill"></span>
@@ -8,6 +8,27 @@
     </button>
   </div>
 </div>
-<div class="ml-5 mr-5">
+<div class="d-flex justify-content-between p-4">
+  <mat-form-field appearance="outline">
+    <mat-label>Select Device type</mat-label>
+    <mat-select (valueChange)="deviceTypeChanged($event)">
+      <mat-option *ngFor="let deviceType of devicesType" [value]="deviceType">{{deviceType}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <input #search (dateChange)="dateChange($event)" (keyup)="filterRes(search.value)" [matDatepicker]="picker" matInput
+           type="text">
+    <button (click)="picker.open()" mat-icon-button matSuffix>
+      <mat-icon>event</mat-icon>
+    </button>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+</div>
+<div *ngIf="dataViewConfig.length===0" class="text-center">
+Please select a device type.
+</div>
+<div class="ml-5 mr-5" *ngIf="dataViewConfig.length>0">
   <app-dataview [dataViewConfig]="dataViewConfig"></app-dataview>
 </div>
+ 

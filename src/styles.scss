@@ -45,16 +45,11 @@ body {
 
 
 ::-webkit-scrollbar {
-  width: 7px;
-}
-
-::-webkit-scrollbar-track {
-
+  width: 5px;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #007bff7a;
-  outline: 1px solid slategrey;
+  background-color: lightgrey;
 }
 
 
