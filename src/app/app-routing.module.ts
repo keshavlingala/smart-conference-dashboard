@@ -4,20 +4,20 @@ import {PageNotFoundComponent} from './common/page-not-found/page-not-found.comp
 import {LoginGuard} from './core/routing-guards/login.guard';
 
 const routes: Routes = [
-  {path:"",redirectTo:"side-nav", pathMatch: "full"},
+  {path: '', redirectTo: 'side-nav', pathMatch: 'full'},
   {
-    path: "side-nav", canLoad: [LoginGuard],
-    loadChildren: ()=> import('./common/side-navigation/side-navigation.module').then(m=>m.SideNavigationModule)
+    path: 'side-nav', canLoad: [LoginGuard],
+    loadChildren: () => import('./common/side-navigation/side-navigation.module').then(m => m.SideNavigationModule)
   },
   {
-    path: "login", 
-    loadChildren: ()=>import('./auth/auth.module').then(m=>m.AuthModule)
+    path: 'login',
+    loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)
   },
   {
-    path: "**",
+    path: '**',
     component: PageNotFoundComponent
   }
-  
+
 ];
 
 @NgModule({

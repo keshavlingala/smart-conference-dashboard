@@ -1,9 +1,9 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {StepperSelectionEvent} from "@angular/cdk/stepper";
-import {MatStep, MatStepper} from "@angular/material/stepper";
-import {RulesService} from "../rule-service.service";
-import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {StepperSelectionEvent} from '@angular/cdk/stepper';
+import {MatStep, MatStepper} from '@angular/material/stepper';
+import {RulesService} from '../rule-service.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-add-rule',
@@ -11,15 +11,14 @@ import {Router} from "@angular/router";
   styleUrls: ['./add-rule.component.scss']
 })
 export class AddRuleComponent implements OnInit {
-  isLinear = false;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   selectedIndex = 0;
   @ViewChild('ruleName') ruleStep: MatStep;
   @ViewChild('stepper') stepper: MatStepper;
-  parameters = ['Humidity', 'Lights On', 'Luminosity', 'Occupancy', 'Projector On', 'Temperature']
-  actions = ['Start Meeting', 'End Meeting', 'Focus On', 'Turn on AC']
-  notValid: boolean = false;
+  parameters = ['Humidity', 'Lights On', 'Luminosity', 'Occupancy', 'Projector On', 'Temperature'];
+  actions = ['Start Meeting', 'End Meeting', 'Focus On', 'Turn on AC'];
+  notValid = false;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -44,9 +43,9 @@ export class AddRuleComponent implements OnInit {
   selectionChange($event: StepperSelectionEvent) {
     this.selectedIndex = $event.selectedIndex;
     if ($event.selectedIndex === 0) {
-      this.firstFormGroup.enable()
+      this.firstFormGroup.enable();
     } else {
-      this.firstFormGroup.disable()
+      this.firstFormGroup.disable();
       this.notValid = false;
       this.ruleStep.editable = false;
     }
@@ -55,7 +54,7 @@ export class AddRuleComponent implements OnInit {
   async submit() {
     if (!this.secondFormGroup.valid) {
       this.notValid = true;
-      return
+      return;
     }
     this.notValid = false;
     const {name, type, groupIds} = this.firstFormGroup.value;
@@ -66,8 +65,8 @@ export class AddRuleComponent implements OnInit {
       condition,
       groupIds: [groupIds],
       deviceType: type
-    }
-    this.rulesService.addRule(rule)
+    };
+    this.rulesService.addRule(rule);
     // await this.router.navigate(['/rules'])
     this.stepper.reset();
     this.secondFormGroup.reset();

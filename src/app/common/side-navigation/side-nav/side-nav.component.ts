@@ -1,18 +1,19 @@
 import {
-  Component,
-  OnInit,
-  Input,
-  ViewChildren,
-  ViewChild,
-  ElementRef,
-  QueryList,
   AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
   OnChanges,
-  SimpleChanges,
+  OnInit,
+  QueryList,
   Renderer2,
+  SimpleChanges,
+  ViewChild,
+  ViewChildren,
 } from '@angular/core';
-import { Router, NavigationStart, NavigationEnd, Event } from '@angular/router';
-import { NavItem, GroupedNavItem } from '../models/side-nav-models';
+import {Router} from '@angular/router';
+import {GroupedNavItem, NavItem} from '../models/side-nav-models';
+
 @Component({
   selector: 'side-navigation-side-nav',
   templateUrl: './side-nav.component.html',
@@ -27,6 +28,7 @@ export class SideNavComponent implements OnInit, AfterViewInit, OnChanges {
   public groupedNavItems: number[] = [];
   @ViewChildren('expansionPanel') expansionPanels: QueryList<any>;
   @ViewChild('side_nav') sideNav: ElementRef;
+
   constructor(private route: Router, private renderer: Renderer2) {
 
   }
@@ -47,7 +49,8 @@ export class SideNavComponent implements OnInit, AfterViewInit, OnChanges {
     }
   }
 
-  ngAfterViewInit() {}
+  ngAfterViewInit() {
+  }
 
   closeAllExpansionPanelsExcept(i) {
     let matIndex = this.groupedNavItems.indexOf(i);

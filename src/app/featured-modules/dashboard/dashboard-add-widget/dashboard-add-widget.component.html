@@ -1,0 +1,123 @@
+<div class="pl-3 pr-3">
+  <h1 *ngIf="selectedDashboard">{{selectedDashboard}}</h1>
+  <nav class="mb-0">
+    <ol class="breadcrumb pl-0" style="background-color: transparent;">
+      <li class="breadcrumb-item"><a routerLink="..">DASHBOARD</a></li>
+      <li class="breadcrumb-item active">Add New Widget</li>
+    </ol>
+  </nav>
+</div>
+<div class="w-100 pl-3 pr-3">
+  <mat-vertical-stepper #stepper (selectionChange)="selectionChange($event)" [disableRipple]="true" linear
+                        style="background-color: inherit">
+    <mat-step #widget [editable]="false" [stepControl]="selectWidgetForm">
+      <ng-template matStepLabel> Select Widget
+        <button (click)="stepper.selectedIndex==1&&stepper.previous();widgetStep.editable=true"
+                *ngIf="stepper.selectedIndex==1"
+                class="rounded-circle bg-white m-2"
+                mat-icon-button>
+          <i aria-hidden="true" class="fa fa-pencil-square-o" style="color: black!important;"></i>
+        </button>
+      </ng-template>
+      <form [formGroup]="selectWidgetForm">
+        <div class="row">
+          <div class="col-6">
+            <label class="d-block m-0">Label</label>
+            <mat-form-field appearance="outline" class="w-100">
+              <input formControlName="label" matInput placeholder="Ex:Temperature">
+              <mat-error>Label Required</mat-error>
+            </mat-form-field>
+          </div>
+          <div class="col-6">
+            <label class="d-block m-0">Widget</label>
+            <mat-form-field appearance="outline" class=" w-100">
+              <mat-select formControlName="component" placeholder="Ex: Bar Chart">
+                <mat-option *ngFor="let w of widgets" [value]="w.value">
+                  {{w.label}}
+                </mat-option>
+              </mat-select>
+              <mat-error>Field Required</mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <div class="mt-2 mb-2" *ngIf="!selectWidgetForm.value.component">
+          <label class="d-block">Recently Used</label>
+          <div class="d-flex justify-content-start">
+            <button color="primary" class="ml-2" (click)="selectComponent(d)" mat-stroked-button
+                    *ngFor="let d of widgets">{{d.label}}</button>
+          </div>
+        </div>
+        <div *ngIf="selectedIndex===0">
+          <button [disabled]="!selectWidgetForm.valid" class="mr-3 btn-clr" color="primary"
+                  mat-raised-button matStepperNext>NEXT
+          </button>
+          <button mat-button routerLink=".."> Cancel</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="attributesForm" editable="false">
+      <ng-template matStepLabel>Set Attributes</ng-template>
+      <div *ngIf="selectedIndex==1">
+        <form [formGroup]="attributesForm" class="mt-4 w-100">
+          <div class="row">
+            <div class="col-6">
+              <label class="d-block">Device Type</label>
+              <mat-form-field class="w-100" appearance="outline">
+                <mat-select formControlName="deviceType">
+                  <mat-option (onSelectionChange)="deviceChange(type)" [value]="type.type.deviceType"
+                              *ngFor="let type of devices">
+                    {{type.type.deviceType}}
+                  </mat-option>
+                </mat-select>
+                <mat-error>Required Field</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <label class="d-block">Device</label>
+              <mat-form-field class="w-100" appearance="outline">
+                <input formControlName="deviceName" type="text" matInput>
+                <mat-error>Required Field</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+              <label class="d-block">Attribute</label>
+              <mat-form-field class="w-100" appearance="outline">
+                <input formControlName="attributes" type="text" matInput>
+                <mat-error>Required Field</mat-error>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <label class="d-block">Unit</label>
+              <mat-form-field class="w-100" appearance="outline">
+                <input formControlName="dataUnit" type="text" matInput>
+                <mat-error>Required Field</mat-error>
+              </mat-form-field>
+            </div>
+          </div>
+          <div *ngIf="selectWidgetForm.value.component==='gauge'" class="row">
+            <div class="col-6">
+              <label class="d-block">Minimum</label>
+              <mat-form-field class="w-100" appearance="outline">
+                <input formControlName="min" type="text" matInput>
+              </mat-form-field>
+            </div>
+            <div class="col-6">
+              <label class="d-block">Maximum</label>
+              <mat-form-field class="w-100" appearance="outline">
+                <input formControlName="max" type="text" matInput>
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="d-flex justify-content-center position-relative align-items-center mt-2">
+            <button class="position-absolute" mat-button routerLink=".." style="left: 0">Cancel</button>
+            <button (click)="submit()" class="btn submit-btn" mat-button
+                    type="button">ADD WIDGET
+            </button>
+          </div>
+        </form>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</div>

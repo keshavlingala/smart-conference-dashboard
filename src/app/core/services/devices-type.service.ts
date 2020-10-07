@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {Observable} from 'rxjs';
+import {Injectable} from '@angular/core';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -52,7 +52,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -107,7 +107,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -154,7 +154,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -209,7 +209,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -256,7 +256,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -311,7 +311,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -358,7 +358,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -413,7 +413,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -460,7 +460,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -515,7 +515,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -562,7 +562,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -617,7 +617,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -664,7 +664,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -719,7 +719,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -766,7 +766,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -821,7 +821,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -868,7 +868,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -923,7 +923,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -970,7 +970,7 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         },
@@ -1025,27 +1025,27 @@ export class DevicesTypeService {
             faulty: 20,
             warning: {
               totalDevices: 26,
-              devicesID: ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
+              devicesID: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
             }
           }
         }
       ],
       count: 20
     }
-  }
- 
-  
+  };
 
-  getDevicesTypeCount(){
+  constructor() {
+  }
+
+  getDevicesTypeCount() {
     return this.devicesTypeData.data.count;
   }
 
-  getDevicesTypeData(start,end){
-    return this.devicesTypeData.data.types.slice(start,end);
+  getDevicesTypeData(start, end) {
+    return this.devicesTypeData.data.types.slice(start, end);
   }
 
-  getAllDevicesTypeName(){
-    return this.devicesTypeData.data.types.map((deviceType)=>deviceType.deviceType);
+  getAllDevicesTypeName() {
+    return this.devicesTypeData.data.types.map((deviceType) => deviceType.deviceType);
   }
-  constructor() { }
 }

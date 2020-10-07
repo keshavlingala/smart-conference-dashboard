@@ -4,7 +4,7 @@ import {RouterModule} from '@angular/router';
 import {SharedModule} from '../../shared/shared.module';
 
 import {SideNavRoutingModule} from './side-nav-routing.module';
-//Components
+// Components
 import { SideNavComponent } from './side-nav/side-nav.component';
 import { SideNavParentComponent } from './side-nav-parent/side-nav-parent.component';
 

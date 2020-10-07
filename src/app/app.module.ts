@@ -1,6 +1,6 @@
-import { PopupMessageModule } from './common/popup-message/popup-message.module';
+import {PopupMessageModule} from './common/popup-message/popup-message.module';
 import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
-//Modules
+// Modules
 import {BrowserModule} from '@angular/platform-browser';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
@@ -9,7 +9,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {AppComponent} from './app.component';
 
 import {LoginGuard} from './core/routing-guards/login.guard';
-//featured modules
+// featured modules
 import {AppRoutingModule} from './app-routing.module';
 
 
@@ -26,7 +26,7 @@ import {AppRoutingModule} from './app-routing.module';
     PopupMessageModule
   ],
   bootstrap: [AppComponent],
-  providers:[LoginGuard],
+  providers: [LoginGuard],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule {

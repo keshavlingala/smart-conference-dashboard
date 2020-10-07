@@ -1,0 +1,53 @@
+<div class="pl-3 pr-3">
+  <h1>DASHBOARD</h1>
+</div>
+<ng-template #noDashboard>
+  <div class=" w-100 d-flex justify-content-around mt-4">
+    <div class="row w-75">
+      <div class="col-4">
+        <img class="w-100" src="http://lorempixel.com/500/500/animals/8/" alt="">
+        <h2>Add Multiple Dashboards</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      </div>
+      <div class="col-4">
+        <img class="w-100" src="http://lorempixel.com/500/500/animals/8/" alt="">
+        <h2>Add widgets to visualize data</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      </div>
+      <div class="col-4">
+        <img class="w-100" src="http://lorempixel.com/500/500/animals/8/" alt="">
+        <h2>Change Widget Colors</h2>
+        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+      </div>
+    </div>
+  </div>
+  <div class="d-flex mt-4 justify-content-center w-100">
+    <button (click)="addDashboard()" mat-raised-button style="background-color: #79A831; color: white;">Add Dashboard
+    </button>
+  </div>
+</ng-template>
+<div [formGroup]="dashboardForm" class="pl-3 pr-3 " *ngIf="true else noDashboard">
+  <div class="d-flex align-items-center">
+    <mat-form-field appearance="outline">
+      <mat-label>Select Dashboard</mat-label>
+      <mat-select formControlName="dashboardName">
+        <mat-option *ngFor="let dash of dashboards" [value]="dash.dashboardName">
+          {{dash.dashboardName}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <span class="flex-fill"></span>
+    <button (click)="addDashboard()" mat-raised-button style="background-color: #79A831;height: 38px;color: white">Add
+      New Dashboard
+    </button>
+  </div>
+  <label class="d-block">Recently Viewed</label>
+  <div class="d-flex justify-content-start">
+    <button *ngFor="let i of [1,2,3,4,5]" mat-button>
+      Dashboard {{i}}
+    </button>
+  </div>
+  <button (click)="addWidget()" color="accent" mat-fab>
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
