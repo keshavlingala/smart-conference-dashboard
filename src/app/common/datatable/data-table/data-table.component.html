@@ -33,8 +33,8 @@
                       [indeterminate]="selection.hasValue() && !isAllSelected()">
         </mat-checkbox>
       </th>
-      <td *matCellDef="let row" mat-cell>
-        <mat-checkbox (change)="$event ? selection.toggle(row) : null" (click)="$event.stopPropagation()"
+      <td  *matCellDef="let row" mat-cell>
+        <mat-checkbox  (change)="$event ? selection.toggle(row) : null" (click)="$event.stopPropagation()"
                       [checked]="selection.isSelected(row)"
                       color="primary">
         </mat-checkbox>
@@ -69,11 +69,11 @@
       <th *matHeaderCellDef mat-header-cell>{{actionsHeaderName}}</th>
       <td *matCellDef="let row" mat-cell>
         <div class="d-flex justify-content-around ">
-          <button [ngClass]="{'showOnHover':action.showOnHover}" (click)="rowAction(row,'action',action.name);$event.stopPropagation()"
+          <button [ngClass]="{'showOnHover':action.showOnHover,'showOnDisabled':action.showOnDisabled}" (click)="rowAction(row,'action',action.name);$event.stopPropagation()"
                   *ngFor="let action of actions.actions"
                   mat-icon-button>
             <mat-icon
-              [color]="action.color">{{action.iconOpp ? (row.operations.deviceStatus ? action.iconOpp : action.icon) : action.icon}}</mat-icon>
+              [color]="action.color">{{action.iconOpp ? (row.operations?.deviceStatus ? action.icon : action.iconOpp) : action.icon}}</mat-icon>
           </button>
         </div>
       </td>
@@ -81,7 +81,7 @@
 
     <tr *matHeaderRowDef="checkBox.concat(keys).concat(actionKey)" mat-header-row></tr>
 
-    <tr (click)="this.selection.toggle(row)" *matRowDef="let row; columns: checkBox.concat(keys).concat(actionKey)" class="pointer action-hover"
+    <tr  [ngClass]="{'disabled-row':row.operations?!row.operations.deviceStatus:false}" (click)="this.selection.toggle(row)" *matRowDef="let row; columns: checkBox.concat(keys).concat(actionKey)" class="pointer action-hover"
         mat-row></tr>
 
     <tr *matNoDataRow class="mat-row">

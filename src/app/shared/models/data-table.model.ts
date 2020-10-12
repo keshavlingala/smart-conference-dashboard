@@ -28,6 +28,7 @@ export interface Action {
   iconOpp?: string;
   color?: 'primary' | 'accent' | 'warn';
   showOnHover?: boolean;
+  showOnDisabled?: boolean;
 }
 
 export interface BulkAction {

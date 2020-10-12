@@ -79,3 +79,16 @@ table td {
     }
   }
 }
+.disabled-row{
+  background-color: lightgray;
+  pointer-events: none;
+  .showOnDisabled{
+    pointer-events: auto;
+    mat-icon{
+      color: unset;
+    }
+  }
+  mat-icon{
+    color: grey;
+  }
+}

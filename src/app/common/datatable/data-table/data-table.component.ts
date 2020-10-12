@@ -20,9 +20,9 @@ export class DataTableComponent implements OnChanges, OnInit {
   @Output() bulkActionClick = new EventEmitter<ActionChange>();
   @Output() filterChange = new EventEmitter<any[]>();
   @Output() page = new EventEmitter<PageEvent>();
-  checkBox = ['checkbox']
-  actionKey = ['options']
-  @Input() actionsHeaderName = ' View Device Data'
+  checkBox = ['checkbox'];
+  actionKey = ['options'];
+  @Input() actionsHeaderName = ' View Device Data';
   @Input() keys: string[] = ['id', 'type', 'name', 'createdDate',];
   @Input() columnNames = ['ID', 'Type', 'Name(User Defined)', ' Created Date',];
   dataSource: MatTableDataSource<any>;
@@ -42,7 +42,7 @@ export class DataTableComponent implements OnChanges, OnInit {
       this.checkBox = [];
     }
     if (!this.actions) {
-      this.actionKey = []
+      this.actionKey = [];
     }
     // console.log(this.columnNames, this.checkBox.concat(this.keys))
   }
@@ -100,6 +100,5 @@ export class DataTableComponent implements OnChanges, OnInit {
   pageEvent($event: PageEvent) {
     console.log($event);
     this.page.emit($event);
-
   }
 }

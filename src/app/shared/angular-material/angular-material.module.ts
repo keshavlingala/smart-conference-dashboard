@@ -21,14 +21,15 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatCardModule} from '@angular/material/card';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatSelectModule} from "@angular/material/select";
-import {MatStepperModule} from "@angular/material/stepper";
-import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {MatChipsModule} from "@angular/material/chips";
-import {MatButtonToggleModule} from "@angular/material/button-toggle";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {ClipboardModule} from "@angular/cdk/clipboard";
-import {NgxMatSelectSearchModule} from "ngx-mat-select-search";
+import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatChipsModule} from '@angular/material/chips';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {ClipboardModule} from '@angular/cdk/clipboard';
+import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
+import {MatTooltipModule} from '@angular/material/tooltip';
 
 const MaterialComponents = [MatDialogModule,
   MatRadioModule,
@@ -59,7 +60,8 @@ const MaterialComponents = [MatDialogModule,
   MatProgressSpinnerModule,
   FormsModule,
   ClipboardModule,
-  NgxMatSelectSearchModule
+  NgxMatSelectSearchModule,
+  MatTooltipModule
 ];
 
 @NgModule({
