@@ -30,6 +30,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {ClipboardModule} from '@angular/cdk/clipboard';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatMenuModule} from '@angular/material/menu';
 
 const MaterialComponents = [MatDialogModule,
   MatRadioModule,
@@ -38,6 +39,7 @@ const MaterialComponents = [MatDialogModule,
   MatExpansionModule,
   MatFormFieldModule,
   MatDatepickerModule,
+  MatMenuModule,
   MatCardModule,
   MatDividerModule,
   MatSlideToggleModule,

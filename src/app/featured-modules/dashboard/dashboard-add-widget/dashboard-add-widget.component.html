@@ -18,6 +18,16 @@
                 mat-icon-button>
           <i aria-hidden="true" class="fa fa-pencil-square-o" style="color: black!important;"></i>
         </button>
+        <div *ngIf="stepper.selectedIndex!=0" class="row w-100">
+          <div class="col-6">
+            <label>Label: </label>
+            {{selectWidgetForm.value.label}}
+          </div>
+          <div class="col-6">
+            <label>Widget: </label>
+            {{selectWidgetForm.value.component.label}}
+          </div>
+        </div>
       </ng-template>
       <form [formGroup]="selectWidgetForm">
         <div class="row">
@@ -30,14 +40,41 @@
           </div>
           <div class="col-6">
             <label class="d-block m-0">Widget</label>
-            <mat-form-field appearance="outline" class=" w-100">
-              <mat-select formControlName="component" placeholder="Ex: Bar Chart">
-                <mat-option *ngFor="let w of widgets" [value]="w.value">
-                  {{w.label}}
-                </mat-option>
+            <mat-form-field [matMenuTriggerFor]="mainMenu" appearance="outline" class="w-100">
+              <mat-select #widgetSelector>
               </mat-select>
-              <mat-error>Field Required</mat-error>
+              <!--              <button matSuffix mat-icon-button [matMenuTriggerFor]="mainMenu">-->
+              <!--                <mat-icon>arrow_drop_down</mat-icon>-->
+              <!--              </button>-->
             </mat-form-field>
+            <mat-menu #mainMenu="matMenu">
+              <ng-container *ngFor="let item of widgets">
+                <button (click)="menuSelected(item)" mat-menu-item *ngIf="!item.lib">{{item.label}}</button>
+                <button mat-menu-item *ngIf="item.lib" [matMenuTriggerFor]="lib_menu">{{ item.label }}</button>
+                <mat-menu #lib_menu="matMenu">
+                  <button (click)="menuSelected(item,lib)" *ngFor="let lib of item.lib"
+                          mat-menu-item>
+                    <mat-icon matPrefix>preview</mat-icon>
+                    <span>{{ lib.label }}</span>
+                  </button>
+
+                </mat-menu>
+              </ng-container>
+            </mat-menu>
+            <!--            <mat-form-field appearance="outline" class=" w-100">-->
+            <!--              <mat-select (selectionChange)="componentChange($event)" formControlName="component"-->
+            <!--                          placeholder="Ex: Bar Chart">-->
+            <!--                <mat-option *ngFor="let w of widgets" [value]="w">-->
+            <!--                  {{w.label}}-->
+            <!--                </mat-option>-->
+            <!--                <mat-optgroup *ngFor="let group of widgets" [label]="group.label">-->
+            <!--                  <mat-option *ngFor="let pokemon of [1,2,3,4]" [value]="pokemon">-->
+            <!--                    {{pokemon}}-->
+            <!--                  </mat-option>-->
+            <!--                </mat-optgroup>-->
+            <!--              </mat-select>-->
+            <!--              <mat-error>Field Required</mat-error>-->
+            <!--            </mat-form-field>-->
           </div>
         </div>
         <div class="mt-2 mb-2" *ngIf="!selectWidgetForm.value.component">
@@ -57,7 +94,7 @@
     </mat-step>
     <mat-step [stepControl]="attributesForm" editable="false">
       <ng-template matStepLabel>Set Attributes</ng-template>
-      <div *ngIf="selectedIndex==1">
+      <div>
         <form [formGroup]="attributesForm" class="mt-4 w-100">
           <div class="row">
             <div class="col-6">
@@ -96,20 +133,21 @@
               </mat-form-field>
             </div>
           </div>
-          <div *ngIf="selectWidgetForm.value.component==='gauge'" class="row">
-            <div class="col-6">
-              <label class="d-block">Minimum</label>
-              <mat-form-field class="w-100" appearance="outline">
-                <input formControlName="min" type="text" matInput>
-              </mat-form-field>
-            </div>
-            <div class="col-6">
-              <label class="d-block">Maximum</label>
-              <mat-form-field class="w-100" appearance="outline">
-                <input formControlName="max" type="text" matInput>
-              </mat-form-field>
-            </div>
-          </div>
+          <ng-template customFormHost></ng-template>
+          <!--          <div *ngIf="selectWidgetForm.value.component==='gauge'" class="row">-->
+          <!--            <div class="col-6">-->
+          <!--              <label class="d-block">Minimum</label>-->
+          <!--              <mat-form-field class="w-100" appearance="outline">-->
+          <!--                <input formControlName="min" type="text" matInput>-->
+          <!--              </mat-form-field>-->
+          <!--            </div>-->
+          <!--            <div class="col-6">-->
+          <!--              <label class="d-block">Maximum</label>-->
+          <!--              <mat-form-field class="w-100" appearance="outline">-->
+          <!--                <input formControlName="max" type="text" matInput>-->
+          <!--              </mat-form-field>-->
+          <!--            </div>-->
+          <!--          </div>-->
           <div class="d-flex justify-content-center position-relative align-items-center mt-2">
             <button class="position-absolute" mat-button routerLink=".." style="left: 0">Cancel</button>
             <button (click)="submit()" class="btn submit-btn" mat-button
