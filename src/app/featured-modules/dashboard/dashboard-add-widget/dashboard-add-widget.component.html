@@ -25,7 +25,7 @@
           </div>
           <div class="col-6">
             <label>Widget: </label>
-            {{selectWidgetForm.value.component.label}}
+            {{selectWidgetForm.value.component}}
           </div>
         </div>
       </ng-template>
@@ -40,8 +40,8 @@
           </div>
           <div class="col-6">
             <label class="d-block m-0">Widget</label>
-            <mat-form-field [matMenuTriggerFor]="mainMenu" appearance="outline" class="w-100">
-              <mat-select #widgetSelector>
+            <mat-form-field  appearance="outline" class="w-100">
+              <mat-select  [matMenuTriggerFor]="mainMenu" #widgetSelector>
               </mat-select>
               <!--              <button matSuffix mat-icon-button [matMenuTriggerFor]="mainMenu">-->
               <!--                <mat-icon>arrow_drop_down</mat-icon>-->
@@ -55,7 +55,7 @@
                   <button (click)="menuSelected(item,lib)" *ngFor="let lib of item.lib"
                           mat-menu-item>
                     <mat-icon matPrefix>preview</mat-icon>
-                    <span>{{ lib.label }}</span>
+                    <span>{{ lib }}</span>
                   </button>
 
                 </mat-menu>
@@ -77,13 +77,13 @@
             <!--            </mat-form-field>-->
           </div>
         </div>
-        <div class="mt-2 mb-2" *ngIf="!selectWidgetForm.value.component">
-          <label class="d-block">Recently Used</label>
-          <div class="d-flex justify-content-start">
-            <button color="primary" class="ml-2" (click)="selectComponent(d)" mat-stroked-button
-                    *ngFor="let d of widgets">{{d.label}}</button>
-          </div>
-        </div>
+<!--        <div class="mt-2 mb-2" *ngIf="!selectWidgetForm.value.component">-->
+<!--          <label class="d-block">Recently Used</label>-->
+<!--          <div class="d-flex justify-content-start">-->
+<!--            <button color="primary" class="ml-2" (click)="selectComponent(d)" mat-stroked-button-->
+<!--                    *ngFor="let d of widgets">{{d.label}}</button>-->
+<!--          </div>-->
+<!--        </div>-->
         <div *ngIf="selectedIndex===0">
           <button [disabled]="!selectWidgetForm.valid" class="mr-3 btn-clr" color="primary"
                   mat-raised-button matStepperNext>NEXT

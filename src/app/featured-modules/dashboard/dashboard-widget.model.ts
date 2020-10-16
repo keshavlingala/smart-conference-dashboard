@@ -2,11 +2,7 @@ export interface WidgetSelection {
   label: string;
   value: string;
   componentPath: string;
-  lib?: WidgetLib[];
+  lib?: string[];
 }
 
-export interface WidgetLib {
-  label: string;
-  value: string;
-  componentPath: string;
-}
+

@@ -6,9 +6,9 @@ import {devicesGenerator} from '../../../shared/datagenerator/datagenerator.dev'
 import {Device} from '../../../shared/models/data-table.model';
 import {ActivatedRoute} from '@angular/router';
 import {CustomFormHostDirective} from '../custom-form-host.directive';
-import {MatSelect, MatSelectChange} from '@angular/material/select';
+import {MatSelect} from '@angular/material/select';
 import {CustomForm} from '../forms/custom-form.interface';
-import {WidgetLib, WidgetSelection} from '../dashboard-widget.model';
+import {WidgetSelection} from '../dashboard-widget.model';
 
 @Component({
   selector: 'app-dashboard-add-widget',
@@ -23,14 +23,14 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     {
       label: 'Gauge Chart', value: 'gauge', componentPath: 'guage-form/guage-form.component',
       lib: [
-        {label: 'Chartish', value: 'chartish', componentPath: 'gauge-form/gugage-form.component'},
+        'chartish'
       ]
     },
     {
       label: 'Line Chart', value: 'line', componentPath: 'line-form/line-form.component',
       lib: [
-        {label: 'Chartish', value: 'chartish', componentPath: 'gauge-form/gugage-form.component'},
-        {label: 'Chart.js', value: 'chartjs', componentPath: 'gauge-form/gugage-form.component'}
+        'chartish',
+        'chartjs',
       ]
     },
     {label: 'Bar Chart', value: 'bar', componentPath: 'guage-form/guage-form.component'},
@@ -59,7 +59,8 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     });
     this.selectWidgetForm = this.fb.group({
       label: ['', Validators.required],
-      component: ['', Validators.required]
+      component: ['', Validators.required],
+      lib: []
     });
     this.attributesForm = this.fb.group({
       deviceType: ['', Validators.required],
@@ -109,8 +110,7 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     // });
   }
 
-  componentChange(event?: MatSelectChange) {
-    const path = event.value.componentPath;
+  loadFormComponent(path: string) {
     import('../forms/' + path).then(m => {
       const componentClass = m[Object.keys(m).pop()];
       const factCompo = this.factoryResolver.resolveComponentFactory<CustomForm>(componentClass);
@@ -122,18 +122,15 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     });
   }
 
-  menuSelected(item: WidgetSelection, lib?: WidgetLib) {
+  menuSelected(item: WidgetSelection, lib?: string) {
     if (lib) {
       console.log('Menu with Lib Selected config', {item, lib});
+      this.selectWidgetForm.get('lib').setValue(lib);
     } else {
       console.log('Single Library config', {item});
     }
-    const val = {
-      type: item.value,
-      lib: item.componentPath || lib.componentPath
-    };
-    this.matSelect.value = val.lib;
     this.matSelect.placeholder = item.label;
-    this.selectWidgetForm.get('component').setValue(val.lib);
+    this.selectWidgetForm.get('component').setValue(item.value);
+    this.loadFormComponent(item.componentPath);
   }
 }
