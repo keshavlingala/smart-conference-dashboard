@@ -85,10 +85,13 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     console.log(this.customForm);
     const data = {
       ...this.selectWidgetForm.value,
-      ...this.attributesForm.value,
-      ...this.customForm.value,
-      deviceId: this.selectedDevice._id
+      data: {
+        ...this.attributesForm.value,
+        ...this.customForm.value,
+        deviceId: this.selectedDevice._id
+      }
     };
+    localStorage.setItem('widgetItem', JSON.stringify(data));
     console.log(data);
   }
 
