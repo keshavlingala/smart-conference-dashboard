@@ -4,11 +4,12 @@ import {StepperSelectionEvent} from '@angular/cdk/stepper';
 import {MatStep} from '@angular/material/stepper';
 import {devicesGenerator} from '../../../shared/datagenerator/datagenerator.dev';
 import {Device} from '../../../shared/models/data-table.model';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {CustomFormHostDirective} from '../custom-form-host.directive';
 import {MatSelect} from '@angular/material/select';
 import {CustomForm} from '../forms/custom-form.interface';
 import {WidgetSelection} from '../dashboard-widget.model';
+import {Dashboard, Widget} from '../dashboard-types.model';
 
 @Component({
   selector: 'app-dashboard-add-widget',
@@ -23,24 +24,24 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     {
       label: 'Gauge Chart', value: 'gauge', componentPath: 'guage-form/guage-form.component',
       lib: [
-        'chartish'
+        'chartist'
       ]
     },
     {
       label: 'Line Chart', value: 'line', componentPath: 'line-form/line-form.component',
       lib: [
-        'chartish',
+        'chartist',
         'chartjs',
       ]
     },
-    {label: 'Bar Chart', value: 'bar', componentPath: 'guage-form/guage-form.component'},
+    {label: 'Bar Chart', value: 'bar', componentPath: 'guage-form/guage-form.component', lib: ['chartjs', 'chartist']},
     {label: 'StackedBar Chart', value: 'stackedbar', componentPath: 'guage-form/guage-form.component'},
     {label: 'Smart Light', value: 'smartlight', componentPath: 'guage-form/guage-form.component'},
   ];
   @ViewChild('widget', {static: true}) widgetStep: MatStep;
   devices: Device[] = devicesGenerator(10).data.devices;
   selectedDevice: Device;
-  selectedDashboard;
+  selectedDashboard: string;
   customForm: FormGroup;
   @ViewChild(CustomFormHostDirective) container: CustomFormHostDirective;
   @ViewChild('widgetSelector') matSelect: MatSelect;
@@ -48,6 +49,7 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
   constructor(
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
+    private router: Router,
     private factoryResolver: ComponentFactoryResolver
   ) {
   }
@@ -82,8 +84,7 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
   }
 
   submit() {
-    console.log(this.customForm);
-    const data = {
+    const newWidget: Widget = {
       ...this.selectWidgetForm.value,
       data: {
         ...this.attributesForm.value,
@@ -91,8 +92,24 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
         deviceId: this.selectedDevice._id
       }
     };
-    localStorage.setItem('widgetItem', JSON.stringify(data));
-    console.log(data);
+    const localDash = JSON.parse(localStorage.getItem('dashboard')) as Dashboard;
+    if (localDash) {
+      localDash.widgets.push(newWidget);
+      console.log({localDash});
+      localStorage.setItem('dashboard', JSON.stringify(localDash));
+    } else {
+      const newDashBoard: Dashboard = {
+        dashboardName: this.selectedDashboard,
+        widgets: [newWidget]
+      };
+      console.log('New Dashboard Stored', {newDashBoard});
+      localStorage.setItem('dashboard', JSON.stringify(newDashBoard));
+    }
+    this.router.navigate(['../'], {
+      relativeTo: this.activatedRoute
+    });
+    // localStorage.setItem('newItem', JSON.stringify(data));
+    // console.log(data);
   }
 
   selectComponent(d: any) {

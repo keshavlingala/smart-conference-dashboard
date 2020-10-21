@@ -5,27 +5,29 @@ export interface DashboardResponse {
 }
 
 export interface Dashboard {
-  read: any[];
-  _id: string;
+  read?: any[];
+  _id?: string;
   dashboardName: string;
   widgets: Widget[];
-  createdBy: string;
-  createdAt: string;
-  updatedAt: string;
+  createdBy?: string;
+  createdAt?: string;
+  updatedAt?: string;
 }
 
 export interface Widget {
-  data: Data;
+  data: WidgetData;
   settings: Settings;
   _id: string;
   label: string;
   component: string;
   id: string;
-  rows: number;
-  cols: number;
+  rows?: number;
+  cols?: number;
+  lib?: string;
+  widgetConfig?: GridsterItem;
 }
 
-export interface Data {
+export interface WidgetData {
   deviceId: string;
   deviceName: string;
   deviceType: string;
@@ -38,4 +40,50 @@ export interface Data {
 
 export interface Settings {
   color: string;
+}
+
+// Dashboard Home
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {Color, Label, SingleOrMultiDataSet} from 'ng2-charts';
+import {GridsterItem} from 'angular-gridster2';
+
+export interface MyChart {
+  id: number;
+  datasets: ChartDataSets[];
+  data?: SingleOrMultiDataSet;
+  labels: Label[];
+  options: ChartOptions;
+  colors: Color[];
+  chartType: ChartType;
+  legend: boolean;
+}
+
+export interface MyItem {
+  id: number;
+  datasets: ChartDataSets[];
+  labels: Label[];
+  options: ChartOptions;
+  colors: Color[];
+  chartType: ChartType;
+  legend: boolean;
+  uiConfig: GridsterItem;
+  lib: string;
+}
+
+export interface CustomChartConfig {
+  label: string;
+  widget: ChartType | 'gauge';
+  deviceType: string;
+  DeviceName: string;
+  attribute: string;
+  unit: string;
+}
+
+export interface CustomLineChart extends CustomChartConfig {
+  dataSince: number;
+}
+
+export interface CustomGauge extends CustomChartConfig {
+  min: number;
+  max: number;
 }
