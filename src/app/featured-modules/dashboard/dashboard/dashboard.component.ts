@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
 import {CompactType, DisplayGrid, GridsterConfig, GridType} from 'angular-gridster2';
 import {Dashboard, Widget} from '../dashboard-types.model';
 
@@ -71,6 +71,7 @@ export class DashboardComponent implements OnInit {
     scrollToNewItems: false,
   };
 
+
   constructor() {
   }
 
@@ -84,6 +85,7 @@ export class DashboardComponent implements OnInit {
         widget.widgetConfig = {cols: 4, rows: 2, y: 0, x: 0};
       }
     });
+
     // console.log(this.dashboard);
   }
 
@@ -99,6 +101,7 @@ export class DashboardComponent implements OnInit {
 
   }
 
+
   resized(event: UIEvent) {
     console.log(event);
   }
@@ -106,4 +109,6 @@ export class DashboardComponent implements OnInit {
   mutated(event: any) {
     console.log('Mutated', event);
   }
+
+
 }

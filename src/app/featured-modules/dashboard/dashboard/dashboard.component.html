@@ -16,17 +16,19 @@
         </button>
       </div>
     </div>
-    <div (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()" class="p-2"
-         [ngSwitch]="widgetItem.lib">
-      <div class="w-100" *ngSwitchCase="'chartjs'">
-        <app-chartjs class="d-block" [widget]="widgetItem"></app-chartjs>
-      </div>
-      <div class=" w-100" *ngSwitchCase="'chartist'">
-        <app-chartist class="d-block" [widget]="widgetItem"></app-chartist>
-      </div>
-      <div *ngSwitchCase="'google'">
-        <app-google-charts [widget]="widgetItem"></app-google-charts>
-      </div>
+    <div (mousedown)="$event.stopPropagation()" (touchstart)="$event.stopPropagation()" class="p-2">
+      <!--         [ngSwitch]="widgetItem.lib.lib"-->
+      <!--    >-->
+      <ng-template [widget]="widgetItem" appLibHost></ng-template>
+      <!--      <div class="w-100" *ngSwitchCase="'chartjs'">-->
+      <!--        <app-chartjs class="d-block" [widget]="widgetItem"></app-chartjs>-->
+      <!--      </div>-->
+      <!--      <div class=" w-100" *ngSwitchCase="'chartist'">-->
+      <!--        <app-chartist class="d-block" [widget]="widgetItem"></app-chartist>-->
+      <!--      </div>-->
+      <!--      <div *ngSwitchCase="'google'">-->
+      <!--        <app-google-charts [widget]="widgetItem"></app-google-charts>-->
+      <!--      </div>-->
     </div>
   </gridster-item>
 </gridster>

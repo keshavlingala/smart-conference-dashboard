@@ -1,6 +1,8 @@
-<canvas baseChart
-        [datasets]="datasets"
-        [labels]="labels"
-        [colors]="colors"
-        [chartType]="chartType"
-></canvas>
+<div *ngIf="widget" class="w-100">
+  <canvas baseChart #canvas='base-chart'
+          [datasets]="datasets"
+          [labels]="labels"
+          [colors]="colors"
+          [chartType]="chartType"
+  ></canvas>
+</div>

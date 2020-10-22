@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {GoogleChartInterface} from 'ng2-google-charts';
 import {Widget} from '../../dashboard-types.model';
 import {mapper} from '../charts.mapper';
@@ -8,9 +8,9 @@ import {mapper} from '../charts.mapper';
   templateUrl: './google-charts.component.html',
   styleUrls: ['./google-charts.component.scss']
 })
-export class GoogleChartsComponent implements OnInit {
+export class GoogleChartsComponent implements OnInit, OnChanges {
   @Input() widget: Widget;
-  pieChart: GoogleChartInterface = {
+  chartData: GoogleChartInterface = {
     chartType: 'BarChart',
     dataTable: [
       ['Task', 'Hours per Day'],
@@ -29,7 +29,12 @@ export class GoogleChartsComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.widget);
-    this.pieChart.chartType = mapper.google[this.widget.component];
+    this.chartData.chartType = mapper.google[this.widget.component];
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log({changes});
+  }
+
 
 }

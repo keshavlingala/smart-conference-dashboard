@@ -1,3 +1,9 @@
+import {WidgetComponentSelection} from './dashboard-widget.model';
+// Dashboard Home
+import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
+import {Color, Label} from 'ng2-charts';
+import {GridsterItem} from 'angular-gridster2';
+
 export interface DashboardResponse {
   status: string;
   message: string;
@@ -23,7 +29,7 @@ export interface Widget {
   id: string;
   rows?: number;
   cols?: number;
-  lib?: string;
+  lib?: WidgetComponentSelection;
   widgetConfig?: GridsterItem;
 }
 
@@ -40,22 +46,6 @@ export interface WidgetData {
 
 export interface Settings {
   color: string;
-}
-
-// Dashboard Home
-import {ChartDataSets, ChartOptions, ChartType} from 'chart.js';
-import {Color, Label, SingleOrMultiDataSet} from 'ng2-charts';
-import {GridsterItem} from 'angular-gridster2';
-
-export interface MyChart {
-  id: number;
-  datasets: ChartDataSets[];
-  data?: SingleOrMultiDataSet;
-  labels: Label[];
-  options: ChartOptions;
-  colors: Color[];
-  chartType: ChartType;
-  legend: boolean;
 }
 
 export interface MyItem {

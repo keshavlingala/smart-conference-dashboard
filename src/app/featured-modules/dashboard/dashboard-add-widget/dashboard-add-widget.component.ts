@@ -8,8 +8,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {CustomFormHostDirective} from '../custom-form-host.directive';
 import {MatSelect} from '@angular/material/select';
 import {CustomForm} from '../forms/custom-form.interface';
-import {WidgetSelection} from '../dashboard-widget.model';
+import {WidgetComponentSelection, WidgetSelection} from '../dashboard-widget.model';
 import {Dashboard, Widget} from '../dashboard-types.model';
+import {HttpClient} from '@angular/common/http';
 
 @Component({
   selector: 'app-dashboard-add-widget',
@@ -20,41 +21,7 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
   selectWidgetForm: FormGroup;
   attributesForm: FormGroup;
   selectedIndex = 0;
-  widgets: WidgetSelection[] = [
-    {
-      label: 'Gauge Chart', value: 'gauge', componentPath: 'guage-form/guage-form.component',
-      lib: [
-        'chartist',
-        'google'
-      ]
-    },
-    {
-      label: 'Line Chart', value: 'line', componentPath: 'line-form/line-form.component',
-      lib: [
-        'chartist',
-        'chartjs',
-        'google'
-      ]
-    },
-    {
-      label: 'Bar Chart', value: 'bar', componentPath: 'guage-form/guage-form.component',
-      lib: [
-        'chartjs',
-        'chartist',
-        'google'
-      ]
-    },
-    {
-      label: 'Pie Chart', value: 'pie', componentPath: 'guage-form/guage-form.component',
-      lib: [
-        'chartist',
-        'chartjs',
-        'google'
-      ]
-    },
-    {label: 'StackedBar Chart', value: 'stackedbar', componentPath: 'guage-form/guage-form.component'},
-    {label: 'Smart Light', value: 'smartlight', componentPath: 'guage-form/guage-form.component'},
-  ];
+  widgets: WidgetSelection[];
   @ViewChild('widget', {static: true}) widgetStep: MatStep;
   devices: Device[] = devicesGenerator(10).data.devices;
   selectedDevice: Device;
@@ -67,7 +34,8 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-    private factoryResolver: ComponentFactoryResolver
+    private factoryResolver: ComponentFactoryResolver,
+    private http: HttpClient
   ) {
   }
 
@@ -79,7 +47,7 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     this.selectWidgetForm = this.fb.group({
       label: ['', Validators.required],
       component: ['', Validators.required],
-      lib: []
+      lib: [],
     });
     this.attributesForm = this.fb.group({
       deviceType: ['', Validators.required],
@@ -87,6 +55,7 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
       attributes: ['', Validators.required],
       dataUnit: ['', Validators.required],
     });
+    this.http.get<WidgetSelection[]>('assets/widgets.json').subscribe(val => this.widgets = val);
   }
 
   selectionChange($event: StepperSelectionEvent) {
@@ -155,16 +124,16 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
       const componentRef = this.container.viewContainerRef.createComponent(factCompo);
       // componentRef.changeDetectorRef.detectChanges();
       this.customForm = componentRef.instance.form;
-      console.log(this.customForm);
     });
   }
 
-  menuSelected(item: WidgetSelection, lib?: string) {
+  menuSelected(item: WidgetSelection, lib?: WidgetComponentSelection) {
     if (lib) {
       console.log('Menu with Lib Selected config', {item, lib});
       this.selectWidgetForm.get('lib').setValue(lib);
     } else {
       console.log('Single Library config', {item});
+      this.selectWidgetForm.get('lib').setValue(null);
     }
     this.matSelect.placeholder = item.label;
     this.selectWidgetForm.get('component').setValue(item.value);

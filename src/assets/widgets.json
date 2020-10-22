@@ -1,0 +1,80 @@
+[
+  {
+    "label": "Gauge Chart",
+    "value": "gauge",
+    "componentPath": "guage-form/guage-form.component",
+    "lib": [
+      {
+        "lib": "google",
+        "componentPath": "google-charts/google-charts.component"
+      }
+    ]
+  },
+  {
+    "label": "Line Chart",
+    "value": "line",
+    "componentPath": "line-form/line-form.component",
+    "lib": [
+      {
+        "lib": "chartjs",
+        "componentPath": "chartjs/chartjs.component"
+      },
+      {
+        "lib": "google",
+        "componentPath": "google-charts/google-charts.component"
+      },
+      {
+        "lib": "chartist",
+        "componentPath": "chartist/chartist.component"
+      }
+    ]
+  },
+  {
+    "label": "Bar Chart",
+    "value": "bar",
+    "componentPath": "guage-form/guage-form.component",
+    "lib": [
+      {
+        "lib": "chartjs",
+        "componentPath": "chartjs/chartjs.component"
+      },
+      {
+        "lib": "google",
+        "componentPath": "google-charts/google-charts.component"
+      },
+      {
+        "lib": "chartist",
+        "componentPath": "chartist/chartist.component"
+      }
+    ]
+  },
+  {
+    "label": "Pie Chart",
+    "value": "pie",
+    "componentPath": "guage-form/guage-form.component",
+    "lib": [
+      {
+        "lib": "chartjs",
+        "componentPath": "chartjs/chartjs.component"
+      },
+      {
+        "lib": "google",
+        "componentPath": "google-charts/google-charts.component"
+      },
+      {
+        "lib": "chartist",
+        "componentPath": "chartist/chartist.component"
+      }
+    ]
+  },
+  {
+    "label": "StackedBar Chart",
+    "value": "stackedbar",
+    "componentPath": "guage-form/guage-form.component"
+  },
+  {
+    "label": "Smart Light",
+    "value": "smartlight",
+    "componentPath": "guage-form/guage-form.component"
+  }
+]
