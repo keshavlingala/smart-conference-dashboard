@@ -31,6 +31,10 @@ import {ClipboardModule} from '@angular/cdk/clipboard';
 import {NgxMatSelectSearchModule} from 'ngx-mat-select-search';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatMenuModule} from '@angular/material/menu';
+import {ChartsModule} from 'ng2-charts';
+import {GridsterModule} from 'angular-gridster2';
+import {ChartistModule} from 'ng-chartist';
+import {Ng2GoogleChartsModule} from 'ng2-google-charts';
 
 const MaterialComponents = [MatDialogModule,
   MatRadioModule,
@@ -40,10 +44,14 @@ const MaterialComponents = [MatDialogModule,
   MatFormFieldModule,
   MatDatepickerModule,
   MatMenuModule,
+  ChartsModule,
   MatCardModule,
   MatDividerModule,
   MatSlideToggleModule,
   MatSidenavModule,
+  GridsterModule,
+  ChartistModule,
+  Ng2GoogleChartsModule,
   MatIconModule,
   MatListModule,
   MatButtonModule,

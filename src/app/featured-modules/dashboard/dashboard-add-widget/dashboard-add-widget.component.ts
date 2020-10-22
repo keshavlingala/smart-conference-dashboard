@@ -24,7 +24,8 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
     {
       label: 'Gauge Chart', value: 'gauge', componentPath: 'guage-form/guage-form.component',
       lib: [
-        'chartist'
+        'chartist',
+        'google'
       ]
     },
     {
@@ -32,9 +33,25 @@ export class DashboardAddWidgetComponent implements OnInit, AfterViewInit {
       lib: [
         'chartist',
         'chartjs',
+        'google'
       ]
     },
-    {label: 'Bar Chart', value: 'bar', componentPath: 'guage-form/guage-form.component', lib: ['chartjs', 'chartist']},
+    {
+      label: 'Bar Chart', value: 'bar', componentPath: 'guage-form/guage-form.component',
+      lib: [
+        'chartjs',
+        'chartist',
+        'google'
+      ]
+    },
+    {
+      label: 'Pie Chart', value: 'pie', componentPath: 'guage-form/guage-form.component',
+      lib: [
+        'chartist',
+        'chartjs',
+        'google'
+      ]
+    },
     {label: 'StackedBar Chart', value: 'stackedbar', componentPath: 'guage-form/guage-form.component'},
     {label: 'Smart Light', value: 'smartlight', componentPath: 'guage-form/guage-form.component'},
   ];

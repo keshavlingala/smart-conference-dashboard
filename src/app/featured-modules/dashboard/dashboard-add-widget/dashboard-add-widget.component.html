@@ -64,10 +64,10 @@
             <!--            <mat-form-field appearance="outline" class=" w-100">-->
             <!--              <mat-select (selectionChange)="componentChange($event)" formControlName="component"-->
             <!--                          placeholder="Ex: Bar Chart">-->
-            <!--                <mat-option *ngFor="let w of widgets" [value]="w">-->
+            <!--                <mat-option *ngFor="let w of libs" [value]="w">-->
             <!--                  {{w.label}}-->
             <!--                </mat-option>-->
-            <!--                <mat-optgroup *ngFor="let group of widgets" [label]="group.label">-->
+            <!--                <mat-optgroup *ngFor="let group of libs" [label]="group.label">-->
             <!--                  <mat-option *ngFor="let pokemon of [1,2,3,4]" [value]="pokemon">-->
             <!--                    {{pokemon}}-->
             <!--                  </mat-option>-->
@@ -81,7 +81,7 @@
 <!--          <label class="d-block">Recently Used</label>-->
 <!--          <div class="d-flex justify-content-start">-->
 <!--            <button color="primary" class="ml-2" (click)="selectComponent(d)" mat-stroked-button-->
-<!--                    *ngFor="let d of widgets">{{d.label}}</button>-->
+<!--                    *ngFor="let d of libs">{{d.label}}</button>-->
 <!--          </div>-->
 <!--        </div>-->
         <div *ngIf="selectedIndex===0">
