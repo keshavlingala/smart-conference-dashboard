@@ -66,15 +66,5 @@
         "componentPath": "chartist/chartist.component"
       }
     ]
-  },
-  {
-    "label": "StackedBar Chart",
-    "value": "stackedbar",
-    "componentPath": "guage-form/guage-form.component"
-  },
-  {
-    "label": "Smart Light",
-    "value": "smartlight",
-    "componentPath": "guage-form/guage-form.component"
   }
 ]

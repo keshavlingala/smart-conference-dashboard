@@ -3,13 +3,14 @@ import {Widget} from '../../dashboard-types.model';
 import {ChartType} from 'chart.js';
 import {BaseChartDirective, Color} from 'ng2-charts';
 import {mapper} from '../charts.mapper';
+import {CustomLibrary} from '../CustomLibrary';
 
 @Component({
   selector: 'app-chartjs',
   templateUrl: './chartjs.component.html',
   styleUrls: ['./chartjs.component.scss']
 })
-export class ChartjsComponent implements OnInit, OnChanges, AfterViewInit {
+export class ChartjsComponent implements OnInit, OnChanges, AfterViewInit, CustomLibrary {
   @Input() widget: Widget;
   @ViewChild(BaseChartDirective) canvas: BaseChartDirective;
   datasets = [

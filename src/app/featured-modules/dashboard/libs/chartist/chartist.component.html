@@ -1,6 +1,6 @@
-<div class="w-100">
+<div *ngIf="widget" class="w-100">
   <x-chartist
-    type="Bar"
+    [type]="chartType"
     [data]="data"
   ></x-chartist>
 </div>

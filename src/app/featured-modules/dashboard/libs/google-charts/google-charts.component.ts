@@ -2,13 +2,14 @@ import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core'
 import {GoogleChartInterface} from 'ng2-google-charts';
 import {Widget} from '../../dashboard-types.model';
 import {mapper} from '../charts.mapper';
+import {CustomLibrary} from '../CustomLibrary';
 
 @Component({
   selector: 'app-google-charts',
   templateUrl: './google-charts.component.html',
   styleUrls: ['./google-charts.component.scss']
 })
-export class GoogleChartsComponent implements OnInit, OnChanges {
+export class GoogleChartsComponent implements OnInit, OnChanges, CustomLibrary {
   @Input() widget: Widget;
   chartData: GoogleChartInterface = {
     chartType: 'BarChart',
