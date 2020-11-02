@@ -32,16 +32,16 @@ i {
   margin-right: 15px;
 }
 
-/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
+::ng-deep.mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-bar {
   background-color: #0f7a41;
 }
 
-/deep/ .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
+::ng-deep .mat-slide-toggle.mat-checked:not(.mat-disabled) .mat-slide-toggle-thumb {
   background-color: white;
 }
 
 
-/deep/ .mat-button .mat-button-focus-overlay {
+::ng-deep .mat-button .mat-button-focus-overlay {
   background-color: transparent;
 }
 
@@ -52,7 +52,7 @@ button:focus {
   box-shadow: none !important;
 }
 
-/deep/ .mat-tab-label-active {
+::ng-deep .mat-tab-label-active {
   color: darkblue;
 }
 

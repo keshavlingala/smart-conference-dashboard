@@ -21,7 +21,7 @@ export class GoogleChartsComponent implements OnInit, OnChanges, CustomLibrary {
       ['Watch TV', 2],
       ['Sleep', 7]
     ],
-    options: {title: 'Tasks'},
+    // options: {title: 'Tasks'},
   };
 
   constructor() {

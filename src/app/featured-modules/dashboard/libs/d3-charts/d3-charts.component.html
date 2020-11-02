@@ -1,0 +1,38 @@
+<ngx-charts-area-chart
+  *ngIf="widget.component==='area'"
+  [scheme]="colorScheme"
+  [legend]="legend"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxis]="xAxis"
+  [yAxis]="yAxis"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  [timeline]="timeline"
+  tooltipDisabled="false"
+  [results]="multi"
+  (select)="onSelect($event)">
+</ngx-charts-area-chart>
+<ngx-charts-bar-vertical
+  *ngIf="widget.component === 'bar'"
+  [view]="view"
+  [scheme]="colorScheme"
+  schemeType="ordinal"
+  [results]="single"
+  [animations]="animations"
+  [xAxis]="true"
+  [yAxis]="true"
+  [legend]="true"
+  [legendTitle]="'Title'"
+  [legendPosition]="'right'"
+  [showXAxisLabel]="showXAxisLabel"
+  [showYAxisLabel]="showYAxisLabel"
+  [xAxisLabel]="xAxisLabel"
+  [yAxisLabel]="yAxisLabel"
+  showGridLines
+  [barPadding]="8"
+  [roundDomains]="true"
+  (activate)="onSelect($event)"
+  (deactivate)="onSelect($event)"
+>
+</ngx-charts-bar-vertical>

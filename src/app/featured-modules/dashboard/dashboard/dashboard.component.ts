@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {CompactType, DisplayGrid, GridsterConfig, GridType} from 'angular-gridster2';
 import {Dashboard, Widget} from '../dashboard-types.model';
 
@@ -10,7 +10,7 @@ import {Dashboard, Widget} from '../dashboard-types.model';
 export class DashboardComponent implements OnInit {
   @Input() dashboard: Dashboard;
   options: GridsterConfig = {
-    gridType: GridType.Fit,
+    gridType: GridType.ScrollVertical,
     compactType: CompactType.None,
     margin: 5,
     outerMargin: true,

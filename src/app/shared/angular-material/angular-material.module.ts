@@ -35,8 +35,10 @@ import {ChartsModule} from 'ng2-charts';
 import {GridsterModule} from 'angular-gridster2';
 import {ChartistModule} from 'ng-chartist';
 import {Ng2GoogleChartsModule} from 'ng2-google-charts';
+import {NgxChartsModule} from '@swimlane/ngx-charts';
 
 const MaterialComponents = [MatDialogModule,
+  NgxChartsModule,
   MatRadioModule,
   MatNativeDateModule,
   MatTabsModule,

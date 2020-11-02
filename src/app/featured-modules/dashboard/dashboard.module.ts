@@ -13,6 +13,7 @@ import {ChartjsComponent} from './libs/chartjs/chartjs.component';
 import {ChartistComponent} from './libs/chartist/chartist.component';
 import {GoogleChartsComponent} from './libs/google-charts/google-charts.component';
 import {LibHostDirective} from './dashboard/libhost.directive';
+import {D3ChartsComponent} from './libs/d3-charts/d3-charts.component';
 
 
 @NgModule({
@@ -25,11 +26,12 @@ import {LibHostDirective} from './dashboard/libhost.directive';
     ChartjsComponent,
     ChartistComponent,
     GoogleChartsComponent,
-    LibHostDirective],
+    LibHostDirective,
+    D3ChartsComponent],
   imports: [
     CommonModule,
     DashboardRoutingModule,
-    AngularMaterialModule
+    AngularMaterialModule,
   ]
 })
 export class DashboardModule {

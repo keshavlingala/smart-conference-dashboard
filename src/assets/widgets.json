@@ -45,6 +45,10 @@
       {
         "lib": "chartist",
         "componentPath": "chartist/chartist.component"
+      },
+      {
+        "lib": "D3",
+        "componentPath": "d3-charts/d3-charts.component"
       }
     ]
   },
@@ -64,6 +68,17 @@
       {
         "lib": "chartist",
         "componentPath": "chartist/chartist.component"
+      }
+    ]
+  },
+  {
+    "label": "Area Chart",
+    "value": "area",
+    "componentPath": "guage-form/guage-form.component",
+    "lib": [
+      {
+        "lib": "D3",
+        "componentPath": "d3-charts/d3-charts.component"
       }
     ]
   }
