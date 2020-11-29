@@ -19,6 +19,13 @@ const action = [
 export const deviceTypes = [
   'MedicalDevice',
   'TiSesnorTag',
+  'Device Name 1',
+  'Device Name 2',
+  'Device Name 3',
+  'Device Name 4',
+  'Device Name 5',
+  'Device Name 6',
+  'Device Name 7',
 ];
 
 export const chance = new Chance() as Chance.Chance;

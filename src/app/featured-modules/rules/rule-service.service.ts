@@ -12,6 +12,7 @@ export class RulesService {
 
   constructor() {
     this.rules = ruleDeviceGenerator(200).data.rules;
+    console.log(this.rules);
     const types: { [deviceType: string]: Rule[] } = {};
     this.rules.forEach(rule => {
       if (rule.type.deviceType in types) {
