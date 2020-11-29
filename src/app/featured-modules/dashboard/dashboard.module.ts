@@ -17,17 +17,20 @@ import {D3ChartsComponent} from './libs/d3-charts/d3-charts.component';
 
 
 @NgModule({
-  declarations: [DashboardHomeComponent,
+  declarations: [
+    DashboardHomeComponent,
     DashboardAddWidgetComponent,
     PopUpAddDashboardComponent,
     CustomFormHostDirective,
-    GuageFormComponent, LineFormComponent,
+    GuageFormComponent,
+    LineFormComponent,
     DashboardComponent,
     ChartjsComponent,
     ChartistComponent,
     GoogleChartsComponent,
     LibHostDirective,
-    D3ChartsComponent],
+    D3ChartsComponent
+  ],
   imports: [
     CommonModule,
     DashboardRoutingModule,

@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {Widget} from '../../dashboard-types.model';
 import {IChartistBarChart, IChartistData, IChartistLineChart, IChartistPieChart} from 'chartist';
 import {mapper} from '../charts.mapper';
 import {CustomLibrary} from '../CustomLibrary';
+import {ChartistComponent as Chartist} from 'ng-chartist';
 
 @Component({
   selector: 'app-chartist',
