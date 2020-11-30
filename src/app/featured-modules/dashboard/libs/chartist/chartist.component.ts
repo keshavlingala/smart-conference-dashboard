@@ -3,7 +3,6 @@ import {Widget} from '../../dashboard-types.model';
 import {IChartistBarChart, IChartistData, IChartistLineChart, IChartistPieChart} from 'chartist';
 import {mapper} from '../charts.mapper';
 import {CustomLibrary} from '../CustomLibrary';
-import {ChartistComponent as Chartist} from 'ng-chartist';
 
 @Component({
   selector: 'app-chartist',
@@ -12,6 +11,7 @@ import {ChartistComponent as Chartist} from 'ng-chartist';
 })
 export class ChartistComponent implements OnInit, CustomLibrary {
   @Input() widget: Widget;
+  @ViewChild('chartist') chart;
   data: IChartistData = {
     labels: [
       'Jan',
@@ -41,7 +41,13 @@ export class ChartistComponent implements OnInit, CustomLibrary {
 
   ngOnInit(): void {
     this.chartType = mapper.chartist[this.widget.component];
-    // console.log(this.widget);
+    setInterval(() => {
+      this.data.series[0].push(Math.round(Math.random() * 100));
+      this.data.series[1].push(Math.round(Math.random() * 100));
+      this.data.series[0].shift();
+      this.data.series[1].shift();
+      this.data = Object.create(this.data);
+    }, 2000);
   }
 
   func(event: IChartistPieChart | IChartistBarChart | IChartistLineChart) {
