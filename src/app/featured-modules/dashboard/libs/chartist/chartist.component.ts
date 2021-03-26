@@ -42,10 +42,10 @@ export class ChartistComponent implements OnInit, CustomLibrary {
   ngOnInit(): void {
     this.chartType = mapper.chartist[this.widget.component];
     setInterval(() => {
-      this.data.series[0].push(Math.round(Math.random() * 100));
-      this.data.series[1].push(Math.round(Math.random() * 100));
-      this.data.series[0].shift();
-      this.data.series[1].shift();
+      (this.data.series[0] as number[]).push(Math.round(Math.random() * 100));
+      (this.data.series[1] as number[]).push(Math.round(Math.random() * 100));
+      (this.data.series[0] as number[]).shift();
+      (this.data.series[1] as number[]).shift();
       this.data = Object.create(this.data);
     }, 2000);
   }
